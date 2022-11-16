@@ -3,6 +3,6 @@ My Website wroten in JavaScript, CSS, HTML.
 
 MIT Licensed.
 Domain bought from godaddy.
-Hosting provided by 000webhost.
+Hosting provided by Github.
 
-canozmen.me
+canmenzo.me
