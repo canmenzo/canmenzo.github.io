@@ -12,47 +12,30 @@
     if (host == window.location.host && window.location.protocol != "https:")
       window.location.protocol = "https";
   </script>
-  <style>
-    body>.grid {
-      height: 100%
-    }
 
-    .criticalstart {
-      color: #233d63;
-      display: inline-block;
-      font-weight: bold;
-    }
-
-    .fsu {
-      color: #782f40;
-      display: inline-block;
-      font-weight: bold;
-    }
-
-    .section {
-      margin-top: 10px;
-    }
-  </style>
+  <link rel="stylesheet" href="css/styles.css">
   <link rel="canonical" href="https://canmenzo.com">
   <link rel="icon" href="favicon.ico">
   <title>Can Ozmen | Personal Website</title>
+
   <script type="application/ld+json">
-      {
-          "@context": "http://schema.org",
-          "@type": "Person",
-          "name": "Can Ozmen",
-          "url": "https://canmenzo.com",
-          "sameAs": [
-              "https://twitter.com/canmenzo",
-              "https://github.com/canmenzo",
-              "https://linkedin.com/in/canmenzo",
-              "https://www.instagram.com/canmenzo/"
-          ]
-      }
-    </script>
+    {
+      "@context": "http://schema.org",
+      "@type": "Person",
+      "name": "Can Ozmen",
+      "url": "https://canmenzo.com",
+      "sameAs": [
+        "https://twitter.com/canmenzo",
+        "https://github.com/canmenzo",
+        "https://linkedin.com/in/canmenzo",
+        "https://www.instagram.com/canmenzo/"
+      ]
+    }
+  </script>
 </head>
 
-<body>
+<body class="dark-mode">
+
   <div style="text-align: left; margin-left:auto; margin-right:auto; width:80%">
     <div>
       <div style="width: 100%; overflow: hidden;">
@@ -89,17 +72,45 @@
         <div>
           <div class="section">
             <h3>contact:</h3>
-           <a href="mailto:canozmen@mail.com?Subject=million dollar app idea!">canozmen@mail.com</a>
+            <a href="mailto:canozmen@mail.com?Subject=million dollar app idea!">canozmen@mail.com</a>
             <br>
             <a href="https://www.linkedin.com/in/canmenzo/">linkedin</a>
             <br>
           </div>
-
         </div>
       </div>
     </div>
 
-
+    <!-- Theme Toggle Button -->
+    <button id="theme-toggle">dark mode: on</button>
   </div>
+
+  <script>
+    // Get the theme toggle button
+    const themeToggle = document.getElementById("theme-toggle");
+
+    // If dark mode was previously set, check for that in localStorage
+    if (localStorage.getItem("dark-mode") === "enabled") {
+      document.body.classList.add("dark-mode");
+      themeToggle.textContent = "dark mode: on";
+    } else {
+      themeToggle.textContent = "dark mode: off";
+    }
+
+    // Toggle dark mode on button click
+    themeToggle.addEventListener("click", function() {
+      document.body.classList.toggle("dark-mode");
+
+      // Change the button text based on dark mode state
+      if (document.body.classList.contains("dark-mode")) {
+        themeToggle.textContent = "dark mode: on";
+        localStorage.setItem("dark-mode", "enabled");
+      } else {
+        themeToggle.textContent = "dark mode: off";
+        localStorage.removeItem("dark-mode");
+      }
+    });
+  </script>
 </body>
+
 </html>
