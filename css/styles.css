@@ -22,7 +22,7 @@ body.dark-mode {
   top: 20px;
   right: 20px;
   padding: 10px 20px;
-  font-size: 16px;
+  font-size: 12px;
   cursor: pointer;
   background-color: #333;
   color: #fff;
@@ -31,7 +31,7 @@ body.dark-mode {
   transition: background-color 0.3s ease, color 0.3s ease;
   font-weight: bold;
   font-family: 'Roboto', sans-serif;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0px 5px rgba(0, 0, 0, 0.2);
 }
 
 body.dark-mode #theme-toggle {
