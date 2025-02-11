@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
 
 .criticalstart {
   color: #233d63;
@@ -12,42 +13,38 @@
 }
 
 body.dark-mode {
-    background-color: #191a1b;
-    color: #f1f1f1;
-  }
-  
+  background-color: #191a1b;
+  color: #f1f1f1;
+}
 
-  #theme-toggle {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    background-color: #333;
-    color: #fff;
-    border: none;
-    border-radius: 25px; 
-    transition: background-color 0.3s ease, color 0.3s ease;
-    font-weight: bold;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);  
-  }
-  
+#theme-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  font-weight: bold;
+  font-family: 'Roboto', sans-serif;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
 
-  body.dark-mode #theme-toggle {
-    background-color: #191a1b;
-    color: #fff;
-  }
-  
+body.dark-mode #theme-toggle {
+  background-color: #191a1b;
+  color: #fff;
+}
 
-  body:not(.dark-mode) #theme-toggle {
-    background-color: #fff;
-    color: #333;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);  
-  }
-  
+body:not(.dark-mode) #theme-toggle {
+  background-color: #fff;
+  color: #333;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
 
-  body {
-    transition: background-color 0.3s ease, color 0.3s ease;
-  }
-  
+body {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
