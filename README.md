@@ -1,6 +1,7 @@
-# canmenzo.github.io | https://canmenzo.com/
+# canmenzo.github.io | canmenzo.com
+
 written in HTML, CSS
 
 MIT Licensed.
 Domain bought from godaddy.
-Hosting provided by Github.
+Hosting provided by GitHub.
