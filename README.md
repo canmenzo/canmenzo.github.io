@@ -4,4 +4,4 @@
 - MIT licensed.
 - domain bought from godaddy.
 - hosting provided by GitHub.
-- dark mode implemented by chat.
+- dark mode & the secret firebase sauce (ifykyk) implemented by chat.
