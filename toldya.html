@@ -42,7 +42,7 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
         import { getFirestore, doc, getDoc, setDoc, updateDoc } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
         import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
-        
+
         // Firebase Configuration | please dont steal my api key
         // i changed my rules so u gotta be authenticated anyways but im too lazy Xd
         const firebaseConfig = {
@@ -57,7 +57,7 @@
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
-        const auth = getAuth(app);
+        const auth = getAuth(app); // Initialize auth module
         
         const counterRef = doc(db, "visitCount", "counter");
 
