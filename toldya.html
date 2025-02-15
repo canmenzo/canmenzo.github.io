@@ -27,7 +27,9 @@
     
     <!-- Visit Counter -->
     <div id="counter">Loading counter...</div>
-    
+
+    <br><br> <!-- Added extra spacing -->
+
     <!-- YouTube Video -->
     <iframe width="560" height="315" src="https://www.youtube.com/embed/xvFZjo5PgG0?autoplay=1" 
             title="YouTube video player" 
@@ -42,7 +44,7 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
         import { getFirestore, doc, getDoc, setDoc, updateDoc } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
         import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
-
+        
         // Firebase Configuration | please dont steal my api key
         // i changed my rules so u gotta be authenticated anyways but im too lazy Xd
         const firebaseConfig = {
@@ -57,7 +59,7 @@
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
-        const auth = getAuth(app); // Initialize auth module
+        const auth = getAuth(app);
         
         const counterRef = doc(db, "visitCount", "counter");
 
@@ -82,7 +84,7 @@
                             updateDoc(counterRef, { count: newCount });
 
                             // Display the counter on the page
-                            document.getElementById("counter").textContent = `This page has been visited ${newCount} times.`;
+                            document.getElementById("counter").innerHTML = `This page has been visited ${newCount} times.<br><br>`;
                         } else {
                             console.log("Document does not exist, creating it...");
 
@@ -90,7 +92,7 @@
                             setDoc(counterRef, { count: 1 });
 
                             // Display the counter on the page
-                            document.getElementById("counter").textContent = `This page has been visited 1 time.`;
+                            document.getElementById("counter").innerHTML = `This page has been visited 1 time.<br><br>`;
                         }
                     }).catch((error) => {
                         console.error("Error fetching counter:", error);
