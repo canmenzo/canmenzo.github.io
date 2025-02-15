@@ -26,7 +26,7 @@
     <h1>TOLD YA!</h1>
     
     <!-- Visit Counter -->
-    <div id="counter"></div>
+    <div id="counter">Loading counter...</div>
     
     <!-- YouTube Video -->
     <iframe width="560" height="315" src="https://www.youtube.com/embed/xvFZjo5PgG0?autoplay=1" 
@@ -64,14 +64,22 @@
                 const currentCount = doc.data().count;
                 const newCount = currentCount + 1;
 
+                // Update Firestore with the new count
                 counterRef.update({ count: newCount });
 
+                // Display the counter on the page
                 document.getElementById("counter").textContent = `This page has been visited ${newCount} times.`;
             } else {
+                // If the counter document doesn't exist, initialize it
                 counterRef.set({ count: 1 });
 
+                // Display the counter on the page
                 document.getElementById("counter").textContent = `This page has been visited 1 time.`;
             }
+        }).catch((error) => {
+            // In case of error (e.g., network issues, etc.)
+            console.error("Error fetching counter:", error);
+            document.getElementById("counter").textContent = "Could not load counter. Please try again later.";
         });
     </script>
 </body>
