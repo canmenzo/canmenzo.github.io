@@ -37,10 +37,11 @@
     </iframe>
 
     <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
-    
-    <script>
+    <script type="module">
+        // Import Firebase modules
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+        import { getFirestore, doc, getDoc, setDoc, updateDoc } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
+
         // Firebase Configuration | please dont steal my api key
         // i changed my rules so u gotta be authenticated anyways but im too lazy Xd
         const firebaseConfig = {
@@ -53,33 +54,41 @@
         };
 
         // Initialize Firebase
-        const app = firebase.initializeApp(firebaseConfig);
-        const db = firebase.firestore(app);
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
         
-        const counterRef = db.collection("visitCount").doc("counter");
+        const counterRef = doc(db, "visitCount", "counter");
 
-        // Fetch and update the visit counter from Firestore
-        counterRef.get().then(doc => {
-            if (doc.exists) {
-                const currentCount = doc.data().count;
-                const newCount = currentCount + 1;
+        console.log("Firebase initialized. Attempting to fetch counter...");
 
-                // Update Firestore with the new count
-                counterRef.update({ count: newCount });
+        // Wait for DOM to fully load
+        document.addEventListener("DOMContentLoaded", function() {
+            // Fetch and update the visit counter from Firestore
+            getDoc(counterRef).then(docSnap => {
+                console.log("Firestore document fetched.");
 
-                // Display the counter on the page
-                document.getElementById("counter").textContent = `This page has been visited ${newCount} times.`;
-            } else {
-                // If the counter document doesn't exist, initialize it
-                counterRef.set({ count: 1 });
+                if (docSnap.exists()) {
+                    const currentCount = docSnap.data().count;
+                    const newCount = currentCount + 1;
 
-                // Display the counter on the page
-                document.getElementById("counter").textContent = `This page has been visited 1 time.`;
-            }
-        }).catch((error) => {
-            // In case of error (e.g., network issues, etc.)
-            console.error("Error fetching counter:", error);
-            document.getElementById("counter").textContent = "Could not load counter. Please try again later.";
+                    // Update Firestore with the new count
+                    updateDoc(counterRef, { count: newCount });
+
+                    // Display the counter on the page
+                    document.getElementById("counter").textContent = `This page has been visited ${newCount} times.`;
+                } else {
+                    console.log("Document does not exist, creating it...");
+
+                    // If the counter document doesn't exist, initialize it
+                    setDoc(counterRef, { count: 1 });
+
+                    // Display the counter on the page
+                    document.getElementById("counter").textContent = `This page has been visited 1 time.`;
+                }
+            }).catch((error) => {
+                console.error("Error fetching counter:", error);
+                document.getElementById("counter").textContent = "Could not load counter. Please try again later.";
+            });
         });
     </script>
 </body>
