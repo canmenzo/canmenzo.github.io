@@ -41,7 +41,8 @@
         // Import Firebase modules
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
         import { getFirestore, doc, getDoc, setDoc, updateDoc } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
-
+        import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
+        
         // Firebase Configuration | please dont steal my api key
         // i changed my rules so u gotta be authenticated anyways but im too lazy Xd
         const firebaseConfig = {
@@ -56,6 +57,7 @@
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
+        const auth = getAuth(app);
         
         const counterRef = doc(db, "visitCount", "counter");
 
@@ -63,32 +65,42 @@
 
         // Wait for DOM to fully load
         document.addEventListener("DOMContentLoaded", function() {
-            // Fetch and update the visit counter from Firestore
-            getDoc(counterRef).then(docSnap => {
-                console.log("Firestore document fetched.");
+            // Sign in anonymously
+            signInAnonymously(auth)
+                .then(() => {
+                    console.log("User signed in anonymously");
 
-                if (docSnap.exists()) {
-                    const currentCount = docSnap.data().count;
-                    const newCount = currentCount + 1;
+                    // Fetch and update the visit counter from Firestore
+                    getDoc(counterRef).then(docSnap => {
+                        console.log("Firestore document fetched.");
 
-                    // Update Firestore with the new count
-                    updateDoc(counterRef, { count: newCount });
+                        if (docSnap.exists()) {
+                            const currentCount = docSnap.data().count;
+                            const newCount = currentCount + 1;
 
-                    // Display the counter on the page
-                    document.getElementById("counter").textContent = `This page has been visited ${newCount} times.`;
-                } else {
-                    console.log("Document does not exist, creating it...");
+                            // Update Firestore with the new count
+                            updateDoc(counterRef, { count: newCount });
 
-                    // If the counter document doesn't exist, initialize it
-                    setDoc(counterRef, { count: 1 });
+                            // Display the counter on the page
+                            document.getElementById("counter").textContent = `This page has been visited ${newCount} times.`;
+                        } else {
+                            console.log("Document does not exist, creating it...");
 
-                    // Display the counter on the page
-                    document.getElementById("counter").textContent = `This page has been visited 1 time.`;
-                }
-            }).catch((error) => {
-                console.error("Error fetching counter:", error);
-                document.getElementById("counter").textContent = "Could not load counter. Please try again later.";
-            });
+                            // If the counter document doesn't exist, initialize it
+                            setDoc(counterRef, { count: 1 });
+
+                            // Display the counter on the page
+                            document.getElementById("counter").textContent = `This page has been visited 1 time.`;
+                        }
+                    }).catch((error) => {
+                        console.error("Error fetching counter:", error);
+                        document.getElementById("counter").textContent = "Could not load counter. Please try again later.";
+                    });
+                })
+                .catch((error) => {
+                    console.error("Error signing in:", error);
+                    document.getElementById("counter").textContent = "Error signing in. Please try again later.";
+                });
         });
     </script>
 </body>
