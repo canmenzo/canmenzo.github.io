@@ -6,22 +6,20 @@
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 <!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
 
-
 <url>
   <loc>https://canmenzo.com/</loc>
   <lastmod>2025-02-11T04:26:40+00:00</lastmod>
   <priority>1.00</priority>
 </url>
 <url>
-  <loc>https://canmenzo.com/chipotle.html</loc>
+  <loc>https://canmenzo.com/chipotle/</loc>
   <lastmod>2025-02-11T04:26:40+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://canmenzo.com/whatido.html</loc>
+  <loc>https://canmenzo.com/whatido/</loc>
   <lastmod>2025-02-11T04:26:40+00:00</lastmod>
   <priority>0.80</priority>
 </url>
-
 
 </urlset>
