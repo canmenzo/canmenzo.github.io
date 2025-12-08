@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Number Game Solver</title>
+    <title>Bir İşlem Solver</title>
     <style>
         :root {
             --primary: #2563eb;
             --bg: #f8fafc;
             --card: #ffffff;
             --text: #1e293b;
+            --success: #16a34a;
         }
 
         body {
@@ -118,12 +119,24 @@
             color: #64748b;
             font-style: italic;
         }
+
+        /* Style for the Necdet message */
+        .necdet-msg {
+            text-align: center;
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: var(--success);
+            padding: 10px;
+            border: 2px dashed var(--success);
+            border-radius: 8px;
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>Number Solver</h1>
+    <h1>Bir İşlem Solver</h1>
 
     <div class="input-group">
         <label>Input Numbers (Up to 5)</label>
@@ -138,7 +151,7 @@
 
     <div class="input-group target-wrapper">
         <label for="target">Target Number</label>
-        <input type="number" id="target" placeholder="e.g. 456">
+        <input type="number" id="target" placeholder="e.g. 752">
     </div>
 
     <button onclick="runSolver()">Find Solutions</button>
@@ -147,7 +160,6 @@
 </div>
 
 <script>
-    // Logic Class to hold value and the expression string used to get there
     class Node {
         constructor(value, expression) {
             this.value = value;
@@ -156,62 +168,49 @@
     }
 
     function runSolver() {
-        // 1. Get Inputs
         const inputs = Array.from(document.querySelectorAll('.num-input'))
             .map(input => parseInt(input.value))
-            .filter(val => !isNaN(val)); // Filter out empty inputs
+            .filter(val => !isNaN(val));
 
         const target = parseInt(document.getElementById('target').value);
         const resultsDiv = document.getElementById('results');
         
-        resultsDiv.innerHTML = ''; // Clear previous results
+        resultsDiv.innerHTML = ''; 
 
-        // Validation
         if (inputs.length === 0 || isNaN(target)) {
             resultsDiv.innerHTML = '<div class="empty-msg">Please enter source numbers and a target.</div>';
             return;
         }
 
-        // 2. Initialize Solver
-        const solutions = new Set(); // Use Set to avoid duplicate expression strings
+        const solutions = new Set();
         const initialNodes = inputs.map(n => new Node(n, n.toString()));
 
-        // 3. Recursive Solve Function
         function solve(nodes) {
-            // Check if any node in the current list hits the target
             for (let node of nodes) {
                 if (node.value === target) {
                     solutions.add(node.expression);
                 }
             }
 
-            // If only one number left and it's not target, we are done with this branch
             if (nodes.length < 2) return;
 
-            // Pick any two numbers (i and j)
             for (let i = 0; i < nodes.length; i++) {
                 for (let j = 0; j < nodes.length; j++) {
                     if (i === j) continue;
 
                     const a = nodes[i];
                     const b = nodes[j];
-
-                    // Create the list of remaining numbers (excluding a and b)
                     const remaining = nodes.filter((_, index) => index !== i && index !== j);
 
-                    // Try all operations
-                    // 1. Addition
+                    // Addition
                     recurse(remaining, a.value + b.value, `(${a.expression} + ${b.expression})`);
-
-                    // 2. Multiplication
+                    // Multiplication
                     recurse(remaining, a.value * b.value, `(${a.expression} * ${b.expression})`);
-
-                    // 3. Subtraction (only if positive result)
+                    // Subtraction
                     if (a.value > b.value) {
                         recurse(remaining, a.value - b.value, `(${a.expression} - ${b.expression})`);
                     }
-
-                    // 4. Division (only if exact division)
+                    // Division
                     if (b.value !== 0 && a.value % b.value === 0) {
                         recurse(remaining, a.value / b.value, `(${a.expression} / ${b.expression})`);
                     }
@@ -224,14 +223,11 @@
             solve(nextNodes);
         }
 
-        // Start Logic
         solve(initialNodes);
 
-        // 4. Render Results
         if (solutions.size === 0) {
             resultsDiv.innerHTML = '<div class="empty-msg">No exact solutions found.</div>';
         } else {
-            // Convert Set to Array, sort by length (simple ones first), and slice top 20
             const sortedSolutions = Array.from(solutions)
                 .sort((a, b) => a.length - b.length)
                 .slice(0, 50);
@@ -241,11 +237,16 @@
             sortedSolutions.forEach(sol => {
                 const div = document.createElement('div');
                 div.className = 'solution-item';
-                // Remove outer parens for cleaner look if present
                 const cleanSol = sol.startsWith('(') && sol.endsWith(')') ? sol.slice(1, -1) : sol;
                 div.innerHTML = `<span>${cleanSol}</span> <span>= ${target}</span>`;
                 resultsDiv.appendChild(div);
             });
+
+            // ADDED: The message displayed after showing answers
+            const necdetDiv = document.createElement('div');
+            necdetDiv.className = 'necdet-msg';
+            necdetDiv.textContent = "necdeti yatirdim.";
+            resultsDiv.appendChild(necdetDiv);
         }
     }
 </script>
