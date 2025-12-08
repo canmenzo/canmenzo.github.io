@@ -120,7 +120,6 @@
             font-style: italic;
         }
 
-        /* Style for the Necdet message */
         .necdet-msg {
             text-align: center;
             margin-top: 20px;
@@ -155,106 +154,90 @@
         <input type="number" id="target" placeholder="e.g. 752">
     </div>
 
-    <button onclick="runSolver()">Find Solutions</button>
+    <button onclick="runSolver()">Find Solution</button>
 
     <div id="results"></div>
 </div>
 
 <script>
-    class Node {
-        constructor(value, expression) {
-            this.value = value;
-            this.expression = expression;
+class Node {
+    constructor(value, expression) {
+        this.value = value;
+        this.expression = expression;
+    }
+}
+
+function runSolver() {
+    const inputs = Array.from(document.querySelectorAll('.num-input'))
+        .map(input => parseInt(input.value))
+        .filter(val => !isNaN(val));
+
+    const target = parseInt(document.getElementById('target').value);
+    const resultsDiv = document.getElementById('results');
+    
+    resultsDiv.innerHTML = ''; 
+
+    if (inputs.length === 0 || isNaN(target)) {
+        resultsDiv.innerHTML = '<div class="empty-msg">Please enter source numbers and a target.</div>';
+        return;
+    }
+
+    const solutions = new Set();
+    const initialNodes = inputs.map(n => new Node(n, n.toString()));
+
+    function solve(nodes) {
+        for (let node of nodes) {
+            if (node.value === target) {
+                solutions.add(node.expression);
+            }
+        }
+
+        if (nodes.length < 2) return;
+
+        for (let i = 0; i < nodes.length; i++) {
+            for (let j = 0; j < nodes.length; j++) {
+                if (i === j) continue;
+
+                const a = nodes[i];
+                const b = nodes[j];
+                const remaining = nodes.filter((_, index) => index !== i && index !== j);
+
+                // Addition
+                recurse(remaining, a.value + b.value, `(${a.expression} + ${b.expression})`);
+                // Multiplication
+                recurse(remaining, a.value * b.value, `(${a.expression} * ${b.expression})`);
+                // Subtraction
+                if (a.value > b.value) {
+                    recurse(remaining, a.value - b.value, `(${a.expression} - ${b.expression})`);
+                }
+                // Division
+                if (b.value !== 0 && a.value % b.value === 0) {
+                    recurse(remaining, a.value / b.value, `(${a.expression} / ${b.expression})`);
+                }
+            }
         }
     }
 
-    function runSolver() {
-        const inputs = Array.from(document.querySelectorAll('.num-input'))
-            .map(input => parseInt(input.value))
-            .filter(val => !isNaN(val));
-
-        const target = parseInt(document.getElementById('target').value);
-        const resultsDiv = document.getElementById('results');
-        
-        resultsDiv.innerHTML = ''; 
-
-        if (inputs.length === 0 || isNaN(target)) {
-            resultsDiv.innerHTML = '<div class="empty-msg">Please enter source numbers and a target.</div>';
-            return;
-        }
-
-        const solutions = new Set();
-        const initialNodes = inputs.map(n => new Node(n, n.toString()));
-
-        function solve(nodes) {
-            for (let node of nodes) {
-                if (node.value === target) {
-                    solutions.add(node.expression);
-                }
-            }
-
-            if (nodes.length < 2) return;
-
-            for (let i = 0; i < nodes.length; i++) {
-                for (let j = 0; j < nodes.length; j++) {
-                    if (i === j) continue;
-
-                    const a = nodes[i];
-                    const b = nodes[j];
-                    const remaining = nodes.filter((_, index) => index !== i && index !== j);
-
-                    // Addition
-                    recurse(remaining, a.value + b.value, `(${a.expression} + ${b.expression})`);
-                    // Multiplication
-                    recurse(remaining, a.value * b.value, `(${a.expression} * ${b.expression})`);
-                    // Subtraction
-                    if (a.value > b.value) {
-                        recurse(remaining, a.value - b.value, `(${a.expression} - ${b.expression})`);
-                    }
-                    // Division
-                    if (b.value !== 0 && a.value % b.value === 0) {
-                        recurse(remaining, a.value / b.value, `(${a.expression} / ${b.expression})`);
-                    }
-                }
-            }
-        }
-
-        function recurse(remainingNodes, newValue, newExpr) {
-            const nextNodes = [...remainingNodes, new Node(newValue, newExpr)];
-            solve(nextNodes);
-        }
-
-        solve(initialNodes);
-
-            if (solutions.size === 0) {
-                resultsDiv.innerHTML = '<div class="empty-msg">No exact solutions found.</div>';
-            } else {
-                const one = Array.from(solutions)[0];
-                const clean = one.startsWith('(') && one.endsWith(')') ? one.slice(1, -1) : one;
-            
-                resultsDiv.innerHTML = `
-                    <div class="solution-item">
-                        <span>${clean}</span> <span>= ${target}</span>
-                    </div>
-                    <div class="necdet-msg">necdeti yatirdim.</div>`;
-            }
-
-            
-            sortedSolutions.forEach(sol => {
-                const div = document.createElement('div');
-                div.className = 'solution-item';
-                const cleanSol = sol.startsWith('(') && sol.endsWith(')') ? sol.slice(1, -1) : sol;
-                div.innerHTML = `<span>${cleanSol}</span> <span>= ${target}</span>`;
-                resultsDiv.appendChild(div);
-            });
-
-            // ADDED: The message displayed after showing answers
-            const necdetDiv = document.createElement('div');
-            necdetDiv.className = 'necdet-msg';
-            necdetDiv.textContent = "necdeti yatirdim.";
-            resultsDiv.appendChild(necdetDiv);
-        }
+    function recurse(remainingNodes, newValue, newExpr) {
+        const nextNodes = [...remainingNodes, new Node(newValue, newExpr)];
+        solve(nextNodes);
     }
+
+    solve(initialNodes);
+
+    if (solutions.size === 0) {
+        resultsDiv.innerHTML = '<div class="empty-msg">No exact solutions found.</div>';
+    } else {
+        const one = Array.from(solutions)[0];
+        const clean = one.startsWith('(') && one.endsWith(')') ? one.slice(1, -1) : one;
+
+        resultsDiv.innerHTML = `
+            <div class="solution-item">
+                <span>${clean}</span> <span>= ${target}</span>
+            </div>
+            <div class="necdet-msg">necdeti yatirdim.</div>`;
+    }
+}
 </script>
 
 </body>
