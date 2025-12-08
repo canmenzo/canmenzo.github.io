@@ -226,14 +226,19 @@
 
         solve(initialNodes);
 
-        if (solutions.size === 0) {
-            resultsDiv.innerHTML = '<div class="empty-msg">No exact solutions found.</div>';
-        } else {
-            const sortedSolutions = Array.from(solutions)
-                .sort((a, b) => a.length - b.length)
-                .slice(0, 50);
+            if (solutions.size === 0) {
+                resultsDiv.innerHTML = '<div class="empty-msg">No exact solutions found.</div>';
+            } else {
+                const one = Array.from(solutions)[0];
+                const clean = one.startsWith('(') && one.endsWith(')') ? one.slice(1, -1) : one;
+            
+                resultsDiv.innerHTML = `
+                    <div class="solution-item">
+                        <span>${clean}</span> <span>= ${target}</span>
+                    </div>
+                    <div class="necdet-msg">necdeti yatirdim.</div>`;
+            }
 
-            resultsDiv.innerHTML = `<div>Found ${solutions.size} solution(s). Showing top ${sortedSolutions.length}:</div><br/>`;
             
             sortedSolutions.forEach(sol => {
                 const div = document.createElement('div');
