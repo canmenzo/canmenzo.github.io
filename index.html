@@ -5,10 +5,9 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Mehmet Can Ozmen's personal site. Principal cybersecurity analyst at Critical Start and MSIT graduate at FSU, sharing my thoughts, projects, and passions." />
+  <meta name="description" content="Mehmet Can Ozmen's personal site. Principal cybersecurity analyst and Threat Hunter." />
   <meta name="author" content="Mehmet Can Ozmen" />
 
-  <!-- ensure https redirect -->
   <script type="text/javascript">
     var host = "canmenzo.com";
     if (host == window.location.host && window.location.protocol != "https:")
@@ -16,9 +15,65 @@
   </script>
   
   <link rel="stylesheet" href="css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  
   <link rel="canonical" href="https://canmenzo.com">
   <link rel="icon" href="favicon.ico">
   <title>Can Ozmen | Personal Website</title>
+
+  <style>
+    /* Terminal Specific Styles */
+    .terminal-container {
+      font-family: 'Fira Code', 'Courier New', monospace;
+      margin-top: 20px;
+      line-height: 1.6;
+    }
+    
+    .prompt-line {
+      display: flex;
+      align-items: center;
+    }
+
+    .prompt-symbol {
+      color: #ff79c6; /* Dracula Pink */
+      margin-right: 10px;
+      font-weight: 600;
+    }
+
+    .prompt-command {
+      color: #50fa7b; /* Dracula Green */
+      font-weight: 600;
+    }
+
+    .prompt-output {
+      margin-left: 20px;
+      color: inherit; /* Inherits main text color */
+      margin-bottom: 15px;
+      display: block;
+    }
+
+    /* Blinking Cursor Animation */
+    .cursor {
+      display: inline-block;
+      width: 10px;
+      height: 1em;
+      background-color: #bd93f9; /* Dracula Purple/White */
+      margin-left: 5px;
+      animation: blink 1s step-end infinite;
+      vertical-align: text-bottom;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+    
+    /* Small override for links in terminal to match style */
+    .prompt-output a {
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+    }
+  </style>
 
   <script type="application/ld+json">
     {
@@ -43,18 +98,30 @@
       <div style="width: 100%; overflow: hidden;">
         <div style="margin-left: 0px; margin-top:20px">
           <h1>Mehmet Can Ozmen</h1>
-          <div>
-            > whoami
-            principal cybersecurity analyst. threat hunter. detection engineer. prev @ <a class="criticalstart" href="https://www.criticalstart.com/">critical start</a>
-            <br>
-            > current_status
-            analyzing logic. reducing noise.
-            <br>
-            why: msit @ <a class="fsu" href="https://www.fsu.edu/">fsu</a>
-            <br>
-            where: fl 🐊
+          
+          <div class="terminal-container">
+            
+            <div class="prompt-line">
+              <span class="prompt-symbol">&gt;</span>
+              <span class="prompt-command">whoami</span>
+            </div>
+            <div class="prompt-output">
+              threat hunter. detection engineer.<br>
+              prev principal cybersecurity analyst @ <a class="criticalstart" href="https://www.criticalstart.com/">critical start</a>
+            </div>
+
+            <div class="prompt-line">
+              <span class="prompt-symbol">&gt;</span>
+              <span class="prompt-command">current_status</span><span class="cursor"></span>
+            </div>
+            <div class="prompt-output">
+              analyzing logic. reducing noise.<br>
+              why: msit @ <a class="fsu" href="https://www.fsu.edu/">fsu</a><br>
+              where: fl 🐊
+            </div>
+
           </div>
-        </div>
+          </div>
       </div>
       <div style="text-align: left">
         <div>
@@ -89,7 +156,6 @@
       </div>
     </div>
 
-    <!-- Theme Toggle Button -->
     <button id="theme-toggle">dark mode: on</button>
   </div>
 
