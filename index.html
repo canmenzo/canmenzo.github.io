@@ -21,91 +21,6 @@
   <link rel="icon" href="favicon.ico">
   <title>Can Ozmen | Personal Website</title>
 
-  <style>
-    /* Global Typography Fixes for Consistency */
-    body {
-      font-size: 16px; /* Base size */
-    }
-
-    /* Terminal Container */
-    .terminal-container {
-      font-family: 'Fira Code', 'Courier New', monospace;
-      margin-top: 20px;
-      line-height: 1.6;
-      font-size: 0.6rem; /* Matches body/ama section */
-    }
-    
-    /* AMA / Contact Sections */
-    .section {
-      font-family: 'Fira Code', 'Courier New', monospace; /* Match font family */
-      font-size: 0.6rem; /* Ensure exact size match */
-      line-height: 1.6;
-      margin-top: 20px;
-    }
-    
-    /* Make h3 headers look like part of the terminal output or just bold text */
-    .section h3 {
-      font-size: 0.6rem; /* Force same size as text */
-      font-weight: 600;
-      margin-bottom: 5px;
-      margin-top: 20px;
-      color: #ff79c6; /* Optional: Make headers pink to match prompts */
-      display: inline-block;
-    }
-
-    /* Links styling to match terminal vibe */
-    a {
-      text-decoration: none;
-      border-bottom: 1px solid #6272a4; /* Subtle underline */
-      color: inherit;
-    }
-    a:hover {
-      border-bottom: 1px solid #50fa7b; /* Green on hover */
-      color: #50fa7b;
-    }
-
-    /* Terminal Prompts */
-    .prompt-line {
-      display: flex;
-      align-items: center;
-      margin-top: 10px; /* Spacing between commands */
-    }
-
-    .prompt-symbol {
-      color: #ff79c6; /* Dracula Pink */
-      margin-right: 10px;
-      font-weight: 600;
-    }
-
-    .prompt-command {
-      color: #50fa7b; /* Dracula Green */
-      font-weight: 600;
-    }
-
-    .prompt-output {
-      margin-left: 20px;
-      color: inherit;
-      margin-bottom: 5px;
-      display: block;
-    }
-
-    /* Blinking Cursor Animation - Only on the last element */
-    .cursor {
-      display: inline-block;
-      width: 10px;
-      height: 1em;
-      background-color: #bd93f9;
-      margin-left: 5px;
-      animation: blink 1s step-end infinite;
-      vertical-align: sub;
-    }
-
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0; }
-    }
-  </style>
-
   <script type="application/ld+json">
     {
       "@context": "http://schema.org",
@@ -124,51 +39,23 @@
 
 <body class="dark-mode">
 
-  <div style="text-align: left; margin-left:auto; margin-right:auto; width:80%">
-    <div>
-      <div style="width: 100%; overflow: hidden;">
-        <div style="margin-left: 0px; margin-top:20px">
-          <h2>Mehmet Can Ozmen</h2>
-          
-          <div class="terminal-container">
-            
-            <div class="prompt-line">
-              <span class="prompt-symbol">&gt;</span>
-              <span class="prompt-command">whoami</span>
-            </div>
-            <div class="prompt-output">
-              threat hunter. security researcher. ai enjoyer & builder.<br>
-              prev principal cybersecurity analyst @ <a class="criticalstart" href="https://www.criticalstart.com/">critical start</a>
-            </div>
+      <h2>Mehmet Can Ozmen</h2>
 
-            <div class="prompt-line">
-              <span class="prompt-symbol">&gt;</span>
-              <span class="prompt-command">current_status</span>
-            </div>
-            <div class="prompt-output">
-              analyzing logic. reducing noise.
-            </div>
-
-            <div class="prompt-line">
-              <span class="prompt-symbol">&gt;</span>
-              <span class="prompt-command">cat /etc/issue</span>
-            </div>
-            <div class="prompt-output">
-              msit @ <a class="fsu" href="https://www.fsu.edu/">fsu</a>
-            </div>
-
-            <div class="prompt-line">
-              <span class="prompt-symbol">&gt;</span>
-              <span class="prompt-command">pwd</span><span class="cursor"></span>
-            </div>
-            <div class="prompt-output">
-              fl 🐊
-            </div>
-
+      <div style="text-align: left">
+        <div>
+          <div class="section">
+            <h3>who:</h3>
+            threat hunter. security researcher. ai enjoyer & builder.
+            prev principal cybersecurity analyst @ <a class="criticalstart" href="https://www.criticalstart.com/">critical start</a>
+            <h3>what:</h3>
+            analyzing logic via first principles & building automation to reduce noise and increase security.
+            <h3>how:</h3>
+            msit @ <a class="fsu" href="https://www.fsu.edu/">fsu</a>
+            <h3>where:</h3>
+            fl 🐊
           </div>
-          </div>
-      </div>
-      
+        </div>      
+
       <div style="text-align: left">
         <div>
           <div class="section">
