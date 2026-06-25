@@ -129,6 +129,34 @@
     .sub-row .desc {
       padding-left: 38px;
     }
+
+    .category {
+      border: 1px solid #2a2a2a;
+      border-radius: 5px;
+      padding: 22px 18px 6px;
+      margin-bottom: 26px;
+      position: relative;
+    }
+
+    body:not(.dark-mode) .category {
+      border-color: #e3e3e3;
+    }
+
+    .category-label {
+      position: absolute;
+      top: -9px;
+      left: 14px;
+      padding: 0 8px;
+      background-color: #191a1b;
+      font-size: 0.74em;
+      letter-spacing: 0.08em;
+      color: #6fcf6f;
+    }
+
+    body:not(.dark-mode) .category-label {
+      background-color: #fff;
+      color: #1e6e1e;
+    }
   </style>
 </head>
 
@@ -143,102 +171,118 @@
 
         <div class="project-list">
 
-          <div class="project-row">
-            <div class="project-line">
-              <span class="idx">[0000]</span><a href="https://canmenzo.com/detection-engineering/" target="_blank" rel="noopener">detection-engineering</a>
+          <div class="category">
+            <span class="category-label">// cybersecurity</span>
+
+            <div class="project-row">
+              <div class="project-line">
+                <span class="idx">[0000]</span><a href="https://canmenzo.com/detection-engineering/" target="_blank" rel="noopener">detection-engineering</a>
+              </div>
+              <div class="desc">Detection-as-Code: version-controlled Sigma rules unit-tested against real adversary telemetry with Hayabusa, CI/CD, and a live MITRE ATT&amp;CK coverage dashboard.</div>
             </div>
-            <div class="desc">Detection-as-Code: version-controlled Sigma rules unit-tested against real adversary telemetry with Hayabusa, CI/CD, and a live MITRE ATT&amp;CK coverage dashboard.</div>
+
+            <div class="project-row">
+              <div class="project-line">
+                <span class="idx">[0001]</span><a href="https://github.com/canmenzo/ThreatIntelSearch" target="_blank" rel="noopener">threat-intelsearch</a>
+              </div>
+              <div class="desc">Threat intel search engine aggregating IOC data across OSINT sources for rapid analyst triage.</div>
+            </div>
+
+            <div class="project-row">
+              <div class="project-line">
+                <span class="idx">[0010]</span><a href="https://github.com/canmenzo/pythoncs" target="_blank" rel="noopener">pythoncs</a>
+              </div>
+              <div class="desc">Python toolkit for cybersecurity operations, automating repetitive SOC analyst workflows.</div>
+            </div>
+
+            <div class="project-row">
+              <div class="project-line">
+                <span class="idx">[0011]</span><a href="https://github.com/canmenzo/pythonbruteforce" target="_blank" rel="noopener">pythonbruteforce</a>
+              </div>
+              <div class="desc">Python brute-force tools for penetration testing practice and CTF challenges.</div>
+            </div>
           </div>
 
-          <div class="project-row">
-            <div class="project-line">
-              <span class="idx">[0001]</span><a href="https://github.com/canmenzo/ThreatIntelSearch" target="_blank" rel="noopener">threat-intelsearch</a>
+          <div class="category">
+            <span class="category-label">// ai &amp; automation</span>
+
+            <div class="project-row">
+              <div class="project-line">
+                <span class="idx">[0100]</span><span class="locked-name">project-x<span class="pvt">// private</span></span>
+              </div>
+              <div class="desc">Done-for-you AI systems for local businesses — custom assistants, automation, and AI ops delivered as installs, not SaaS.</div>
             </div>
-            <div class="desc">Threat intel search engine aggregating IOC data across OSINT sources for rapid analyst triage.</div>
+
+            <div class="sub-row">
+              <div class="project-line">
+                <span class="sub-prefix">└──</span><span class="locked-name">real-estate-ai-ops<span class="pvt">// private</span></span>
+              </div>
+              <div class="desc">Real estate vertical — AI lead generation, market analysis, and outreach automation.</div>
+            </div>
+
+            <div class="project-row">
+              <div class="project-line">
+                <span class="idx">[0101]</span><a href="https://github.com/canmenzo/jobscope" target="_blank" rel="noopener">jobscope</a>
+              </div>
+              <div class="desc">Aggregates live postings from public ATS APIs, filters to USA tech roles, and scores relevance 0-100 in a browsable dashboard.</div>
+            </div>
+
+            <div class="project-row">
+              <div class="project-line">
+                <span class="idx">[0110]</span><a href="https://github.com/canmenzo/jarvis-home-automation" target="_blank" rel="noopener">jarvis-home-automation</a>
+              </div>
+              <div class="desc">Iron Man-inspired home automation with Wake-on-LAN, voice control, and Siri integration.</div>
+            </div>
           </div>
 
-          <div class="project-row">
-            <div class="project-line">
-              <span class="idx">[0010]</span><a href="https://github.com/canmenzo/pythoncs" target="_blank" rel="noopener">pythoncs</a>
+          <div class="category">
+            <span class="category-label">// systems &amp; infra</span>
+
+            <div class="project-row">
+              <div class="project-line">
+                <span class="idx">[0111]</span><a href="https://github.com/canmenzo/wsl-disk-bridge" target="_blank" rel="noopener">wsl-disk-bridge</a>
+              </div>
+              <div class="desc">Bridges WSL2 disk access with a custom Linux kernel for seamless Windows dual-boot setups.</div>
             </div>
-            <div class="desc">Python toolkit for cybersecurity operations, automating repetitive SOC analyst workflows.</div>
+
+            <div class="project-row">
+              <div class="project-line">
+                <span class="idx">[1000]</span><a href="https://github.com/canmenzo/nasserver" target="_blank" rel="noopener">nasserver</a>
+              </div>
+              <div class="desc">Self-hosted NAS server setup with automated backup and remote access configuration.</div>
+            </div>
           </div>
 
-          <div class="project-row">
-            <div class="project-line">
-              <span class="idx">[0011]</span><a href="https://github.com/canmenzo/pythonbruteforce" target="_blank" rel="noopener">pythonbruteforce</a>
-            </div>
-            <div class="desc">Python brute-force tools for penetration testing practice and CTF challenges.</div>
-          </div>
+          <div class="category">
+            <span class="category-label">// web &amp; apps</span>
 
-          <div class="project-row">
-            <div class="project-line">
-              <span class="idx">[0100]</span><span class="locked-name">project-x<span class="pvt">// private</span></span>
+            <div class="project-row">
+              <div class="project-line">
+                <span class="idx">[1001]</span><a href="https://cheff.fit" target="_blank" rel="noopener">cheff-fit</a>
+              </div>
+              <div class="desc">Full-stack nutrition app with meal planning, barcode scanning, and smart inventory tracking.</div>
             </div>
-            <div class="desc">Done-for-you AI systems for local businesses — custom assistants, automation, and AI ops delivered as installs, not SaaS.</div>
-          </div>
 
-          <div class="sub-row">
-            <div class="project-line">
-              <span class="sub-prefix">└──</span><span class="locked-name">real-estate-ai-ops<span class="pvt">// private</span></span>
+            <div class="project-row">
+              <div class="project-line">
+                <span class="idx">[1010]</span><a href="https://martekmarble.com" target="_blank" rel="noopener">martekmarble.com</a>
+              </div>
+              <div class="desc">Company website built and maintained for Martek Marble using PHP and JavaScript.</div>
             </div>
-            <div class="desc">Real estate vertical — AI lead generation, market analysis, and outreach automation.</div>
-          </div>
 
-          <div class="project-row">
-            <div class="project-line">
-              <span class="idx">[0101]</span><a href="https://github.com/canmenzo/jobscope" target="_blank" rel="noopener">jobscope</a>
+            <div class="project-row">
+              <div class="project-line">
+                <span class="idx">[1011]</span><a href="https://github.com/canmenzo/secretsantapython" target="_blank" rel="noopener">secretsantapython</a>
+              </div>
+              <div class="desc">Python script that randomizes and emails Secret Santa assignments to all participants.</div>
             </div>
-            <div class="desc">Aggregates live postings from public ATS APIs, filters to USA tech roles, and scores relevance 0-100 in a browsable dashboard.</div>
-          </div>
 
-          <div class="project-row">
-            <div class="project-line">
-              <span class="idx">[0110]</span><a href="https://github.com/canmenzo/jarvis-home-automation" target="_blank" rel="noopener">jarvis-home-automation</a>
+            <div class="project-row">
+              <div class="project-line">
+                <span class="idx">[1100]</span><a href="https://github.com/canmenzo/buckshotroulettemp" target="_blank" rel="noopener">buckshotroulettemp</a>
+              </div>
+              <div class="desc">Multiplayer implementation of Buckshot Roulette with real-time session management.</div>
             </div>
-            <div class="desc">Iron Man-inspired home automation with Wake-on-LAN, voice control, and Siri integration.</div>
-          </div>
-
-          <div class="project-row">
-            <div class="project-line">
-              <span class="idx">[0111]</span><a href="https://github.com/canmenzo/wsl-disk-bridge" target="_blank" rel="noopener">wsl-disk-bridge</a>
-            </div>
-            <div class="desc">Bridges WSL2 disk access with a custom Linux kernel for seamless Windows dual-boot setups.</div>
-          </div>
-
-          <div class="project-row">
-            <div class="project-line">
-              <span class="idx">[1000]</span><a href="https://github.com/canmenzo/nasserver" target="_blank" rel="noopener">nasserver</a>
-            </div>
-            <div class="desc">Self-hosted NAS server setup with automated backup and remote access configuration.</div>
-          </div>
-
-          <div class="project-row">
-            <div class="project-line">
-              <span class="idx">[1001]</span><a href="https://cheff.fit" target="_blank" rel="noopener">cheff-fit</a>
-            </div>
-            <div class="desc">Full-stack nutrition app with meal planning, barcode scanning, and smart inventory tracking.</div>
-          </div>
-
-          <div class="project-row">
-            <div class="project-line">
-              <span class="idx">[1010]</span><a href="https://martekmarble.com" target="_blank" rel="noopener">martekmarble.com</a>
-            </div>
-            <div class="desc">Company website built and maintained for Martek Marble using PHP and JavaScript.</div>
-          </div>
-
-          <div class="project-row">
-            <div class="project-line">
-              <span class="idx">[1011]</span><a href="https://github.com/canmenzo/secretsantapython" target="_blank" rel="noopener">secretsantapython</a>
-            </div>
-            <div class="desc">Python script that randomizes and emails Secret Santa assignments to all participants.</div>
-          </div>
-
-          <div class="project-row">
-            <div class="project-line">
-              <span class="idx">[1100]</span><a href="https://github.com/canmenzo/buckshotroulettemp" target="_blank" rel="noopener">buckshotroulettemp</a>
-            </div>
-            <div class="desc">Multiplayer implementation of Buckshot Roulette with real-time session management.</div>
           </div>
 
         </div>
