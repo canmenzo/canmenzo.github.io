@@ -71,11 +71,10 @@
         }
 
         function unmute() {
-            if (player && player.unMute) {
-                player.unMute();
-                player.setVolume(100);
-                player.playVideo();
-            }
+            if (!player || !player.unMute) return; // player not ready yet; keep listeners
+            player.unMute();
+            player.setVolume(100);
+            player.playVideo();
             gestures.forEach(function (ev) { document.removeEventListener(ev, unmute); });
         }
 
