@@ -38,12 +38,49 @@
     <br>
 
     <!-- YouTube Video -->
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/AACOcpA8i-U?autoplay=1&playsinline=1"
-            title="YouTube video player"
-            frameborder="0"
-            allow="autoplay; encrypted-media"
-            allowfullscreen>
-    </iframe>
+    <div id="player"></div>
+
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script>
+        // Muted autoplay is allowed everywhere (no click, no thumbnail).
+        // First user gesture (mouse/scroll/key/touch) unmutes -> full rickroll.
+        var player;
+        var gestures = ["mousemove", "click", "keydown", "scroll", "touchstart"];
+
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player("player", {
+                width: 560,
+                height: 315,
+                videoId: "AACOcpA8i-U",
+                playerVars: {
+                    autoplay: 1,
+                    mute: 1,
+                    controls: 0,
+                    modestbranding: 1,
+                    playsinline: 1,
+                    rel: 0,
+                    fs: 0,
+                    disablekb: 1,
+                    loop: 1,
+                    playlist: "AACOcpA8i-U"
+                },
+                events: {
+                    onReady: function (e) { e.target.playVideo(); }
+                }
+            });
+        }
+
+        function unmute() {
+            if (player && player.unMute) {
+                player.unMute();
+                player.setVolume(100);
+                player.playVideo();
+            }
+            gestures.forEach(function (ev) { document.removeEventListener(ev, unmute); });
+        }
+
+        gestures.forEach(function (ev) { document.addEventListener(ev, unmute); });
+    </script>
 
     <!-- Firebase SDK -->
     <script type="module">
