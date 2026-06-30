@@ -1,7 +1,7 @@
 {
   "embedChannels": [
     { "id": 1, "name": "Channel 1 (Embed URL 1)", "type": "embed", "url": "https://embedindia.st/embed/wc/2026-06-29/ned-mar/fox-4k" },
-    { "id": 2, "name": "Channel 2 (Embed URL 2)", "type": "embed", "url": "https://example.com/embed/2" },
+    { "id": 2, "name": "Channel 2 (Embed URL 2)", "type": "embed", "url": "https://embedindia.st/embed/wc/2026-06-29/ned-mar/fox" },
     { "id": 3, "name": "Channel 3 (Embed URL 3)", "type": "embed", "url": "https://example.com/embed/3" },
     { "id": 4, "name": "Channel 4 (Embed URL 4)", "type": "embed", "url": "https://example.com/embed/4" }
   ],
