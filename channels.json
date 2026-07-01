@@ -1,7 +1,7 @@
 {
   "embedChannels": [
-    { "id": 1, "name": "Channel 1", "type": "embed", "url": "REPLACE_WITH_EMBED_URL_1", "referer": "REPLACE_WITH_REFERER_1" },
-    { "id": 2, "name": "Channel 2", "type": "embed", "url": "REPLACE_WITH_EMBED_URL_2", "referer": "REPLACE_WITH_REFERER_2" },
+    { "id": 1, "name": "Channel 1", "type": "embed", "url": "https://vileembeds.pages.dev/embed/fox-sports-1-4k", "referer": "timstreams.st" },
+    { "id": 2, "name": "Channel 2", "type": "embed", "url": "https://vileembeds.pages.dev/embed/fox-sports-1", "referer": "timstreams.st" },
     { "id": 3, "name": "Channel 3", "type": "embed", "url": "REPLACE_WITH_EMBED_URL_3", "referer": "REPLACE_WITH_REFERER_3" },
     { "id": 4, "name": "Channel 4", "type": "embed", "url": "REPLACE_WITH_EMBED_URL_4", "referer": "REPLACE_WITH_REFERER_4" }
   ],
