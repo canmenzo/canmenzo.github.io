@@ -2,8 +2,8 @@
   "embedChannels": [
     { "id": 1, "name": "Channel 1", "type": "embed", "url": "https://vileembeds.pages.dev/embed/fox-sports-1-4k", "referer": "timstreams.st" },
     { "id": 2, "name": "Channel 2", "type": "embed", "url": "https://vileembeds.pages.dev/embed/fox-sports-1", "referer": "timstreams.st" },
-    { "id": 3, "name": "Channel 3", "type": "embed", "url": "REPLACE_WITH_EMBED_URL_3", "referer": "REPLACE_WITH_REFERER_3" },
-    { "id": 4, "name": "Channel 4", "type": "embed", "url": "REPLACE_WITH_EMBED_URL_4", "referer": "REPLACE_WITH_REFERER_4" }
+    { "id": 3, "name": "Channel 3", "type": "embed", "url": "https://vileembeds.pages.dev/embed/fox-usa", "referer": "timstreams.st" },
+    { "id": 4, "name": "Channel 4", "type": "embed", "url": "https://vileembeds.pages.dev/embed/fox4k-usa", "referer": "timstreams.st" }
   ],
   "m3uSources": [
     { "id": 1, "name": "Free-TV", "type": "m3u", "url": "https://raw.githubusercontent.com/Free-TV/IPTV/master/playlist.m3u8" },
