@@ -1,6 +1,6 @@
 {
   "embedChannels": [
-    { "id": 1, "name": "Channel 1", "type": "embed", "url": "https://vileembeds.pages.dev/embed/fox-usa", "referer": "https://timstreams.st/" },
+    { "id": 1, "name": "Channel 1", "type": "embed", "url": "https://vileembeds.pages.dev/embed/fox-usa", "referer": "https://vileembeds.pages.dev/" },
     { "id": 2, "name": "Channel 2", "type": "embed", "url": "https://vileembeds.pages.dev/embed/tsn1-ca", "referer": "https://timstreams.st/" },
     { "id": 3, "name": "Channel 3", "type": "embed", "url": "https://vileembeds.pages.dev/embed/fox-usa", "referer": "https://timstreams.st" },
     { "id": 4, "name": "Channel 4", "type": "embed", "url": "https://vileembeds.pages.dev/embed/telemund0-usa", "referer": "https://timstreams.st" },
