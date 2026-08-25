@@ -98,3 +98,92 @@ body {
   .container { text-align: left; }
 }
 
+
+/* name header. The 19px inset is the .category box's 1px border + 18px padding,
+   so the heading sits on the same vertical line as the text inside the boxes
+   below it. Effect is progressive: without JS the plain name is already there. */
+.namebar {
+  margin: 0 0 24px;
+  font-size: 1.7rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  line-height: 1.3;
+}
+
+@media (min-width: 701px) {
+  .namebar { padding-left: 19px; }
+}
+
+.name {
+  position: relative;
+  display: inline-block;
+  white-space: pre;
+  cursor: crosshair;
+  color: #1e6e1e;
+}
+
+body.dark-mode .name {
+  color: #6fcf6f;
+  text-shadow: 0 0 14px rgba(111, 207, 111, 0.45);
+}
+
+.name.scrambling { opacity: 0.9; }
+
+/* rgb-split ghosts, only visible during the periodic glitch */
+.name::before,
+.name::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  white-space: pre;
+  opacity: 0;
+  pointer-events: none;
+  text-shadow: none;
+}
+
+.name::before { color: #ff4d6d; }
+.name::after { color: #4dd2ff; }
+
+.name.glitch::before { animation: glitch-a 0.3s steps(2, end) 2; }
+.name.glitch::after { animation: glitch-b 0.3s steps(2, end) 2; }
+
+@keyframes glitch-a {
+  0%, 100% { opacity: 0; }
+  25% { opacity: 0.8; transform: translate(-3px, -1px); clip-path: inset(0 0 58% 0); }
+  55% { opacity: 0.8; transform: translate(2px, 1px); clip-path: inset(62% 0 0 0); }
+  80% { opacity: 0; }
+}
+
+@keyframes glitch-b {
+  0%, 100% { opacity: 0; }
+  25% { opacity: 0.8; transform: translate(3px, 1px); clip-path: inset(0 0 62% 0); }
+  55% { opacity: 0.8; transform: translate(-2px, -1px); clip-path: inset(55% 0 0 0); }
+  80% { opacity: 0; }
+}
+
+.caret {
+  display: inline-block;
+  width: 0.55em;
+  height: 1.05em;
+  margin-left: 0.2em;
+  vertical-align: -0.16em;
+  background-color: #1e6e1e;
+  animation: caret-blink 1.05s steps(1, end) infinite;
+}
+
+body.dark-mode .caret {
+  background-color: #6fcf6f;
+  box-shadow: 0 0 12px rgba(111, 207, 111, 0.5);
+}
+
+@keyframes caret-blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .caret,
+  .name.glitch::before,
+  .name.glitch::after { animation: none; }
+}

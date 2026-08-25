@@ -14,7 +14,7 @@
       window.location.protocol = "https";
   </script>
 
-  <link rel="stylesheet" href="css/styles.css?v=4">
+  <link rel="stylesheet" href="css/styles.css?v=5">
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
 
   <link rel="canonical" href="https://canmenzo.com">
@@ -155,7 +155,7 @@
 
 <body class="dark-mode">
   <main class="container">
-    <h2>Can Menzo</h2>
+    <h2 class="namebar"><span class="name" id="name" data-text="Can Menzo">Can Menzo</span><span class="caret" aria-hidden="true"></span></h2>
 
     <div style="text-align: left">
       <div class="section">
@@ -226,6 +226,7 @@
       syncToggle();
     });
   </script>
+  <script src="js/name.js"></script>
 </body>
 
 </html>
