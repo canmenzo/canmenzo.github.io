@@ -1,15 +1,5 @@
 [
   {
-    "slug": "hello",
-    "title": "hello",
-    "date": "2026-08-25",
-    "updated": "2026-08-25",
-    "summary": "First note. Why this exists and what lands here.",
-    "tags": [
-      "meta"
-    ]
-  },
-  {
     "slug": "moviepickr-audit",
     "title": "I audited my own app before I let anyone use it",
     "date": "2026-08-25",
@@ -29,6 +19,16 @@
     "summary": "hi",
     "tags": [
       "hi"
+    ]
+  },
+  {
+    "slug": "hello",
+    "title": "hello",
+    "date": "2026-08-25",
+    "updated": "2026-08-25",
+    "summary": "First note. Why this exists and what lands here.",
+    "tags": [
+      "meta"
     ]
   }
 ]
