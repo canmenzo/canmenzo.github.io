@@ -35,26 +35,8 @@ But serverless bills per request, APIs meter per call, and scrapers get *your* a
 not the attacker's. The damage is your bill and your reputation with a third party. Ask what an
 attacker can *spend*, not only what they can take.
 
-## Secrets in the browser, shared with the whole domain
-
-Two of my apps keep a key in localStorage: an API key in one, a GitHub token in another. That
-is what AI suggests, because it is the simplest thing that works.
-
-It also means any XSS anywhere on that origin takes the key. Not that page. That origin. My
-blog editor's token sits in the same storage as a rickroll counter I wrote for fun. I checked
-the neighbours and they were clean, but I only checked because I went looking.
-
 ## What I would actually do
 
 Ask for the limit explicitly. AI will write it correctly if you ask; it just never volunteers.
 
-Put a spend cap on the account before you post the link. It is a setting, not code.
-
-If a control can break the site silently, ship it in observe mode first. I deployed my content
-security policy in report-only, walked the site, then enforced it. Zero risk, same information.
-
-And write down what you decided not to fix. My room codes are four characters and guessable. I
-know. There is nothing behind that door and a login would ruin the app. An accepted risk you
-wrote down is a decision. The same risk you never noticed is a hole.
-
-The code was fine. The counting was not.
+Write down what you decided not to fix. This is your risk-appetide. An accepted risk you wrote down is a decision. The same risk you never noticed is a vulnerability.
