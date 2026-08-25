@@ -10,16 +10,6 @@
     ]
   },
   {
-    "slug": "hi",
-    "title": "hi",
-    "date": "2026-08-25",
-    "updated": "2026-08-25",
-    "summary": "hi",
-    "tags": [
-      "hi"
-    ]
-  },
-  {
     "slug": "moviepickr-audit",
     "title": "I audited my own app before I let anyone use it",
     "date": "2026-08-25",
@@ -29,6 +19,16 @@
       "security",
       "appsec",
       "moviepickr"
+    ]
+  },
+  {
+    "slug": "hi",
+    "title": "hi",
+    "date": "2026-08-25",
+    "updated": "2026-08-25",
+    "summary": "hi",
+    "tags": [
+      "hi"
     ]
   }
 ]
