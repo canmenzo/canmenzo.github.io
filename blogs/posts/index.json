@@ -28,5 +28,13 @@
       "appsec",
       "ai"
     ]
+  },
+  {
+    "slug": "user-agent-bypass",
+    "title": "user agent bypass",
+    "date": "2026-08-25",
+    "updated": "2026-08-25",
+    "summary": "",
+    "tags": []
   }
 ]
