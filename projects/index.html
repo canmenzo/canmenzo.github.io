@@ -14,7 +14,7 @@
       window.location.protocol = "https";
   </script>
 
-  <link rel="stylesheet" href="../css/styles.css?v=3">
+  <link rel="stylesheet" href="../css/styles.css?v=4">
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
   <link rel="icon" href="../favicon.ico?v=2">
   <title>Can Menzo | Projects</title>
@@ -31,7 +31,8 @@
     /* Also in css/styles.css, repeated here on purpose: without these rules
        the link is a plain flex item of body and shoves the page sideways,
        so it must not depend on a stylesheet a phone may have cached. */
-    .home-back {
+    .home-back,
+    .home-back:visited {
       position: fixed;
       top: 20px;
       left: 20px;
@@ -43,7 +44,8 @@
       text-decoration: none;
     }
 
-    body:not(.dark-mode) .home-back {
+    body:not(.dark-mode) .home-back,
+    body:not(.dark-mode) .home-back:visited {
       color: #1e6e1e;
     }
 
@@ -73,7 +75,8 @@
       color: #aaa;
     }
 
-    .project-line a {
+    .project-line a,
+    .project-line a:visited {
       color: #6fcf6f;
       text-decoration: none;
       font-weight: 600;
@@ -83,7 +86,8 @@
       text-decoration: underline;
     }
 
-    body:not(.dark-mode) .project-line a {
+    body:not(.dark-mode) .project-line a,
+    body:not(.dark-mode) .project-line a:visited {
       color: #1e6e1e;
     }
 

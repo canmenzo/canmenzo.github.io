@@ -14,7 +14,7 @@
       window.location.protocol = "https";
   </script>
 
-  <link rel="stylesheet" href="css/styles.css?v=3">
+  <link rel="stylesheet" href="css/styles.css?v=4">
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
 
   <link rel="canonical" href="https://canmenzo.com">
@@ -55,7 +55,8 @@
       margin-bottom: 14px;
     }
 
-    .row a {
+    .row a,
+    .row a:visited {
       color: #6fcf6f;
       text-decoration: none;
       font-weight: 600;
@@ -65,7 +66,8 @@
       text-decoration: underline;
     }
 
-    body:not(.dark-mode) .row a {
+    body:not(.dark-mode) .row a,
+    body:not(.dark-mode) .row a:visited {
       color: #1e6e1e;
     }
 
@@ -125,19 +127,23 @@
       color: #1e6e1e;
     }
 
-    .criticalstart, .fsu {
+    .criticalstart, .fsu,
+    .criticalstart:visited, .fsu:visited {
       color: #8ea6c8;
     }
 
-    body:not(.dark-mode) .criticalstart {
+    body:not(.dark-mode) .criticalstart,
+    body:not(.dark-mode) .criticalstart:visited {
       color: #233d63;
     }
 
-    body:not(.dark-mode) .fsu {
+    body:not(.dark-mode) .fsu,
+    body:not(.dark-mode) .fsu:visited {
       color: #782f40;
     }
 
-    body.dark-mode .fsu {
+    body.dark-mode .fsu,
+    body.dark-mode .fsu:visited {
       color: #c58a97;
     }
 
