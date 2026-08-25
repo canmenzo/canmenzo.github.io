@@ -80,6 +80,30 @@
       color: #1e6e1e;
     }
 
+    .punch a {
+      color: inherit;
+      text-decoration: underline dotted;
+      text-underline-offset: 4px;
+      display: inline-block;
+      position: relative;
+    }
+
+    .punch:has(a.wander) {
+      text-align: left;
+    }
+
+    .punch a.wander {
+      text-decoration: none;
+      animation: wander 4.5s ease-in-out infinite;
+    }
+
+    @keyframes wander {
+      0%   { left: 0;    transform: translateX(0); }
+      30%  { left: 100%; transform: translateX(-100%); }
+      60%  { left: 50%;  transform: translateX(-50%); }
+      100% { left: 0;    transform: translateX(0); }
+    }
+
     .spacer {
       height: 90vh;
     }
@@ -102,7 +126,7 @@
 
       <div class="spacer"></div>
 
-      <p class="punch">can't center div tho</p> <!-- hehe im a sneaky bastard, u got me xD -->
+      <p class="punch"><a href="#" id="punchline">can't center div tho</a></p> <!-- hehe im a sneaky bastard, u got me xD -->
     </div>
   </main>
 
@@ -123,6 +147,11 @@
       localStorage.setItem("dark-mode",
         document.body.classList.contains("dark-mode") ? "enabled" : "disabled");
       syncToggle();
+    });
+
+    document.getElementById("punchline").addEventListener("click", function (e) {
+      e.preventDefault();
+      this.classList.add("wander");
     });
   </script>
 </body>
