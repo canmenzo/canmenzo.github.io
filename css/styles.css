@@ -1,12 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
 
-.criticalstart {
+.criticalstart,
+.criticalstart:visited {
   color: #233d63;
   display: inline-block;
   font-weight: bold;
 }
 
-.fsu {
+.fsu,
+.fsu:visited {
   color: #782f40;
   display: inline-block;
   font-weight: bold;
@@ -17,8 +19,11 @@ body.dark-mode {
   color: #f1f1f1;
 }
 
-/* back-to-home link: fixed top-left on every subpage, mirroring #theme-toggle */
-.home-back {
+/* back-to-home link: fixed top-left on every subpage, mirroring #theme-toggle.
+   :visited is spelled out everywhere a link is coloured so following one and
+   coming back never leaves it on the browser's default purple. */
+.home-back,
+.home-back:visited {
   position: fixed;
   top: 20px;
   left: 20px;
@@ -31,7 +36,8 @@ body.dark-mode {
   text-decoration: none;
 }
 
-body.dark-mode .home-back {
+body.dark-mode .home-back,
+body.dark-mode .home-back:visited {
   color: #6fcf6f;
 }
 
