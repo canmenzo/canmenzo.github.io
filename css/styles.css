@@ -104,7 +104,7 @@ body {
    below it. Effect is progressive: without JS the plain name is already there. */
 .namebar {
   margin: 0 0 24px;
-  font-size: 1.7rem;
+  font-size: 1.15rem;
   font-weight: 600;
   letter-spacing: 0.06em;
   line-height: 1.3;
