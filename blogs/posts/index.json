@@ -1,13 +1,5 @@
 [
   {
-    "slug": "hello",
-    "title": "hi",
-    "date": "2026-08-25",
-    "updated": "2026-08-25",
-    "summary": "First note. Why this exists and what lands here.",
-    "tags": []
-  },
-  {
     "slug": "hi",
     "title": "testing",
     "date": "2026-08-25",
@@ -33,8 +25,13 @@
     "slug": "user-agent-bypass",
     "title": "user agent bypass",
     "date": "2026-08-25",
+    "updated": "2026-08-25"
+  },
+  {
+    "slug": "hello",
+    "title": "hi",
+    "date": "2026-08-25",
     "updated": "2026-08-25",
-    "summary": "",
-    "tags": []
+    "summary": "First note. Why this exists and what lands here."
   }
 ]
