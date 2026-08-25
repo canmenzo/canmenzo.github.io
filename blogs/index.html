@@ -160,6 +160,24 @@
       margin-top: 1px;
     }
 
+    .folder {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 9px;
+      margin-top: 3px;
+      border-radius: 6px;
+      cursor: pointer;
+      color: var(--muted);
+      font-size: 0.78rem;
+      user-select: none;
+    }
+    .folder:hover { background: var(--inset); color: var(--text); }
+    .folder .caret { width: 9px; font-size: 0.6rem; color: var(--faint); }
+    .folder .fcount { margin-left: auto; font-size: 0.68rem; color: var(--faint); }
+    .folder-notes { margin-left: 9px; border-left: 1px solid var(--border); padding-left: 3px; }
+    .folder-notes[hidden] { display: none; }
+
     .side-foot {
       border-top: 1px solid var(--border);
       padding: 10px 12px;
@@ -352,6 +370,26 @@
       margin-left: 10px;
     }
 
+    .badge {
+      font-family: var(--ui);
+      font-size: 0.6rem;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 1px 5px;
+      color: var(--faint);
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+    .badge.pin { color: var(--accent); border-color: var(--accent); }
+    .badge.draft { color: var(--danger); border-color: var(--danger); }
+
+    .tagbar { display: flex; flex-wrap: wrap; gap: 6px; margin: -26px 0 30px; }
+    .tagbar a, .tagbar a:visited { text-decoration: none; }
+    .tagbar .tag.on { background: var(--accent); color: #ffffff; }
+    body.dark-mode .tagbar .tag.on { color: #191a1b; }
+
     .empty { color: var(--muted); padding: 34px 0; }
 
     /* ---------------- editor ---------------- */
@@ -380,6 +418,34 @@
       border-bottom: 1px solid var(--border);
       margin-bottom: 10px;
     }
+    .editor .fields {
+      display: grid;
+      grid-template-columns: 76px 1fr;
+      gap: 0 12px;
+      align-items: center;
+    }
+    .editor .fields label {
+      font-family: var(--ui);
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--faint);
+    }
+    .editor .fields .small-in { margin-bottom: 0; }
+    .editor .flagrow {
+      display: flex;
+      gap: 18px;
+      font-family: var(--ui);
+      font-size: 0.78rem;
+      color: var(--muted);
+      padding: 12px 0 2px;
+    }
+    .editor .flagrow label { display: flex; align-items: center; gap: 6px; cursor: pointer; }
+    .editor .flagrow label:hover { color: var(--text); }
+    .editor input[type=checkbox] { width: auto; accent-color: var(--accent); cursor: pointer; }
+    .editor input[type=date] { color-scheme: light; }
+    body.dark-mode .editor input[type=date] { color-scheme: dark; }
+
     .editor textarea {
       font-family: var(--mono);
       font-size: 0.86rem;
@@ -545,6 +611,9 @@
 
       <div class="keyhead">// reading</div>
       <div class="keyrow"><kbd>ctrl + k</kbd><span class="what">filter notes</span></div>
+      <div class="keyrow"><kbd>s</kbd><span class="what">show / hide the one-line summaries</span></div>
+      <div class="keyrow"><kbd>click a #tag</kbd><span class="what">list only that tag</span></div>
+      <div class="keyrow"><kbd>click a folder</kbd><span class="what">collapse it in the sidebar</span></div>
       <div class="keyrow"><kbd>esc</kbd><span class="what">back to the note list</span></div>
       <div class="keyrow"><kbd>?</kbd><span class="what">this sheet</span></div>
 
@@ -592,9 +661,11 @@
 
     let token = localStorage.getItem(TOKEN_KEY) || '';
     let admin = false;
-    let index = [];        // [{slug,title,date,updated,summary,tags}]
+    let index = [];        // [{slug,title,date,updated,summary,folder,tags,pinned,draft}]
     let bodyCache = {};    // slug -> markdown
     let dirty = false;
+    let showSummaries = localStorage.getItem('blogs_summaries') !== 'off';
+    let collapsed = new Set(JSON.parse(localStorage.getItem('blogs_collapsed') || '[]'));
 
     const $ = s => document.querySelector(s);
     const view = $('#view');
@@ -671,14 +742,64 @@
        commit shows immediately instead of after the Pages rebuild. */
 
     async function loadIndex() {
+      let raw;
       if (admin) {
         const f = await readFile('index.json');
-        index = f ? JSON.parse(f.text) : [];
+        raw = f ? JSON.parse(f.text) : [];
       } else {
         const res = await fetch('posts/index.json?t=' + Date.now());
-        index = res.ok ? await res.json() : [];
+        raw = res.ok ? await res.json() : [];
       }
-      index.sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+      index = (Array.isArray(raw) ? raw : []).map(p => ({
+        slug: p.slug,
+        title: p.title || p.slug,
+        date: p.date || '',
+        updated: p.updated || p.date || '',
+        summary: p.summary || '',
+        folder: (p.folder || '').replace(/^\/+|\/+$/g, ''),
+        tags: p.tags || [],
+        aliases: p.aliases || [],
+        pinned: !!p.pinned,
+        draft: !!p.draft
+      }));
+      sortIndex();
+    }
+
+    /* pinned notes float to the top, then newest first */
+    function sortIndex() {
+      index.sort((a, b) =>
+        (b.pinned ? 1 : 0) - (a.pinned ? 1 : 0) ||
+        (b.date || '').localeCompare(a.date || ''));
+    }
+
+    /* drafts stay out of the reader's view */
+    const notes = () => admin ? index : index.filter(p => !p.draft);
+
+    /* keeps index.json free of empty fields */
+    function cleanEntry(p) {
+      const e = { slug: p.slug, title: p.title, date: p.date, updated: p.updated };
+      if (p.summary) e.summary = p.summary;
+      if (p.folder) e.folder = p.folder;
+      if (p.tags && p.tags.length) e.tags = p.tags;
+      if (p.aliases && p.aliases.length) e.aliases = p.aliases;
+      if (p.pinned) e.pinned = true;
+      if (p.draft) e.draft = true;
+      return e;
+    }
+
+    const saveIndex = () =>
+      writeFile('index.json', JSON.stringify(index.map(cleanEntry), null, 2) + '\n', 'blogs: reindex');
+
+    /* folders first, alphabetical; unfiled notes last */
+    function groupByFolder(arr) {
+      const map = new Map();
+      arr.forEach(p => {
+        const f = p.folder || '';
+        if (!map.has(f)) map.set(f, []);
+        map.get(f).push(p);
+      });
+      return [...map.entries()].sort((a, b) =>
+        (!a[0] ? 1 : 0) - (!b[0] ? 1 : 0) || a[0].localeCompare(b[0]));
     }
 
     async function loadBody(slug) {
@@ -787,17 +908,50 @@
 
     function renderTree() {
       const q = $('#search').value.toLowerCase();
-      const shown = index.filter(p =>
-        !q || (p.title + ' ' + (p.tags || []).join(' ')).toLowerCase().indexOf(q) !== -1);
+      const all = notes();
+      const shown = all.filter(p => !q ||
+        (p.title + ' ' + p.folder + ' ' + (p.tags || []).join(' ')).toLowerCase().indexOf(q) !== -1);
       const active = location.hash.replace(/^#(\/|edit\/)/, '');
 
-      $('#count').textContent = index.length;
-      $('#filetree').innerHTML = shown.length ? shown.map(p =>
+      $('#count').textContent = all.length;
+
+      if (!shown.length) {
+        $('#filetree').innerHTML =
+          '<div style="padding:8px 9px;color:var(--faint);font-size:.8rem">no notes</div>';
+        return;
+      }
+
+      const item = p =>
         '<a class="note-item' + (p.slug === active ? ' active' : '') + '" href="#/' + attr(p.slug) + '">' +
-        '<span class="name"><span class="idx">[' + bin(index.length - 1 - index.indexOf(p)) + ']</span>' +
+        '<span class="name"><span class="idx">[' + bin(all.length - 1 - all.indexOf(p)) + ']</span>' +
         esc(p.title) + '</span>' +
-        '<span class="date">' + fmtDate(p.date) + '</span></a>'
-      ).join('') : '<div style="padding:8px 9px;color:var(--faint);font-size:.8rem">no notes</div>';
+        '<span class="date">' + fmtDate(p.date) +
+        (p.pinned ? ' &middot; pinned' : '') + (p.draft ? ' &middot; draft' : '') +
+        '</span></a>';
+
+      // a search hit opens every folder, so nothing hides behind a collapsed one
+      $('#filetree').innerHTML = groupByFolder(shown).map(function (pair) {
+        const folder = pair[0], items = pair[1];
+        if (!folder) return items.map(item).join('');
+        const open = !!q || !collapsed.has(folder);
+        const pad = (folder.split('/').length - 1) * 10;
+        const style = pad ? ' style="margin-left:' + pad + 'px"' : '';
+        return '<div class="folder" data-folder="' + attr(folder) + '"' + style + '>' +
+          '<span class="caret">' + (open ? '&#9662;' : '&#9656;') + '</span>' +
+          esc(folder.split('/').pop()) +
+          '<span class="fcount">' + items.length + '</span></div>' +
+          '<div class="folder-notes"' + style + (open ? '' : ' hidden') + '>' +
+          items.map(item).join('') + '</div>';
+      }).join('');
+
+      $('#filetree').querySelectorAll('.folder').forEach(el => {
+        el.onclick = () => {
+          const f = el.dataset.folder;
+          if (collapsed.has(f)) collapsed.delete(f); else collapsed.add(f);
+          localStorage.setItem('blogs_collapsed', JSON.stringify([...collapsed]));
+          renderTree();
+        };
+      });
     }
 
     /* ---------------- views ---------------- */
@@ -813,29 +967,57 @@
 
     function newNote() { location.hash = '#new'; }
 
-    function renderList() {
-      setTab('blogs', admin ? '<button id="new-btn" class="primary">+ new note</button>' : '');
+    function renderList(tagFilter) {
+      setTab(tagFilter ? 'blogs / #' + tagFilter : 'blogs',
+        '<button id="sum-btn">summaries: ' + (showSummaries ? 'on' : 'off') + '</button>' +
+        (admin ? '<button id="new-btn" class="primary" style="margin-left:8px">+ new note</button>' : ''));
       dirty = false;
+
+      const all = notes();
+      const shown = tagFilter
+        ? all.filter(p => (p.tags || []).some(t => t.toLowerCase() === tagFilter))
+        : all;
+      const tags = [...new Set(all.flatMap(p => (p.tags || []).map(t => t.toLowerCase())))].sort();
+
+      const row = p =>
+        '<a class="index-row" href="#/' + attr(p.slug) + '">' +
+        '<div><span class="idx">[' + bin(all.length - 1 - all.indexOf(p)) + ']</span>' +
+        '<span class="index-title">' + esc(p.title) + '</span>' +
+        '<span class="index-date">' + fmtDate(p.date) + '</span>' +
+        (p.pinned ? '<span class="badge pin">pinned</span>' : '') +
+        (p.draft ? '<span class="badge draft">draft</span>' : '') +
+        '</div>' +
+        (showSummaries && p.summary ? '<div class="index-sum">' + esc(p.summary) + '</div>' : '') +
+        '</a>';
+
       view.innerHTML = '<div class="note">' +
-        '<h1 class="title">blogs</h1>' +
-        '<div class="meta">' + index.length + (index.length === 1 ? ' note' : ' notes') +
+        '<h1 class="title">' + (tagFilter ? '#' + esc(tagFilter) : 'blogs') + '</h1>' +
+        '<div class="meta">' + shown.length + (shown.length === 1 ? ' note' : ' notes') +
         (admin ? ' <span class="tag">admin</span>' : '') + '</div>' +
-        (index.length
-          ? '<div class="category"><span class="category-label">// notes</span>' +
-            index.map((p, i) =>
-              '<a class="index-row" href="#/' + attr(p.slug) + '">' +
-              '<div><span class="idx">[' + bin(index.length - 1 - i) + ']</span>' +
-              '<span class="index-title">' + esc(p.title) + '</span>' +
-              '<span class="index-date">' + fmtDate(p.date) + '</span></div>' +
-              (p.summary ? '<div class="index-sum">' + esc(p.summary) + '</div>' : '') +
-              '</a>').join('') +
+        (tags.length
+          ? '<div class="tagbar">' +
+            (tagFilter ? '<a href="#"><span class="tag">&larr; all</span></a>' : '') +
+            tags.map(t => '<a href="#tag/' + attr(encodeURIComponent(t)) + '"><span class="tag' +
+              (tagFilter === t ? ' on' : '') + '">#' + esc(t) + '</span></a>').join('') +
             '</div>'
+          : '') +
+        (shown.length
+          ? groupByFolder(shown).map(pair =>
+              '<div class="category"><span class="category-label">// ' +
+              esc(pair[0] || 'notes') + '</span>' +
+              pair[1].map(row).join('') + '</div>').join('')
           : '<div class="empty">Nothing here yet.</div>') +
         '</div>';
+
+      $('#sum-btn').onclick = () => {
+        showSummaries = !showSummaries;
+        localStorage.setItem('blogs_summaries', showSummaries ? 'on' : 'off');
+        renderList(tagFilter);
+      };
     }
 
     async function renderPost(slug) {
-      const post = index.find(p => p.slug === slug);
+      const post = notes().find(p => p.slug === slug);
       if (!post) {
         setTab('blogs / ' + slug);
         view.innerHTML = '<div class="note"><h1 class="title">404</h1>' +
@@ -843,7 +1025,7 @@
         return;
       }
 
-      setTab('blogs / ' + slug + '.md', admin
+      setTab('blogs / ' + (post.folder ? post.folder + ' / ' : '') + slug + '.md', admin
         ? '<button id="edit-btn">edit</button>' +
           '<button id="new-btn" class="primary" style="margin-left:8px">+ new note</button>'
         : '');
@@ -856,7 +1038,11 @@
         '<h1 class="title">' + esc(post.title) + '</h1>' +
         '<div class="meta">' + fmtDate(post.date) + ' &middot; ' + readTime(body) +
         (post.updated && post.updated !== post.date ? ' &middot; updated ' + fmtDate(post.updated) : '') +
-        (post.tags || []).map(t => '<span class="tag">#' + esc(t) + '</span>').join('') +
+        (post.pinned ? '<span class="badge pin">pinned</span>' : '') +
+        (post.draft ? '<span class="badge draft">draft</span>' : '') +
+        (post.tags || []).map(t =>
+          '<a href="#tag/' + attr(encodeURIComponent(t.toLowerCase())) + '">' +
+          '<span class="tag">#' + esc(t) + '</span></a>').join('') +
         '</div>' +
         '<div class="md">' + md(body) + '</div>' +
         '</div>';
@@ -866,7 +1052,9 @@
     async function renderEditor(slug) {
       if (!admin) { location.hash = ''; return; }
       const existing = slug ? index.find(p => p.slug === slug) : null;
+      if (slug && !existing) { location.hash = '#/' + slug; return; }
       const body = slug ? await loadBody(slug) : '';
+      const folders = [...new Set(index.map(p => p.folder).filter(Boolean))].sort();
 
       setTab(existing ? 'blogs / ' + slug + '.md (editing)' : 'blogs / new note');
       view.innerHTML =
@@ -875,8 +1063,28 @@
             (existing ? attr(existing.title) : '') + '">' +
           '<input class="small-in" id="f-summary" placeholder="one-line summary" value="' +
             (existing && existing.summary ? attr(existing.summary) : '') + '">' +
-          '<input class="small-in" id="f-tags" placeholder="tags, comma, separated" value="' +
-            (existing && existing.tags ? attr(existing.tags.join(', ')) : '') + '">' +
+          '<div class="fields">' +
+            '<label for="f-slug">url</label>' +
+            '<input class="small-in" id="f-slug" placeholder="auto from title" value="' +
+              (existing ? attr(existing.slug) : '') + '">' +
+            '<label for="f-folder">folder</label>' +
+            '<input class="small-in" id="f-folder" list="folder-list" placeholder="none - a/b nests" value="' +
+              (existing ? attr(existing.folder) : '') + '">' +
+            '<label for="f-tags">tags</label>' +
+            '<input class="small-in" id="f-tags" placeholder="comma, separated" value="' +
+              (existing && existing.tags ? attr(existing.tags.join(', ')) : '') + '">' +
+            '<label for="f-date">date</label>' +
+            '<input class="small-in" id="f-date" type="date" value="' +
+              attr(existing && existing.date ? existing.date : today()) + '">' +
+          '</div>' +
+          '<datalist id="folder-list">' +
+            folders.map(f => '<option value="' + attr(f) + '">').join('') + '</datalist>' +
+          '<div class="flagrow">' +
+            '<label><input type="checkbox" id="f-pin"' +
+              (existing && existing.pinned ? ' checked' : '') + '> pinned</label>' +
+            '<label><input type="checkbox" id="f-draft"' +
+              (existing && existing.draft ? ' checked' : '') + '> draft</label>' +
+          '</div>' +
           '<textarea id="f-body" placeholder="write markdown here. [[wikilinks]] work.">' +
             esc(body) + '</textarea>' +
         '</div>' +
@@ -889,10 +1097,25 @@
         '</div>';
 
       const status = $('#status');
+      const words = () => {
+        const t = $('#f-body').value.trim();
+        return t ? t.split(/\s+/).length : 0;
+      };
+      const touch = () => { dirty = true; status.innerHTML = 'unsaved &middot; ' + words() + ' words'; };
       dirty = false;
-      ['f-title', 'f-summary', 'f-tags', 'f-body'].forEach(id => {
-        $('#' + id).addEventListener('input', () => { dirty = true; status.textContent = 'unsaved'; });
+      status.textContent = words() + ' words';
+      ['f-title', 'f-summary', 'f-slug', 'f-folder', 'f-tags', 'f-date', 'f-body'].forEach(id => {
+        $('#' + id).addEventListener('input', touch);
       });
+      ['f-pin', 'f-draft'].forEach(id => $('#' + id).addEventListener('change', touch));
+
+      // on a new note the url tracks the title until it is typed in by hand
+      let slugTouched = !!existing;
+      $('#f-slug').addEventListener('input', () => { slugTouched = true; });
+      $('#f-title').addEventListener('input', () => {
+        if (!slugTouched) $('#f-slug').value = slugify($('#f-title').value);
+      });
+
       $('#f-title').focus();
 
       $('#preview-btn').onclick = () => {
@@ -919,7 +1142,7 @@
         try {
           await removeFile(slug + '.md', 'blogs: delete ' + slug);
           index = index.filter(p => p.slug !== slug);
-          await writeFile('index.json', JSON.stringify(index, null, 2) + '\n', 'blogs: reindex');
+          await saveIndex();
           delete bodyCache[slug];
           dirty = false;
           renderTree();
@@ -932,30 +1155,45 @@
         const text = $('#f-body').value;
         if (!title) { status.textContent = 'title required'; return; }
 
-        const newSlug = existing ? existing.slug : slugify(title);
-        if (!newSlug) { status.textContent = 'title needs latin letters'; return; }
-        if (!existing && index.some(p => p.slug === newSlug)) {
-          status.textContent = 'a note with that slug exists'; return;
+        const newSlug = slugify($('#f-slug').value.trim() || title);
+        if (!newSlug) { status.textContent = 'url needs latin letters'; return; }
+        if (index.some(p => p.slug === newSlug && (!existing || p.slug !== existing.slug))) {
+          status.textContent = 'a note with that url exists'; return;
         }
 
         $('#save-btn').disabled = true;
         status.textContent = 'committing...';
         try {
+          // a renamed note is written under the new slug, then the old file is dropped
+          const renamed = existing && newSlug !== existing.slug;
           await writeFile(newSlug + '.md', text,
             (existing ? 'blogs: update ' : 'blogs: add ') + newSlug);
+          if (renamed) {
+            await removeFile(existing.slug + '.md',
+              'blogs: rename ' + existing.slug + ' -> ' + newSlug);
+            delete bodyCache[existing.slug];
+          }
 
           const entry = {
             slug: newSlug,
             title: title,
-            date: existing ? existing.date : today(),
+            date: $('#f-date').value || (existing ? existing.date : today()),
             updated: today(),
             summary: $('#f-summary').value.trim(),
-            tags: $('#f-tags').value.split(',').map(t => t.trim()).filter(Boolean)
+            folder: $('#f-folder').value.trim().replace(/^\/+|\/+$/g, ''),
+            tags: $('#f-tags').value.split(',').map(t => t.trim()).filter(Boolean),
+            // a rename keeps the old url working instead of breaking shared links
+            aliases: [...new Set([].concat(
+              existing ? existing.aliases || [] : [],
+              renamed ? [existing.slug] : []
+            ))].filter(a => a !== newSlug),
+            pinned: $('#f-pin').checked,
+            draft: $('#f-draft').checked
           };
-          index = index.filter(p => p.slug !== newSlug);
+          index = index.filter(p => p.slug !== newSlug && (!existing || p.slug !== existing.slug));
           index.push(entry);
-          index.sort((a, b) => (b.date || '').localeCompare(a.date || ''));
-          await writeFile('index.json', JSON.stringify(index, null, 2) + '\n', 'blogs: reindex');
+          sortIndex();
+          await saveIndex();
 
           bodyCache[newSlug] = text;
           dirty = false;
@@ -1056,6 +1294,10 @@
         location.replace('#/' + ALIASES[h.slice(2)]);
         return;
       }
+      if (h.indexOf('#/') === 0) {
+        const moved = index.find(p => (p.aliases || []).indexOf(h.slice(2)) !== -1);
+        if (moved) { location.replace('#/' + moved.slug); return; }
+      }
       if (dirty && !/^#(new|edit\/)/.test(h)) {
         if (!confirm('Discard unsaved changes?')) { suppressRoute = true; history.back(); return; }
         dirty = false;
@@ -1063,8 +1305,9 @@
       document.body.classList.remove('nav-open');
       if (h.indexOf('#edit/') === 0) renderEditor(h.slice(6));
       else if (h === '#new') renderEditor(null);
+      else if (h.indexOf('#tag/') === 0) renderList(decodeURIComponent(h.slice(5)).toLowerCase());
       else if (h.indexOf('#/') === 0) renderPost(h.slice(2));
-      else renderList();
+      else renderList(null);
       renderTree();
       $('#main').scrollTop = 0;
     }
@@ -1089,6 +1332,10 @@
         return;
       }
       if (e.key === '?' && !typing) { e.preventDefault(); toggleHelp(true); return; }
+      if (e.key === 's' && !typing && !ctrl) {
+        const sb = $('#sum-btn');
+        if (sb) { e.preventDefault(); sb.click(); return; }
+      }
 
       if (e.key === 'Escape') {
         if ($('#help').classList.contains('open')) { toggleHelp(false); return; }
