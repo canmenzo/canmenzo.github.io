@@ -164,17 +164,6 @@
       flex-wrap: wrap;
     }
 
-    .keys {
-      padding: 0 12px 12px;
-      display: flex;
-      flex-direction: column;
-      gap: 3px;
-      font-family: var(--ui);
-      font-size: 0.64rem;
-      color: var(--faint);
-      letter-spacing: 0.02em;
-    }
-
     /* ---------------- buttons ---------------- */
 
     button {
@@ -416,7 +405,7 @@
 
     /* ---------------- unlock modal ---------------- */
 
-    #modal {
+    .modal {
       position: fixed;
       inset: 0;
       background: rgba(30, 25, 18, .5);
@@ -426,7 +415,7 @@
       z-index: 50;
       padding: 20px;
     }
-    #modal.open { display: flex; }
+    .modal.open { display: flex; }
     .modal-box {
       background: var(--bg);
       border: 1px solid var(--border);
@@ -455,6 +444,42 @@
     .modal-box input:focus { border-color: var(--accent); }
     .modal-actions { display: flex; gap: 8px; justify-content: flex-end; }
     .modal-err { color: var(--danger); font-size: 0.8rem; margin-bottom: 10px; }
+
+    .keyrow {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      padding: 7px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.85rem;
+    }
+    .keyrow:last-child { border-bottom: none; }
+    .keyrow kbd {
+      font-family: var(--ui);
+      font-size: 0.72rem;
+      background: var(--inset);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 2px 7px;
+      white-space: nowrap;
+      color: var(--text);
+    }
+    .keyrow .what { color: var(--muted); }
+    .keyrow .who {
+      margin-left: auto;
+      font-size: 0.68rem;
+      color: var(--faint);
+      font-family: var(--ui);
+    }
+    .keyhead {
+      font-family: var(--ui);
+      font-size: 0.66rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--faint);
+      margin: 16px 0 4px;
+    }
+    #help-btn { padding: 6px 10px; }
 
     /* ---------------- mobile ---------------- */
 
@@ -493,11 +518,9 @@
 
     <div class="side-foot">
       <button id="side-new" class="primary" hidden>+ new note</button>
+      <button id="help-btn" title="keyboard shortcuts">?</button>
       <button id="theme-toggle">night</button>
       <button id="admin-btn">unlock</button>
-    </div>
-    <div class="keys" id="keys" hidden>
-      <span>ctrl+alt+n new</span><span>ctrl+alt+e edit</span><span>ctrl+s publish</span><span>ctrl+k filter</span><span>esc back</span>
     </div>
   </aside>
 
@@ -511,7 +534,34 @@
     <div id="view"></div>
   </main>
 
-  <div id="modal">
+  <div id="help" class="modal">
+    <div class="modal-box">
+      <h3>keyboard shortcuts</h3>
+
+      <div class="keyhead">// reading</div>
+      <div class="keyrow"><kbd>ctrl + k</kbd><span class="what">filter notes</span></div>
+      <div class="keyrow"><kbd>esc</kbd><span class="what">back to the note list</span></div>
+      <div class="keyrow"><kbd>?</kbd><span class="what">this sheet</span></div>
+
+      <div class="keyhead">// writing</div>
+      <div class="keyrow"><kbd>n</kbd><span class="what">new note</span><span class="who">admin</span></div>
+      <div class="keyrow"><kbd>ctrl + alt + n</kbd><span class="what">new note</span><span class="who">admin</span></div>
+      <div class="keyrow"><kbd>e</kbd><span class="what">edit this note</span><span class="who">admin</span></div>
+      <div class="keyrow"><kbd>ctrl + alt + e</kbd><span class="what">edit this note</span><span class="who">admin</span></div>
+      <div class="keyrow"><kbd>ctrl + s</kbd><span class="what">publish</span><span class="who">admin</span></div>
+      <div class="keyrow"><kbd>ctrl + enter</kbd><span class="what">publish</span><span class="who">admin</span></div>
+      <div class="keyrow"><kbd>esc</kbd><span class="what">close the editor</span><span class="who">admin</span></div>
+
+      <p style="margin:16px 0 0;font-size:0.78rem">ctrl+n and ctrl+e belong to the browser, so
+        the editor uses ctrl+alt instead.</p>
+
+      <div class="modal-actions" style="margin-top:16px">
+        <button id="help-close" class="primary">close</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal" class="modal">
     <div class="modal-box">
       <h3>unlock editing</h3>
       <p>Paste a GitHub fine-grained token with <b>Contents: read &amp; write</b> on
@@ -933,10 +983,14 @@
       $('#statusdot').title = on ? 'admin - editing enabled' : 'reader';
       $('#admin-btn').textContent = on ? 'lock' : 'unlock';
       $('#side-new').hidden = !on;
-      $('#keys').hidden = !on;
     }
 
     $('#side-new').onclick = newNote;
+
+    const toggleHelp = show => $('#help').classList.toggle('open', show);
+    $('#help-btn').onclick = () => toggleHelp(true);
+    $('#help-close').onclick = () => toggleHelp(false);
+    $('#help').onclick = e => { if (e.target.id === 'help') toggleHelp(false); };
     $('#vault-root').onclick = e => {
       e.preventDefault();
       if (location.hash) location.hash = '';
@@ -1022,7 +1076,10 @@
         $('#search').focus();
         return;
       }
+      if (e.key === '?' && !typing) { e.preventDefault(); toggleHelp(true); return; }
+
       if (e.key === 'Escape') {
+        if ($('#help').classList.contains('open')) { toggleHelp(false); return; }
         if ($('#modal').classList.contains('open')) { $('#modal').classList.remove('open'); return; }
         if (typing && e.target.id === 'search') { e.target.blur(); return; }
         if (inEditor) { const c = $('#cancel-btn'); if (c) c.click(); return; }
