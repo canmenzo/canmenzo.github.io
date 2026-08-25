@@ -12,21 +12,21 @@
     ]
   },
   {
-    "slug": "hi",
-    "title": "hi",
-    "date": "2026-08-25",
-    "updated": "2026-08-25",
-    "summary": "hi",
-    "tags": [
-      "hi"
-    ]
-  },
-  {
     "slug": "hello",
     "title": "hi",
     "date": "2026-08-25",
     "updated": "2026-08-25",
     "summary": "First note. Why this exists and what lands here.",
     "tags": []
+  },
+  {
+    "slug": "hi",
+    "title": "testing",
+    "date": "2026-08-25",
+    "updated": "2026-08-25",
+    "summary": "live@prod",
+    "tags": [
+      "new-tech"
+    ]
   }
 ]
