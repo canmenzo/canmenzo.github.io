@@ -13,6 +13,8 @@
       window.location.protocol = "https";
   </script>
 
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://api.github.com; base-uri 'none'; form-action 'none'">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;0,7..72,700;1,7..72,400&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
@@ -159,6 +161,18 @@
       padding: 10px 12px;
       display: flex;
       gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .keys {
+      padding: 0 12px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      font-family: var(--ui);
+      font-size: 0.64rem;
+      color: var(--faint);
+      letter-spacing: 0.02em;
     }
 
     /* ---------------- buttons ---------------- */
@@ -201,7 +215,8 @@
       color: var(--muted);
       min-height: 44px;
     }
-    .topbar .crumb { color: var(--faint); }
+    .topbar .crumb { color: var(--faint); text-decoration: none; }
+    .topbar .crumb:hover { color: var(--accent); }
     .topbar .spacer { flex: 1; }
     #menu-btn { display: none; }
 
@@ -465,7 +480,8 @@
     <div class="vault">
       <span class="dot" id="statusdot" title="reader"></span>
       <a href="/">canmenzo</a>
-      <span class="sep">/ blogs</span>
+      <span class="sep">/</span>
+      <a href="#" id="vault-root">blogs</a>
     </div>
 
     <div class="pane-head">
@@ -476,15 +492,19 @@
     <nav id="filetree"></nav>
 
     <div class="side-foot">
+      <button id="side-new" class="primary" hidden>+ new note</button>
       <button id="theme-toggle">night</button>
       <button id="admin-btn">unlock</button>
+    </div>
+    <div class="keys" id="keys" hidden>
+      <span>ctrl+alt+n new</span><span>ctrl+alt+e edit</span><span>ctrl+s publish</span><span>ctrl+k filter</span><span>esc back</span>
     </div>
   </aside>
 
   <main id="main">
     <div class="topbar">
       <button id="menu-btn">&#9776;</button>
-      <span class="crumb" id="crumb">blogs</span>
+      <a class="crumb" id="crumb" href="#">blogs</a>
       <span class="spacer"></span>
       <span id="tabactions"></span>
     </div>
@@ -622,19 +642,23 @@
 
     /* ---------------- markdown ---------------- */
 
-    const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
     const attr = s => esc(s).replace(/"/g, '&quot;');
+    // only http(s), mailto and same-site links may become hrefs; blocks javascript: and data:
+    const safeUrl = u => /^(https?:\/\/|mailto:|\/|#|\.\/|[\w./-]+$)/i.test(u.trim()) ? attr(u.trim()) : '#';
 
     function inline(s) {
       return s
-        .replace(/!\[([^\]]*)\]\(([^)\s]+)\)/g, '<img src="$2" alt="$1">')
+        .replace(/!\[([^\]]*)\]\(([^)\s]+)\)/g, (m, alt, src) =>
+          '<img src="' + safeUrl(src) + '" alt="' + attr(alt) + '">')
         .replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, function (m, target, label) {
           const slug = slugify(target);
           const known = index.some(p => p.slug === slug);
           return '<a class="wikilink' + (known ? '' : ' missing') + '" href="#/' + slug + '">' +
             (label || target) + '</a>';
         })
-        .replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, '<a href="$2">$1</a>')
+        .replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (m, label, href) =>
+          '<a href="' + safeUrl(href) + '" rel="noopener noreferrer">' + label + '</a>')
         .replace(/`([^`]+)`/g, '<code>$1</code>')
         .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
         .replace(/(^|[^*])\*([^*\n]+)\*/g, '$1<em>$2</em>')
@@ -714,7 +738,7 @@
 
       $('#count').textContent = index.length;
       $('#filetree').innerHTML = shown.length ? shown.map(p =>
-        '<a class="note-item' + (p.slug === active ? ' active' : '') + '" href="#/' + p.slug + '">' +
+        '<a class="note-item' + (p.slug === active ? ' active' : '') + '" href="#/' + attr(p.slug) + '">' +
         '<span class="name"><span class="idx">[' + bin(index.length - 1 - index.indexOf(p)) + ']</span>' +
         esc(p.title) + '</span>' +
         '<span class="date">' + fmtDate(p.date) + '</span></a>'
@@ -726,10 +750,17 @@
     function setTab(crumb, actionsHtml) {
       $('#crumb').textContent = crumb;
       $('#tabactions').innerHTML = actionsHtml || '';
+      const nb = $('#new-btn');
+      if (nb) nb.onclick = newNote;
+      const eb = $('#edit-btn');
+      if (eb) eb.onclick = () => { location.hash = '#edit/' + location.hash.slice(2); };
     }
+
+    function newNote() { location.hash = '#new'; }
 
     function renderList() {
       setTab('blogs', admin ? '<button id="new-btn" class="primary">+ new note</button>' : '');
+      dirty = false;
       view.innerHTML = '<div class="note">' +
         '<h1 class="title">blogs</h1>' +
         '<div class="meta">' + index.length + (index.length === 1 ? ' note' : ' notes') +
@@ -737,7 +768,7 @@
         (index.length
           ? '<div class="category"><span class="category-label">// notes</span>' +
             index.map((p, i) =>
-              '<a class="index-row" href="#/' + p.slug + '">' +
+              '<a class="index-row" href="#/' + attr(p.slug) + '">' +
               '<div><span class="idx">[' + bin(index.length - 1 - i) + ']</span>' +
               '<span class="index-title">' + esc(p.title) + '</span>' +
               '<span class="index-date">' + fmtDate(p.date) + '</span></div>' +
@@ -746,7 +777,6 @@
             '</div>'
           : '<div class="empty">Nothing here yet.</div>') +
         '</div>';
-      if (admin) $('#new-btn').onclick = () => { location.hash = '#new'; };
     }
 
     async function renderPost(slug) {
@@ -758,7 +788,10 @@
         return;
       }
 
-      setTab('blogs / ' + slug + '.md', admin ? '<button id="edit-btn">edit</button>' : '');
+      setTab('blogs / ' + slug + '.md', admin
+        ? '<button id="edit-btn">edit</button>' +
+          '<button id="new-btn" class="primary" style="margin-left:8px">+ new note</button>'
+        : '');
       view.innerHTML = '<div class="note"><div class="empty">loading...</div></div>';
 
       const body = await loadBody(slug);
@@ -772,7 +805,7 @@
         '</div>' +
         '<div class="md">' + md(body) + '</div>' +
         '</div>';
-      if (admin) $('#edit-btn').onclick = () => { location.hash = '#edit/' + slug; };
+      dirty = false;
     }
 
     async function renderEditor(slug) {
@@ -899,7 +932,16 @@
       document.body.classList.toggle('is-admin', on);
       $('#statusdot').title = on ? 'admin - editing enabled' : 'reader';
       $('#admin-btn').textContent = on ? 'lock' : 'unlock';
+      $('#side-new').hidden = !on;
+      $('#keys').hidden = !on;
     }
+
+    $('#side-new').onclick = newNote;
+    $('#vault-root').onclick = e => {
+      e.preventDefault();
+      if (location.hash) location.hash = '';
+      else route();
+    };
 
     $('#admin-btn').onclick = async () => {
       if (admin) {
@@ -944,8 +986,14 @@
 
     /* ---------------- routing ---------------- */
 
+    let suppressRoute = false;
+
     function route() {
       const h = location.hash;
+      if (dirty && !/^#(new|edit\/)/.test(h)) {
+        if (!confirm('Discard unsaved changes?')) { suppressRoute = true; history.back(); return; }
+        dirty = false;
+      }
       document.body.classList.remove('nav-open');
       if (h.indexOf('#edit/') === 0) renderEditor(h.slice(6));
       else if (h === '#new') renderEditor(null);
@@ -955,20 +1003,51 @@
       $('#main').scrollTop = 0;
     }
 
-    window.addEventListener('hashchange', route);
+    window.addEventListener('hashchange', () => {
+      if (suppressRoute) { suppressRoute = false; return; }
+      route();
+    });
     window.addEventListener('beforeunload', e => { if (dirty) { e.preventDefault(); e.returnValue = ''; } });
     $('#search').addEventListener('input', renderTree);
 
     document.addEventListener('keydown', e => {
+      const typing = /^(INPUT|TEXTAREA)$/.test(e.target.tagName);
+      const ctrl = e.ctrlKey || e.metaKey;
+      const inEditor = /^#(new|edit\/)/.test(location.hash);
+
+      // ctrl+k focuses the filter, esc backs out of whatever is open
+      if (ctrl && e.key === 'k') {
+        e.preventDefault();
+        document.body.classList.add('nav-open');
+        $('#search').focus();
+        return;
+      }
+      if (e.key === 'Escape') {
+        if ($('#modal').classList.contains('open')) { $('#modal').classList.remove('open'); return; }
+        if (typing && e.target.id === 'search') { e.target.blur(); return; }
+        if (inEditor) { const c = $('#cancel-btn'); if (c) c.click(); return; }
+        if (location.hash) location.hash = '';
+        return;
+      }
+
       if (!admin) return;
-      if ((e.metaKey || e.ctrlKey) && e.key === 's' && /^#(new|edit\/)/.test(location.hash)) {
+
+      if (ctrl && (e.key === 's' || e.key === 'Enter') && inEditor) {
         e.preventDefault();
         const b = $('#save-btn');
         if (b) b.click();
+        return;
       }
-      if (e.key === 'e' && e.target === document.body && location.hash.indexOf('#/') === 0) {
-        location.hash = '#edit/' + location.hash.slice(2);
+      // ctrl+n and ctrl+e belong to the browser, so the app uses ctrl+alt+*
+      if (ctrl && e.altKey && (e.key === 'n' || e.code === 'KeyN')) { e.preventDefault(); newNote(); return; }
+      if (ctrl && e.altKey && (e.key === 'e' || e.code === 'KeyE')) {
+        e.preventDefault();
+        if (location.hash.indexOf('#/') === 0) location.hash = '#edit/' + location.hash.slice(2);
+        return;
       }
+      if (typing) return;
+      if (e.key === 'n') { e.preventDefault(); newNote(); }
+      if (e.key === 'e' && location.hash.indexOf('#/') === 0) location.hash = '#edit/' + location.hash.slice(2);
     });
 
     (async function init() {

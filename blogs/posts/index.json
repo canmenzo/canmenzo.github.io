@@ -18,5 +18,17 @@
     "tags": [
       "hi"
     ]
+  },
+  {
+    "slug": "moviepickr-audit",
+    "title": "I audited my own app before I let anyone use it",
+    "date": "2026-08-25",
+    "updated": "2026-08-25",
+    "summary": "Threat modelling my own movie-night app before launch: an endpoint anyone could loop, a watchlist parameter nobody counted, CSP in report-only, and the risk I wrote down instead of fixing.",
+    "tags": [
+      "security",
+      "appsec",
+      "moviepickr"
+    ]
   }
 ]
