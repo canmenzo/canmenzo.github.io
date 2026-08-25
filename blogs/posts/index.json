@@ -1,14 +1,14 @@
 [
   {
     "slug": "moviepickr-audit",
-    "title": "I audited my own app before I let anyone use it",
+    "title": "AI writes safe code and forgets to count",
     "date": "2026-08-25",
     "updated": "2026-08-25",
-    "summary": "Threat modelling my own movie-night app before launch: an endpoint anyone could loop, a watchlist parameter nobody counted, CSP in report-only, and the risk I wrote down instead of fixing.",
+    "summary": "I audited seven of my own AI-built projects. The classic vulnerabilities were not there. The missing limits were, in every single one.",
     "tags": [
       "security",
       "appsec",
-      "moviepickr"
+      "ai"
     ]
   },
   {
