@@ -12,12 +12,6 @@
     ]
   },
   {
-    "slug": "user-agent-bypass",
-    "title": "user agent bypass",
-    "date": "2026-08-25",
-    "updated": "2026-08-25"
-  },
-  {
     "slug": "testingliveurl",
     "title": "testing",
     "date": "2026-08-25",
@@ -41,6 +35,16 @@
     ],
     "aliases": [
       "hello"
+    ]
+  },
+  {
+    "slug": "user-agent-bypass",
+    "title": "user agent bypass",
+    "date": "2026-08-25",
+    "updated": "2026-08-25",
+    "tags": [
+      "user-agent",
+      "bypass"
     ]
   }
 ]
