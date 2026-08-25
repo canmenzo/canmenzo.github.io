@@ -1047,8 +1047,15 @@
 
     let suppressRoute = false;
 
+    // slugs that were shared before the note got renamed
+    const ALIASES = { 'moviepickr-audit': 'vibecoded' };
+
     function route() {
       const h = location.hash;
+      if (h.indexOf('#/') === 0 && ALIASES[h.slice(2)]) {
+        location.replace('#/' + ALIASES[h.slice(2)]);
+        return;
+      }
       if (dirty && !/^#(new|edit\/)/.test(h)) {
         if (!confirm('Discard unsaved changes?')) { suppressRoute = true; history.back(); return; }
         dirty = false;

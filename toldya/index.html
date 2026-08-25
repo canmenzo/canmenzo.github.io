@@ -179,8 +179,11 @@
     import { getFirestore, doc, getDoc, setDoc, updateDoc } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
     import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
 
-    // Firebase Configuration | please dont steal my api key
-    // i changed my rules so u gotta be authenticated anyways but im too lazy Xd
+    // Firebase config. The apiKey is public by design, it identifies the project,
+    // it does not authorise anything. Firestore rules are the only thing guarding this.
+    // The rules require auth, but the page calls signInAnonymously, so being
+    // authenticated is free for anyone and the count can be set to whatever they like.
+    // Fine for a rickroll counter. Do not put anything else in this Firebase project.
     const firebaseConfig = {
         apiKey: "AIzaSyBwRCRWxQ1KhOheUffYEhLw15_qbfLm7ns",
         authDomain: "rickrollcounter-cae1b.firebaseapp.com",

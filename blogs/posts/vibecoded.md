@@ -39,4 +39,4 @@ attacker can *spend*, not only what they can take.
 
 Ask for the limit explicitly. AI will write it correctly if you ask; it just never volunteers.
 
-Write down what you decided not to fix. This is your risk-appetide. An accepted risk you wrote down is a decision. The same risk you never noticed is a vulnerability.
+Write down what you decided not to fix. This is your risk appetite. An accepted risk you wrote down is a decision. The same risk you never noticed is a vulnerability.
