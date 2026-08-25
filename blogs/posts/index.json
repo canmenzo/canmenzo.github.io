@@ -1,7 +1,7 @@
 [
   {
     "slug": "moviepickr-audit",
-    "title": "AI writes safe code and forgets to count",
+    "title": "I audited seven apps AI wrote for me",
     "date": "2026-08-25",
     "updated": "2026-08-25",
     "summary": "I audited seven of my own AI-built projects. The classic vulnerabilities were not there. The missing limits were, in every single one.",
