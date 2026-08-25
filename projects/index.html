@@ -24,23 +24,8 @@
       font-family: 'Fira Code', monospace;
     }
 
-    .back {
-      font-size: 0.8em;
-      margin-bottom: 18px;
-      display: block;
-    }
-
-    .back a {
-      color: #555;
-      text-decoration: none;
-    }
-
-    .back a:hover {
-      color: #f1f1f1;
-    }
-
-    body:not(.dark-mode) .back a:hover {
-      color: #111;
+    .container {
+      padding-top: 62px;
     }
 
     .project-list {
@@ -161,12 +146,13 @@
 </head>
 
 <body class="dark-mode">
+  <a class="home-back" href="/">&larr; ~/home</a>
+
   <main class="container">
     <h2>Can Menzo</h2>
 
     <div style="text-align: left">
       <div class="section">
-        <span class="back"><a href="/">← ~/home</a></span>
         <h3>projects:</h3>
 
         <div class="project-list">

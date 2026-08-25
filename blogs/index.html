@@ -93,6 +93,10 @@
     }
     .vault a { color: var(--muted); text-decoration: none; }
     .vault a:hover { color: var(--text); }
+    /* back-to-home link: the sidebar already owns the top-left slot the other
+       pages put .home-back in, so it lives in the breadcrumb here */
+    .vault .home-back { color: var(--accent); font-weight: 600; }
+    .vault .home-back:hover { text-decoration: underline; }
     .vault .sep { color: var(--faint); font-weight: 400; }
 
     .dot {
@@ -504,7 +508,7 @@
   <aside id="sidebar">
     <div class="vault">
       <span class="dot" id="statusdot" title="reader"></span>
-      <a href="/">canmenzo</a>
+      <a class="home-back" href="/">&larr; ~/home</a>
       <span class="sep">/</span>
       <a href="#" id="vault-root">blogs</a>
     </div>
