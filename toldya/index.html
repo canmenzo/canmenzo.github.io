@@ -19,9 +19,27 @@
             color: #333;
             margin-top: 10px;
         }
+        /* back-to-home link: same position and treatment as the rest of the site */
+        .home-back {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 50;
+            padding: 10px 0;
+            font-family: 'Fira Code', ui-monospace, monospace;
+            font-size: 12px;
+            font-weight: 600;
+            color: #1e6e1e;
+            text-decoration: none;
+        }
+        .home-back:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
+    <a class="home-back" href="/">&larr; ~/home</a>
+
     <!-- Header Text -->
     <h1>TOLD YA!</h1>
     

@@ -17,6 +17,28 @@ body.dark-mode {
   color: #f1f1f1;
 }
 
+/* back-to-home link: fixed top-left on every subpage, mirroring #theme-toggle */
+.home-back {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 50;
+  padding: 10px 0;
+  font-family: 'Fira Code', ui-monospace, monospace;
+  font-size: 12px;
+  font-weight: 600;
+  color: #1e6e1e;
+  text-decoration: none;
+}
+
+body.dark-mode .home-back {
+  color: #6fcf6f;
+}
+
+.home-back:hover {
+  text-decoration: underline;
+}
+
 #theme-toggle {
   position: fixed;
   top: 20px;
