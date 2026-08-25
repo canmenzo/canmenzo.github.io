@@ -120,14 +120,14 @@
                         console.log("Firestore document fetched.");
 
                         if (docSnap.exists()) {
-                            const currentCount = docSnap.data().count;
+                            const currentCount = Number(docSnap.data().count) || 0;
                             const newCount = currentCount + 1;
 
                             // Update Firestore with the new count
                             updateDoc(counterRef, { count: newCount });
 
                             // Display the counter on the page
-                            document.getElementById("counter").innerHTML = `This page has been visited ${newCount} times.<br><br>`;
+                            document.getElementById("counter").textContent = `This page has been visited ${Number(newCount)} times.`;
                         } else {
                             console.log("Document does not exist, creating it...");
 
@@ -135,7 +135,7 @@
                             setDoc(counterRef, { count: 1 });
 
                             // Display the counter on the page
-                            document.getElementById("counter").innerHTML = `This page has been visited 1 time.<br><br>`;
+                            document.getElementById("counter").textContent = "This page has been visited 1 time.";
                         }
                     }).catch((error) => {
                         console.error("Error fetching counter:", error);
