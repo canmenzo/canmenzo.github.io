@@ -1,185 +1,239 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bir İşlem Solver</title>
-    <style>
-        :root {
-            --primary: #2563eb;
-            --bg: #f8fafc;
-            --card: #ffffff;
-            --text: #1e293b;
-            --success: #16a34a;
-        }
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Bir Isim Bir Islem solver - find an expression that hits the target." />
+  <meta name="author" content="Can Menzo" />
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
-            display: flex;
-            justify-content: center;
-            min-height: 100vh;
-            margin: 0;
-            padding: 62px 20px 20px;
-        }
+  <script type="text/javascript">
+    var host = "canmenzo.com";
+    if (host == window.location.host && window.location.protocol != "https:")
+      window.location.protocol = "https";
+  </script>
 
-        /* back-to-home link: same position and treatment as the rest of the site */
-        .home-back {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            z-index: 50;
-            padding: 10px 0;
-            font-family: 'Fira Code', ui-monospace, monospace;
-            font-size: 12px;
-            font-weight: 600;
-            color: #1e6e1e;
-            text-decoration: none;
-        }
+  <link rel="stylesheet" href="../css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
 
-        .home-back:hover {
-            text-decoration: underline;
-        }
+  <link rel="canonical" href="https://canmenzo.com/numbers/">
+  <link rel="icon" href="../favicon.ico?v=2">
+  <title>Can Menzo | bir işlem solver</title>
 
-        .container {
-            background: var(--card);
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 500px;
-        }
+  <style>
+    :root {
+      --bg: #ffffff;
+      --inset: #f4f4f4;
+      --border: #e3e3e3;
+      --text: #111111;
+      --muted: #666666;
+      --accent: #1e6e1e;
+    }
 
-        h1 {
-            text-align: center;
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
-            color: #334155;
-        }
+    body.dark-mode {
+      --bg: #191a1b;
+      --inset: #202122;
+      --border: #2a2a2a;
+      --text: #f1f1f1;
+      --muted: #888888;
+      --accent: #6fcf6f;
+    }
 
-        .input-group {
-            margin-bottom: 1.5rem;
-        }
+    body, h2, .container {
+      font-family: 'Fira Code', monospace;
+    }
 
-        label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
+    .container {
+      text-align: center;
+      padding-top: 62px;
+    }
 
-        .inputs-row {
-            display: flex;
-            gap: 10px;
-            justify-content: space-between;
-            margin-bottom: 15px;
-        }
+    @media (min-width: 701px) {
+      .container { text-align: center; }
+    }
 
-        input[type="number"] {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #cbd5e1;
-            border-radius: 6px;
-            font-size: 1.1rem;
-            text-align: center;
-            transition: border-color 0.2s;
-        }
+    .solver {
+      max-width: 520px;
+      margin: 0 auto;
+      text-align: left;
+    }
 
-        input[type="number"]:focus {
-            outline: none;
-            border-color: var(--primary);
-        }
+    .field {
+      margin-bottom: 22px;
+    }
 
-        .target-wrapper {
-            background: #eff6ff;
-            padding: 15px;
-            border-radius: 8px;
-            border: 1px solid #dbeafe;
-        }
+    .field-label {
+      margin-bottom: 9px;
+      font-size: 0.74em;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+    }
 
-        button {
-            width: 100%;
-            padding: 12px;
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 6px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
+    .inputs-row {
+      display: flex;
+      gap: 8px;
+    }
 
-        button:hover {
-            background-color: #1d4ed8;
-        }
+    input[type="number"] {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 10px 8px;
+      background: var(--inset);
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      color: var(--text);
+      font-family: 'Fira Code', monospace;
+      font-size: 0.95em;
+      text-align: center;
+      transition: border-color 0.15s;
+      -moz-appearance: textfield;
+      appearance: textfield;
+    }
 
-        #results {
-            margin-top: 2rem;
-            padding-top: 1rem;
-            border-top: 1px solid #e2e8f0;
-        }
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
 
-        .solution-item {
-            background: #f1f5f9;
-            padding: 10px;
-            margin-bottom: 8px;
-            border-radius: 4px;
-            font-family: monospace;
-            font-size: 1.1rem;
-            display: flex;
-            justify-content: space-between;
-        }
+    input[type="number"]:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
 
-        .empty-msg {
-            text-align: center;
-            color: #64748b;
-            font-style: italic;
-        }
+    .target {
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      padding: 18px 16px 16px;
+      position: relative;
+    }
 
-        .necdet-msg {
-            text-align: center;
-            margin-top: 20px;
-            font-weight: bold;
-            font-size: 1.2rem;
-            color: var(--success);
-            padding: 10px;
-            border: 2px dashed var(--success);
-            border-radius: 8px;
-        }
-    </style>
+    .target-label {
+      position: absolute;
+      top: -9px;
+      left: 14px;
+      padding: 0 8px;
+      background-color: var(--bg);
+      font-size: 0.74em;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+    }
+
+    button#solve {
+      width: 100%;
+      padding: 12px;
+      background: var(--accent);
+      color: var(--bg);
+      border: none;
+      border-radius: 5px;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.88em;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity 0.15s;
+    }
+
+    button#solve:hover {
+      opacity: 0.85;
+    }
+
+    #results {
+      margin-top: 26px;
+    }
+
+    .solution-item {
+      background: var(--inset);
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      padding: 12px 14px;
+      font-size: 0.88em;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .solution-item .eq {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .empty-msg {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.82em;
+    }
+
+    .necdet-msg {
+      text-align: center;
+      margin-top: 16px;
+      padding: 10px;
+      font-size: 0.88em;
+      font-weight: 600;
+      color: var(--accent);
+      border: 1px dashed var(--accent);
+      border-radius: 5px;
+    }
+
+    @media (max-width: 560px) {
+      .inputs-row { flex-wrap: wrap; }
+      .inputs-row input[type="number"] { width: calc(33.33% - 6px); }
+    }
+  </style>
 </head>
-<body>
 
-<a class="home-back" href="/">&larr; ~/home</a>
+<body class="dark-mode">
+  <a class="home-back" href="/">&larr; ~/home</a>
 
-<div class="container">
-    <h1>Bir İşlem Solver</h1>
+  <main class="container">
+    <h2>bir işlem solver</h2>
 
-    <div class="input-group">
-        <label>Input Numbers (Up to 6)</label>
+    <div class="solver">
+      <div class="field">
+        <div class="field-label">// source numbers (up to 6)</div>
         <div class="inputs-row">
-            <input type="number" class="num-input" placeholder="x">
-            <input type="number" class="num-input" placeholder="y">
-            <input type="number" class="num-input" placeholder="z">
-            <input type="number" class="num-input" placeholder="a">
-            <input type="number" class="num-input" placeholder="b">
-            <input type="number" class="num-input" placeholder="c">
+          <input type="number" class="num-input" placeholder="x" aria-label="source number 1">
+          <input type="number" class="num-input" placeholder="y" aria-label="source number 2">
+          <input type="number" class="num-input" placeholder="z" aria-label="source number 3">
+          <input type="number" class="num-input" placeholder="a" aria-label="source number 4">
+          <input type="number" class="num-input" placeholder="b" aria-label="source number 5">
+          <input type="number" class="num-input" placeholder="c" aria-label="source number 6">
         </div>
+      </div>
+
+      <div class="field target">
+        <span class="target-label">// target</span>
+        <input type="number" id="target" placeholder="e.g. 752" aria-label="target number">
+      </div>
+
+      <button id="solve" onclick="runSolver()">find solution</button>
+
+      <div id="results"></div>
     </div>
+  </main>
 
-    <div class="input-group target-wrapper">
-        <label for="target">Target Number</label>
-        <input type="number" id="target" placeholder="e.g. 752">
-    </div>
+  <button id="theme-toggle">dark mode: on</button>
 
-    <button onclick="runSolver()">Find Solution</button>
+  <script>
+    const themeToggle = document.getElementById("theme-toggle");
+    if (localStorage.getItem("dark-mode") === "disabled") {
+      document.body.classList.remove("dark-mode");
+    }
+    const syncToggle = () => {
+      themeToggle.textContent = "dark mode: " +
+        (document.body.classList.contains("dark-mode") ? "on" : "off");
+    };
+    syncToggle();
+    themeToggle.addEventListener("click", function () {
+      document.body.classList.toggle("dark-mode");
+      localStorage.setItem("dark-mode",
+        document.body.classList.contains("dark-mode") ? "enabled" : "disabled");
+      syncToggle();
+    });
+  </script>
 
-    <div id="results"></div>
-</div>
-
-<script>
+  <script>
 class Node {
     constructor(value, expression) {
         this.value = value;
@@ -194,11 +248,11 @@ function runSolver() {
 
     const target = parseInt(document.getElementById('target').value);
     const resultsDiv = document.getElementById('results');
-    
-    resultsDiv.innerHTML = ''; 
+
+    resultsDiv.innerHTML = '';
 
     if (inputs.length === 0 || isNaN(target)) {
-        resultsDiv.innerHTML = '<div class="empty-msg">Please enter source numbers and a target.</div>';
+        resultsDiv.innerHTML = '<div class="empty-msg">enter source numbers and a target.</div>';
         return;
     }
 
@@ -246,19 +300,19 @@ function runSolver() {
     solve(initialNodes);
 
     if (solutions.size === 0) {
-        resultsDiv.innerHTML = '<div class="empty-msg">No exact solutions found.</div>';
+        resultsDiv.innerHTML = '<div class="empty-msg">no exact solutions found.</div>';
     } else {
         const one = Array.from(solutions)[0];
         const clean = one.startsWith('(') && one.endsWith(')') ? one.slice(1, -1) : one;
 
         resultsDiv.innerHTML = `
             <div class="solution-item">
-                <span>${clean}</span> <span>= ${target}</span>
+                <span>${clean}</span> <span class="eq">= ${target}</span>
             </div>
             <div class="necdet-msg">necdeti yatirdim.</div>`;
     }
 }
-</script>
-
+  </script>
 </body>
+
 </html>
