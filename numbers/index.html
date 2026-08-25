@@ -14,7 +14,7 @@
       window.location.protocol = "https";
   </script>
 
-  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/styles.css?v=3">
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
 
   <link rel="canonical" href="https://canmenzo.com/numbers/">
@@ -51,6 +51,25 @@
 
     @media (min-width: 701px) {
       .container { text-align: center; }
+    }
+
+    /* Also in css/styles.css, repeated here on purpose: without these rules
+       the link is a plain flex item of body and shoves the page sideways,
+       so it must not depend on a stylesheet a phone may have cached. */
+    .home-back {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 50;
+      padding: 10px 0;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .home-back:hover {
+      text-decoration: underline;
     }
 
     .solver {
