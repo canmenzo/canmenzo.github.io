@@ -1,1 +1,120 @@
-brown rice, chicken al pastor, black beans, fajita veggies, roasted chili-corn salsa, fresh tomato salsa, cheese, lettuce
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Can Menzo's chipotle order." />
+  <meta name="author" content="Can Menzo" />
+
+  <script type="text/javascript">
+    var host = "canmenzo.com";
+    if (host == window.location.host && window.location.protocol != "https:")
+      window.location.protocol = "https";
+  </script>
+
+  <link rel="stylesheet" href="../css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+
+  <link rel="canonical" href="https://canmenzo.com/chipotle/">
+  <link rel="icon" href="../favicon.ico?v=2">
+  <title>Can Menzo | chipotle</title>
+
+  <style>
+    body, h2, .container {
+      font-family: 'Fira Code', monospace;
+    }
+
+    .container {
+      text-align: center;
+    }
+
+    @media (min-width: 701px) {
+      .container { text-align: center; }
+    }
+
+    .order {
+      font-size: 0.92em;
+      line-height: 1.9;
+      max-width: 620px;
+      margin: 0 auto;
+    }
+
+    .item {
+      color: #6fcf6f;
+      font-weight: 600;
+    }
+
+    body:not(.dark-mode) .item {
+      color: #1e6e1e;
+    }
+
+    .sep {
+      color: #444;
+      margin: 0 4px;
+    }
+
+    body:not(.dark-mode) .sep {
+      color: #aaa;
+    }
+
+    .back {
+      display: inline-block;
+      margin-top: 34px;
+      font-size: 0.8em;
+      color: #6fcf6f;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    body:not(.dark-mode) .back {
+      color: #1e6e1e;
+    }
+
+    .back:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body class="dark-mode">
+  <main class="container">
+    <h2>chipotle</h2>
+
+    <div class="order">
+      <span class="item">brown rice</span><span class="sep">/</span>
+      <span class="item">chicken al pastor</span><span class="sep">/</span>
+      <span class="item">black beans</span><span class="sep">/</span>
+      <span class="item">fajita veggies</span><span class="sep">/</span>
+      <span class="item">roasted chili-corn salsa</span><span class="sep">/</span>
+      <span class="item">fresh tomato salsa</span><span class="sep">/</span>
+      <span class="item">cheese</span><span class="sep">/</span>
+      <span class="item">lettuce</span>
+    </div>
+
+    <a class="back" href="/">&larr; back</a>
+  </main>
+
+  <button id="theme-toggle">dark mode: on</button>
+
+  <script>
+    const themeToggle = document.getElementById("theme-toggle");
+    if (localStorage.getItem("dark-mode") === "disabled") {
+      document.body.classList.remove("dark-mode");
+    }
+    const syncToggle = () => {
+      themeToggle.textContent = "dark mode: " +
+        (document.body.classList.contains("dark-mode") ? "on" : "off");
+    };
+    syncToggle();
+    themeToggle.addEventListener("click", function () {
+      document.body.classList.toggle("dark-mode");
+      localStorage.setItem("dark-mode",
+        document.body.classList.contains("dark-mode") ? "enabled" : "disabled");
+      syncToggle();
+    });
+  </script>
+</body>
+
+</html>
