@@ -21,3 +21,6 @@ for signal in signals:
 ```
 
 Obsidian-style [[hello|wikilinks]] resolve to other notes here.
+
+
+YEAH WHATEVER THIS CLANKER SAID!
