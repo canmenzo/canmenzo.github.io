@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Notes and writing by Can Menzo - threat hunting, security research, AI." />
+  <meta name="author" content="Can Menzo" />
+
+  <script type="text/javascript">
+    var host = "canmenzo.com";
+    if (host == window.location.host && window.location.protocol != "https:")
+      window.location.protocol = "https";
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;0,7..72,700;1,7..72,400&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="../favicon.ico">
+  <link rel="canonical" href="https://canmenzo.com/blogs/">
+  <title>Can Menzo | blogs</title>
+
+  <style>
+    :root {
+      --bg: #ffffff;
+      --bg-side: #fafafa;
+      --inset: #f4f4f4;
+      --border: #e3e3e3;
+      --text: #111111;
+      --muted: #666666;
+      --faint: #aaaaaa;
+      --accent: #1e6e1e;
+      --accent-soft: rgba(30, 110, 30, 0.10);
+      --danger: #b3352a;
+      --serif: 'Literata', Georgia, 'Times New Roman', serif;
+      --ui: 'Fira Code', ui-monospace, monospace;
+      --mono: 'Fira Code', ui-monospace, monospace;
+    }
+
+    body.dark-mode {
+      --bg: #191a1b;
+      --bg-side: #141516;
+      --inset: #202122;
+      --border: #2a2a2a;
+      --text: #f1f1f1;
+      --muted: #888888;
+      --faint: #555555;
+      --accent: #6fcf6f;
+      --accent-soft: rgba(111, 207, 111, 0.13);
+      --danger: #e5695c;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body { margin: 0; padding: 0; height: 100%; }
+
+    body {
+      display: flex;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--serif);
+      font-size: 17px;
+      line-height: 1.72;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    /* ---------------- sidebar ---------------- */
+
+    #sidebar {
+      width: 258px;
+      flex: 0 0 258px;
+      height: 100vh;
+      background: var(--bg-side);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      font-family: var(--ui);
+    }
+
+    .vault {
+      padding: 15px 16px 13px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--muted);
+      border-bottom: 1px solid var(--border);
+    }
+    .vault a { color: var(--muted); text-decoration: none; }
+    .vault a:hover { color: var(--text); }
+    .vault .sep { color: var(--faint); font-weight: 400; }
+
+    .dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--faint);
+      flex: 0 0 auto;
+    }
+    body.is-admin .dot { background: var(--accent); box-shadow: 0 0 7px var(--accent); }
+
+    .pane-head {
+      padding: 16px 16px 7px;
+      font-size: 0.67rem;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+      color: var(--faint);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
+    }
+
+    #search {
+      margin: 0 12px 8px;
+      padding: 7px 10px;
+      width: calc(100% - 24px);
+      background: var(--inset);
+      border: 1px solid transparent;
+      border-radius: 6px;
+      color: var(--text);
+      font-family: var(--ui);
+      font-size: 0.8rem;
+      outline: none;
+    }
+    #search::placeholder { color: var(--faint); }
+    #search:focus { border-color: var(--accent); }
+
+    #filetree { flex: 1; overflow-y: auto; padding: 0 8px 16px; }
+
+    .note-item {
+      display: block;
+      padding: 6px 9px;
+      border-radius: 6px;
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.87rem;
+      line-height: 1.35;
+      cursor: pointer;
+    }
+    .note-item:hover { background: var(--inset); }
+    .note-item.active { background: var(--accent-soft); color: var(--accent); }
+    .note-item .name {
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .note-item .date {
+      display: block;
+      font-size: 0.68rem;
+      color: var(--faint);
+      margin-top: 1px;
+    }
+
+    .side-foot {
+      border-top: 1px solid var(--border);
+      padding: 10px 12px;
+      display: flex;
+      gap: 8px;
+    }
+
+    /* ---------------- buttons ---------------- */
+
+    button {
+      font-family: var(--ui);
+      font-size: 0.76rem;
+      font-weight: 500;
+      padding: 6px 11px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      transition: background .15s, color .15s, border-color .15s;
+    }
+    button:hover { color: var(--text); border-color: var(--faint); }
+    button.primary { background: var(--accent); border-color: var(--accent); color: #ffffff; }
+    button.primary:hover { opacity: .85; color: #ffffff; }
+    body.dark-mode button.primary { color: #191a1b; }
+    button.danger:hover { color: var(--danger); border-color: var(--danger); }
+    button[disabled] { opacity: .45; cursor: not-allowed; }
+
+    /* ---------------- main ---------------- */
+
+    #main { flex: 1; height: 100vh; overflow-y: auto; }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      padding: 9px 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--ui);
+      font-size: 0.78rem;
+      color: var(--muted);
+      min-height: 44px;
+    }
+    .topbar .crumb { color: var(--faint); }
+    .topbar .spacer { flex: 1; }
+    #menu-btn { display: none; }
+
+    .note {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 56px 30px 160px;
+    }
+
+    h1.title {
+      font-family: var(--serif);
+      font-size: 2.5rem;
+      line-height: 1.18;
+      font-weight: 700;
+      letter-spacing: -0.018em;
+      margin: 0 0 10px;
+    }
+
+    .meta {
+      font-family: var(--ui);
+      font-size: 0.78rem;
+      color: var(--faint);
+      margin-bottom: 40px;
+      display: flex;
+      gap: 9px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      background: var(--accent-soft);
+      color: var(--accent);
+      padding: 1px 8px;
+      border-radius: 11px;
+      font-size: 0.72rem;
+    }
+
+    /* ---------------- markdown ---------------- */
+
+    .md h1, .md h2, .md h3 {
+      font-weight: 600;
+      letter-spacing: -0.012em;
+      margin: 1.9em 0 0.55em;
+      line-height: 1.32;
+    }
+    .md h1 { font-size: 1.72rem; }
+    .md h2 { font-size: 1.38rem; }
+    .md h3 { font-size: 1.13rem; }
+    .md p { margin: 0 0 1.25em; }
+    .md a { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent-soft); }
+    .md a:hover { border-bottom-color: var(--accent); }
+    .md ul, .md ol { margin: 0 0 1.25em; padding-left: 1.35em; }
+    .md li { margin-bottom: 0.4em; }
+    .md blockquote {
+      margin: 0 0 1.25em;
+      padding: 2px 0 2px 18px;
+      border-left: 3px solid var(--accent-soft);
+      color: var(--muted);
+      font-style: italic;
+    }
+    .md code {
+      font-family: var(--mono);
+      font-size: 0.84em;
+      background: var(--inset);
+      padding: 1.5px 5px;
+      border-radius: 4px;
+    }
+    .md pre {
+      background: var(--inset);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 15px 17px;
+      overflow-x: auto;
+      margin: 0 0 1.4em;
+    }
+    .md pre code { background: none; padding: 0; font-size: 0.8rem; line-height: 1.6; }
+    .md hr { border: none; border-top: 1px solid var(--border); margin: 2.4em 0; }
+    .md img { max-width: 100%; border-radius: 8px; }
+    .md table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 0 0 1.4em;
+      font-size: 0.92rem;
+      font-family: var(--ui);
+    }
+    .md th, .md td { border: 1px solid var(--border); padding: 8px 11px; text-align: left; }
+    .md th { background: var(--inset); font-weight: 600; }
+    .md .wikilink { border-bottom: 1px dashed var(--accent); }
+    .md .wikilink.missing { color: var(--danger); border-bottom-color: var(--danger); }
+
+    /* ---------------- index list ---------------- */
+
+    .category {
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      padding: 26px 20px 8px;
+      position: relative;
+      margin-top: 8px;
+    }
+    .category-label {
+      position: absolute;
+      top: -9px;
+      left: 14px;
+      padding: 0 8px;
+      background-color: var(--bg);
+      font-family: var(--ui);
+      font-size: 0.74em;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+    }
+
+    .idx {
+      font-family: var(--ui);
+      font-size: 0.72rem;
+      color: var(--faint);
+      margin-right: 8px;
+    }
+
+    .index-row {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      padding: 0 0 22px;
+    }
+    .index-row:hover .index-title { color: var(--accent); text-decoration: underline; }
+    .index-title { font-size: 1.18rem; font-weight: 600; line-height: 1.35; }
+    .index-sum {
+      color: var(--muted);
+      font-size: 0.92rem;
+      margin-top: 3px;
+      padding-left: 68px;
+      line-height: 1.55;
+    }
+    .index-date {
+      font-family: var(--ui);
+      font-size: 0.72rem;
+      color: var(--faint);
+      letter-spacing: 0.02em;
+      margin-left: 10px;
+    }
+
+    .empty { color: var(--muted); padding: 34px 0; }
+
+    /* ---------------- editor ---------------- */
+
+    .editor input, .editor textarea {
+      width: 100%;
+      background: transparent;
+      border: none;
+      color: var(--text);
+      outline: none;
+      font-family: inherit;
+    }
+    .editor input.title-in {
+      font-size: 2.5rem;
+      font-weight: 700;
+      letter-spacing: -0.018em;
+      line-height: 1.18;
+      margin-bottom: 10px;
+    }
+    .editor input::placeholder, .editor textarea::placeholder { color: var(--faint); }
+    .editor input.small-in {
+      font-family: var(--ui);
+      font-size: 0.82rem;
+      color: var(--muted);
+      padding: 6px 0;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 10px;
+    }
+    .editor textarea {
+      font-family: var(--mono);
+      font-size: 0.86rem;
+      line-height: 1.8;
+      min-height: 56vh;
+      resize: vertical;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+
+    .editbar {
+      position: sticky;
+      bottom: 0;
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      padding: 11px 24px;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      z-index: 6;
+    }
+    .editbar .status {
+      font-family: var(--ui);
+      font-size: 0.75rem;
+      color: var(--faint);
+      margin-left: auto;
+    }
+
+    /* ---------------- unlock modal ---------------- */
+
+    #modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(30, 25, 18, .5);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 50;
+      padding: 20px;
+    }
+    #modal.open { display: flex; }
+    .modal-box {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 26px;
+      width: 100%;
+      max-width: 470px;
+      font-family: var(--ui);
+      box-shadow: 0 20px 50px rgba(40, 32, 20, .22);
+    }
+    .modal-box h3 { margin: 0 0 8px; font-size: 1.08rem; font-family: var(--serif); }
+    .modal-box p { color: var(--muted); font-size: 0.85rem; line-height: 1.55; margin: 0 0 16px; }
+    .modal-box code { font-family: var(--mono); font-size: 0.8em; background: var(--inset); padding: 1px 4px; border-radius: 3px; }
+    .modal-box input {
+      width: 100%;
+      background: var(--inset);
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      padding: 10px 12px;
+      color: var(--text);
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      outline: none;
+      margin-bottom: 14px;
+    }
+    .modal-box input:focus { border-color: var(--accent); }
+    .modal-actions { display: flex; gap: 8px; justify-content: flex-end; }
+    .modal-err { color: var(--danger); font-size: 0.8rem; margin-bottom: 10px; }
+
+    /* ---------------- mobile ---------------- */
+
+    @media (max-width: 820px) {
+      #sidebar {
+        position: fixed;
+        left: -280px;
+        top: 0;
+        z-index: 20;
+        transition: left .2s ease;
+      }
+      body.nav-open #sidebar { left: 0; box-shadow: 0 0 40px rgba(30, 25, 18, .3); }
+      #menu-btn { display: inline-block; }
+      .note { padding: 34px 22px 130px; }
+      h1.title, .editor input.title-in { font-size: 1.95rem; }
+    }
+  </style>
+</head>
+
+<body class="dark-mode">
+
+  <aside id="sidebar">
+    <div class="vault">
+      <span class="dot" id="statusdot" title="reader"></span>
+      <a href="/">canmenzo</a>
+      <span class="sep">/ blogs</span>
+    </div>
+
+    <div class="pane-head">
+      <span>notes</span>
+      <span id="count"></span>
+    </div>
+    <input id="search" placeholder="filter..." autocomplete="off">
+    <nav id="filetree"></nav>
+
+    <div class="side-foot">
+      <button id="theme-toggle">night</button>
+      <button id="admin-btn">unlock</button>
+    </div>
+  </aside>
+
+  <main id="main">
+    <div class="topbar">
+      <button id="menu-btn">&#9776;</button>
+      <span class="crumb" id="crumb">blogs</span>
+      <span class="spacer"></span>
+      <span id="tabactions"></span>
+    </div>
+    <div id="view"></div>
+  </main>
+
+  <div id="modal">
+    <div class="modal-box">
+      <h3>unlock editing</h3>
+      <p>Paste a GitHub fine-grained token with <b>Contents: read &amp; write</b> on
+        <code>canmenzo.github.io</code>. It stays in this browser's localStorage and is sent
+        only to api.github.com.</p>
+      <div class="modal-err" id="modal-err"></div>
+      <input id="token-in" type="password" placeholder="github_pat_..." autocomplete="off">
+      <div class="modal-actions">
+        <button id="modal-cancel">cancel</button>
+        <button id="modal-save" class="primary">unlock</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (function () {
+    'use strict';
+
+    const REPO = 'canmenzo/canmenzo.github.io';
+    const BRANCH = 'master';
+    const DIR = 'blogs/posts';
+    const TOKEN_KEY = 'blogs_gh_token';
+
+    let token = localStorage.getItem(TOKEN_KEY) || '';
+    let admin = false;
+    let index = [];        // [{slug,title,date,updated,summary,tags}]
+    let bodyCache = {};    // slug -> markdown
+    let dirty = false;
+
+    const $ = s => document.querySelector(s);
+    const view = $('#view');
+
+    /* ---------------- theme ---------------- */
+
+    if (localStorage.getItem('dark-mode') === 'disabled') document.body.classList.remove('dark-mode');
+    const syncThemeBtn = () => {
+      $('#theme-toggle').textContent =
+        'dark: ' + (document.body.classList.contains('dark-mode') ? 'on' : 'off');
+    };
+    syncThemeBtn();
+    $('#theme-toggle').onclick = () => {
+      document.body.classList.toggle('dark-mode');
+      localStorage.setItem('dark-mode',
+        document.body.classList.contains('dark-mode') ? 'enabled' : 'disabled');
+      syncThemeBtn();
+    };
+    $('#menu-btn').onclick = () => document.body.classList.toggle('nav-open');
+
+    /* ---------------- github api ---------------- */
+
+    const b64encode = s => {
+      const bytes = new TextEncoder().encode(s);
+      let bin = '';
+      for (const b of bytes) bin += String.fromCharCode(b);
+      return btoa(bin);
+    };
+    const b64decode = s =>
+      new TextDecoder().decode(Uint8Array.from(atob(s.replace(/\s/g, '')), c => c.charCodeAt(0)));
+
+    async function api(path, opts) {
+      opts = opts || {};
+      const res = await fetch('https://api.github.com' + path, Object.assign({}, opts, {
+        headers: Object.assign({
+          'Accept': 'application/vnd.github+json',
+          'Authorization': 'Bearer ' + token
+        }, opts.headers || {})
+      }));
+      if (res.status === 404) return null;
+      if (!res.ok) {
+        let detail = String(res.status);
+        try { detail = (await res.json()).message || detail; } catch (e) {}
+        throw new Error(detail);
+      }
+      return res.json();
+    }
+
+    const contentsUrl = file => '/repos/' + REPO + '/contents/' + DIR + '/' + file;
+
+    async function readFile(file) {
+      const r = await api(contentsUrl(file) + '?ref=' + BRANCH + '&t=' + Date.now());
+      return r ? { text: b64decode(r.content), sha: r.sha } : null;
+    }
+
+    async function writeFile(file, text, message) {
+      const cur = await api(contentsUrl(file) + '?ref=' + BRANCH + '&t=' + Date.now());
+      const payload = { message: message, content: b64encode(text), branch: BRANCH };
+      if (cur) payload.sha = cur.sha;
+      return api(contentsUrl(file), { method: 'PUT', body: JSON.stringify(payload) });
+    }
+
+    async function removeFile(file, message) {
+      const cur = await api(contentsUrl(file) + '?ref=' + BRANCH);
+      if (!cur) return;
+      return api(contentsUrl(file), {
+        method: 'DELETE',
+        body: JSON.stringify({ message: message, sha: cur.sha, branch: BRANCH })
+      });
+    }
+
+    /* ---------------- data ----------------
+       Readers hit the static Pages files. Admin reads through the API so a fresh
+       commit shows immediately instead of after the Pages rebuild. */
+
+    async function loadIndex() {
+      if (admin) {
+        const f = await readFile('index.json');
+        index = f ? JSON.parse(f.text) : [];
+      } else {
+        const res = await fetch('posts/index.json?t=' + Date.now());
+        index = res.ok ? await res.json() : [];
+      }
+      index.sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+    }
+
+    async function loadBody(slug) {
+      if (bodyCache[slug] !== undefined) return bodyCache[slug];
+      let text = '';
+      if (admin) {
+        const f = await readFile(slug + '.md');
+        text = f ? f.text : '';
+      } else {
+        const res = await fetch('posts/' + slug + '.md?t=' + Date.now());
+        text = res.ok ? await res.text() : '';
+      }
+      bodyCache[slug] = text;
+      return text;
+    }
+
+    /* ---------------- markdown ---------------- */
+
+    const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    const attr = s => esc(s).replace(/"/g, '&quot;');
+
+    function inline(s) {
+      return s
+        .replace(/!\[([^\]]*)\]\(([^)\s]+)\)/g, '<img src="$2" alt="$1">')
+        .replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, function (m, target, label) {
+          const slug = slugify(target);
+          const known = index.some(p => p.slug === slug);
+          return '<a class="wikilink' + (known ? '' : ' missing') + '" href="#/' + slug + '">' +
+            (label || target) + '</a>';
+        })
+        .replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, '<a href="$2">$1</a>')
+        .replace(/`([^`]+)`/g, '<code>$1</code>')
+        .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+        .replace(/(^|[^*])\*([^*\n]+)\*/g, '$1<em>$2</em>')
+        .replace(/~~([^~]+)~~/g, '<del>$1</del>');
+    }
+
+    function md(src) {
+      const blocks = [];
+      const s = esc(src).replace(/```(\w*)\n([\s\S]*?)```/g, function (m, lang, code) {
+        blocks.push('<pre><code class="lang-' + lang + '">' + code.replace(/\n$/, '') + '</code></pre>');
+        return ' ' + (blocks.length - 1) + ' ';
+      });
+
+      let out = '', list = null, para = [];
+      const flushPara = () => { if (para.length) { out += '<p>' + inline(para.join(' ')) + '</p>'; para = []; } };
+      const flushList = () => { if (list) { out += '</' + list + '>'; list = null; } };
+
+      s.split('\n').forEach(function (raw) {
+        const line = raw.trimEnd();
+        const ph = line.match(/^ (\d+) $/);
+        if (ph) { flushPara(); flushList(); out += blocks[+ph[1]]; return; }
+        if (!line.trim()) { flushPara(); flushList(); return; }
+
+        let m;
+        if ((m = line.match(/^(#{1,6})\s+(.*)$/))) {
+          flushPara(); flushList();
+          const lvl = Math.min(m[1].length, 3);
+          out += '<h' + lvl + '>' + inline(m[2]) + '</h' + lvl + '>';
+        } else if (/^(---|\*\*\*)\s*$/.test(line)) {
+          flushPara(); flushList(); out += '<hr>';
+        } else if ((m = line.match(/^&gt;\s?(.*)$/))) {
+          flushPara(); flushList(); out += '<blockquote>' + inline(m[1]) + '</blockquote>';
+        } else if ((m = line.match(/^\s*[-*+]\s+(.*)$/))) {
+          flushPara();
+          if (list !== 'ul') { flushList(); out += '<ul>'; list = 'ul'; }
+          out += '<li>' + inline(m[1]) + '</li>';
+        } else if ((m = line.match(/^\s*\d+\.\s+(.*)$/))) {
+          flushPara();
+          if (list !== 'ol') { flushList(); out += '<ol>'; list = 'ol'; }
+          out += '<li>' + inline(m[1]) + '</li>';
+        } else {
+          flushList();
+          para.push(line.trim());
+        }
+      });
+      flushPara(); flushList();
+      return out;
+    }
+
+    /* ---------------- helpers ---------------- */
+
+    const TRMAP = { 'ı': 'i', 'İ': 'i', 'ş': 's', 'Ş': 's', 'ğ': 'g', 'Ğ': 'g', 'ü': 'u', 'Ü': 'u', 'ö': 'o', 'Ö': 'o', 'ç': 'c', 'Ç': 'c' };
+    function slugify(t) {
+      return t.replace(/[ıİşŞğĞüÜöÖçÇ]/g, c => TRMAP[c])
+        .toLowerCase().trim()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-+|-+$/g, '')
+        .slice(0, 60);
+    }
+    const today = () => new Date().toISOString().slice(0, 10);
+    const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    function fmtDate(d) {
+      if (!d) return '';
+      const p = d.split('-');
+      return p.length === 3 ? MONTHS[+p[1] - 1] + ' ' + (+p[2]) + ', ' + p[0] : d;
+    }
+    const bin = n => n.toString(2).padStart(5, '0');
+    const readTime = body => Math.max(1, Math.round(body.trim().split(/\s+/).length / 220)) + ' min read';
+
+    /* ---------------- sidebar ---------------- */
+
+    function renderTree() {
+      const q = $('#search').value.toLowerCase();
+      const shown = index.filter(p =>
+        !q || (p.title + ' ' + (p.tags || []).join(' ')).toLowerCase().indexOf(q) !== -1);
+      const active = location.hash.replace(/^#(\/|edit\/)/, '');
+
+      $('#count').textContent = index.length;
+      $('#filetree').innerHTML = shown.length ? shown.map(p =>
+        '<a class="note-item' + (p.slug === active ? ' active' : '') + '" href="#/' + p.slug + '">' +
+        '<span class="name"><span class="idx">[' + bin(index.length - 1 - index.indexOf(p)) + ']</span>' +
+        esc(p.title) + '</span>' +
+        '<span class="date">' + fmtDate(p.date) + '</span></a>'
+      ).join('') : '<div style="padding:8px 9px;color:var(--faint);font-size:.8rem">no notes</div>';
+    }
+
+    /* ---------------- views ---------------- */
+
+    function setTab(crumb, actionsHtml) {
+      $('#crumb').textContent = crumb;
+      $('#tabactions').innerHTML = actionsHtml || '';
+    }
+
+    function renderList() {
+      setTab('blogs', admin ? '<button id="new-btn" class="primary">+ new note</button>' : '');
+      view.innerHTML = '<div class="note">' +
+        '<h1 class="title">blogs</h1>' +
+        '<div class="meta">' + index.length + (index.length === 1 ? ' note' : ' notes') +
+        (admin ? ' <span class="tag">admin</span>' : '') + '</div>' +
+        (index.length
+          ? '<div class="category"><span class="category-label">// notes</span>' +
+            index.map((p, i) =>
+              '<a class="index-row" href="#/' + p.slug + '">' +
+              '<div><span class="idx">[' + bin(index.length - 1 - i) + ']</span>' +
+              '<span class="index-title">' + esc(p.title) + '</span>' +
+              '<span class="index-date">' + fmtDate(p.date) + '</span></div>' +
+              (p.summary ? '<div class="index-sum">' + esc(p.summary) + '</div>' : '') +
+              '</a>').join('') +
+            '</div>'
+          : '<div class="empty">Nothing here yet.</div>') +
+        '</div>';
+      if (admin) $('#new-btn').onclick = () => { location.hash = '#new'; };
+    }
+
+    async function renderPost(slug) {
+      const post = index.find(p => p.slug === slug);
+      if (!post) {
+        setTab('blogs / ' + slug);
+        view.innerHTML = '<div class="note"><h1 class="title">404</h1>' +
+          '<div class="empty">No note called <code>' + esc(slug) + '.md</code>.</div></div>';
+        return;
+      }
+
+      setTab('blogs / ' + slug + '.md', admin ? '<button id="edit-btn">edit</button>' : '');
+      view.innerHTML = '<div class="note"><div class="empty">loading...</div></div>';
+
+      const body = await loadBody(slug);
+      if (location.hash !== '#/' + slug) return;
+
+      view.innerHTML = '<div class="note">' +
+        '<h1 class="title">' + esc(post.title) + '</h1>' +
+        '<div class="meta">' + fmtDate(post.date) + ' &middot; ' + readTime(body) +
+        (post.updated && post.updated !== post.date ? ' &middot; updated ' + fmtDate(post.updated) : '') +
+        (post.tags || []).map(t => '<span class="tag">#' + esc(t) + '</span>').join('') +
+        '</div>' +
+        '<div class="md">' + md(body) + '</div>' +
+        '</div>';
+      if (admin) $('#edit-btn').onclick = () => { location.hash = '#edit/' + slug; };
+    }
+
+    async function renderEditor(slug) {
+      if (!admin) { location.hash = ''; return; }
+      const existing = slug ? index.find(p => p.slug === slug) : null;
+      const body = slug ? await loadBody(slug) : '';
+
+      setTab(existing ? 'blogs / ' + slug + '.md (editing)' : 'blogs / new note');
+      view.innerHTML =
+        '<div class="note editor">' +
+          '<input class="title-in" id="f-title" placeholder="Untitled" value="' +
+            (existing ? attr(existing.title) : '') + '">' +
+          '<input class="small-in" id="f-summary" placeholder="one-line summary" value="' +
+            (existing && existing.summary ? attr(existing.summary) : '') + '">' +
+          '<input class="small-in" id="f-tags" placeholder="tags, comma, separated" value="' +
+            (existing && existing.tags ? attr(existing.tags.join(', ')) : '') + '">' +
+          '<textarea id="f-body" placeholder="write markdown here. [[wikilinks]] work.">' +
+            esc(body) + '</textarea>' +
+        '</div>' +
+        '<div class="editbar">' +
+          '<button id="save-btn" class="primary">publish</button>' +
+          '<button id="preview-btn">preview</button>' +
+          '<button id="cancel-btn">close</button>' +
+          (existing ? '<button id="del-btn" class="danger">delete</button>' : '') +
+          '<span class="status" id="status"></span>' +
+        '</div>';
+
+      const status = $('#status');
+      dirty = false;
+      ['f-title', 'f-summary', 'f-tags', 'f-body'].forEach(id => {
+        $('#' + id).addEventListener('input', () => { dirty = true; status.textContent = 'unsaved'; });
+      });
+      $('#f-title').focus();
+
+      $('#preview-btn').onclick = () => {
+        const pv = $('#preview-pane');
+        if (pv) { pv.remove(); return; }
+        const d = document.createElement('div');
+        d.id = 'preview-pane';
+        d.className = 'note md';
+        d.style.borderTop = '1px solid var(--border)';
+        d.style.paddingTop = '40px';
+        d.innerHTML = md($('#f-body').value);
+        view.querySelector('.editor').after(d);
+      };
+
+      $('#cancel-btn').onclick = () => {
+        if (dirty && !confirm('Discard unsaved changes?')) return;
+        dirty = false;
+        location.hash = existing ? '#/' + slug : '';
+      };
+
+      if (existing) $('#del-btn').onclick = async () => {
+        if (!confirm('Delete "' + existing.title + '" permanently?')) return;
+        status.textContent = 'deleting...';
+        try {
+          await removeFile(slug + '.md', 'blogs: delete ' + slug);
+          index = index.filter(p => p.slug !== slug);
+          await writeFile('index.json', JSON.stringify(index, null, 2) + '\n', 'blogs: reindex');
+          delete bodyCache[slug];
+          dirty = false;
+          renderTree();
+          location.hash = '';
+        } catch (e) { status.textContent = 'error: ' + e.message; }
+      };
+
+      $('#save-btn').onclick = async () => {
+        const title = $('#f-title').value.trim();
+        const text = $('#f-body').value;
+        if (!title) { status.textContent = 'title required'; return; }
+
+        const newSlug = existing ? existing.slug : slugify(title);
+        if (!newSlug) { status.textContent = 'title needs latin letters'; return; }
+        if (!existing && index.some(p => p.slug === newSlug)) {
+          status.textContent = 'a note with that slug exists'; return;
+        }
+
+        $('#save-btn').disabled = true;
+        status.textContent = 'committing...';
+        try {
+          await writeFile(newSlug + '.md', text,
+            (existing ? 'blogs: update ' : 'blogs: add ') + newSlug);
+
+          const entry = {
+            slug: newSlug,
+            title: title,
+            date: existing ? existing.date : today(),
+            updated: today(),
+            summary: $('#f-summary').value.trim(),
+            tags: $('#f-tags').value.split(',').map(t => t.trim()).filter(Boolean)
+          };
+          index = index.filter(p => p.slug !== newSlug);
+          index.push(entry);
+          index.sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+          await writeFile('index.json', JSON.stringify(index, null, 2) + '\n', 'blogs: reindex');
+
+          bodyCache[newSlug] = text;
+          dirty = false;
+          renderTree();
+          status.textContent = 'published';
+          location.hash = '#/' + newSlug;
+        } catch (e) {
+          status.textContent = 'error: ' + e.message;
+        } finally {
+          $('#save-btn').disabled = false;
+        }
+      };
+    }
+
+    /* ---------------- admin unlock ---------------- */
+
+    async function verifyToken() {
+      if (!token) return false;
+      try {
+        const repo = await api('/repos/' + REPO);
+        return !!(repo && repo.permissions && repo.permissions.push);
+      } catch (e) {
+        return false;
+      }
+    }
+
+    function setAdmin(on) {
+      admin = on;
+      document.body.classList.toggle('is-admin', on);
+      $('#statusdot').title = on ? 'admin - editing enabled' : 'reader';
+      $('#admin-btn').textContent = on ? 'lock' : 'unlock';
+    }
+
+    $('#admin-btn').onclick = async () => {
+      if (admin) {
+        localStorage.removeItem(TOKEN_KEY);
+        token = '';
+        setAdmin(false);
+        bodyCache = {};
+        await loadIndex();
+        route();
+        return;
+      }
+      $('#modal-err').textContent = '';
+      $('#token-in').value = '';
+      $('#modal').classList.add('open');
+      $('#token-in').focus();
+    };
+
+    $('#modal-cancel').onclick = () => $('#modal').classList.remove('open');
+    $('#token-in').addEventListener('keydown', e => { if (e.key === 'Enter') $('#modal-save').click(); });
+
+    $('#modal-save').onclick = async () => {
+      const candidate = $('#token-in').value.trim();
+      if (!candidate) return;
+      $('#modal-err').textContent = '';
+      $('#modal-save').disabled = true;
+      const prev = token;
+      token = candidate;
+      const ok = await verifyToken();
+      $('#modal-save').disabled = false;
+      if (!ok) {
+        token = prev;
+        $('#modal-err').textContent = 'token rejected (needs Contents: read & write)';
+        return;
+      }
+      localStorage.setItem(TOKEN_KEY, token);
+      setAdmin(true);
+      $('#modal').classList.remove('open');
+      bodyCache = {};
+      await loadIndex();
+      route();
+    };
+
+    /* ---------------- routing ---------------- */
+
+    function route() {
+      const h = location.hash;
+      document.body.classList.remove('nav-open');
+      if (h.indexOf('#edit/') === 0) renderEditor(h.slice(6));
+      else if (h === '#new') renderEditor(null);
+      else if (h.indexOf('#/') === 0) renderPost(h.slice(2));
+      else renderList();
+      renderTree();
+      $('#main').scrollTop = 0;
+    }
+
+    window.addEventListener('hashchange', route);
+    window.addEventListener('beforeunload', e => { if (dirty) { e.preventDefault(); e.returnValue = ''; } });
+    $('#search').addEventListener('input', renderTree);
+
+    document.addEventListener('keydown', e => {
+      if (!admin) return;
+      if ((e.metaKey || e.ctrlKey) && e.key === 's' && /^#(new|edit\/)/.test(location.hash)) {
+        e.preventDefault();
+        const b = $('#save-btn');
+        if (b) b.click();
+      }
+      if (e.key === 'e' && e.target === document.body && location.hash.indexOf('#/') === 0) {
+        location.hash = '#edit/' + location.hash.slice(2);
+      }
+    });
+
+    (async function init() {
+      setAdmin(await verifyToken());
+      if (!admin && token) { localStorage.removeItem(TOKEN_KEY); token = ''; }
+      await loadIndex();
+      route();
+    })();
+  })();
+  </script>
+</body>
+</html>

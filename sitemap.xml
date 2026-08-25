@@ -22,4 +22,15 @@
   <priority>0.80</priority>
 </url>
 
+<url>
+  <loc>https://canmenzo.com/projects/</loc>
+  <lastmod>2026-08-25T00:00:00+00:00</lastmod>
+  <priority>0.90</priority>
+</url>
+<url>
+  <loc>https://canmenzo.com/blogs/</loc>
+  <lastmod>2026-08-25T00:00:00+00:00</lastmod>
+  <priority>0.90</priority>
+</url>
+
 </urlset>
