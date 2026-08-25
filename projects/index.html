@@ -5,8 +5,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Projects by Mehmet Can Ozmen — threat hunter, security researcher, AI builder." />
-  <meta name="author" content="Mehmet Can Ozmen" />
+  <meta name="description" content="Projects by Can Menzo - threat hunter, security researcher, AI builder." />
+  <meta name="author" content="Can Menzo" />
 
   <script type="text/javascript">
     var host = "canmenzo.com";
@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="../css/styles.css">
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
   <link rel="icon" href="../favicon.ico">
-  <title>Can Ozmen | Projects</title>
+  <title>Can Menzo | Projects</title>
 
   <style>
     body, h2, h3, .container {
@@ -162,7 +162,7 @@
 
 <body class="dark-mode">
   <main class="container">
-    <h2>Mehmet Can Ozmen</h2>
+    <h2>Can Menzo</h2>
 
     <div style="text-align: left">
       <div class="section">
@@ -336,21 +336,19 @@
 
   <script>
     const themeToggle = document.getElementById("theme-toggle");
-    if (localStorage.getItem("dark-mode") === "enabled") {
-      document.body.classList.add("dark-mode");
-      themeToggle.textContent = "dark mode: on";
-    } else {
-      themeToggle.textContent = "dark mode: off";
+    if (localStorage.getItem("dark-mode") === "disabled") {
+      document.body.classList.remove("dark-mode");
     }
+    const syncToggle = () => {
+      themeToggle.textContent = "dark mode: " +
+        (document.body.classList.contains("dark-mode") ? "on" : "off");
+    };
+    syncToggle();
     themeToggle.addEventListener("click", function () {
       document.body.classList.toggle("dark-mode");
-      if (document.body.classList.contains("dark-mode")) {
-        themeToggle.textContent = "dark mode: on";
-        localStorage.setItem("dark-mode", "enabled");
-      } else {
-        themeToggle.textContent = "dark mode: off";
-        localStorage.removeItem("dark-mode");
-      }
+      localStorage.setItem("dark-mode",
+        document.body.classList.contains("dark-mode") ? "enabled" : "disabled");
+      syncToggle();
     });
   </script>
 </body>
