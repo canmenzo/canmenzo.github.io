@@ -1191,6 +1191,7 @@
             draft: $('#f-draft').checked
           };
           index = index.filter(p => p.slug !== newSlug && (!existing || p.slug !== existing.slug));
+          index.forEach(p => { p.aliases = (p.aliases || []).filter(a => a !== newSlug); });
           index.push(entry);
           sortIndex();
           await saveIndex();
@@ -1290,11 +1291,10 @@
 
     function route() {
       const h = location.hash;
-      if (h.indexOf('#/') === 0 && ALIASES[h.slice(2)]) {
-        location.replace('#/' + ALIASES[h.slice(2)]);
-        return;
-      }
-      if (h.indexOf('#/') === 0) {
+      // an alias only redirects while no note actually owns that slug, otherwise a
+      // stale alias makes the note that took the name over unreachable
+      if (h.indexOf('#/') === 0 && !index.some(p => p.slug === h.slice(2))) {
+        if (ALIASES[h.slice(2)]) { location.replace('#/' + ALIASES[h.slice(2)]); return; }
         const moved = index.find(p => (p.aliases || []).indexOf(h.slice(2)) !== -1);
         if (moved) { location.replace('#/' + moved.slug); return; }
       }
