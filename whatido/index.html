@@ -85,23 +85,14 @@
       text-decoration: underline dotted;
       text-underline-offset: 4px;
       display: inline-block;
-      position: relative;
+      transition: left 0.6s cubic-bezier(0.65, 0, 0.35, 1);
     }
 
-    .punch:has(a.wander) {
-      text-align: left;
-    }
+    .punch.stepping { position: relative; }
 
-    .punch a.wander {
+    .punch a.stepping {
+      position: absolute;
       text-decoration: none;
-      animation: wander 4.5s ease-in-out infinite;
-    }
-
-    @keyframes wander {
-      0%   { left: 0;    transform: translateX(0); }
-      30%  { left: 100%; transform: translateX(-100%); }
-      60%  { left: 50%;  transform: translateX(-50%); }
-      100% { left: 0;    transform: translateX(0); }
     }
 
     .spacer {
@@ -149,10 +140,49 @@
       syncToggle();
     });
 
-    document.getElementById("punchline").addEventListener("click", function (e) {
-      e.preventDefault();
-      this.classList.add("wander");
-    });
+    // each click parks the punchline at the next stop: left, right, centre, repeat
+    (function () {
+      var link = document.getElementById("punchline");
+      var line = link.parentElement;
+      var poses = ["left", "right", "center"];
+      var step = -1;
+      var loose = false;
+
+      // lift it out of the flow without moving it, so the first click animates
+      // from wherever it happens to be sitting
+      function detach() {
+        var l = link.getBoundingClientRect();
+        line.style.height = line.getBoundingClientRect().height + "px";
+        line.classList.add("stepping");
+        var box = line.getBoundingClientRect();
+        link.style.width = l.width + "px";
+        link.style.top = (l.top - box.top) + "px";
+        link.style.left = (l.left - box.left) + "px";
+        link.classList.add("stepping");
+        link.getBoundingClientRect();
+        loose = true;
+      }
+
+      function place() {
+        var box = line.getBoundingClientRect();
+        var w = link.getBoundingClientRect().width;
+        var vw = document.documentElement.clientWidth;
+        var pose = poses[step % poses.length];
+        var x = pose === "left" ? 24 :
+                pose === "right" ? vw - 24 - w :
+                (vw - w) / 2;
+        link.style.left = (x - box.left) + "px";
+      }
+
+      link.addEventListener("click", function (e) {
+        e.preventDefault();
+        if (!loose) detach();
+        step++;
+        place();
+      });
+
+      window.addEventListener("resize", function () { if (loose) place(); });
+    })();
   </script>
 </body>
 
