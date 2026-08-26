@@ -12,16 +12,6 @@
     ]
   },
   {
-    "slug": "testingliveurl",
-    "title": "testing",
-    "date": "2026-08-25",
-    "updated": "2026-08-25",
-    "summary": "live@prod",
-    "tags": [
-      "new-tech"
-    ]
-  },
-  {
     "slug": "hi",
     "title": "hi",
     "date": "2026-08-25",
@@ -42,6 +32,16 @@
     "tags": [
       "user-agent",
       "bypass"
+    ]
+  },
+  {
+    "slug": "testingliveurl",
+    "title": "testing",
+    "date": "2026-08-25",
+    "updated": "2026-08-26",
+    "summary": "live@prod",
+    "tags": [
+      "new-tech"
     ]
   }
 ]
