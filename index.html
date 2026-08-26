@@ -183,24 +183,20 @@
 
           <div class="row"><span class="idx">[0000]</span><a href="/projects/">projects</a></div>
           <div class="row"><span class="idx">[0001]</span><a href="/blogs/">blogs</a></div>
-          <div class="row"><span class="idx">[0010]</span><a href="https://github.com/canmenzo">github</a></div>
-          <div class="row"><span class="idx">[0011]</span><a href="https://x.com/canmenzo">𝕏</a></div>
-          <div class="row"><span class="idx">[0100]</span><a href="/whatido/">what do i do?</a></div>
-          <div class="row"><span class="idx">[0101]</span><a href="/toldya/">don't click this one</a></div>
-          <div class="row"><span class="idx">[0110]</span><a href="/chipotle/">chipotle</a></div>
-          <div class="row"><span class="idx">[0111]</span><a href="https://letterboxd.com/menzo">movies</a></div>
-          <div class="row"><span class="idx">[1000]</span><a href="https://www.serializd.com/user/canmenzo">tv shows</a></div>
+          <div class="row"><span class="idx">[0010]</span><a href="/whatido/">what do i do?</a></div>
+          <div class="row"><span class="idx">[0011]</span><a href="/toldya/">don't click this one</a></div>
+          <div class="row"><span class="idx">[0100]</span><a href="/chipotle/">chipotle</a></div>
+          <div class="row"><span class="idx">[0101]</span><a href="https://letterboxd.com/menzo">movies</a></div>
+          <div class="row"><span class="idx">[0110]</span><a href="https://www.serializd.com/user/canmenzo">tv shows</a></div>
         </div>
 
         <div class="category">
-          <span class="category-label">// contact</span>
+          <span class="category-label">// find me</span>
 
-          <div class="row">
-            <a href="mailto:canozmen@mail.com?Subject=million dollar app idea!">canozmen@mail.com</a>
-          </div>
-          <div class="row">
-            <a href="https://www.linkedin.com/in/canmenzo/">linkedin</a>
-          </div>
+          <div class="row"><span class="idx">[1000]</span><a href="https://github.com/canmenzo">github</a></div>
+          <div class="row"><span class="idx">[1001]</span><a href="https://x.com/canmenzo">𝕏</a></div>
+          <div class="row"><span class="idx">[1010]</span><a href="https://www.linkedin.com/in/canmenzo/">linkedin</a></div>
+          <div class="row"><span class="idx">[1011]</span><a id="mail" href="https://www.linkedin.com/in/canmenzo/" data-u="canozmen" data-d="mail.com">email</a></div>
         </div>
 
       </div>
@@ -225,6 +221,12 @@
         document.body.classList.contains("dark-mode") ? "enabled" : "disabled");
       syncToggle();
     });
+
+    // assembled at runtime: the plain address never appears in the page source
+    var mail = document.getElementById("mail");
+    var addr = mail.dataset.u + "@" + mail.dataset.d;
+    mail.href = "mailto:" + addr + "?Subject=million dollar app idea!";
+    mail.textContent = addr;
   </script>
   <script src="js/name.js"></script>
 </body>
