@@ -55,6 +55,13 @@
       margin-bottom: 14px;
     }
 
+    /* find me: two per row, collapsing to one column when it no longer fits */
+    .pairs {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      column-gap: 18px;
+    }
+
     .row a,
     .row a:visited {
       color: #6fcf6f;
@@ -193,10 +200,12 @@
         <div class="category">
           <span class="category-label">// find me</span>
 
-          <div class="row"><span class="idx">[1000]</span><a href="https://github.com/canmenzo">github</a></div>
-          <div class="row"><span class="idx">[1001]</span><a href="https://x.com/canmenzo">𝕏</a></div>
-          <div class="row"><span class="idx">[1010]</span><a href="https://www.linkedin.com/in/canmenzo/">linkedin</a></div>
-          <div class="row"><span class="idx">[1011]</span><a id="mail" href="https://www.linkedin.com/in/canmenzo/" data-u="canozmen" data-d="mail.com">email</a></div>
+          <div class="pairs">
+            <div class="row"><span class="idx">[1000]</span><a href="https://github.com/canmenzo">github</a></div>
+            <div class="row"><span class="idx">[1001]</span><a href="https://x.com/canmenzo">𝕏</a></div>
+            <div class="row"><span class="idx">[1010]</span><a href="https://www.linkedin.com/in/canmenzo/">linkedin</a></div>
+            <div class="row"><span class="idx">[1011]</span><a id="mail" href="https://www.linkedin.com/in/canmenzo/" data-u="canozmen" data-d="mail.com">email</a></div>
+          </div>
         </div>
 
       </div>
