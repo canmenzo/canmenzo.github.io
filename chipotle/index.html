@@ -76,6 +76,19 @@
       color: #1e6e1e;
     }
 
+    .note {
+      margin: 54px auto 0;
+      max-width: 620px;
+      font-size: 0.72em;
+      font-style: italic;
+      line-height: 1.8;
+      color: #666;
+    }
+
+    body:not(.dark-mode) .note {
+      color: #999;
+    }
+
     .sep {
       color: #444;
       margin: 0 4px;
@@ -104,6 +117,12 @@
       <span class="item">cheese</span><span class="sep">/</span>
       <span class="item">lettuce</span>
     </div>
+
+    <footer class="note">
+      why did i put my chipotle order in here? why not. also, i believe it's a great
+      way to get to know someone. no one wants to be friends with a guy who orders
+      no rice and pinto beans.
+    </footer>
   </main>
 
   <button id="theme-toggle">dark mode: on</button>
