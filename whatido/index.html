@@ -140,11 +140,12 @@
       syncToggle();
     });
 
-    // each click parks the punchline at the next stop: left, right, centre, repeat
+    // each click parks the punchline at the next stop: right, left, repeat.
+    // centre is deliberately not a stop, because we can't center div tho
     (function () {
       var link = document.getElementById("punchline");
       var line = link.parentElement;
-      var poses = ["left", "right", "center"];
+      var poses = ["right", "left"];
       var step = -1;
       var loose = false;
 
@@ -168,9 +169,7 @@
         var w = link.getBoundingClientRect().width;
         var vw = document.documentElement.clientWidth;
         var pose = poses[step % poses.length];
-        var x = pose === "left" ? 24 :
-                pose === "right" ? vw - 24 - w :
-                (vw - w) / 2;
+        var x = pose === "left" ? 24 : vw - 24 - w;
         link.style.left = (x - box.left) + "px";
       }
 
