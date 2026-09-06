@@ -5,5 +5,3 @@ i can just ctrl + e on a post to edit and type whatever i want and click publish
 demo 1: live editing rn to showcase a friend!
 
 demo 2: gta 6 is gonna be peak!
-
-demo 3: sup john!
