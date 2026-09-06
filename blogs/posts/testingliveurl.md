@@ -1,14 +1,9 @@
 hi testing live edit
-asdkpfjsdakojnmgjklasdnmg
 
-asdjkflnmsakdlfasdmkl
+i can just ctrl + e on a post to edit and type whatever i want and click publish and it auto commits for me on github for my blog posts and writings. technology is freaking awesome!
 
-this is freaking awesome!
+demo 1: live editing rn to showcase a friend!
 
-i can just ctrl + e or e on post to edit and type whatever i want and click publish and it auto commits for me on github for my blog posts and writings. technology is freaking awesome!
+demo 2: gta 6 is gonna be peak!
 
-live editing rn to showcase a friend!
-
-gta 6 is gonna be peak!
-
-sup john!@
+demo 3: sup john!
