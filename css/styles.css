@@ -15,7 +15,7 @@
 }
 
 body.dark-mode {
-  background-color: #191a1b;
+  background-color: #0a0a0a;
   color: #f1f1f1;
 }
 
@@ -63,7 +63,7 @@ body.dark-mode .home-back:visited {
 }
 
 body.dark-mode #theme-toggle {
-  background-color: #191a1b;
+  background-color: #0a0a0a;
   color: #fff;
 }
 
