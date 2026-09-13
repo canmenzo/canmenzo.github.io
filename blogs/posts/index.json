@@ -1,15 +1,5 @@
 [
   {
-    "slug": "user-agent-bypass",
-    "title": "user agent bypass",
-    "date": "2026-08-25",
-    "updated": "2026-08-25",
-    "tags": [
-      "user-agent",
-      "bypass"
-    ]
-  },
-  {
     "slug": "hi",
     "title": "first blog post",
     "date": "2026-08-25",
@@ -42,6 +32,16 @@
       "security",
       "appsec",
       "ai"
+    ]
+  },
+  {
+    "slug": "user-agent-bypass",
+    "title": "user agent bypass",
+    "date": "2026-08-25",
+    "updated": "2026-09-13",
+    "tags": [
+      "user-agent",
+      "bypass"
     ]
   }
 ]
