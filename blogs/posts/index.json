@@ -1,17 +1,5 @@
 [
   {
-    "slug": "vibecoded",
-    "title": "The common within the vibecoded",
-    "date": "2026-08-25",
-    "updated": "2026-08-25",
-    "summary": "I audited seven of my own AI-built projects. The classic vulnerabilities were not there. The missing limits were, in every single one.",
-    "tags": [
-      "security",
-      "appsec",
-      "ai"
-    ]
-  },
-  {
     "slug": "user-agent-bypass",
     "title": "user agent bypass",
     "date": "2026-08-25",
@@ -42,6 +30,18 @@
     "summary": "live@prod",
     "tags": [
       "new-tech"
+    ]
+  },
+  {
+    "slug": "vibecoded",
+    "title": "the common within the vibecoded",
+    "date": "2026-08-25",
+    "updated": "2026-09-13",
+    "summary": "I audited seven of my own AI-built projects. The classic vulnerabilities were not there. The missing limits were, in every single one.",
+    "tags": [
+      "security",
+      "appsec",
+      "ai"
     ]
   }
 ]
