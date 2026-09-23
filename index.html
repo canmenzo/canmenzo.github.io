@@ -3,23 +3,29 @@
 
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Can Menzo's personal site. Threat hunter, security researcher, AI builder." />
   <meta name="author" content="Can Menzo" />
 
-  <script type="text/javascript">
-    var host = "canmenzo.com";
-    if (host == window.location.host && window.location.protocol != "https:")
-      window.location.protocol = "https";
-  </script>
-
-  <link rel="stylesheet" href="css/styles.css?v=7">
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css?v=9">
+  <link rel="preload" href="fonts/fira-code-latin-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/fira-code-latin-600.woff2" as="font" type="font/woff2" crossorigin>
 
   <link rel="canonical" href="https://canmenzo.com">
   <link rel="icon" href="favicon.ico?v=2">
   <title>Can Menzo | Personal Website</title>
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Can Menzo">
+  <meta property="og:title" content="Can Menzo | Personal Website">
+  <meta property="og:description" content="Can Menzo's personal site. Threat hunter, security researcher, AI builder.">
+  <meta property="og:url" content="https://canmenzo.com/">
+  <meta property="og:image" content="https://canmenzo.com/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Can Menzo: security researcher, ai builder">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@canmenzo">
 
   <script type="application/ld+json">
     {
@@ -37,20 +43,6 @@
   </script>
 
   <style>
-    body, h2, h3, .container {
-      font-family: 'Fira Code', monospace;
-    }
-
-    .idx {
-      color: #444;
-      margin-right: 6px;
-      font-size: 0.85em;
-    }
-
-    body:not(.dark-mode) .idx {
-      color: #aaa;
-    }
-
     .row {
       margin-bottom: 14px;
     }
@@ -64,7 +56,7 @@
 
     .row a,
     .row a:visited {
-      color: #6fcf6f;
+      color: var(--accent);
       text-decoration: none;
       font-weight: 600;
     }
@@ -73,21 +65,8 @@
       text-decoration: underline;
     }
 
-    body:not(.dark-mode) .row a,
-    body:not(.dark-mode) .row a:visited {
-      color: #1e6e1e;
-    }
-
     .desc {
-      font-size: 0.78em;
-      color: #555;
-      margin-top: 3px;
       padding-left: 62px;
-      line-height: 1.5;
-    }
-
-    body:not(.dark-mode) .desc {
-      color: #888;
     }
 
     .lead {
@@ -97,61 +76,9 @@
     }
 
     .lead .key {
-      color: #6fcf6f;
+      color: var(--accent);
       font-weight: 600;
       margin-right: 6px;
-    }
-
-    body:not(.dark-mode) .lead .key {
-      color: #1e6e1e;
-    }
-
-    .category {
-      border: 1px solid #2a2a2a;
-      border-radius: 5px;
-      padding: 22px 18px 8px;
-      margin-bottom: 26px;
-      position: relative;
-    }
-
-    body:not(.dark-mode) .category {
-      border-color: #e3e3e3;
-    }
-
-    .category-label {
-      position: absolute;
-      top: -9px;
-      left: 14px;
-      padding: 0 8px;
-      background-color: #191a1b;
-      font-size: 0.74em;
-      letter-spacing: 0.08em;
-      color: #6fcf6f;
-    }
-
-    body:not(.dark-mode) .category-label {
-      background-color: #fff;
-      color: #1e6e1e;
-    }
-
-    .criticalstart, .fsu,
-    .criticalstart:visited, .fsu:visited {
-      color: #8ea6c8;
-    }
-
-    body:not(.dark-mode) .criticalstart,
-    body:not(.dark-mode) .criticalstart:visited {
-      color: #233d63;
-    }
-
-    body:not(.dark-mode) .fsu,
-    body:not(.dark-mode) .fsu:visited {
-      color: #782f40;
-    }
-
-    body.dark-mode .fsu,
-    body.dark-mode .fsu:visited {
-      color: #c58a97;
     }
 
     @media (max-width: 700px) {
@@ -161,6 +88,7 @@
 </head>
 
 <body class="dark-mode">
+  <script src="js/theme.js?v=1"></script>
   <main class="container">
     <h2 class="namebar"><span class="name" id="name" data-text="Can Menzo">Can Menzo</span><span class="caret" aria-hidden="true"></span></h2>
 
@@ -212,25 +140,7 @@
     </div>
   </main>
 
-  <button id="theme-toggle">dark mode: on</button>
-
   <script>
-    const themeToggle = document.getElementById("theme-toggle");
-    if (localStorage.getItem("dark-mode") === "disabled") {
-      document.body.classList.remove("dark-mode");
-    }
-    const syncToggle = () => {
-      themeToggle.textContent = "dark mode: " +
-        (document.body.classList.contains("dark-mode") ? "on" : "off");
-    };
-    syncToggle();
-    themeToggle.addEventListener("click", function () {
-      document.body.classList.toggle("dark-mode");
-      localStorage.setItem("dark-mode",
-        document.body.classList.contains("dark-mode") ? "enabled" : "disabled");
-      syncToggle();
-    });
-
     // assembled at runtime: the plain address never appears in the page source
     var mail = document.getElementById("mail");
     var addr = mail.dataset.u + "@" + mail.dataset.d;

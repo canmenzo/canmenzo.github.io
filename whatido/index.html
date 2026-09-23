@@ -3,57 +3,34 @@
 
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="What do I do? - Can Menzo" />
   <meta name="author" content="Can Menzo" />
 
-  <script type="text/javascript">
-    var host = "canmenzo.com";
-    if (host == window.location.host && window.location.protocol != "https:")
-      window.location.protocol = "https";
-  </script>
-
-  <link rel="stylesheet" href="../css/styles.css?v=7">
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css?v=9">
+  <link rel="preload" href="../fonts/fira-code-latin-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../fonts/fira-code-latin-600.woff2" as="font" type="font/woff2" crossorigin>
 
   <link rel="canonical" href="https://canmenzo.com/whatido/">
   <link rel="icon" href="../favicon.ico?v=2">
   <title>Can Menzo | what do i do?</title>
 
-  <style>
-    body, h2, .container {
-      font-family: 'Fira Code', monospace;
-    }
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Can Menzo">
+  <meta property="og:title" content="Can Menzo | what do i do?">
+  <meta property="og:description" content="What do I do? - Can Menzo">
+  <meta property="og:url" content="https://canmenzo.com/whatido/">
+  <meta property="og:image" content="https://canmenzo.com/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Can Menzo: security researcher, ai builder">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@canmenzo">
 
+  <style>
     .container {
       text-align: center;
       padding-top: 62px;
-    }
-
-    /* Also in css/styles.css, repeated here on purpose: without these rules
-       the link is a plain flex item of body and shoves the page sideways,
-       so it must not depend on a stylesheet a phone may have cached. */
-    .home-back,
-    .home-back:visited {
-      position: fixed;
-      top: 20px;
-      left: 20px;
-      z-index: 50;
-      padding: 10px 0;
-      font-size: 12px;
-      font-weight: 600;
-      color: #6fcf6f;
-      text-decoration: none;
-    }
-
-    body:not(.dark-mode) .home-back,
-    body:not(.dark-mode) .home-back:visited {
-      color: #1e6e1e;
-    }
-
-    .home-back:hover {
-      text-decoration: underline;
     }
 
     @media (min-width: 701px) {
@@ -72,12 +49,8 @@
     }
 
     .punch {
-      color: #6fcf6f;
+      color: var(--accent);
       font-weight: 600;
-    }
-
-    body:not(.dark-mode) .punch {
-      color: #1e6e1e;
     }
 
     .punch a {
@@ -98,11 +71,11 @@
     .spacer {
       height: 90vh;
     }
-
   </style>
 </head>
 
 <body class="dark-mode">
+  <script src="../js/theme.js?v=1"></script>
   <a class="home-back" href="/">&larr; ~/home</a>
 
   <main class="container">
@@ -121,25 +94,7 @@
     </div>
   </main>
 
-  <button id="theme-toggle">dark mode: on</button>
-
   <script>
-    const themeToggle = document.getElementById("theme-toggle");
-    if (localStorage.getItem("dark-mode") === "disabled") {
-      document.body.classList.remove("dark-mode");
-    }
-    const syncToggle = () => {
-      themeToggle.textContent = "dark mode: " +
-        (document.body.classList.contains("dark-mode") ? "on" : "off");
-    };
-    syncToggle();
-    themeToggle.addEventListener("click", function () {
-      document.body.classList.toggle("dark-mode");
-      localStorage.setItem("dark-mode",
-        document.body.classList.contains("dark-mode") ? "enabled" : "disabled");
-      syncToggle();
-    });
-
     // each click parks the punchline at the next stop: right, left, repeat.
     // centre is deliberately not a stop, because we can't center div tho
     (function () {
