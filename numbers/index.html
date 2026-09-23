@@ -3,45 +3,39 @@
 
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Bir Isim Bir Islem solver - find an expression that hits the target." />
   <meta name="author" content="Can Menzo" />
 
-  <script type="text/javascript">
-    var host = "canmenzo.com";
-    if (host == window.location.host && window.location.protocol != "https:")
-      window.location.protocol = "https";
-  </script>
-
-  <link rel="stylesheet" href="../css/styles.css?v=7">
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css?v=9">
+  <link rel="preload" href="../fonts/fira-code-latin-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../fonts/fira-code-latin-600.woff2" as="font" type="font/woff2" crossorigin>
 
   <link rel="canonical" href="https://canmenzo.com/numbers/">
   <link rel="icon" href="../favicon.ico?v=2">
   <title>Can Menzo | bir işlem solver</title>
 
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Can Menzo">
+  <meta property="og:title" content="Can Menzo | bir işlem solver">
+  <meta property="og:description" content="Bir Isim Bir Islem solver - find an expression that hits the target.">
+  <meta property="og:url" content="https://canmenzo.com/numbers/">
+  <meta property="og:image" content="https://canmenzo.com/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Can Menzo: security researcher, ai builder">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@canmenzo">
+
   <style>
+    /* shared tokens (--bg, --text, --accent, --border, --soft) come from
+       css/styles.css; this page only adds the input fill */
     :root {
-      --bg: #ffffff;
       --inset: #f4f4f4;
-      --border: #e3e3e3;
-      --text: #111111;
-      --muted: #666666;
-      --accent: #1e6e1e;
     }
 
     body.dark-mode {
-      --bg: #191a1b;
       --inset: #202122;
-      --border: #2a2a2a;
-      --text: #f1f1f1;
-      --muted: #888888;
-      --accent: #6fcf6f;
-    }
-
-    body, h2, .container {
-      font-family: 'Fira Code', monospace;
     }
 
     .container {
@@ -51,26 +45,6 @@
 
     @media (min-width: 701px) {
       .container { text-align: center; }
-    }
-
-    /* Also in css/styles.css, repeated here on purpose: without these rules
-       the link is a plain flex item of body and shoves the page sideways,
-       so it must not depend on a stylesheet a phone may have cached. */
-    .home-back,
-    .home-back:visited {
-      position: fixed;
-      top: 20px;
-      left: 20px;
-      z-index: 50;
-      padding: 10px 0;
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--accent);
-      text-decoration: none;
-    }
-
-    .home-back:hover {
-      text-decoration: underline;
     }
 
     .solver {
@@ -181,7 +155,7 @@
 
     .empty-msg {
       text-align: center;
-      color: var(--muted);
+      color: var(--soft);
       font-size: 0.82em;
     }
 
@@ -204,6 +178,7 @@
 </head>
 
 <body class="dark-mode">
+  <script src="../js/theme.js?v=1"></script>
   <a class="home-back" href="/">&larr; ~/home</a>
 
   <main class="container">
@@ -233,25 +208,6 @@
     </div>
   </main>
 
-  <button id="theme-toggle">dark mode: on</button>
-
-  <script>
-    const themeToggle = document.getElementById("theme-toggle");
-    if (localStorage.getItem("dark-mode") === "disabled") {
-      document.body.classList.remove("dark-mode");
-    }
-    const syncToggle = () => {
-      themeToggle.textContent = "dark mode: " +
-        (document.body.classList.contains("dark-mode") ? "on" : "off");
-    };
-    syncToggle();
-    themeToggle.addEventListener("click", function () {
-      document.body.classList.toggle("dark-mode");
-      localStorage.setItem("dark-mode",
-        document.body.classList.contains("dark-mode") ? "enabled" : "disabled");
-      syncToggle();
-    });
-  </script>
 
   <script>
 class Node {

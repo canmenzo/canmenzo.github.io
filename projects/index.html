@@ -3,54 +3,32 @@
 
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Projects by Can Menzo - threat hunter, security researcher, AI builder." />
   <meta name="author" content="Can Menzo" />
 
-  <script type="text/javascript">
-    var host = "canmenzo.com";
-    if (host == window.location.host && window.location.protocol != "https:")
-      window.location.protocol = "https";
-  </script>
-
-  <link rel="stylesheet" href="../css/styles.css?v=7">
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css?v=9">
+  <link rel="preload" href="../fonts/fira-code-latin-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../fonts/fira-code-latin-600.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="canonical" href="https://canmenzo.com/projects/">
   <link rel="icon" href="../favicon.ico?v=2">
   <title>Can Menzo | Projects</title>
 
-  <style>
-    body, h2, h3, .container {
-      font-family: 'Fira Code', monospace;
-    }
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Can Menzo">
+  <meta property="og:title" content="Can Menzo | Projects">
+  <meta property="og:description" content="Projects by Can Menzo - threat hunter, security researcher, AI builder.">
+  <meta property="og:url" content="https://canmenzo.com/projects/">
+  <meta property="og:image" content="https://canmenzo.com/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Can Menzo: security researcher, ai builder">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@canmenzo">
 
+  <style>
     .container {
       padding-top: 62px;
-    }
-
-    /* Also in css/styles.css, repeated here on purpose: without these rules
-       the link is a plain flex item of body and shoves the page sideways,
-       so it must not depend on a stylesheet a phone may have cached. */
-    .home-back,
-    .home-back:visited {
-      position: fixed;
-      top: 20px;
-      left: 20px;
-      z-index: 50;
-      padding: 10px 0;
-      font-size: 12px;
-      font-weight: 600;
-      color: #6fcf6f;
-      text-decoration: none;
-    }
-
-    body:not(.dark-mode) .home-back,
-    body:not(.dark-mode) .home-back:visited {
-      color: #1e6e1e;
-    }
-
-    .home-back:hover {
-      text-decoration: underline;
     }
 
     .section > h3 {
@@ -70,19 +48,9 @@
       font-size: 0.95em;
     }
 
-    .idx {
-      color: #444;
-      margin-right: 6px;
-      font-size: 0.85em;
-    }
-
-    body:not(.dark-mode) .idx {
-      color: #aaa;
-    }
-
     .project-line a,
     .project-line a:visited {
-      color: #6fcf6f;
+      color: var(--accent);
       text-decoration: none;
       font-weight: 600;
     }
@@ -91,41 +59,20 @@
       text-decoration: underline;
     }
 
-    body:not(.dark-mode) .project-line a,
-    body:not(.dark-mode) .project-line a:visited {
-      color: #1e6e1e;
-    }
-
     .locked-name {
-      color: #555;
+      color: var(--muted);
       font-weight: 600;
-    }
-
-    body:not(.dark-mode) .locked-name {
-      color: #aaa;
     }
 
     .pvt {
       font-size: 0.72em;
-      color: #3a3a3a;
+      color: var(--ghost);
       margin-left: 8px;
       letter-spacing: 0.04em;
     }
 
-    body:not(.dark-mode) .pvt {
-      color: #bbb;
-    }
-
     .desc {
-      font-size: 0.78em;
-      color: #555;
-      margin-top: 3px;
       padding-left: 70px;
-      line-height: 1.5;
-    }
-
-    body:not(.dark-mode) .desc {
-      color: #888;
     }
 
     .sub-row {
@@ -134,13 +81,9 @@
     }
 
     .sub-prefix {
-      color: #3a3a3a;
+      color: var(--ghost);
       margin-right: 6px;
       font-size: 0.85em;
-    }
-
-    body:not(.dark-mode) .sub-prefix {
-      color: #ccc;
     }
 
     .sub-row .desc {
@@ -148,36 +91,13 @@
     }
 
     .category {
-      border: 1px solid #2a2a2a;
-      border-radius: 5px;
-      padding: 22px 18px 6px;
-      margin-bottom: 26px;
-      position: relative;
-    }
-
-    body:not(.dark-mode) .category {
-      border-color: #e3e3e3;
-    }
-
-    .category-label {
-      position: absolute;
-      top: -9px;
-      left: 14px;
-      padding: 0 8px;
-      background-color: #191a1b;
-      font-size: 0.74em;
-      letter-spacing: 0.08em;
-      color: #6fcf6f;
-    }
-
-    body:not(.dark-mode) .category-label {
-      background-color: #fff;
-      color: #1e6e1e;
+      padding-bottom: 6px;
     }
   </style>
 </head>
 
 <body class="dark-mode">
+  <script src="../js/theme.js?v=1"></script>
   <a class="home-back" href="/">&larr; ~/home</a>
 
   <main class="container">
@@ -355,25 +275,6 @@
     </div>
   </main>
 
-  <button id="theme-toggle">dark mode: on</button>
-
-  <script>
-    const themeToggle = document.getElementById("theme-toggle");
-    if (localStorage.getItem("dark-mode") === "disabled") {
-      document.body.classList.remove("dark-mode");
-    }
-    const syncToggle = () => {
-      themeToggle.textContent = "dark mode: " +
-        (document.body.classList.contains("dark-mode") ? "on" : "off");
-    };
-    syncToggle();
-    themeToggle.addEventListener("click", function () {
-      document.body.classList.toggle("dark-mode");
-      localStorage.setItem("dark-mode",
-        document.body.classList.contains("dark-mode") ? "enabled" : "disabled");
-      syncToggle();
-    });
-  </script>
 </body>
 
 </html>

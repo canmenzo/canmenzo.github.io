@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <meta name="author" content="Can Menzo" />
+
+  <!-- GitHub Pages serves this file at whatever URL was missed, so every
+       path here is absolute. -->
+  <link rel="stylesheet" href="/css/styles.css?v=9">
+  <link rel="preload" href="/fonts/fira-code-latin-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/fira-code-latin-600.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="icon" href="/favicon.ico?v=2">
+  <title>Can Menzo | 404</title>
+
+  <style>
+    .container {
+      padding-top: 62px;
+    }
+
+    .term {
+      max-width: 620px;
+      margin: 0 auto;
+      text-align: left;
+      font-size: 0.92em;
+      line-height: 1.8;
+    }
+
+    .prompt {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .err {
+      color: var(--soft);
+      word-break: break-all;
+    }
+
+    .code {
+      margin: 26px 0 30px;
+      font-size: 3.2em;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      line-height: 1.2;
+    }
+
+    .code .name {
+      cursor: default;
+    }
+
+    .term a,
+    .term a:visited {
+      color: var(--accent);
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .term a:hover {
+      text-decoration: underline;
+    }
+
+    .idx {
+      margin-right: 10px;
+    }
+  </style>
+</head>
+
+<body class="dark-mode">
+  <script src="/js/theme.js?v=1"></script>
+  <a class="home-back" href="/">&larr; ~/home</a>
+
+  <main class="container">
+    <div class="term">
+      <div><span class="prompt">~ $</span> cd <span id="path">/this-page</span></div>
+      <div class="err">bash: cd: <span id="path-err">/this-page</span>: No such file or directory</div>
+
+      <div class="code"><span class="name" id="name" data-text="404">404</span><span class="caret" aria-hidden="true"></span></div>
+
+      <div><span class="prompt">~ $</span> ls ~</div>
+      <div><span class="idx">[0000]</span><a href="/">home</a></div>
+      <div><span class="idx">[0001]</span><a href="/projects/">projects</a></div>
+      <div><span class="idx">[0010]</span><a href="/blogs/">blogs</a></div>
+    </div>
+  </main>
+
+  <script>
+    // echo the path that was actually requested; textContent, never innerHTML
+    var missed = location.pathname;
+    try { missed = decodeURIComponent(missed); } catch (e) {}
+    document.getElementById("path").textContent = missed;
+    document.getElementById("path-err").textContent = missed;
+  </script>
+  <script src="/js/name.js"></script>
+</body>
+
+</html>
