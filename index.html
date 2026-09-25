@@ -4,26 +4,26 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Can Menzo's personal site. Threat hunter, security researcher, AI builder." />
+  <meta name="description" content="Can Menzo's personal site. Security researcher &amp; AI builder." />
   <meta name="author" content="Can Menzo" />
 
-  <link rel="stylesheet" href="css/styles.css?v=9">
+  <link rel="stylesheet" href="css/styles.css?v=10">
   <link rel="preload" href="fonts/fira-code-latin-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/fira-code-latin-600.woff2" as="font" type="font/woff2" crossorigin>
 
   <link rel="canonical" href="https://canmenzo.com">
   <link rel="icon" href="favicon.ico?v=2">
-  <title>Can Menzo | Personal Website</title>
+  <title>Can Menzo | security researcher &amp; ai builder</title>
 
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Can Menzo">
   <meta property="og:title" content="Can Menzo | Personal Website">
-  <meta property="og:description" content="Can Menzo's personal site. Threat hunter, security researcher, AI builder.">
+  <meta property="og:description" content="Can Menzo's personal site. Security researcher &amp; AI builder.">
   <meta property="og:url" content="https://canmenzo.com/">
   <meta property="og:image" content="https://canmenzo.com/og.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Can Menzo: security researcher, ai builder">
+  <meta property="og:image:alt" content="Can Menzo: security researcher &amp; ai builder">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@canmenzo">
 
@@ -75,6 +75,10 @@
       margin-bottom: 14px;
     }
 
+    .nowrap {
+      white-space: nowrap;
+    }
+
     .lead .key {
       color: var(--accent);
       font-weight: 600;
@@ -91,6 +95,7 @@
   <script src="js/theme.js?v=1"></script>
   <main class="container">
     <h2 class="namebar"><span class="name" id="name" data-text="Can Menzo">Can Menzo</span><span class="caret" aria-hidden="true"></span></h2>
+    <p class="tagline">security researcher &amp; ai builder</p>
 
     <div style="text-align: left">
       <div class="section">
@@ -105,7 +110,7 @@
             <span class="key">what:</span> reverse-engineering logic from first principles, then teaching machines to do the boring parts
           </div>
           <div class="lead">
-            <span class="key">how:</span> prev @<a class="criticalstart" href="https://www.criticalstart.com/">criticalstart</a> | msit @<a class="fsu" href="https://www.fsu.edu/">floridastate</a>
+            <span class="key">how:</span> <span class="nowrap">prev @<a class="criticalstart" href="https://www.criticalstart.com/">criticalstart</a></span> | <span class="nowrap">msit @<a class="fsu" href="https://www.fsu.edu/">floridastate</a></span>
           </div>
           <div class="lead">
             <span class="key">where:</span> fl 🐊
@@ -147,6 +152,7 @@
     mail.textContent = addr;
   </script>
   <script src="js/name.js"></script>
+  <script src="js/title.js"></script>
 </body>
 
 </html>
