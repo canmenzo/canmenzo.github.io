@@ -9,7 +9,7 @@
 
   <!-- GitHub Pages serves this file at whatever URL was missed, so every
        path here is absolute. -->
-  <link rel="stylesheet" href="/css/styles.css?v=9">
+  <link rel="stylesheet" href="/css/styles.css?v=12">
   <link rel="preload" href="/fonts/fira-code-latin-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/fonts/fira-code-latin-600.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="icon" href="/favicon.ico?v=2">
@@ -35,7 +35,7 @@
 
     .err {
       color: var(--soft);
-      word-break: break-all;
+      overflow-wrap: anywhere;  /* whole words wrap; only an over-long path gets split */
     }
 
     .code {
@@ -68,7 +68,7 @@
 </head>
 
 <body class="dark-mode">
-  <script src="/js/theme.js?v=1"></script>
+  <script src="/js/theme.js?v=2"></script>
   <a class="home-back" href="/">&larr; ~/home</a>
 
   <main class="container">
