@@ -50,11 +50,14 @@
 
     btn.addEventListener("click", function () {
       var dark = !body.classList.contains("dark-mode");
-      // colours ease only on a deliberate switch, never on page load
-      body.classList.add("theme-anim");
-      apply(dark);
       try { localStorage.setItem(KEY, dark ? "enabled" : "disabled"); } catch (e) {}
-      setTimeout(function () { body.classList.remove("theme-anim"); }, 300);
+      // crossfade the whole page in one step where supported; otherwise switch instantly
+      var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (document.startViewTransition && !reduce) {
+        document.startViewTransition(function () { apply(dark); });
+      } else {
+        apply(dark);
+      }
     });
   }
 

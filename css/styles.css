@@ -184,20 +184,17 @@ body.dark-mode #theme-toggle .icon-moon { opacity: 0; transform: rotate(90deg) s
 
 #theme-toggle:active svg { transform: scale(0.85); }
 
-/* colours ease only while js/theme.js has this class on, i.e. right after a click */
-body.theme-anim,
-body.theme-anim * {
-  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease !important;
-}
-
-body.theme-anim #theme-toggle svg {
-  transition: transform 0.35s ease, opacity 0.2s ease !important;
+/* theme switch: js/theme.js swaps the class inside a view transition, so the
+   browser crossfades one snapshot of the whole page and everything lands at once.
+   (Per-element colour transitions made nested text trail behind the background.) */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.28s;
+  animation-timing-function: ease;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  #theme-toggle svg,
-  body.theme-anim,
-  body.theme-anim * { transition: none !important; }
+  #theme-toggle svg { transition: none; }
 }
 
 html, body {
@@ -243,6 +240,7 @@ body {
   font-size: 0.85rem;
   letter-spacing: 0.04em;
   color: var(--muted);
+  text-wrap: balance;
 }
 
 /* --muted is too faint on the dark background for a line meant to be read */
@@ -300,18 +298,19 @@ body.dark-mode .name {
   80% { opacity: 0; }
 }
 
+/* thin text-cursor bar rather than a terminal block */
 .caret {
   display: inline-block;
-  width: 0.55em;
-  height: 1.05em;
-  margin-left: 0.2em;
-  vertical-align: -0.16em;
+  width: 2px;
+  height: 1.15em;
+  margin-left: 0.15em;
+  vertical-align: -0.2em;
   background-color: var(--accent);
   animation: caret-blink 1.1s linear infinite;
 }
 
 body.dark-mode .caret {
-  box-shadow: 0 0 12px rgba(111, 207, 111, 0.5);
+  box-shadow: 0 0 8px rgba(111, 207, 111, 0.6);
 }
 
 @keyframes caret-blink {
