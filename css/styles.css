@@ -298,18 +298,19 @@ body.dark-mode .name {
   80% { opacity: 0; }
 }
 
+/* thin text-cursor bar rather than a terminal block */
 .caret {
   display: inline-block;
-  width: 0.55em;
-  height: 1.05em;
-  margin-left: 0.2em;
-  vertical-align: -0.16em;
+  width: 2px;
+  height: 1.15em;
+  margin-left: 0.15em;
+  vertical-align: -0.2em;
   background-color: var(--accent);
   animation: caret-blink 1.1s linear infinite;
 }
 
 body.dark-mode .caret {
-  box-shadow: 0 0 12px rgba(111, 207, 111, 0.5);
+  box-shadow: 0 0 8px rgba(111, 207, 111, 0.6);
 }
 
 @keyframes caret-blink {
