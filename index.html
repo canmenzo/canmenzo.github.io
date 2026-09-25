@@ -4,26 +4,26 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Can Menzo's personal site. Threat hunter, security researcher, AI builder." />
-  <meta name="author" content="Can Menzo" />
+  <meta name="description" content="menzo's personal site. security researcher &amp; ai builder." />
+  <meta name="author" content="menzo" />
 
-  <link rel="stylesheet" href="css/styles.css?v=9">
+  <link rel="stylesheet" href="css/styles.css?v=10">
   <link rel="preload" href="fonts/fira-code-latin-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/fira-code-latin-600.woff2" as="font" type="font/woff2" crossorigin>
 
   <link rel="canonical" href="https://canmenzo.com">
   <link rel="icon" href="favicon.ico?v=2">
-  <title>Can Menzo | Personal Website</title>
+  <title>menzo | security researcher &amp; ai builder</title>
 
   <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Can Menzo">
-  <meta property="og:title" content="Can Menzo | Personal Website">
-  <meta property="og:description" content="Can Menzo's personal site. Threat hunter, security researcher, AI builder.">
+  <meta property="og:site_name" content="menzo">
+  <meta property="og:title" content="menzo | security researcher &amp; ai builder">
+  <meta property="og:description" content="menzo's personal site. security researcher &amp; ai builder.">
   <meta property="og:url" content="https://canmenzo.com/">
-  <meta property="og:image" content="https://canmenzo.com/og.png">
+  <meta property="og:image" content="https://canmenzo.com/og.png?v=2">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Can Menzo: security researcher, ai builder">
+  <meta property="og:image:alt" content="menzo: security researcher &amp; ai builder">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@canmenzo">
 
@@ -31,7 +31,7 @@
     {
       "@context": "http://schema.org",
       "@type": "Person",
-      "name": "Can Menzo",
+      "name": "menzo",
       "url": "https://canmenzo.com",
       "sameAs": [
         "https://twitter.com/canmenzo",
@@ -75,6 +75,10 @@
       margin-bottom: 14px;
     }
 
+    .nowrap {
+      white-space: nowrap;
+    }
+
     .lead .key {
       color: var(--accent);
       font-weight: 600;
@@ -90,7 +94,8 @@
 <body class="dark-mode">
   <script src="js/theme.js?v=1"></script>
   <main class="container">
-    <h2 class="namebar"><span class="name" id="name" data-text="Can Menzo">Can Menzo</span><span class="caret" aria-hidden="true"></span></h2>
+    <h2 class="namebar"><span class="name" id="name" data-text="menzo">menzo</span><span class="caret" aria-hidden="true"></span></h2>
+    <p class="tagline">security researcher &amp; ai builder</p>
 
     <div style="text-align: left">
       <div class="section">
@@ -99,14 +104,13 @@
           <span class="category-label">// whoami</span>
 
           <div class="lead">
-            <span class="key">who:</span> security researcher. ai builder.
-            prev principal cybersecurity analyst @ <a class="criticalstart" href="https://www.criticalstart.com/">critical start</a>
+            <span class="key">who:</span> breaker of systems, builder of agents
           </div>
           <div class="lead">
-            <span class="key">what:</span> analyzing logic via first principles &amp; building automation to reduce noise and increase security.
+            <span class="key">what:</span> reverse-engineering logic from first principles, then teaching machines to do the boring parts
           </div>
           <div class="lead">
-            <span class="key">how:</span> msit @ <a class="fsu" href="https://www.fsu.edu/">fsu</a>
+            <span class="key">how:</span> <span class="nowrap">prev @<a class="criticalstart" href="https://www.criticalstart.com/">criticalstart</a></span> | <span class="nowrap">msit @<a class="fsu" href="https://www.fsu.edu/">floridastate</a></span>
           </div>
           <div class="lead">
             <span class="key">where:</span> fl 🐊
@@ -148,6 +152,7 @@
     mail.textContent = addr;
   </script>
   <script src="js/name.js"></script>
+  <script src="js/title.js"></script>
 </body>
 
 </html>
