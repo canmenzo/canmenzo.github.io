@@ -4,12 +4,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Bir Isim Bir Islem solver - find an expression that hits the target." />
+  <meta name="description" content="bir işlem solver: reach a target number from six numbers using + − × ÷." />
   <meta name="author" content="menzo" />
 
-  <link rel="stylesheet" href="../css/styles.css?v=13">
-  <link rel="preload" href="../fonts/fira-code-latin-400.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="../fonts/fira-code-latin-600.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../css/styles.css?v=14">
+  <link rel="preload" href="../fonts/dm-mono-latin-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../fonts/dm-mono-latin-500.woff2" as="font" type="font/woff2" crossorigin>
 
   <link rel="canonical" href="https://canmenzo.com/numbers/">
   <link rel="icon" href="../favicon.ico?v=2">
@@ -18,9 +18,9 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="menzo">
   <meta property="og:title" content="menzo | bir işlem solver">
-  <meta property="og:description" content="Bir Isim Bir Islem solver - find an expression that hits the target.">
+  <meta property="og:description" content="bir işlem solver: reach a target number from six numbers using + − × ÷.">
   <meta property="og:url" content="https://canmenzo.com/numbers/">
-  <meta property="og:image" content="https://canmenzo.com/og.png?v=3">
+  <meta property="og:image" content="https://canmenzo.com/og.png?v=4">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="menzo: security researcher &amp; ai builder">
@@ -39,12 +39,28 @@
     }
 
     .container {
-      text-align: center;
       padding-top: 62px;
     }
 
-    @media (min-width: 701px) {
-      .container { text-align: center; }
+    .page-title {
+      text-align: center;
+      margin-bottom: 26px;
+    }
+
+    .about {
+      max-width: 520px;
+      margin: 0 auto 34px;
+      text-align: left;
+      font-size: 0.86em;
+      line-height: 1.75;
+    }
+
+    .about p {
+      margin: 0 0 10px;
+    }
+
+    .about .tr {
+      color: var(--soft);
     }
 
     .solver {
@@ -77,7 +93,7 @@
       border: 1px solid var(--border);
       border-radius: 5px;
       color: var(--text);
-      font-family: 'Fira Code', monospace;
+      font-family: inherit;
       font-size: 0.95em;
       text-align: center;
       transition: border-color 0.15s;
@@ -121,11 +137,21 @@
       color: var(--bg);
       border: none;
       border-radius: 5px;
-      font-family: 'Fira Code', monospace;
+      font-family: inherit;
       font-size: 0.88em;
       font-weight: 600;
       cursor: pointer;
       transition: opacity 0.15s;
+    }
+
+    button#solve:disabled {
+      opacity: 0.6;
+      cursor: progress;
+    }
+
+    button#solve:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
     }
 
     button#solve:hover {
@@ -144,22 +170,30 @@
       font-size: 0.88em;
       display: flex;
       justify-content: space-between;
-      gap: 12px;
+      align-items: baseline;
+      gap: 6px 12px;
       flex-wrap: wrap;
+      word-spacing: normal;
     }
 
     .solution-item .eq {
       color: var(--accent);
       font-weight: 600;
+      white-space: nowrap;
     }
 
-    .empty-msg {
+    .solution-item.close .eq {
+      color: var(--soft);
+    }
+
+    .note {
+      margin-top: 10px;
       text-align: center;
       color: var(--soft);
       font-size: 0.82em;
     }
 
-    .necdet-msg {
+    .hit {
       text-align: center;
       margin-top: 16px;
       padding: 10px;
@@ -179,115 +213,150 @@
 
 <body class="dark-mode">
   <script src="../js/theme.js?v=2"></script>
-  <a class="home-back" href="/">&larr; ~/home</a>
+  <a class="home-back" href="/projects/">&larr; ~/projects</a>
 
   <main class="container">
-    <h2>bir işlem solver</h2>
+    <h3 class="page-title">bir işlem solver</h3>
 
-    <div class="solver">
+    <div class="about category">
+      <span class="category-label">// what is this</span>
+      <p>bir işlem is the numbers round of <em>bir kelime bir işlem</em> <span class="tr">("one word, one operation")</span>, a turkish tv quiz that has run for decades. it's the turkish version of france's <em>des chiffres et des lettres</em>, the same format as the uk's <em>countdown</em>.</p>
+      <p>you get six numbers and a three-digit target, and race the clock to reach it with + − × ÷. each number can be used once, and every step has to stay a whole, positive number. this checks every combination in a split second.</p>
+    </div>
+
+    <form class="solver" id="solver" novalidate>
       <div class="field">
-        <div class="field-label">// source numbers (up to 6)</div>
+        <div class="field-label">// numbers (up to 6)</div>
         <div class="inputs-row">
-          <input type="number" class="num-input" placeholder="x" aria-label="source number 1">
-          <input type="number" class="num-input" placeholder="y" aria-label="source number 2">
-          <input type="number" class="num-input" placeholder="z" aria-label="source number 3">
-          <input type="number" class="num-input" placeholder="a" aria-label="source number 4">
-          <input type="number" class="num-input" placeholder="b" aria-label="source number 5">
-          <input type="number" class="num-input" placeholder="c" aria-label="source number 6">
+          <input type="number" class="num-input" id="n1" min="1" inputmode="numeric" placeholder="5" aria-label="number 1">
+          <input type="number" class="num-input" id="n2" min="1" inputmode="numeric" placeholder="8" aria-label="number 2">
+          <input type="number" class="num-input" id="n3" min="1" inputmode="numeric" placeholder="2" aria-label="number 3">
+          <input type="number" class="num-input" id="n4" min="1" inputmode="numeric" placeholder="9" aria-label="number 4">
+          <input type="number" class="num-input" id="n5" min="1" inputmode="numeric" placeholder="3" aria-label="number 5">
+          <input type="number" class="num-input" id="n6" min="1" inputmode="numeric" placeholder="75" aria-label="number 6">
         </div>
       </div>
 
       <div class="field target">
         <span class="target-label">// target</span>
-        <input type="number" id="target" placeholder="e.g. 752" aria-label="target number">
+        <input type="number" id="target" min="1" inputmode="numeric" placeholder="e.g. 752" aria-label="target number">
       </div>
 
-      <button id="solve" onclick="runSolver()">find solution</button>
+      <button type="submit" id="solve">find solution</button>
 
-      <div id="results"></div>
-    </div>
+      <div id="results" aria-live="polite"></div>
+    </form>
   </main>
 
-
   <script>
-class Node {
-    constructor(value, expression) {
-        this.value = value;
-        this.expression = expression;
+// searches every way to combine the numbers with + - x /, keeping whole, positive
+// intermediate results; returns the closest hit, preferring fewer numbers used
+function solve(nums, target) {
+  const PREC = { "+": 1, "-": 1, "×": 2, "÷": 2 };
+  const seen = new Set();
+  let best = null;
+
+  function consider(n) {
+    const diff = Math.abs(n.v - target);
+    if (!best || diff < best.diff || (diff === best.diff && n.used < best.used)) {
+      best = { v: n.v, e: n.e, used: n.used, diff: diff };
     }
+  }
+
+  function wrap(n, op, right) {
+    const p = PREC[op];
+    const need = n.p < p || (right && n.p === p && (op === "-" || op === "÷"));
+    return need ? "(" + n.e + ")" : n.e;
+  }
+
+  function join(a, op, b, v) {
+    return { v: v, e: wrap(a, op, false) + " " + op + " " + wrap(b, op, true), p: PREC[op], used: a.used + b.used };
+  }
+
+  function search(items) {
+    const key = items.map(n => n.v).sort((x, y) => x - y).join(",");
+    if (seen.has(key)) return;
+    seen.add(key);
+    if (best && best.diff === 0 && best.used <= 2) return;
+
+    for (let i = 0; i < items.length; i++) {
+      for (let j = i + 1; j < items.length; j++) {
+        const a = items[i].v >= items[j].v ? items[i] : items[j];
+        const b = a === items[i] ? items[j] : items[i];
+        const rest = items.filter((_, k) => k !== i && k !== j);
+        const next = [join(a, "+", b, a.v + b.v)];
+        if (a.v > b.v) next.push(join(a, "-", b, a.v - b.v));
+        if (b.v > 1) next.push(join(a, "×", b, a.v * b.v));
+        if (b.v > 1 && a.v % b.v === 0) next.push(join(a, "÷", b, a.v / b.v));
+        for (const n of next) {
+          consider(n);
+          search(rest.concat(n));
+        }
+      }
+    }
+  }
+
+  const start = nums.map(v => ({ v: v, e: String(v), p: 3, used: 1 }));
+  start.forEach(consider);
+  search(start);
+  return { best: best, states: seen.size };
 }
 
-function runSolver() {
-    const inputs = Array.from(document.querySelectorAll('.num-input'))
-        .map(input => parseInt(input.value))
-        .filter(val => !isNaN(val));
+(function () {
+  var form = document.getElementById("solver");
+  var out = document.getElementById("results");
+  var button = document.getElementById("solve");
 
-    const target = parseInt(document.getElementById('target').value);
-    const resultsDiv = document.getElementById('results');
+  function el(tag, cls, text) {
+    var node = document.createElement(tag);
+    if (cls) node.className = cls;
+    if (text != null) node.textContent = text;
+    return node;
+  }
 
-    resultsDiv.innerHTML = '';
+  function show() {
+    out.replaceChildren.apply(out, arguments);
+  }
 
-    if (inputs.length === 0 || isNaN(target)) {
-        resultsDiv.innerHTML = '<div class="empty-msg">enter source numbers and a target.</div>';
-        return;
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    var raw = Array.prototype.map.call(document.querySelectorAll(".num-input"), function (i) { return i.value.trim(); })
+      .filter(function (v) { return v !== ""; });
+    var nums = raw.map(Number);
+    var target = Number(document.getElementById("target").value.trim());
+
+    var whole = function (n) { return Number.isInteger(n) && n > 0; };
+    if (nums.length < 2 || !document.getElementById("target").value.trim()) {
+      show(el("div", "note", "enter at least two numbers and a target."));
+      return;
+    }
+    if (!nums.every(whole) || !whole(target)) {
+      show(el("div", "note", "use whole numbers above zero."));
+      return;
     }
 
-    const solutions = new Set();
-    const initialNodes = inputs.map(n => new Node(n, n.toString()));
+    button.disabled = true;
+    show(el("div", "note", "solving..."));
 
-    function solve(nodes) {
-        for (let node of nodes) {
-            if (node.value === target) {
-                solutions.add(node.expression);
-            }
-        }
+    // let "solving..." paint before the search runs
+    setTimeout(function () {
+      var best = solve(nums, target).best;
+      button.disabled = false;
 
-        if (nodes.length < 2) return;
+      var row = el("div", "solution-item" + (best.diff ? " close" : ""));
+      row.append(el("span", null, best.e), el("span", "eq", "= " + best.v));
 
-        for (let i = 0; i < nodes.length; i++) {
-            for (let j = 0; j < nodes.length; j++) {
-                if (i === j) continue;
-
-                const a = nodes[i];
-                const b = nodes[j];
-                const remaining = nodes.filter((_, index) => index !== i && index !== j);
-
-                // Addition
-                recurse(remaining, a.value + b.value, `(${a.expression} + ${b.expression})`);
-                // Multiplication
-                recurse(remaining, a.value * b.value, `(${a.expression} * ${b.expression})`);
-                // Subtraction
-                if (a.value > b.value) {
-                    recurse(remaining, a.value - b.value, `(${a.expression} - ${b.expression})`);
-                }
-                // Division
-                if (b.value !== 0 && a.value % b.value === 0) {
-                    recurse(remaining, a.value / b.value, `(${a.expression} / ${b.expression})`);
-                }
-            }
-        }
-    }
-
-    function recurse(remainingNodes, newValue, newExpr) {
-        const nextNodes = [...remainingNodes, new Node(newValue, newExpr)];
-        solve(nextNodes);
-    }
-
-    solve(initialNodes);
-
-    if (solutions.size === 0) {
-        resultsDiv.innerHTML = '<div class="empty-msg">no exact solutions found.</div>';
-    } else {
-        const one = Array.from(solutions)[0];
-        const clean = one.startsWith('(') && one.endsWith(')') ? one.slice(1, -1) : one;
-
-        resultsDiv.innerHTML = `
-            <div class="solution-item">
-                <span>${clean}</span> <span class="eq">= ${target}</span>
-            </div>
-            <div class="necdet-msg">necdeti yatirdim.</div>`;
-    }
-}
+      if (best.diff === 0) {
+        show(row, el("div", "hit", "necdet: knocked out."));
+      } else {
+        show(el("div", "note", "no exact solution. closest:"), row,
+          el("div", "note", best.diff + " off the target"));
+        row.style.marginTop = "10px";
+      }
+    }, 20);
+  });
+})();
   </script>
 </body>
 
