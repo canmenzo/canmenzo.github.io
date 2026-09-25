@@ -66,6 +66,14 @@ body {
   background-color: var(--bg);
   color: var(--text);
   font-family: 'Fira Code', ui-monospace, monospace;
+  /* a monospace space is a full character wide, which reads like a double space
+     in running text; pull words a little closer */
+  word-spacing: -0.2em;
+}
+
+/* keep true fixed-width spacing where columns have to line up */
+pre, code, kbd, samp, input, textarea {
+  word-spacing: normal;
 }
 
 h1, h2, h3 {
@@ -238,7 +246,6 @@ body {
 .tagline {
   margin: -18px 0 24px;
   font-size: 0.85rem;
-  letter-spacing: 0.04em;
   color: var(--muted);
   text-wrap: balance;
 }
