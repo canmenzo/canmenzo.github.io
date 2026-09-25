@@ -7,7 +7,7 @@
   <meta name="description" content="menzo's personal site. security researcher &amp; ai builder." />
   <meta name="author" content="menzo" />
 
-  <link rel="stylesheet" href="css/styles.css?v=10">
+  <link rel="stylesheet" href="css/styles.css?v=11">
   <link rel="preload" href="fonts/fira-code-latin-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/fira-code-latin-600.woff2" as="font" type="font/woff2" crossorigin>
 
@@ -79,11 +79,18 @@
       white-space: nowrap;
     }
 
+    /* key column + value column: wrapped lines hang under the value, not the key */
+    .lead {
+      display: grid;
+      grid-template-columns: 6ch minmax(0, 1fr);
+      column-gap: 1.25ch;
+    }
+
     .lead .key {
       color: var(--accent);
       font-weight: 600;
-      margin-right: 6px;
     }
+
 
     @media (max-width: 700px) {
       .desc { padding-left: 0; }
@@ -92,7 +99,7 @@
 </head>
 
 <body class="dark-mode">
-  <script src="js/theme.js?v=1"></script>
+  <script src="js/theme.js?v=2"></script>
   <main class="container">
     <h2 class="namebar"><span class="name" id="name" data-text="menzo">menzo</span><span class="caret" aria-hidden="true"></span></h2>
     <p class="tagline">security researcher &amp; ai builder</p>
@@ -104,16 +111,16 @@
           <span class="category-label">// whoami</span>
 
           <div class="lead">
-            <span class="key">who:</span> breaker of systems, builder of agents
+            <span class="key">who:</span><span class="val">breaker of systems, builder of agents</span>
           </div>
           <div class="lead">
-            <span class="key">what:</span> reverse-engineering logic from first principles, then teaching machines to do the boring parts
+            <span class="key">what:</span><span class="val">reverse-engineering logic from first principles, then teaching machines to do the boring parts</span>
           </div>
           <div class="lead">
-            <span class="key">how:</span> <span class="nowrap">prev @<a class="criticalstart" href="https://www.criticalstart.com/">criticalstart</a></span> | <span class="nowrap">msit @<a class="fsu" href="https://www.fsu.edu/">floridastate</a></span>
+            <span class="key">how:</span><span class="val"><span class="nowrap">prev @<a class="criticalstart" href="https://www.criticalstart.com/">criticalstart</a>,</span> <span class="nowrap">msit @<a class="fsu" href="https://www.fsu.edu/">floridastate</a></span></span>
           </div>
           <div class="lead">
-            <span class="key">where:</span> fl 🐊
+            <span class="key">where:</span><span class="val">fl 🐊</span>
           </div>
         </div>
 
