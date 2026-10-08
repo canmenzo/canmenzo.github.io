@@ -38,8 +38,6 @@
   }
 
   decrypt();
-  el.addEventListener("mouseenter", decrypt);
-  el.addEventListener("click", decrypt);
 
   if (!reduce) {
     setInterval(function () {
