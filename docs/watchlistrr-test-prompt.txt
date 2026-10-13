@@ -1,0 +1,10 @@
+Use case: ads-marketing / editorial cover illustration.
+Asset: one polished portfolio-project thumbnail, wide 16:9, 1536 x 864 pixels.
+Create a refined independent-software editorial cover for Watchlistrr, a tool that syncs a Letterboxd watchlist into Seerr using TMDB matching. Near-flat charcoal background #191a1b, soft green accent #6fcf6f, off-white type #f1f1f1, warm gray secondary lines #a7aaa3. No blue. Aim for beautiful typography and restrained purpose-built artwork like an elegant interactive technical essay cover, not an AI wallpaper.
+Composition: left 52% for text, right 43% for a precise cinematic-list synchronization diagram. Project name small monospaced upper-left; main headline below in a large beautifully spaced editorial serif, two lines, legible at 430px card width. Subtitle below in clear smaller type. Keep at least 64px safe margins. On the right, a small vertical group of three abstract film-strip rectangles flows through a simple matching node into a tidy watch queue. Thin gray connectors with one selective green path. Use delicate geometric film perforations and purposeful hierarchy, no movie poster artwork. Artwork should feel composed and quiet, with plenty of useful breathing room and no blank strips. Diagram labels may read Letterboxd, TMDB, Seerr, crisply and correctly, as integration labels rather than fake screenshot UI.
+Text, exact and only:
+Project name: "Watchlistrr"
+Headline: "Watchlist to watch night."
+Subtitle: "Letterboxd lists, matched and synced to Seerr."
+Allowed small diagram labels: "Letterboxd", "TMDB", "Seerr".
+No logo, outer border, browser chrome, terminal window, robot, AI brain, gradient haze, neon glow, 3D gadget, fake UI buttons, invented films, numbers, statistics, dates, domain, footer credit, watermarks, or CTA. Deliver one finished bitmap cover, not a collage or contact sheet.
