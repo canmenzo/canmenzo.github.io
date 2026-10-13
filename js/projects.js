@@ -1,8 +1,12 @@
 (function () {
+  if (location.hostname === 'localhost' || location.hostname === '127.0.0.1') {
+    document.querySelectorAll('[data-preview-path]').forEach(function (link) {
+      link.href = link.dataset.previewPath;
+    });
+  }
   var search = document.getElementById('project-search');
   var filters = document.querySelectorAll('[data-filter]');
   var cards = document.querySelectorAll('[data-category]');
-  var count = document.getElementById('project-count');
   var empty = document.getElementById('project-empty');
   var category = 'all';
 
@@ -14,7 +18,6 @@
       card.hidden = !match;
       if (match) visible++;
     });
-    count.textContent = visible + (visible === 1 ? ' project' : ' projects');
     empty.hidden = visible !== 0;
   }
 

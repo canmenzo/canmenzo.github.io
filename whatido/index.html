@@ -4,21 +4,21 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="A Silicon Valley rant - menzo" />
+  <meta name="description" content="what do i do? - menzo" />
   <meta name="author" content="menzo" />
 
-  <link rel="stylesheet" href="../css/styles.css?v=18">
+  <link rel="stylesheet" href="../css/styles.css?v=25">
   <link rel="preload" href="../fonts/dm-mono-latin-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../fonts/dm-mono-latin-500.woff2" as="font" type="font/woff2" crossorigin>
 
   <link rel="canonical" href="https://canmenzo.com/whatido/">
   <link rel="icon" href="../favicon.ico?v=2">
-  <title>menzo | a Silicon Valley rant</title>
+  <title>menzo | what do i do?</title>
 
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="menzo">
-  <meta property="og:title" content="menzo | a Silicon Valley rant">
-  <meta property="og:description" content="A Silicon Valley rant - menzo">
+  <meta property="og:title" content="menzo | what do i do?">
+  <meta property="og:description" content="what do i do? - menzo">
   <meta property="og:url" content="https://canmenzo.com/whatido/">
   <meta property="og:image" content="https://canmenzo.com/og.png?v=4">
   <meta property="og:image:width" content="1200">
@@ -30,7 +30,7 @@
   <style>
     .container {
       text-align: center;
-      padding-top: 62px;
+      padding-top: 40px;
     }
 
     @media (min-width: 701px) {
@@ -76,13 +76,23 @@
 
 <body class="dark-mode">
   <script src="../js/theme.js?v=2"></script>
-  <a class="home-back" href="/">&larr; ~/home</a>
+  <a class="skip-link" href="#main-content">skip to content</a>
+  <header class="site-header">
+    <nav class="site-nav" aria-label="main navigation">
+      <div class="nav-links">
+        <a href="/">home</a>
+        <a href="/projects/">projects</a>
+        <a href="/writings/">writings</a>
+      </div>
+      <button id="theme-toggle" type="button" aria-label="toggle theme"></button>
+    </nav>
+  </header>
+  <script src="/js/nav.js?v=4"></script>
 
-  <main class="container">
-    <h1>a Silicon Valley rant</h1>
+  <main class="container" id="main-content" tabindex="-1">
+    <h1>what do i do?</h1>
 
     <div class="rant">
-      <p class="rant-note">A nod to Gilfoyle. For my actual work, see <a href="/projects/">projects</a>.</p>
       <p>I prevent cross-site scripting. I monitor for DDoS attacks, emergency database rollbacks, and faulty transaction handlings.</p>
       <p>The Internet - heard of it? - transfers half a petabyte of data minute; do you have any idea how that happens?</p>
       <p>All those YouPorn ones and zeroes streaming directly to your shitty little smartphone day after day, every dipshit who shits his pants if he can't get the new dubstep Skrillex remix in under twelve seconds? It's not magic, it's talent and sweat.</p>

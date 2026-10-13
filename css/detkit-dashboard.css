@@ -1,0 +1,34 @@
+.detkit-dashboard,
+body.detkit-dashboard.dark-mode {
+  --fg: var(--text);
+  --line: var(--border);
+  --muted: var(--soft);
+  --card: #f4f4f4;
+  --ok: #1e6e1e;
+  --warn: #9c6a00;
+  --bad: #b3352a;
+}
+body.detkit-dashboard.dark-mode { --card: #202324; --ok: #3fb950; --warn: #d29922; --bad: #ff7b72; }
+.detkit-dashboard > .site-header { max-width: none; margin: 0; padding: 0; }
+.detkit-dashboard nav.top { width: 100%; background: var(--bg); }
+.detkit-dashboard nav.top .project-repo { display: inline-flex; align-items: center; justify-content: center; width: 44px; min-height: 44px; color: var(--text); }
+.detkit-dashboard .project-repo svg { display: block; width: 22px; height: 22px; }
+.detkit-dashboard .project-repo:hover { opacity: .75; }
+.detkit-dashboard .project-repo:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
+.detkit-dashboard > header:not(.site-header),
+.detkit-dashboard > main,
+.detkit-dashboard > footer { width: 100%; }
+.detkit-dashboard .plain p,
+.detkit-dashboard .grid dd,
+.detkit-dashboard .qa dd { color: var(--text); }
+.detkit-dashboard code { background: var(--card); }
+.detkit-dashboard section,
+.detkit-dashboard h2 { scroll-margin-top: 85px; }
+.detkit-dashboard table { display: block; max-width: 100%; overflow-x: auto; }
+@media (max-width: 600px) {
+  .detkit-dashboard .grid { grid-template-columns: 1fr; }
+  .detkit-dashboard .grid dd { margin-bottom: 12px; }
+  .detkit-dashboard code { overflow-wrap: anywhere; }
+}
+
+.detkit-dashboard > .project-footer { padding: 24px; }

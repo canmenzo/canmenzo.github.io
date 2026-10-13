@@ -7,20 +7,21 @@
   <meta name="description" content="notes and writing by menzo - threat hunting, security research, ai." />
   <meta name="author" content="menzo" />
 
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://api.github.com; base-uri 'none'; form-action 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://api.github.com; base-uri 'none'; form-action 'none'">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;0,7..72,700;1,7..72,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css?v=27">
   <link rel="icon" href="../favicon.ico?v=2">
-  <link rel="canonical" href="https://canmenzo.com/blogs/">
-  <title>menzo | blogs</title>
+  <link rel="canonical" href="https://canmenzo.com/writings/">
+  <title>menzo | writings</title>
 
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="menzo">
-  <meta property="og:title" content="menzo | blogs">
+  <meta property="og:title" content="menzo | writings">
   <meta property="og:description" content="notes and writing by menzo - threat hunting, security research, ai.">
-  <meta property="og:url" content="https://canmenzo.com/blogs/">
+  <meta property="og:url" content="https://canmenzo.com/writings/">
   <meta property="og:image" content="https://canmenzo.com/og.png?v=4">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -60,10 +61,11 @@
 
     * { box-sizing: border-box; }
 
-    html, body { margin: 0; padding: 0; height: 100%; }
+    html, body { margin: 0; padding: 0; }
 
     body {
       display: flex;
+      word-spacing: normal;
       background: var(--bg);
       color: var(--text);
       font-family: var(--serif);
@@ -75,124 +77,16 @@
       text-rendering: optimizeLegibility;
     }
 
-    /* ---------------- sidebar ---------------- */
+    .writing-layout {
+      width: 100%;
+      max-width: 820px;
+      padding: 28px 43px 64px;
+    }
+    #main { min-width: 0; }
+    .note-actions { display: flex; gap: 8px; margin-bottom: 20px; }
+    .note-actions:empty { display: none; }
 
-    #sidebar {
-      width: 258px;
-      flex: 0 0 258px;
-      height: 100vh;
-      background: var(--bg-side);
-      border-right: 1px solid var(--border);
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-      font-family: var(--ui);
-    }
-
-    .vault {
-      padding: 15px 16px 13px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.82rem;
-      font-weight: 500;
-      color: var(--muted);
-      border-bottom: 1px solid var(--border);
-    }
-    .vault a, .vault a:visited { color: var(--muted); text-decoration: none; }
-    .vault a:hover { color: var(--text); }
-    /* back-to-home link: the sidebar already owns the top-left slot the other
-       pages put .home-back in, so it lives in the breadcrumb here */
-    .vault .home-back, .vault .home-back:visited { color: var(--accent); font-weight: 600; }
-    .vault .home-back:hover { text-decoration: underline; }
-    .vault .sep { color: var(--faint); font-weight: 400; }
-
-    .dot {
-      width: 7px; height: 7px; border-radius: 50%;
-      background: var(--faint);
-      flex: 0 0 auto;
-    }
-    body.is-admin .dot { background: var(--accent); box-shadow: 0 0 7px var(--accent); }
-
-    .pane-head {
-      padding: 16px 16px 7px;
-      font-size: 0.67rem;
-      letter-spacing: 0.11em;
-      text-transform: uppercase;
-      color: var(--faint);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-weight: 600;
-    }
-
-    #search {
-      margin: 0 12px 8px;
-      padding: 7px 10px;
-      width: calc(100% - 24px);
-      background: var(--inset);
-      border: 1px solid transparent;
-      border-radius: 6px;
-      color: var(--text);
-      font-family: var(--ui);
-      font-size: 0.8rem;
-      outline: none;
-    }
-    #search::placeholder { color: var(--faint); }
-    #search:focus { border-color: var(--accent); }
-
-    #filetree { flex: 1; overflow-y: auto; padding: 0 8px 16px; }
-
-    .note-item {
-      display: block;
-      padding: 6px 9px;
-      border-radius: 6px;
-      color: var(--text);
-      text-decoration: none;
-      font-size: 0.87rem;
-      line-height: 1.35;
-      cursor: pointer;
-    }
-    .note-item:hover { background: var(--inset); }
-    .note-item.active { background: var(--accent-soft); color: var(--accent); }
-    .note-item .name {
-      display: block;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-    .note-item .date {
-      display: block;
-      font-size: 0.68rem;
-      color: var(--faint);
-      margin-top: 1px;
-    }
-
-    .folder {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      padding: 6px 9px;
-      margin-top: 3px;
-      border-radius: 6px;
-      cursor: pointer;
-      color: var(--muted);
-      font-size: 0.78rem;
-      user-select: none;
-    }
-    .folder:hover { background: var(--inset); color: var(--text); }
-    .folder .caret { width: 9px; font-size: 0.6rem; color: var(--faint); }
-    .folder .fcount { margin-left: auto; font-size: 0.68rem; color: var(--faint); }
-    .folder-notes { margin-left: 9px; border-left: 1px solid var(--border); padding-left: 3px; }
-    .folder-notes[hidden] { display: none; }
-
-    .side-foot {
-      border-top: 1px solid var(--border);
-      padding: 10px 12px;
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
+    .side-foot { position: fixed; left: 16px; bottom: 16px; z-index: 45; display: flex; gap: 8px; font-family: var(--ui); background: var(--bg); border-radius: 6px; }
 
     /* ---------------- buttons ---------------- */
 
@@ -217,33 +111,8 @@
 
     /* ---------------- main ---------------- */
 
-    #main { flex: 1; height: 100vh; overflow-y: auto; }
-
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 5;
-      background: var(--bg);
-      border-bottom: 1px solid var(--border);
-      padding: 9px 24px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-family: var(--ui);
-      font-size: 0.78rem;
-      color: var(--muted);
-      min-height: 44px;
-    }
-    .topbar .crumb, .topbar .crumb:visited { color: var(--faint); text-decoration: none; }
-    .topbar .crumb:hover { color: var(--accent); }
-    .topbar .spacer { flex: 1; }
-    #menu-btn { display: none; }
-
-    .note {
-      max-width: 680px;
-      margin: 0 auto;
-      padding: 56px 30px 160px;
-    }
+    .note { max-width: 720px; padding: 0 0 80px; }
+    .note.writing-index { padding-top: 24px; }
 
     h1.title {
       font-family: var(--serif);
@@ -328,25 +197,6 @@
 
     /* ---------------- index list ---------------- */
 
-    .category {
-      border: 1px solid var(--border);
-      border-radius: 5px;
-      padding: 26px 20px 8px;
-      position: relative;
-      margin-top: 8px;
-    }
-    .category-label {
-      position: absolute;
-      top: -9px;
-      left: 14px;
-      padding: 0 8px;
-      background-color: var(--bg);
-      font-family: var(--ui);
-      font-size: 0.74em;
-      letter-spacing: 0.08em;
-      color: var(--accent);
-    }
-
     .idx {
       font-family: var(--ui);
       font-size: 0.72rem;
@@ -393,10 +243,6 @@
     .badge.pin { color: var(--accent); border-color: var(--accent); }
     .badge.draft { color: var(--danger); border-color: var(--danger); }
 
-    .tagbar { display: flex; flex-wrap: wrap; gap: 6px; margin: -26px 0 30px; }
-    .tagbar a, .tagbar a:visited { text-decoration: none; }
-    .tagbar .tag.on { background: var(--accent); color: #ffffff; }
-    body.dark-mode .tagbar .tag.on { color: #191a1b; }
 
     .empty { color: var(--muted); padding: 34px 0; }
 
@@ -513,7 +359,7 @@
       background: var(--inset);
       border: 1px solid var(--border);
       border-radius: 7px;
-      padding: 10px 12px;
+      padding: 12px 0 0;
       color: var(--text);
       font-family: var(--mono);
       font-size: 0.8rem;
@@ -560,26 +406,13 @@
     }
     #help-btn { padding: 6px 10px; }
 
-    /* icon toggle filled in by ../js/theme.js; the body class picks the icon */
-    #theme-toggle { display: inline-grid; place-items: center; padding: 6px 9px; }
-    #theme-toggle svg { grid-area: 1 / 1; width: 14px; height: 14px; }
-    #theme-toggle .icon-sun,
-    body.dark-mode #theme-toggle .icon-moon { visibility: hidden; }
-    body.dark-mode #theme-toggle .icon-sun { visibility: visible; }
-
     /* ---------------- mobile ---------------- */
 
+    @media (max-width: 700px) {
+      .writing-layout { padding: 24px; }
+    }
+
     @media (max-width: 820px) {
-      #sidebar {
-        position: fixed;
-        left: -280px;
-        top: 0;
-        z-index: 20;
-        transition: left .2s ease;
-      }
-      body.nav-open #sidebar { left: 0; box-shadow: 0 0 40px rgba(30, 25, 18, .3); }
-      #menu-btn { display: inline-block; }
-      .note { padding: 34px 22px 130px; }
       h1.title, .editor input.title-in { font-size: 1.95rem; }
     }
   </style>
@@ -587,49 +420,40 @@
 
 <body class="dark-mode">
   <script src="../js/theme.js?v=2"></script>
+  <a class="skip-link" href="#main">skip to content</a>
+  <header class="site-header">
+    <nav class="site-nav" aria-label="main navigation">
+      <div class="nav-links">
+        <a href="/">home</a>
+        <a href="/projects/">projects</a>
+        <a href="/writings/" aria-current="page">writings</a>
+      </div>
+      <button id="theme-toggle" type="button" aria-label="toggle theme"></button>
+    </nav>
+  </header>
+  <script src="/js/nav.js?v=4"></script>
 
-  <aside id="sidebar">
-    <div class="vault">
-      <span class="dot" id="statusdot" title="reader"></span>
-      <a class="home-back" href="/">&larr; ~/home</a>
-      <span class="sep">/</span>
-      <a href="#" id="vault-root">blogs</a>
-    </div>
-
-    <div class="pane-head">
-      <span>notes</span>
-      <span id="count"></span>
-    </div>
-    <input id="search" placeholder="filter..." autocomplete="off">
-    <nav id="filetree"></nav>
-
-    <div class="side-foot">
-      <button id="side-new" class="primary" hidden>+ new note</button>
-      <button id="help-btn" title="keyboard shortcuts">?</button>
-      <button id="theme-toggle" type="button"></button>
-      <button id="admin-btn">unlock</button>
-    </div>
-  </aside>
-
-  <main id="main">
-    <div class="topbar">
-      <button id="menu-btn">&#9776;</button>
-      <a class="crumb" id="crumb" href="#">blogs</a>
-      <span class="spacer"></span>
-      <span id="tabactions"></span>
-    </div>
+  <div class="container archive-heading"><h1 class="namebar">writings</h1></div>
+  <div class="writing-layout">
+  <main id="main" tabindex="-1">
+    <div id="tabactions" class="note-actions"></div>
     <div id="view"></div>
   </main>
+  </div>
+
+  <div class="side-foot">
+    <button id="side-new" class="primary" hidden>+ new note</button>
+    <button id="help-btn" title="keyboard shortcuts">?</button>
+    <button id="admin-btn">unlock</button>
+  </div>
 
   <div id="help" class="modal">
     <div class="modal-box">
       <h3>keyboard shortcuts</h3>
 
       <div class="keyhead">// reading</div>
-      <div class="keyrow"><kbd>ctrl + k</kbd><span class="what">filter notes</span></div>
       <div class="keyrow"><kbd>s</kbd><span class="what">show / hide the one-line summaries</span></div>
       <div class="keyrow"><kbd>click a #tag</kbd><span class="what">list only that tag</span></div>
-      <div class="keyrow"><kbd>click a folder</kbd><span class="what">collapse it in the sidebar</span></div>
       <div class="keyrow"><kbd>esc</kbd><span class="what">back to the note list</span></div>
       <div class="keyrow"><kbd>?</kbd><span class="what">this sheet</span></div>
 
@@ -672,16 +496,15 @@
 
     const REPO = 'canmenzo/canmenzo.github.io';
     const BRANCH = 'master';
-    const DIR = 'blogs/posts';
-    const TOKEN_KEY = 'blogs_gh_token';
+    const DIR = 'writings/posts';
+    const TOKEN_KEY = 'writings_gh_token';
 
     let token = localStorage.getItem(TOKEN_KEY) || '';
     let admin = false;
     let index = [];        // [{slug,title,date,updated,summary,folder,tags,pinned,draft}]
     let bodyCache = {};    // slug -> markdown
     let dirty = false;
-    let showSummaries = localStorage.getItem('blogs_summaries') !== 'off';
-    let collapsed = new Set(JSON.parse(localStorage.getItem('blogs_collapsed') || '[]'));
+    let showSummaries = localStorage.getItem('writings_summaries') !== 'off';
 
     const $ = s => document.querySelector(s);
     const view = $('#view');
@@ -689,8 +512,6 @@
     /* ---------------- theme ---------------- */
 
     // theme is handled by ../js/theme.js (loaded first thing in <body>)
-    $('#menu-btn').onclick = () => document.body.classList.toggle('nav-open');
-
     /* ---------------- github api ---------------- */
 
     const b64encode = s => {
@@ -793,19 +614,7 @@
     }
 
     const saveIndex = () =>
-      writeFile('index.json', JSON.stringify(index.map(cleanEntry), null, 2) + '\n', 'blogs: reindex');
-
-    /* folders first, alphabetical; unfiled notes last */
-    function groupByFolder(arr) {
-      const map = new Map();
-      arr.forEach(p => {
-        const f = p.folder || '';
-        if (!map.has(f)) map.set(f, []);
-        map.get(f).push(p);
-      });
-      return [...map.entries()].sort((a, b) =>
-        (!a[0] ? 1 : 0) - (!b[0] ? 1 : 0) || a[0].localeCompare(b[0]));
-    }
+      writeFile('index.json', JSON.stringify(index.map(cleanEntry), null, 2) + '\n', 'writings: reindex');
 
     async function loadBody(slug) {
       if (bodyCache[slug] !== undefined) return bodyCache[slug];
@@ -850,7 +659,7 @@
       const blocks = [];
       const s = esc(src).replace(/```(\w*)\n([\s\S]*?)```/g, function (m, lang, code) {
         blocks.push('<pre><code class="lang-' + lang + '">' + code.replace(/\n$/, '') + '</code></pre>');
-        return ' ' + (blocks.length - 1) + ' ';
+        return '\u0000' + (blocks.length - 1) + '\u0000';
       });
 
       let out = '', list = null, para = [];
@@ -859,7 +668,7 @@
 
       s.split('\n').forEach(function (raw) {
         const line = raw.trimEnd();
-        const ph = line.match(/^ (\d+) $/);
+        const ph = line.match(/^\u0000(\d+)\u0000$/);
         if (ph) { flushPara(); flushList(); out += blocks[+ph[1]]; return; }
         if (!line.trim()) { flushPara(); flushList(); return; }
 
@@ -909,60 +718,9 @@
     const bin = n => n.toString(2).padStart(5, '0');
     const readTime = body => Math.max(1, Math.round(body.trim().split(/\s+/).length / 220)) + ' min read';
 
-    /* ---------------- sidebar ---------------- */
-
-    function renderTree() {
-      const q = $('#search').value.toLowerCase();
-      const all = notes();
-      const shown = all.filter(p => !q ||
-        (p.title + ' ' + p.folder + ' ' + (p.tags || []).join(' ')).toLowerCase().indexOf(q) !== -1);
-      const active = location.hash.replace(/^#(\/|edit\/)/, '');
-
-      $('#count').textContent = all.length;
-
-      if (!shown.length) {
-        $('#filetree').innerHTML =
-          '<div style="padding:8px 9px;color:var(--faint);font-size:.8rem">no notes</div>';
-        return;
-      }
-
-      const item = p =>
-        '<a class="note-item' + (p.slug === active ? ' active' : '') + '" href="#/' + attr(p.slug) + '">' +
-        '<span class="name"><span class="idx">[' + bin(all.length - 1 - all.indexOf(p)) + ']</span>' +
-        esc(p.title) + '</span>' +
-        '<span class="date">' + fmtDate(p.date) +
-        (p.pinned ? ' &middot; pinned' : '') + (p.draft ? ' &middot; draft' : '') +
-        '</span></a>';
-
-      // a search hit opens every folder, so nothing hides behind a collapsed one
-      $('#filetree').innerHTML = groupByFolder(shown).map(function (pair) {
-        const folder = pair[0], items = pair[1];
-        if (!folder) return items.map(item).join('');
-        const open = !!q || !collapsed.has(folder);
-        const pad = (folder.split('/').length - 1) * 10;
-        const style = pad ? ' style="margin-left:' + pad + 'px"' : '';
-        return '<div class="folder" data-folder="' + attr(folder) + '"' + style + '>' +
-          '<span class="caret">' + (open ? '&#9662;' : '&#9656;') + '</span>' +
-          esc(folder.split('/').pop()) +
-          '<span class="fcount">' + items.length + '</span></div>' +
-          '<div class="folder-notes"' + style + (open ? '' : ' hidden') + '>' +
-          items.map(item).join('') + '</div>';
-      }).join('');
-
-      $('#filetree').querySelectorAll('.folder').forEach(el => {
-        el.onclick = () => {
-          const f = el.dataset.folder;
-          if (collapsed.has(f)) collapsed.delete(f); else collapsed.add(f);
-          localStorage.setItem('blogs_collapsed', JSON.stringify([...collapsed]));
-          renderTree();
-        };
-      });
-    }
-
     /* ---------------- views ---------------- */
 
-    function setTab(crumb, actionsHtml) {
-      $('#crumb').textContent = crumb;
+    function setActions(actionsHtml) {
       $('#tabactions').innerHTML = actionsHtml || '';
       const nb = $('#new-btn');
       if (nb) nb.onclick = newNote;
@@ -973,16 +731,13 @@
     function newNote() { location.hash = '#new'; }
 
     function renderList(tagFilter) {
-      setTab(tagFilter ? 'blogs / #' + tagFilter : 'blogs',
-        '<button id="sum-btn">summaries: ' + (showSummaries ? 'on' : 'off') + '</button>' +
-        (admin ? '<button id="new-btn" class="primary" style="margin-left:8px">+ new note</button>' : ''));
+      setActions(admin ? '<button id="new-btn" class="primary">+ new note</button>' : '');
       dirty = false;
 
       const all = notes();
       const shown = tagFilter
         ? all.filter(p => (p.tags || []).some(t => t.toLowerCase() === tagFilter))
         : all;
-      const tags = [...new Set(all.flatMap(p => (p.tags || []).map(t => t.toLowerCase())))].sort();
 
       const row = p =>
         '<a class="index-row" href="#/' + attr(p.slug) + '">' +
@@ -995,42 +750,22 @@
         (showSummaries && p.summary ? '<div class="index-sum">' + esc(p.summary) + '</div>' : '') +
         '</a>';
 
-      view.innerHTML = '<div class="note">' +
-        '<h1 class="title">' + (tagFilter ? '#' + esc(tagFilter) : 'blogs') + '</h1>' +
-        '<div class="meta">' + shown.length + (shown.length === 1 ? ' note' : ' notes') +
-        (admin ? ' <span class="tag">admin</span>' : '') + '</div>' +
-        (tags.length
-          ? '<div class="tagbar">' +
-            (tagFilter ? '<a href="#"><span class="tag">&larr; all</span></a>' : '') +
-            tags.map(t => '<a href="#tag/' + attr(encodeURIComponent(t)) + '"><span class="tag' +
-              (tagFilter === t ? ' on' : '') + '">#' + esc(t) + '</span></a>').join('') +
-            '</div>'
-          : '') +
-        (shown.length
-          ? groupByFolder(shown).map(pair =>
-              '<div class="category"><span class="category-label">// ' +
-              esc(pair[0] || 'notes') + '</span>' +
-              pair[1].map(row).join('') + '</div>').join('')
-          : '<div class="empty">Nothing here yet.</div>') +
+      view.innerHTML = '<div class="note writing-index">' +
+        (shown.length ? shown.map(row).join('') : '<div class="empty">Nothing here yet.</div>') +
         '</div>';
-
-      $('#sum-btn').onclick = () => {
-        showSummaries = !showSummaries;
-        localStorage.setItem('blogs_summaries', showSummaries ? 'on' : 'off');
-        renderList(tagFilter);
-      };
     }
+
 
     async function renderPost(slug) {
       const post = notes().find(p => p.slug === slug);
       if (!post) {
-        setTab('blogs / ' + slug);
+        setActions('');
         view.innerHTML = '<div class="note"><h1 class="title">404</h1>' +
           '<div class="empty">No note called <code>' + esc(slug) + '.md</code>.</div></div>';
         return;
       }
 
-      setTab('blogs / ' + (post.folder ? post.folder + ' / ' : '') + slug + '.md', admin
+      setActions(admin
         ? '<button id="edit-btn">edit</button>' +
           '<button id="new-btn" class="primary" style="margin-left:8px">+ new note</button>'
         : '');
@@ -1061,7 +796,7 @@
       const body = slug ? await loadBody(slug) : '';
       const folders = [...new Set(index.map(p => p.folder).filter(Boolean))].sort();
 
-      setTab(existing ? 'blogs / ' + slug + '.md (editing)' : 'blogs / new note');
+      setActions('');
       view.innerHTML =
         '<div class="note editor">' +
           '<input class="title-in" id="f-title" placeholder="Untitled" value="' +
@@ -1145,12 +880,11 @@
         if (!confirm('Delete "' + existing.title + '" permanently?')) return;
         status.textContent = 'deleting...';
         try {
-          await removeFile(slug + '.md', 'blogs: delete ' + slug);
+          await removeFile(slug + '.md', 'writings: delete ' + slug);
           index = index.filter(p => p.slug !== slug);
           await saveIndex();
           delete bodyCache[slug];
           dirty = false;
-          renderTree();
           location.hash = '';
         } catch (e) { status.textContent = 'error: ' + e.message; }
       };
@@ -1172,10 +906,10 @@
           // a renamed note is written under the new slug, then the old file is dropped
           const renamed = existing && newSlug !== existing.slug;
           await writeFile(newSlug + '.md', text,
-            (existing ? 'blogs: update ' : 'blogs: add ') + newSlug);
+            (existing ? 'writings: update ' : 'writings: add ') + newSlug);
           if (renamed) {
             await removeFile(existing.slug + '.md',
-              'blogs: rename ' + existing.slug + ' -> ' + newSlug);
+              'writings: rename ' + existing.slug + ' -> ' + newSlug);
             delete bodyCache[existing.slug];
           }
 
@@ -1203,7 +937,6 @@
 
           bodyCache[newSlug] = text;
           dirty = false;
-          renderTree();
           status.textContent = 'published';
           location.hash = '#/' + newSlug;
         } catch (e) {
@@ -1229,7 +962,6 @@
     function setAdmin(on) {
       admin = on;
       document.body.classList.toggle('is-admin', on);
-      $('#statusdot').title = on ? 'admin - editing enabled' : 'reader';
       $('#admin-btn').textContent = on ? 'lock' : 'unlock';
       $('#side-new').hidden = !on;
     }
@@ -1240,12 +972,6 @@
     $('#help-btn').onclick = () => toggleHelp(true);
     $('#help-close').onclick = () => toggleHelp(false);
     $('#help').onclick = e => { if (e.target.id === 'help') toggleHelp(false); };
-    $('#vault-root').onclick = e => {
-      e.preventDefault();
-      if (location.hash) location.hash = '';
-      else route();
-    };
-
     $('#admin-btn').onclick = async () => {
       if (admin) {
         localStorage.removeItem(TOKEN_KEY);
@@ -1307,14 +1033,12 @@
         if (!confirm('Discard unsaved changes?')) { suppressRoute = true; history.back(); return; }
         dirty = false;
       }
-      document.body.classList.remove('nav-open');
       if (h.indexOf('#edit/') === 0) renderEditor(h.slice(6));
       else if (h === '#new') renderEditor(null);
       else if (h.indexOf('#tag/') === 0) renderList(decodeURIComponent(h.slice(5)).toLowerCase());
       else if (h.indexOf('#/') === 0) renderPost(h.slice(2));
       else renderList(null);
-      renderTree();
-      $('#main').scrollTop = 0;
+      window.scrollTo(0, 0);
     }
 
     window.addEventListener('hashchange', () => {
@@ -1322,30 +1046,24 @@
       route();
     });
     window.addEventListener('beforeunload', e => { if (dirty) { e.preventDefault(); e.returnValue = ''; } });
-    $('#search').addEventListener('input', renderTree);
 
     document.addEventListener('keydown', e => {
       const typing = /^(INPUT|TEXTAREA)$/.test(e.target.tagName);
       const ctrl = e.ctrlKey || e.metaKey;
       const inEditor = /^#(new|edit\/)/.test(location.hash);
 
-      // ctrl+k focuses the filter, esc backs out of whatever is open
-      if (ctrl && e.key === 'k') {
-        e.preventDefault();
-        document.body.classList.add('nav-open');
-        $('#search').focus();
-        return;
-      }
       if (e.key === '?' && !typing) { e.preventDefault(); toggleHelp(true); return; }
-      if (e.key === 's' && !typing && !ctrl) {
-        const sb = $('#sum-btn');
-        if (sb) { e.preventDefault(); sb.click(); return; }
+      if (e.key === 's' && !typing && !ctrl && (!location.hash || location.hash.startsWith('#tag/'))) {
+        e.preventDefault();
+        showSummaries = !showSummaries;
+        localStorage.setItem('writings_summaries', showSummaries ? 'on' : 'off');
+        renderList(location.hash.startsWith('#tag/') ? decodeURIComponent(location.hash.slice(5)).toLowerCase() : null);
+        return;
       }
 
       if (e.key === 'Escape') {
         if ($('#help').classList.contains('open')) { toggleHelp(false); return; }
         if ($('#modal').classList.contains('open')) { $('#modal').classList.remove('open'); return; }
-        if (typing && e.target.id === 'search') { e.target.blur(); return; }
         if (inEditor) { const c = $('#cancel-btn'); if (c) c.click(); return; }
         if (location.hash) location.hash = '';
         return;
