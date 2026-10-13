@@ -1,7 +1,13 @@
 # Project thumbnails - completed 2026-10-13
 
-All 21 parent project cards now use final 1536 x 864 WebP covers in
-`assets/projects/thumbnails/`. Nine remaining images were generated with the
+Sixteen parent project cards use final 1536 x 864 WebP covers in
+`assets/projects/thumbnails/`. ThreatIntelSearch, Logibar, and Cheff.fit use
+their previous complete project images. Moviepickr and Martek Marble use fresh
+1440 x 810 homepage captures taken after fonts and imagery loaded. All five
+source previews fit the existing 16:9 card boxes without cropping; their
+`gallery_asset` overrides are recorded in the prompt manifest.
+
+Nine remaining images were generated with the
 approved built-in generator. Eleven real-source covers preserve the original
 UI/photo content through recorded crops and source overlays. Original assets
 and generated PNG layers remain available.
