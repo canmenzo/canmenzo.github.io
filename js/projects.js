@@ -1,9 +1,8 @@
 (function () {
-  if (location.hostname === 'localhost' || location.hostname === '127.0.0.1') {
-    document.querySelectorAll('[data-preview-path]').forEach(function (link) {
-      link.href = link.dataset.previewPath;
-    });
-  }
+  // Subdomains are not live yet; use the in-site pages until their DNS resolves.
+  document.querySelectorAll('[data-preview-path]').forEach(function (link) {
+    link.href = link.dataset.previewPath;
+  });
   var search = document.getElementById('project-search');
   var filters = document.querySelectorAll('[data-filter]');
   var cards = document.querySelectorAll('[data-category]');
