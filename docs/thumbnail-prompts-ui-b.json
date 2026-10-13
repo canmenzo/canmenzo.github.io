@@ -1,0 +1,72 @@
+{
+  "mode": "built-in image_gen",
+  "reference_image": "assets/projects/thumbnails/watchlistrr-test.png",
+  "projects": [
+    {
+      "slug": "moviepickr",
+      "output_path": "assets/projects/thumbnails/moviepickr-background.png",
+      "prompt": "Use case: ads-marketing\nAsset type: portfolio thumbnail BACKGROUND AND TYPOGRAPHY LAYER only, 16:9 landscape, intended 1536x864 pixels.\nReference image 1 is a STYLE REFERENCE only. Create a new composition with its charcoal background, restrained soft green detail, warm white editorial serif headline and small monospaced name. Do not copy its text or film imagery.\nExact project name: \"Moviepickr\"\nExact headline: \"Find your shared yes.\"\nExact subtitle: \"Swipe together. Pick a movie.\"\nUse only this exact visible copy. All copy left aligned in a left column beginning x=5%, ending at x=42%. Name small monospaced muted gray, thin short green underline beneath name. Headline large white high contrast editorial serif (approximately 90–110px at 1536px width), deliberate readable line breaks. Subtitle approximately 28–32px muted gray, naturally wrapped. Put name around y=22%, headline around y=35%, subtitle beneath headline. Ensure all three fit and are fully visible; fit headline font only if necessary. Use purposeful whitespace and restrained editorial composition matching reference.\nBACKGROUND: flat dark charcoal #191a1b, warm white #f1f1f1, muted #a7aaa3, soft green #6fcf6f. New elements use no blue.\nCRITICAL RESERVED INSET: x=46%, y=10%, width=49%, height=80% MUST be entirely blank, uniform flat #191a1b. There will be an exact real project screenshot pasted into this rectangle afterwards. Do not draw a placeholder box or border. Absolutely no text, art, decorative lines, texture, glow, shadows, logo, interface, face or generated screenshot anywhere in this inset. Keep copy and any design strictly outside it. It is an intentional unfinished layer. Do not reproduce any actual UI or people. No instructions or rectangle labels visible. No extra artwork is necessary; just excellent typography left and empty dark area right.\nNo badges, author, date, domain except exact name, statistics, CTA, faux browser chrome, robot, noisy texture, neon, watermark or decorative outer border. Deliver one flat straight-on image.",
+      "inset_normalized": {
+        "x": 0.46,
+        "y": 0.1,
+        "width": 0.49,
+        "height": 0.8
+      }
+    },
+    {
+      "slug": "cheff",
+      "output_path": "assets/projects/thumbnails/cheff-background.png",
+      "prompt": "Use case: ads-marketing\nAsset type: portfolio thumbnail BACKGROUND AND TYPOGRAPHY LAYER only, 16:9 landscape, intended 1536x864 pixels.\nReference image 1 is a STYLE REFERENCE only. Create a new composition with its charcoal background, restrained soft green detail, warm white editorial serif headline and small monospaced name. Do not copy its text or film imagery.\nExact project name: \"Cheff.fit\"\nExact headline: \"From plate to macros.\"\nExact subtitle: \"Meal photos, planning, and pantry tracking.\"\nUse only this exact visible copy. All copy left aligned in a left column beginning x=5%, ending at x=51%. Name small monospaced muted gray, thin short green underline beneath name. Headline large white high contrast editorial serif (approximately 90–110px at 1536px width), deliberate readable line breaks. Subtitle approximately 28–32px muted gray, naturally wrapped. Put name around y=22%, headline around y=35%, subtitle beneath headline. Ensure all three fit and are fully visible; fit headline font only if necessary. Use purposeful whitespace and restrained editorial composition matching reference.\nBACKGROUND: flat dark charcoal #191a1b, warm white #f1f1f1, muted #a7aaa3, soft green #6fcf6f. New elements use no blue.\nCRITICAL RESERVED INSET: x=55.00000000000001%, y=13%, width=36%, height=78% MUST be entirely blank, uniform flat #191a1b. There will be an exact real project screenshot pasted into this rectangle afterwards. Do not draw a placeholder box or border. Absolutely no text, art, decorative lines, texture, glow, shadows, logo, interface, face or generated screenshot anywhere in this inset. Keep copy and any design strictly outside it. It is an intentional unfinished layer. Do not reproduce any actual UI or people. No instructions or rectangle labels visible. No extra artwork is necessary; just excellent typography left and empty dark area right.\nNo badges, author, date, domain except exact name, statistics, CTA, faux browser chrome, robot, noisy texture, neon, watermark or decorative outer border. Deliver one flat straight-on image.",
+      "inset_normalized": {
+        "x": 0.55,
+        "y": 0.13,
+        "width": 0.36,
+        "height": 0.78
+      }
+    },
+    {
+      "slug": "martek",
+      "output_path": "assets/projects/thumbnails/martek-background.png",
+      "prompt": "Use case: ads-marketing\nAsset type: portfolio thumbnail BACKGROUND AND TYPOGRAPHY LAYER only, 16:9 landscape, intended 1536x864 pixels.\nReference image 1 is a STYLE REFERENCE only. Create a new composition with its charcoal background, restrained soft green detail, warm white editorial serif headline and small monospaced name. Do not copy its text or film imagery.\nExact project name: \"Martek Marble\"\nExact headline: \"Natural stone, online.\"\nExact subtitle: \"The Martek Marble company website.\"\nUse only this exact visible copy. All copy left aligned in a left column beginning x=5%, ending at x=38%. Name small monospaced muted gray, thin short green underline beneath name. Headline large white high contrast editorial serif (approximately 90–110px at 1536px width), deliberate readable line breaks. Subtitle approximately 28–32px muted gray, naturally wrapped. Put name around y=22%, headline around y=35%, subtitle beneath headline. Ensure all three fit and are fully visible; fit headline font only if necessary. Use purposeful whitespace and restrained editorial composition matching reference.\nBACKGROUND: flat dark charcoal #191a1b, warm white #f1f1f1, muted #a7aaa3, soft green #6fcf6f. New elements use no blue.\nCRITICAL RESERVED INSET: x=42%, y=9%, width=54%, height=82% MUST be entirely blank, uniform flat #191a1b. There will be an exact real project screenshot pasted into this rectangle afterwards. Do not draw a placeholder box or border. Absolutely no text, art, decorative lines, texture, glow, shadows, logo, interface, face or generated screenshot anywhere in this inset. Keep copy and any design strictly outside it. It is an intentional unfinished layer. Do not reproduce any actual UI or people. No instructions or rectangle labels visible. No extra artwork is necessary; just excellent typography left and empty dark area right.\nNo badges, author, date, domain except exact name, statistics, CTA, faux browser chrome, robot, noisy texture, neon, watermark or decorative outer border. Deliver one flat straight-on image.",
+      "inset_normalized": {
+        "x": 0.42,
+        "y": 0.09,
+        "width": 0.54,
+        "height": 0.82
+      }
+    },
+    {
+      "slug": "numbers",
+      "output_path": "assets/projects/thumbnails/numbers-background.png",
+      "prompt": "Use case: ads-marketing\nAsset type: portfolio thumbnail BACKGROUND AND TYPOGRAPHY LAYER only, 16:9 landscape, intended 1536x864 pixels.\nReference image 1 is a STYLE REFERENCE only. Create a new composition with its charcoal background, restrained soft green detail, warm white editorial serif headline and small monospaced name. Do not copy its text or film imagery.\nExact project name: \"Numbers Solver\"\nExact headline: \"Six numbers. One target.\"\nExact subtitle: \"Arithmetic, exact answers, or the closest result.\"\nUse only this exact visible copy. All copy left aligned in a left column beginning x=5%, ending at x=43%. Name small monospaced muted gray, thin short green underline beneath name. Headline large white high contrast editorial serif (approximately 90–110px at 1536px width), deliberate readable line breaks. Subtitle approximately 28–32px muted gray, naturally wrapped. Put name around y=22%, headline around y=35%, subtitle beneath headline. Ensure all three fit and are fully visible; fit headline font only if necessary. Use purposeful whitespace and restrained editorial composition matching reference.\nBACKGROUND: flat dark charcoal #191a1b, warm white #f1f1f1, muted #a7aaa3, soft green #6fcf6f. New elements use no blue.\nCRITICAL RESERVED INSET: x=47%, y=17%, width=48%, height=69% MUST be entirely blank, uniform flat #191a1b. There will be an exact real project screenshot pasted into this rectangle afterwards. Do not draw a placeholder box or border. Absolutely no text, art, decorative lines, texture, glow, shadows, logo, interface, face or generated screenshot anywhere in this inset. Keep copy and any design strictly outside it. It is an intentional unfinished layer. Do not reproduce any actual UI or people. No instructions or rectangle labels visible. No extra artwork is necessary; just excellent typography left and empty dark area right.\nNo badges, author, date, domain except exact name, statistics, CTA, faux browser chrome, robot, noisy texture, neon, watermark or decorative outer border. Deliver one flat straight-on image.",
+      "inset_normalized": {
+        "x": 0.47,
+        "y": 0.17,
+        "width": 0.48,
+        "height": 0.69
+      }
+    },
+    {
+      "slug": "portfolio",
+      "output_path": "assets/projects/thumbnails/portfolio-background.png",
+      "prompt": "Use case: ads-marketing\nAsset type: portfolio thumbnail BACKGROUND AND TYPOGRAPHY LAYER only, 16:9 landscape, intended 1536x864 pixels.\nReference image 1 is a STYLE REFERENCE only. Create a new composition with its charcoal background, restrained soft green detail, warm white editorial serif headline and small monospaced name. Do not copy its text or film imagery.\nExact project name: \"canmenzo.com\"\nExact headline: \"A place for the work.\"\nExact subtitle: \"Security research, tools, and writing.\"\nUse only this exact visible copy. All copy left aligned in a left column beginning x=5%, ending at x=41%. Name small monospaced muted gray, thin short green underline beneath name. Headline large white high contrast editorial serif (approximately 90–110px at 1536px width), deliberate readable line breaks. Subtitle approximately 28–32px muted gray, naturally wrapped. Put name around y=22%, headline around y=35%, subtitle beneath headline. Ensure all three fit and are fully visible; fit headline font only if necessary. Use purposeful whitespace and restrained editorial composition matching reference.\nBACKGROUND: flat dark charcoal #191a1b, warm white #f1f1f1, muted #a7aaa3, soft green #6fcf6f. New elements use no blue.\nCRITICAL RESERVED INSET: x=45%, y=10%, width=51%, height=80% MUST be entirely blank, uniform flat #191a1b. There will be an exact real project screenshot pasted into this rectangle afterwards. Do not draw a placeholder box or border. Absolutely no text, art, decorative lines, texture, glow, shadows, logo, interface, face or generated screenshot anywhere in this inset. Keep copy and any design strictly outside it. It is an intentional unfinished layer. Do not reproduce any actual UI or people. No instructions or rectangle labels visible. No extra artwork is necessary; just excellent typography left and empty dark area right.\nNo badges, author, date, domain except exact name, statistics, CTA, faux browser chrome, robot, noisy texture, neon, watermark or decorative outer border. Deliver one flat straight-on image.",
+      "inset_normalized": {
+        "x": 0.45,
+        "y": 0.1,
+        "width": 0.51,
+        "height": 0.8
+      }
+    },
+    {
+      "slug": "jarvis",
+      "output_path": "assets/projects/thumbnails/jarvis-background.png",
+      "prompt": "Use case: ads-marketing\nAsset type: portfolio thumbnail BACKGROUND AND TYPOGRAPHY LAYER only, 16:9 landscape, intended 1536x864 pixels.\nReference image 1 is a STYLE REFERENCE only. Create a new composition with its charcoal background, restrained soft green detail, warm white editorial serif headline and small monospaced name. Do not copy its text or film imagery.\nExact project name: \"Jarvis\"\nExact headline: \"A voice for your home.\"\nExact subtitle: \"Wake-on-LAN, voice control, and Siri.\"\nUse only this exact visible copy. All copy left aligned in a left column beginning x=5%, ending at x=38%. Name small monospaced muted gray, thin short green underline beneath name. Headline large white high contrast editorial serif (approximately 90–110px at 1536px width), deliberate readable line breaks. Subtitle approximately 28–32px muted gray, naturally wrapped. Put name around y=22%, headline around y=35%, subtitle beneath headline. Ensure all three fit and are fully visible; fit headline font only if necessary. Use purposeful whitespace and restrained editorial composition matching reference.\nBACKGROUND: flat dark charcoal #191a1b, warm white #f1f1f1, muted #a7aaa3, soft green #6fcf6f. New elements use no blue.\nCRITICAL RESERVED INSET: x=42%, y=7.5%, width=54%, height=85% MUST be entirely blank, uniform flat #191a1b. There will be an exact real owner supplied photograph pasted into this rectangle afterwards. Do not draw a placeholder box or border. Absolutely no text, art, decorative lines, texture, glow, shadows, logo, interface, face or generated screenshot anywhere in this inset. Keep copy and any design strictly outside it. It is an intentional unfinished layer. Do not reproduce any actual UI or people. No instructions or rectangle labels visible. No extra artwork is necessary; just excellent typography left and empty dark area right.\nNo badges, author, date, domain except exact name, statistics, CTA, faux browser chrome, robot, noisy texture, neon, watermark or decorative outer border. Deliver one flat straight-on image.",
+      "inset_normalized": {
+        "x": 0.42,
+        "y": 0.075,
+        "width": 0.54,
+        "height": 0.85
+      }
+    }
+  ]
+}
