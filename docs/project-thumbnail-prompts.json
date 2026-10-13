@@ -88,7 +88,8 @@
       "saved_generation": "assets/projects/thumbnails/threatintel-background.png",
       "final_asset": "assets/projects/thumbnails/threatintel.webp",
       "composition_status": "complete",
-      "gallery_status": "connected"
+      "gallery_status": "connected-source-preview",
+      "gallery_asset": "assets/projects/threatintel-screenshot.png"
     },
     {
       "slug": "logibar",
@@ -125,7 +126,8 @@
       "saved_generation": "assets/projects/thumbnails/logibar-background.png",
       "final_asset": "assets/projects/thumbnails/logibar.webp",
       "composition_status": "complete",
-      "gallery_status": "connected"
+      "gallery_status": "connected-source-preview",
+      "gallery_asset": "assets/projects/logibar.png"
     },
     {
       "slug": "moviepickr",
@@ -162,7 +164,17 @@
       "saved_generation": "assets/projects/thumbnails/moviepickr-background.png",
       "final_asset": "assets/projects/thumbnails/moviepickr.webp",
       "composition_status": "complete",
-      "gallery_status": "connected"
+      "gallery_status": "connected-source-preview",
+      "gallery_asset": "assets/projects/moviepickr-homepage-v2.webp",
+      "gallery_capture": {
+        "url": "https://moviepickr.site/",
+        "date": "2026-10-13",
+        "viewport": {
+          "width": 1440,
+          "height": 810
+        },
+        "readiness": "network idle, fonts ready, source images and CSS backgrounds loaded"
+      }
     },
     {
       "slug": "jobscope",
@@ -236,7 +248,8 @@
       "final_asset": "assets/projects/thumbnails/cheff.webp",
       "saved_generation": "assets/projects/thumbnails/cheff-background.png",
       "composition_status": "complete",
-      "gallery_status": "connected"
+      "gallery_status": "connected-source-preview",
+      "gallery_asset": "assets/projects/cheff.webp"
     },
     {
       "slug": "handy",
@@ -310,7 +323,17 @@
       "final_asset": "assets/projects/thumbnails/martek.webp",
       "saved_generation": "assets/projects/thumbnails/martek-background.png",
       "composition_status": "complete",
-      "gallery_status": "connected"
+      "gallery_status": "connected-source-preview",
+      "gallery_asset": "assets/projects/martek-homepage-v2.webp",
+      "gallery_capture": {
+        "url": "https://martekmarble.com/",
+        "date": "2026-10-13",
+        "viewport": {
+          "width": 1440,
+          "height": 810
+        },
+        "readiness": "network idle, fonts ready, source images and CSS backgrounds loaded"
+      }
     },
     {
       "slug": "numbers",
