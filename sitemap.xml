@@ -12,8 +12,8 @@
        <priority>0.8000</priority>
   </url>
   <url>
-       <loc>https://canmenzo.com/writings/</loc>
-       <lastmod>2026-10-12</lastmod>
+       <loc>https://canmenzo.com/blogs/</loc>
+       <lastmod>2026-09-13T06:48:32+00:00</lastmod>
        <priority>0.8000</priority>
   </url>
   <url>
@@ -37,12 +37,12 @@
        <priority>0.8000</priority>
   </url>
   <url>
-       <loc>https://canmenzo.com/detkit/</loc>
+       <loc>https://canmenzo.com/detection-engineering/</loc>
        <lastmod>2026-09-05T06:35:55+00:00</lastmod>
        <priority>0.6400</priority>
   </url>
   <url>
-       <loc>https://canmenzo.com/detkit/about.html</loc>
+       <loc>https://canmenzo.com/detection-engineering/about.html</loc>
        <lastmod>2026-09-05T06:35:55+00:00</lastmod>
        <priority>0.5120</priority>
   </url>

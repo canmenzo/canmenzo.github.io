@@ -9,7 +9,7 @@
 
   <!-- GitHub Pages serves this file at whatever URL was missed, so every
        path here is absolute. -->
-  <link rel="stylesheet" href="/css/styles.css?v=18">
+  <link rel="stylesheet" href="/css/styles.css?v=14">
   <link rel="preload" href="/fonts/dm-mono-latin-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/fonts/dm-mono-latin-500.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="icon" href="/favicon.ico?v=2">
@@ -17,7 +17,7 @@
 
   <style>
     .container {
-      padding-top: 40px;
+      padding-top: 62px;
     }
 
     .term {
@@ -69,21 +69,9 @@
 
 <body class="dark-mode">
   <script src="/js/theme.js?v=2"></script>
-  <a class="skip-link" href="#main-content">skip to content</a>
-  <header class="site-header">
-    <nav class="site-nav" aria-label="main navigation">
-      <div class="nav-links">
-        <a href="/">home</a>
-        <a href="/projects/">projects</a>
-        <a href="/writings/">writings</a>
-        <a href="/#contact">contact</a>
-      </div>
-      <button id="theme-toggle" type="button" aria-label="toggle theme"></button>
-    </nav>
-  </header>
-  <script src="/js/nav.js?v=2"></script>
+  <a class="home-back" href="/">&larr; ~/home</a>
 
-  <main class="container" id="main-content" tabindex="-1">
+  <main class="container">
     <div class="term">
       <div><span class="prompt">~ $</span> cd <span id="path">/this-page</span></div>
       <div class="err">bash: cd: <span id="path-err">/this-page</span>: No such file or directory</div>
@@ -93,6 +81,7 @@
       <div><span class="prompt">~ $</span> ls ~</div>
       <div><span class="idx">[0000]</span><a href="/">home</a></div>
       <div><span class="idx">[0001]</span><a href="/projects/">projects</a></div>
+      <div><span class="idx">[0010]</span><a href="/blogs/">blogs</a></div>
     </div>
   </main>
 
