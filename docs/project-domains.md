@@ -1,6 +1,6 @@
 # Project domains
 
-The project cards target `detkit.canmenzo.com`, `threatintel.canmenzo.com`, `logibar.canmenzo.com`, and `numbers.canmenzo.com`. On localhost, the gallery uses the matching `/projects/<name>/` pages for review. The numbers solver uses `/numbers/` in local preview. The custom domains do not resolve yet; these changes do not deploy anything or modify DNS.
+The project cards target `detkit.canmenzo.com`, `threatintel.canmenzo.com`, `logibar.canmenzo.com`, and `numbers.canmenzo.com`. On localhost, the gallery uses the matching `/projects/<name>/` pages for review. The numbers solver uses `/numbers/` in local preview.
 
 Build all four standalone sites:
 
@@ -31,24 +31,24 @@ python -m http.server 8788 --directory dist-projects/detkit
 
 Open `http://127.0.0.1:8788/`, then follow **Open the dashboard**.
 
-## Connect after review
+## Hosting
 
-After this PR is merged, create four Cloudflare Pages projects connected to `canmenzo/canmenzo.github.io`. For each project, use:
+Each subdomain is the GitHub Pages site of its own repository, deployed by that repository's `.github/workflows/pages.yml`. The workflow checks out this repository, runs the build script, and publishes the matching output directory. Project source code is untouched.
 
-- Production branch: `master`
-- Framework preset: None
-- Build command: `node scripts/build-project-sites.mjs`
-- Build output directory: the matching directory in the table above
+| Domain | Repository | Workflow trigger |
+| --- | --- | --- |
+| detkit.canmenzo.com | canmenzo/detkit | push to `main`, manual |
+| threatintel.canmenzo.com | canmenzo/ThreatIntelSearch | manual |
+| logibar.canmenzo.com | canmenzo/logibar | manual |
+| numbers.canmenzo.com | canmenzo/numbers | manual |
 
-In each Pages project's **Custom domains** tab, select **Set up a domain** and add its full subdomain (`detkit.canmenzo.com`, `threatintel.canmenzo.com`, `logibar.canmenzo.com`, or `numbers.canmenzo.com`).
+Changes here do not redeploy the subdomains. After editing a project page, shared CSS, fonts, or the build script, run:
 
-The domain already uses Cloudflare DNS (`jobs.ns.cloudflare.com` and `piper.ns.cloudflare.com`, checked October 13, 2026). When the Pages projects and domain are in the same Cloudflare account, the custom-domain setup can create the matching CNAME records automatically. Each record points to the actual `*.pages.dev` hostname assigned to that Pages project. Complete Custom domains setup before adding a record manually; a CNAME alone does not register the hostname with Pages.
+```sh
+for r in detkit ThreatIntelSearch logibar numbers; do gh workflow run pages.yml -R canmenzo/$r; done
+```
 
-Keep the existing apex and `www` records for the main GitHub Pages site. The project subdomains are separate records, and Detkit's `/dashboard/` and `/dashboard/about.html` use the same Detkit host.
-
-Setup reference: https://developers.cloudflare.com/pages/configuration/custom-domains/
-
-The preview workflow builds and attaches `project-subdomain-sites`. It does not deploy or modify DNS.
+Cloudflare DNS has a DNS-only `CNAME <name> -> canmenzo.github.io` per subdomain; each repository's Pages custom domain selects the site, and Enforce HTTPS is on. Because those repositories are project sites of `canmenzo.github.io`, `canmenzo.com/numbers/` and `canmenzo.com/detkit/` redirect to their subdomains. The apex, `www`, mail and `matrix` records are unchanged.
 
 ## Project images
 
