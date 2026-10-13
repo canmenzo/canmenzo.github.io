@@ -31,3 +31,5 @@
 .project-footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; padding-top: 28px; margin-top: 20px; border-top: 1px solid var(--border); color: var(--muted); font-size: 12px; }
 .project-footer a { text-decoration: none; }
 @media (max-width: 650px) { .project-shell { padding: 24px; } .project-nav { gap: 16px; } .project-nav nav { gap: 12px; } .project-hero { padding-top: 42px; } .project-hero p { font-size: 13px; } }
+
+.project-nav #theme-toggle { position: static; border: 0; }
