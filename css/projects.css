@@ -11,7 +11,7 @@
 .project-card { min-width: 0; }
 .project-card[hidden] { display: none; }
 .project-card > a { display: block; height: 100%; }
-.project-card img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; object-position: center top; border: 1px solid var(--border); border-radius: 6px; box-sizing: border-box; background: #121616; transition: border-color .18s ease, transform .18s ease; }
+.project-card img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: contain; object-position: center; border: 1px solid var(--border); border-radius: 6px; box-sizing: border-box; background: #191a1b; transition: border-color .18s ease, transform .18s ease; }
 .project-card img.project-preview-contain { object-fit: contain; object-position: center; }
 .project-subproject { border-left: 1px solid var(--border); margin-top: 18px; padding-left: 16px; }
 .project-card .project-subproject h3 { font-size: 13px; margin-top: 0; }
