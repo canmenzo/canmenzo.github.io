@@ -1,18 +1,5 @@
 [
   {
-    "slug": "hi",
-    "title": "first blog post",
-    "date": "2026-08-25",
-    "updated": "2026-09-06",
-    "summary": "First note. Why this exists and what lands here.",
-    "tags": [
-      "first"
-    ],
-    "aliases": [
-      "hello"
-    ]
-  },
-  {
     "slug": "vibecoded",
     "title": "the common within the vibecoded",
     "date": "2026-08-25",
