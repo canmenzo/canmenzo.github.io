@@ -7,7 +7,7 @@
   <meta name="description" content="projects by menzo - security researcher &amp; ai builder." />
   <meta name="author" content="menzo" />
 
-  <link rel="stylesheet" href="../css/styles.css?v=14">
+  <link rel="stylesheet" href="../css/styles.css?v=18">
   <link rel="preload" href="../fonts/dm-mono-latin-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../fonts/dm-mono-latin-500.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="canonical" href="https://canmenzo.com/projects/">
@@ -26,262 +26,47 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@canmenzo">
 
-  <style>
-    .container {
-      padding-top: 62px;
-    }
-
-    .section > h3 {
-      text-align: center;
-      margin-bottom: 26px;
-    }
-
-    .project-list {
-      margin-top: 4px;
-    }
-
-    .project-row {
-      margin-bottom: 18px;
-    }
-
-    .project-line {
-      font-size: 0.95em;
-    }
-
-    .project-line a,
-    .project-line a:visited {
-      color: var(--accent);
-      text-decoration: none;
-      font-weight: 600;
-    }
-
-    .project-line a:hover {
-      text-decoration: underline;
-    }
-
-    .locked-name {
-      color: var(--muted);
-      font-weight: 600;
-    }
-
-    .pvt {
-      font-size: 0.72em;
-      color: var(--ghost);
-      margin-left: 8px;
-      letter-spacing: 0.04em;
-    }
-
-    .desc {
-      padding-left: 70px;
-    }
-
-    .sub-row {
-      margin-bottom: 18px;
-      padding-left: 24px;
-    }
-
-    .sub-prefix {
-      color: var(--ghost);
-      margin-right: 6px;
-      font-size: 0.85em;
-    }
-
-    .sub-row .desc {
-      padding-left: 38px;
-    }
-
-    .category {
-      padding-bottom: 6px;
-    }
-  </style>
+  <link rel="stylesheet" href="/css/projects.css?v=1">
 </head>
-
-<body class="dark-mode">
-  <script src="../js/theme.js?v=2"></script>
-  <a class="home-back" href="/">&larr; ~/home</a>
-
-  <main class="container">
-    <div style="text-align: left">
-      <div class="section">
-        <h3>projects</h3>
-
-        <div class="project-list">
-
-          <div class="category">
-            <span class="category-label">// cybersecurity</span>
-
-            <div class="project-row">
-              <div class="project-line">
-                <span class="idx">[00000]</span><a href="https://canmenzo.com/detection-engineering/" target="_blank" rel="noopener">detection-engineering</a>
-              </div>
-              <div class="desc">Detection-as-Code: version-controlled Sigma rules unit-tested against real adversary telemetry with Hayabusa, CI/CD, and a live MITRE ATT&amp;CK coverage dashboard.</div>
-            </div>
-
-            <div class="project-row">
-              <div class="project-line">
-                <span class="idx">[00001]</span><a href="https://github.com/canmenzo/ThreatIntelSearch" target="_blank" rel="noopener">threat-intelsearch</a>
-              </div>
-              <div class="desc">Right-click OSINT lookup extension — aggregates IOC data across threat intel sources for rapid analyst triage. Published on Firefox Add-ons and the Chrome Web Store.</div>
-            </div>
-
-            <div class="project-row">
-              <div class="project-line">
-                <span class="idx">[00010]</span><a href="https://github.com/canmenzo/pythoncs" target="_blank" rel="noopener">pythoncs</a>
-              </div>
-              <div class="desc">Python toolkit for cybersecurity operations, automating repetitive SOC analyst workflows.</div>
-            </div>
-
-            <div class="project-row">
-              <div class="project-line">
-                <span class="idx">[00011]</span><a href="https://github.com/canmenzo/pythonbruteforce" target="_blank" rel="noopener">pythonbruteforce</a>
-              </div>
-              <div class="desc">Python brute-force tools for penetration testing practice and CTF challenges.</div>
-            </div>
-          </div>
-
-          <div class="category">
-            <span class="category-label">// ai &amp; automation</span>
-
-            <div class="project-row">
-              <div class="project-line">
-                <span class="idx">[00100]</span><span class="locked-name">project-x<span class="pvt">// private</span></span>
-              </div>
-              <div class="desc">Done-for-you AI systems for local businesses — custom assistants, automation, and AI ops delivered as installs, not SaaS.</div>
-            </div>
-
-            <div class="sub-row">
-              <div class="project-line">
-                <span class="sub-prefix">└──</span><span class="locked-name">real-estate-ai-ops<span class="pvt">// private</span></span>
-              </div>
-              <div class="desc">Real estate vertical — AI lead generation, market analysis, and outreach automation.</div>
-            </div>
-
-            <div class="project-row">
-              <div class="project-line">
-                <span class="idx">[00101]</span><a href="https://github.com/canmenzo/Handy" target="_blank" rel="noopener">handy</a>
-              </div>
-              <div class="desc">Fork of the open-source local speech-to-text desktop app — a self-hosted alternative to Wispr Flow, running Whisper entirely on-device with Turkish dictation support in progress.</div>
-            </div>
-
-            <div class="project-row">
-              <div class="project-line">
-                <span class="idx">[00110]</span><a href="https://github.com/canmenzo/claude-turkish-voice" target="_blank" rel="noopener">claude-turkish-voice</a>
-              </div>
-              <div class="desc">Turkish voice input for Claude Code — a /voicetr slash command that records, transcribes with a local Whisper model, and pipes the text straight into the session. Archived; superseded by handy.</div>
-            </div>
-
-            <div class="project-row">
-              <div class="project-line">
-                <span class="idx">[00111]</span><a href="https://github.com/canmenzo/jobscope" target="_blank" rel="noopener">jobscope</a>
-              </div>
-              <div class="desc">Aggregates live postings from public ATS APIs, filters to USA tech roles, and scores relevance 0-100 in a browsable dashboard.</div>
-            </div>
-
-            <div class="project-row">
-              <div class="project-line">
-                <span class="idx">[01000]</span><a href="https://github.com/canmenzo/jarvis-home-automation" target="_blank" rel="noopener">jarvis-home-automation</a>
-              </div>
-              <div class="desc">Iron Man-inspired home automation with Wake-on-LAN, voice control, and Siri integration.</div>
-            </div>
-          </div>
-
-          <div class="category">
-            <span class="category-label">// systems &amp; infra</span>
-
-            <div class="project-row">
-              <div class="project-line">
-                <span class="idx">[01001]</span><a href="https://github.com/canmenzo/wsl-disk-bridge" target="_blank" rel="noopener">wsl-disk-bridge</a>
-              </div>
-              <div class="desc">Bridges WSL2 disk access with a custom Linux kernel for seamless Windows dual-boot setups.</div>
-            </div>
-
-            <div class="project-row">
-              <div class="project-line">
-                <span class="idx">[01010]</span><a href="https://github.com/canmenzo/logibar" target="_blank" rel="noopener">logibar</a>
-              </div>
-              <div class="desc">Windows tray battery monitor for Logitech mice and headsets — reads levels straight out of the G HUB database, no vendor UI required.</div>
-            </div>
-
-            <div class="project-row">
-              <div class="project-line">
-                <span class="idx">[01011]</span><a href="https://github.com/canmenzo/nasserver" target="_blank" rel="noopener">nasserver</a>
-              </div>
-              <div class="desc">Self-hosted NAS server setup with automated backup and remote access configuration.</div>
-            </div>
-
-            <div class="project-row">
-              <div class="project-line">
-                <span class="idx">[01100]</span><a href="https://github.com/canmenzo/watchlistrr" target="_blank" rel="noopener">watchlistrr</a>
-              </div>
-              <div class="desc">Syncs a Letterboxd watchlist into Seerr — matches films by TMDB id rather than title, caches in SQLite, and runs on a schedule in Docker. No browser automation, no third-party service.</div>
-            </div>
-          </div>
-
-          <div class="category">
-            <span class="category-label">// web &amp; apps</span>
-
-            <div class="project-row">
-              <div class="project-line">
-                <span class="idx">[01101]</span><a href="https://moviepickr.site" target="_blank" rel="noopener">moviepickr</a>
-              </div>
-              <div class="desc">Group movie-night picker - everyone swipes the same deck on their phones and the first film the whole room says yes to wins. No signup, no accounts, rooms sync live. Threat modelled and hardened before launch.</div>
-            </div>
-
-            <div class="project-row">
-              <div class="project-line">
-                <span class="idx">[01110]</span><a href="https://cheff.fit" target="_blank" rel="noopener">cheff-fit</a>
-              </div>
-              <div class="desc">Full-stack nutrition app — snap a photo of a meal for instant AI macro breakdown, plus goal-aware meal planning and smart kitchen inventory.</div>
-            </div>
-
-            <div class="project-row">
-              <div class="project-line">
-                <span class="idx">[01111]</span><a href="https://github.com/canmenzo/kanal" target="_blank" rel="noopener">kanal</a>
-              </div>
-              <div class="desc">Android TV app built with Compose-TV and Media3 — live channel streaming driven by a remotely hosted config, so the lineup updates without shipping a build.</div>
-            </div>
-
-            <div class="project-row">
-              <div class="project-line">
-                <span class="idx">[10000]</span><a href="https://martekmarble.com" target="_blank" rel="noopener">martekmarble.com</a>
-              </div>
-              <div class="desc">Company website built and maintained for Martek Marble using PHP and JavaScript.</div>
-            </div>
-
-            <div class="project-row">
-              <div class="project-line">
-                <span class="idx">[10001]</span><a href="https://github.com/canmenzo/secretsantapython" target="_blank" rel="noopener">secretsantapython</a>
-              </div>
-              <div class="desc">Python script that randomizes and emails Secret Santa assignments to all participants.</div>
-            </div>
-
-            <div class="project-row">
-              <div class="project-line">
-                <span class="idx">[10010]</span><a href="https://github.com/canmenzo/buckshotroulettemp" target="_blank" rel="noopener">buckshotroulettemp</a>
-              </div>
-              <div class="desc">Multiplayer implementation of Buckshot Roulette with real-time session management.</div>
-            </div>
-
-            <div class="project-row">
-              <div class="project-line">
-                <span class="idx">[10011]</span><a href="/numbers/">bir-islem-solver</a>
-              </div>
-              <div class="desc">Solver for the numbers round of Turkish TV quiz Bir Kelime Bir İşlem — hits a three-digit target from six numbers with + − × ÷, or finds the closest miss.</div>
-            </div>
-
-            <div class="project-row">
-              <div class="project-line">
-                <span class="idx">[10100]</span><a href="https://canmenzo.com" target="_blank" rel="noopener">canmenzo.com</a>
-              </div>
-              <div class="desc">This site — a terminal-styled personal portfolio and project index, hand-built and hosted on GitHub Pages.</div>
-            </div>
-          </div>
-
+<body class="dark-mode projects-page">
+  <script src="/js/theme.js?v=2"></script>
+  <a class="skip-link" href="#main-content">skip to content</a>
+  <header class="site-header"><nav class="site-nav" aria-label="main navigation"><div class="nav-links"><a href="/">home</a><a href="/projects/" aria-current="page">projects</a><a href="/writings/">writings</a><a href="/#contact">contact</a></div><button id="theme-toggle" type="button" aria-label="toggle theme"></button></nav></header>
+  <script src="/js/nav.js?v=2"></script>
+  <main class="portfolio" id="main-content" tabindex="-1">
+    <header class="portfolio-header"><h1>Projects</h1></header>
+    <section class="project-browser" aria-label="project archive">
+      <aside><h2>All projects</h2><span class="project-count" id="project-count" role="status" aria-live="polite">22 projects</span></aside>
+      <div><div class="project-tools"><input id="project-search" class="project-search" type="search" placeholder="Search projects" aria-label="Search projects"><div class="project-filters" role="group" aria-label="Filter projects"><button type="button" data-filter="all" aria-pressed="true">All</button><button type="button" data-filter="security" aria-pressed="false">Security</button><button type="button" data-filter="automation" aria-pressed="false">AI &amp; automation</button><button type="button" data-filter="systems" aria-pressed="false">Systems</button><button type="button" data-filter="apps" aria-pressed="false">Apps</button></div></div>
+        <div class="project-grid">
+          <article class="project-card" data-category="security"><a href="/projects/detkit/"><img src="/assets/projects/detkit.webp" alt="Detkit preview" width="960" height="540" loading="lazy" decoding="async"><h2>Detkit <span aria-hidden="true">↗</span></h2><p>Sigma rules tested against attack telemetry, with measured detection quality and an ATT&amp;CK coverage dashboard.</p><div class="project-meta"><span>Security</span><span>Project page</span></div></a></article>
+          <article class="project-card" data-category="security"><a href="/projects/threatintel/"><img src="/assets/projects/threatintel.svg" alt="ThreatIntelSearch project cover" width="960" height="540" loading="lazy" decoding="async"><h2>ThreatIntelSearch <span aria-hidden="true">↗</span></h2><p>Select an IP, domain, or hash. Right-click to check its threat intelligence sources.</p><div class="project-meta"><span>Security</span><span>Project page</span></div></a></article>
+          <article class="project-card" data-category="systems"><a href="/projects/logibar/"><img src="/assets/projects/logibar.png" alt="Logibar preview" width="960" height="540" loading="lazy" decoding="async"><h2>Logibar <span aria-hidden="true">↗</span></h2><p>Logitech mouse, headset, and keyboard battery levels in the Windows tray.</p><div class="project-meta"><span>Systems</span><span>Project page</span></div></a></article>
+          <article class="project-card" data-category="apps"><a href="https://moviepickr.site"><img src="/assets/projects/moviepickr.webp" alt="Moviepickr preview" width="960" height="540" loading="lazy" decoding="async"><h2>Moviepickr <span aria-hidden="true">↗</span></h2><p>A movie night picker. Everyone swipes on their phone; the first shared yes wins.</p><div class="project-meta"><span>Apps</span><span>moviepickr.site</span></div></a></article>
+          <article class="project-card" data-category="automation"><a href="https://github.com/canmenzo/jobscope"><img src="/assets/projects/jobscope.webp" alt="JobScope preview" width="960" height="540" loading="lazy" decoding="async"><h2>JobScope <span aria-hidden="true">↗</span></h2><p>USA tech openings from public job APIs, scored against your preferences and resume.</p><div class="project-meta"><span>AI &amp; automation</span><span>GitHub</span></div></a></article>
+          <article class="project-card" data-category="apps"><a href="https://cheff.fit"><img src="/assets/projects/cheff.webp" alt="Cheff.fit preview" width="960" height="540" loading="lazy" decoding="async"><h2>Cheff.fit <span aria-hidden="true">↗</span></h2><p>Meal photos, macro tracking, meal planning, and kitchen inventory.</p><div class="project-meta"><span>Apps</span><span>cheff.fit</span></div></a></article>
+          <article class="project-card" data-category="systems"><a href="https://github.com/canmenzo/watchlistrr"><img src="/assets/projects/watchlistrr.svg" alt="Watchlistrr project cover" width="960" height="540" loading="lazy" decoding="async"><h2>Watchlistrr <span aria-hidden="true">↗</span></h2><p>Sync a Letterboxd watchlist into Seerr. TMDB matching, SQLite caching, and scheduled Docker runs.</p><div class="project-meta"><span>Systems</span><span>GitHub</span></div></a></article>
+          <article class="project-card" data-category="automation"><a href="https://github.com/canmenzo/Handy"><img src="/assets/projects/handy.svg" alt="Handy project cover" width="960" height="540" loading="lazy" decoding="async"><h2>Handy <span aria-hidden="true">↗</span></h2><p>My fork of a local speech-to-text app, with Turkish dictation support in progress.</p><div class="project-meta"><span>AI &amp; automation</span><span>GitHub · fork</span></div></a></article>
+          <article class="project-card" data-category="systems"><a href="https://github.com/canmenzo/wsl-disk-bridge"><img src="/assets/projects/wsl-disk-bridge.svg" alt="WSL Disk Bridge project cover" width="960" height="540" loading="lazy" decoding="async"><h2>WSL Disk Bridge <span aria-hidden="true">↗</span></h2><p>WSL2 disk access with a custom Linux kernel for Windows dual-boot setups.</p><div class="project-meta"><span>Systems</span><span>GitHub</span></div></a></article>
+          <article class="project-card" data-category="security"><a href="https://github.com/canmenzo/pythoncs"><img src="/assets/projects/pythoncs.svg" alt="PythonCS project cover" width="960" height="540" loading="lazy" decoding="async"><h2>PythonCS <span aria-hidden="true">↗</span></h2><p>Python tools for repetitive SOC analyst workflows.</p><div class="project-meta"><span>Security</span><span>GitHub</span></div></a></article>
+          <article class="project-card" data-category="apps"><a href="https://github.com/canmenzo/kanal"><img src="/assets/projects/kanal.svg" alt="Kanal project cover" width="960" height="540" loading="lazy" decoding="async"><h2>Kanal <span aria-hidden="true">↗</span></h2><p>Android TV channel streaming with a remotely managed lineup.</p><div class="project-meta"><span>Apps</span><span>GitHub</span></div></a></article>
+          <article class="project-card is-private" data-category="automation"><img src="/assets/projects/real-estate-ai-ops.svg" alt="Real Estate AI Ops project cover" width="960" height="540" loading="lazy" decoding="async"><h2>Real Estate AI Ops</h2><p>Lead generation, market analysis, and outreach automation for real estate.</p><div class="project-meta"><span>AI &amp; automation</span><span>Private</span></div></article>
+          <article class="project-card is-private" data-category="automation"><img src="/assets/projects/project-x.svg" alt="Project X project cover" width="960" height="540" loading="lazy" decoding="async"><h2>Project X</h2><p>Custom assistants and automation for local businesses.</p><div class="project-meta"><span>AI &amp; automation</span><span>Private</span></div></article>
+          <article class="project-card" data-category="apps"><a href="https://martekmarble.com"><img src="/assets/projects/martek.svg" alt="Martek Marble project cover" width="960" height="540" loading="lazy" decoding="async"><h2>Martek Marble <span aria-hidden="true">↗</span></h2><p>Company website built and maintained with PHP and JavaScript.</p><div class="project-meta"><span>Apps</span><span>martekmarble.com</span></div></a></article>
+          <article class="project-card" data-category="apps"><a href="/numbers/"><img src="/assets/projects/numbers.svg" alt="Bir İşlem Solver project cover" width="960" height="540" loading="lazy" decoding="async"><h2>Bir İşlem Solver <span aria-hidden="true">↗</span></h2><p>Reach a three-digit target from six numbers with arithmetic, or find the closest result.</p><div class="project-meta"><span>Apps</span><span>Try it</span></div></a></article>
+          <article class="project-card" data-category="systems"><a href="https://github.com/canmenzo/nasserver"><img src="/assets/projects/nasserver.svg" alt="NAS Server project cover" width="960" height="540" loading="lazy" decoding="async"><h2>NAS Server <span aria-hidden="true">↗</span></h2><p>Self-hosted storage with automated backups and remote access.</p><div class="project-meta"><span>Systems</span><span>GitHub</span></div></a></article>
+          <article class="project-card" data-category="automation"><a href="https://github.com/canmenzo/jarvis-home-automation"><img src="/assets/projects/jarvis.svg" alt="Jarvis project cover" width="960" height="540" loading="lazy" decoding="async"><h2>Jarvis <span aria-hidden="true">↗</span></h2><p>Home automation with Wake-on-LAN, voice control, and Siri.</p><div class="project-meta"><span>AI &amp; automation</span><span>GitHub</span></div></a></article>
+          <article class="project-card" data-category="apps"><a href="https://github.com/canmenzo/buckshotroulettemp"><img src="/assets/projects/buckshot.svg" alt="Buckshot Roulette MP project cover" width="960" height="540" loading="lazy" decoding="async"><h2>Buckshot Roulette MP <span aria-hidden="true">↗</span></h2><p>Multiplayer Buckshot Roulette with real-time sessions.</p><div class="project-meta"><span>Apps</span><span>GitHub</span></div></a></article>
+          <article class="project-card" data-category="apps"><a href="https://github.com/canmenzo/secretsantapython"><img src="/assets/projects/secretsanta.svg" alt="Secret Santa project cover" width="960" height="540" loading="lazy" decoding="async"><h2>Secret Santa <span aria-hidden="true">↗</span></h2><p>Randomize and email Secret Santa assignments.</p><div class="project-meta"><span>Apps</span><span>GitHub</span></div></a></article>
+          <article class="project-card" data-category="apps"><a href="https://github.com/canmenzo/canmenzo.github.io"><img src="/assets/projects/portfolio.svg" alt="Canmenzo.com project cover" width="960" height="540" loading="lazy" decoding="async"><h2>Canmenzo.com <span aria-hidden="true">↗</span></h2><p>This site. Plain HTML, CSS, and JavaScript on GitHub Pages.</p><div class="project-meta"><span>Apps</span><span>Source</span></div></a></article>
+          <article class="project-card" data-category="security"><a href="https://github.com/canmenzo/pythonbruteforce"><img src="/assets/projects/pythonbruteforce.svg" alt="Python Brute Force project cover" width="960" height="540" loading="lazy" decoding="async"><h2>Python Brute Force <span aria-hidden="true">↗</span></h2><p>Penetration-testing practice and CTF tools.</p><div class="project-meta"><span>Security</span><span>Experiment</span></div></a></article>
+          <article class="project-card" data-category="automation"><a href="https://github.com/canmenzo/claude-turkish-voice"><img src="/assets/projects/turkish-voice.svg" alt="Turkish Voice project cover" width="960" height="540" loading="lazy" decoding="async"><h2>Turkish Voice <span aria-hidden="true">↗</span></h2><p>Local Whisper transcription for Claude Code. Superseded by Handy.</p><div class="project-meta"><span>AI &amp; automation</span><span>Archived</span></div></a></article>
         </div>
+        <p class="project-empty" id="project-empty" hidden>No projects match. Try another search or category.</p>
       </div>
-    </div>
+    </section>
+    <footer class="portfolio-footer"><span>Have a project in mind?</span><a href="mailto:hi@canmenzo.com?subject=Project%20inquiry">hi@canmenzo.com ↗</a></footer>
   </main>
-
+  <script src="/js/projects.js?v=1"></script>
 </body>
-
 </html>
