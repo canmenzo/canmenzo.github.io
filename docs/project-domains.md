@@ -48,7 +48,7 @@ Changes here do not redeploy the subdomains. After editing a project page, share
 for r in detkit ThreatIntelSearch logibar numbers; do gh workflow run pages.yml -R canmenzo/$r; done
 ```
 
-Cloudflare DNS has a DNS-only `CNAME <name> -> canmenzo.github.io` per subdomain; each repository's Pages custom domain selects the site, and Enforce HTTPS is on. Because those repositories are project sites of `canmenzo.github.io`, `canmenzo.com/numbers/` and `canmenzo.com/detkit/` redirect to their subdomains. The apex, `www`, mail and `matrix` records are unchanged.
+Cloudflare DNS has a `CNAME <name> -> canmenzo.github.io` per subdomain; each repository's Pages custom domain selects the site. Detkit, ThreatIntelSearch and Numbers are DNS-only with GitHub's certificate and Enforce HTTPS on. GitHub never issued Logibar's certificate, so its record is proxied and Cloudflare terminates HTTPS, like the apex. Because those repositories are project sites of `canmenzo.github.io`, `canmenzo.com/numbers/` and `canmenzo.com/detkit/` redirect to their subdomains. The apex, `www`, mail and `matrix` records are unchanged.
 
 ## Project images
 
