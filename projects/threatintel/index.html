@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ThreatIntelSearch | Can Ozmen</title>
+  <meta name="description" content="A browser extension for looking up IPs, domains, and file hashes across threat intelligence sources. Install it for Firefox or Chrome.">
+  <link rel="canonical" href="https://threatintel.canmenzo.com/">
+  <meta property="og:title" content="ThreatIntelSearch">
+  <meta property="og:description" content="Select an indicator. Right-click. Check its threat intelligence sources.">
+  <meta property="og:image" content="https://threatintel.canmenzo.com/assets/projects/threatintel-screenshot.png">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/styles.css?v=18">
+  <link rel="stylesheet" href="/css/project-page.css?v=1">
+</head>
+<body class="dark-mode project-detail">
+  <script src="/js/theme.js?v=2"></script>
+  <main class="project-shell" id="main-content" tabindex="-1">
+    <header class="project-nav">
+      <a href="https://canmenzo.com/projects/">← Projects</a>
+      <nav><a href="https://github.com/canmenzo/ThreatIntelSearch">GitHub ↗</a><button id="theme-toggle" type="button" aria-label="toggle theme"></button></nav>
+    </header>
+
+    <section class="project-hero">
+      <h1>ThreatIntelSearch</h1>
+      <p>Select an IP, domain, or file hash. Right-click to open its threat intelligence sources.</p>
+      <div class="project-actions">
+        <a class="button" href="https://addons.mozilla.org/en-US/firefox/addon/threat-intel-search/">Get for Firefox ↗</a>
+        <a class="button secondary" href="https://chromewebstore.google.com/detail/threat-intel-search/lmjmpdlnhndlndeiofcfimainondjbcg">Get for Chrome ↗</a>
+      </div>
+    </section>
+
+    <figure class="project-visual">
+      <img src="/assets/projects/threatintel-screenshot.png" alt="The Chrome extension's right-click menu offers IP Address, Domain, and Hash lookups for selected text." width="1280" height="800">
+      <figcaption>Chrome v1. Firefox v2 adds a lookup panel and optional scoring.</figcaption>
+    </figure>
+
+    <section class="project-section">
+      <h2>Use it</h2>
+      <ol class="steps">
+        <li>Install the extension from your browser's store.</li>
+        <li>Select an IP address, domain, or MD5, SHA1, or SHA256 hash on a web page.</li>
+        <li>Right-click and choose <strong>Threat Intel Search</strong>. In Chrome, choose <strong>I</strong>, <strong>D</strong>, or <strong>H</strong> to open the matching sources in tabs.</li>
+        <li>In Firefox v2, choose a source from the panel, or use <strong>Open all</strong>. Switch the indicator type if needed.</li>
+      </ol>
+      <p>Firefox v2 also cleans up URLs and defanged indicators such as <code>example[.]com</code>. Press <kbd>1</kbd>–<kbd>9</kbd> to open a source, <kbd>C</kbd> to copy, <kbd>D</kbd> to copy defanged, and <kbd>Esc</kbd> to close.</p>
+    </section>
+
+    <section class="project-section">
+      <h2>Sources in Firefox v2</h2>
+      <dl>
+        <dt>IP addresses</dt>
+        <dd>VirusTotal, AlienVault OTX, AbuseIPDB, MaxMind, GreyNoise, Shodan InternetDB, urlscan.io</dd>
+        <dt>Domains</dt>
+        <dd>VirusTotal, AlienVault OTX, AbuseIPDB, urlscan.io, SecurityTrails, Whois, crt.sh</dd>
+        <dt>File hashes</dt>
+        <dd>VirusTotal, AlienVault OTX, MalwareBazaar, Hybrid Analysis</dd>
+      </dl>
+    </section>
+
+    <section class="project-section">
+      <h2>Optional scoring</h2>
+      <p>In Firefox v2, open the panel's settings and add your VirusTotal, AbuseIPDB, or AlienVault OTX API keys. The panel shows a score, confidence, and each vendor's evidence. Without keys, source links still work. The score is a triage aid; check the underlying evidence.</p>
+    </section>
+
+    <section class="project-section">
+      <h2>Privacy</h2>
+      <p>No analytics or author-operated server. Source links send the selected indicator to the site you open. If you configure API keys, lookups go directly from your browser to those vendors. Keys and cached results stay in local extension storage.</p>
+      <a href="https://github.com/canmenzo/ThreatIntelSearch/blob/main/PRIVACY.md">Read the privacy policy ↗</a>
+    </section>
+
+    <footer class="project-footer">
+      <a href="https://canmenzo.com/">Can Ozmen</a>
+      <a href="https://github.com/canmenzo/ThreatIntelSearch/blob/main/LICENSE">MIT license ↗</a>
+    </footer>
+  </main>
+</body>
+</html>

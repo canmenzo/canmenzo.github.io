@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="800" viewBox="0 0 1280 800" role="img" aria-labelledby="title desc">
+  <title id="title">ThreatIntelSearch lookup flow</title>
+  <desc id="desc">An illustration of a selected indicator flowing through a right-click lookup to threat intelligence sources.</desc>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#6fcf6f" stroke-opacity=".06"/></pattern>
+    <linearGradient id="glow" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#233d2a"/><stop offset="1" stop-color="#111814"/></linearGradient>
+  </defs>
+  <rect width="1280" height="800" fill="#111513"/>
+  <rect width="1280" height="800" fill="url(#grid)"/>
+  <circle cx="1070" cy="180" r="240" fill="#6fcf6f" fill-opacity=".025"/>
+  <g font-family="Consolas, 'Courier New', monospace">
+    <text x="80" y="106" fill="#6fcf6f" font-size="21">THREATINTELSEARCH</text>
+    <text x="80" y="146" fill="#b6c3b9" font-size="16">LOOKUP FLOW · ILLUSTRATION</text>
+    <rect x="80" y="224" width="476" height="180" rx="12" fill="#181e1a" stroke="#34463a"/>
+    <path d="M80 268H556" stroke="#34463a"/>
+    <circle cx="106" cy="247" r="5" fill="#6fcf6f"/>
+    <circle cx="124" cy="247" r="5" fill="#68806f"/>
+    <circle cx="142" cy="247" r="5" fill="#34463a"/>
+    <text x="112" y="312" fill="#a7b6ab" font-size="16">Selected indicator</text>
+    <rect x="112" y="332" width="270" height="38" rx="4" fill="#2c5035"/>
+    <text x="124" y="359" fill="#d9f5dd" font-size="23">example[.]com</text>
+    <rect x="304" y="418" width="320" height="100" rx="10" fill="url(#glow)" stroke="#6fcf6f"/>
+    <path d="M330 447l11 25 4-10 11-2Z" fill="none" stroke="#8cdf8c" stroke-width="2" stroke-linejoin="round"/>
+    <text x="370" y="458" fill="#e7eee9" font-size="17">Right-click</text>
+    <text x="330" y="492" fill="#8cdf8c" font-size="16">Threat Intel Search →</text>
+    <path d="M648 463H691V296H733M691 463H733M691 463V629H733" fill="none" stroke="#6fcf6f" stroke-width="2"/>
+    <path d="M726 290l8 6-8 6M726 457l8 6-8 6M726 623l8 6-8 6" fill="none" stroke="#6fcf6f" stroke-width="2"/>
+    <g fill="#181e1a" stroke="#34463a"><rect x="756" y="247" width="444" height="98" rx="10"/><rect x="756" y="414" width="444" height="98" rx="10"/><rect x="756" y="580" width="444" height="98" rx="10"/></g>
+    <g fill="#6fcf6f" font-size="18"><text x="784" y="282">01</text><text x="784" y="449">02</text><text x="784" y="616">03</text></g>
+    <g fill="#e7eee9" font-size="22"><text x="840" y="284">VirusTotal</text><text x="840" y="451">AlienVault OTX</text><text x="840" y="618">More sources</text></g>
+    <g fill="#a7b6ab" font-size="15"><text x="840" y="314">Detection &amp; reputation</text><text x="840" y="481">Community intelligence</text><text x="840" y="648">Matched to the indicator</text></g>
+    <text x="80" y="721" fill="#a7b6ab" font-size="17">IP / DOMAIN / HASH</text>
+    <path d="M80 748H1200" stroke="#34463a"/>
+  </g>
+</svg>
