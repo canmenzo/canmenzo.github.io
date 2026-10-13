@@ -1,6 +1,6 @@
-# blogs
+# writings
 
-Static blog at https://canmenzo.com/blogs/ - no database, no build step.
+Static blog at https://canmenzo.com/writings/ - no database, no build step.
 
 - `posts/index.json` - list of notes (metadata only, sorted at render time)
 - `posts/<slug>.md` - the body of each note
@@ -13,10 +13,10 @@ dropped from `index.json` when empty:
 
 | field     | what it does                                                        |
 |-----------|---------------------------------------------------------------------|
-| `slug`    | the url (`/blogs/#/<slug>`) and the `.md` filename                   |
+| `slug`    | the url (`/writings/#/<slug>`) and the `.md` filename                   |
 | `summary` | the one-line summary under the title on the index                    |
 | `folder`  | groups the note in the sidebar and the index; `a/b` nests            |
-| `tags`    | clickable, filters the index at `/blogs/#tag/<tag>`                  |
+| `tags`    | clickable, filters the index at `/writings/#tag/<tag>`                  |
 | `pinned`  | floats the note to the top of its group                              |
 | `draft`   | hidden from the index, the sidebar and direct urls unless unlocked   |
 | `aliases` | old slugs kept alive after a rename; they redirect to the new one    |
@@ -32,7 +32,7 @@ token with write access to this repo:
 1. GitHub > Settings > Developer settings > Personal access tokens > Fine-grained tokens
 2. Repository access: only `canmenzo/canmenzo.github.io`
 3. Permissions > Repository permissions > Contents: **Read and write**
-4. Open /blogs/, click `unlock`, paste the token
+4. Open /writings/, click `unlock`, paste the token
 
 The token is kept in this browser's localStorage and sent only to api.github.com.
 Publishing commits `posts/<slug>.md` and `posts/index.json` straight to `master`;

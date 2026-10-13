@@ -7,7 +7,8 @@
   <meta name="description" content="menzo's personal site. security researcher &amp; ai builder." />
   <meta name="author" content="menzo" />
 
-  <link rel="stylesheet" href="css/styles.css?v=15">
+  <link rel="stylesheet" href="css/styles.css?v=25">
+  <link rel="stylesheet" href="css/projects.css?v=1">
   <link rel="preload" href="fonts/dm-mono-latin-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/dm-mono-latin-500.woff2" as="font" type="font/woff2" crossorigin>
 
@@ -106,8 +107,20 @@
 
 <body class="dark-mode">
   <script src="js/theme.js?v=2"></script>
-  <main class="container">
-    <h2 class="namebar"><span class="name" id="name" data-text="menzo">menzo</span><span class="caret" aria-hidden="true"></span></h2>
+  <a class="skip-link" href="#main-content">skip to content</a>
+  <header class="site-header">
+    <nav class="site-nav" aria-label="main navigation">
+      <div class="nav-links">
+        <a href="/" aria-current="page">home</a>
+        <a href="/projects/">projects</a>
+        <a href="/writings/">writings</a>
+      </div>
+      <button id="theme-toggle" type="button" aria-label="toggle theme"></button>
+    </nav>
+  </header>
+  <script src="/js/nav.js?v=4"></script>
+  <main class="container" id="main-content" tabindex="-1">
+    <h1 class="namebar"><span class="name" id="name" data-text="menzo">menzo</span><span class="caret" aria-hidden="true"></span></h1>
     <p class="tagline">security researcher &amp; ai builder</p>
 
     <div style="text-align: left">
@@ -134,22 +147,21 @@
           <span class="category-label">// ama</span>
 
           <div class="row"><span class="idx">[0000]</span><a href="/projects/">projects</a></div>
-          <div class="row"><span class="idx">[0001]</span><a href="/blogs/">blogs</a></div>
-          <div class="row"><span class="idx">[0010]</span><a href="/whatido/">what do i do?</a></div>
-          <div class="row"><span class="idx">[0011]</span><a href="/toldya/">don't click this one</a></div>
-          <div class="row"><span class="idx">[0100]</span><a href="/chipotle/">chipotle</a></div>
-          <div class="row"><span class="idx">[0101]</span><a href="https://letterboxd.com/menzo">movies</a></div>
-          <div class="row"><span class="idx">[0110]</span><a href="https://www.serializd.com/user/canmenzo">tv shows</a></div>
+          <div class="row"><span class="idx">[0001]</span><a href="/whatido/">what do i do?</a></div>
+          <div class="row"><span class="idx">[0010]</span><a href="/toldya/">don't click this one</a></div>
+          <div class="row"><span class="idx">[0011]</span><a href="/chipotle/">chipotle</a></div>
+          <div class="row"><span class="idx">[0100]</span><a href="https://letterboxd.com/menzo">movies</a></div>
+          <div class="row"><span class="idx">[0101]</span><a href="https://www.serializd.com/user/canmenzo">tv shows</a></div>
         </div>
 
-        <div class="category">
-          <span class="category-label">// find me</span>
+        <div class="category" id="contact" tabindex="-1">
+          <span class="category-label">// contact</span>
 
           <div class="pairs">
             <div class="row"><span class="idx">[1000]</span><a href="https://github.com/canmenzo">github</a></div>
             <div class="row"><span class="idx">[1001]</span><a href="https://x.com/canmenzo">𝕏</a></div>
             <div class="row"><span class="idx">[1010]</span><a href="https://www.linkedin.com/in/canmenzo/">linkedin</a></div>
-            <div class="row"><span class="idx">[1011]</span><a id="mail" href="https://www.linkedin.com/in/canmenzo/" data-u="hi" data-d="canmenzo.com">email</a></div>
+            <div class="row"><span class="idx">[1011]</span><a id="mail" href="mailto:hi@canmenzo.com?Subject=million%20dollar%20app%20idea!">hi@canmenzo.com</a></div>
           </div>
         </div>
 
@@ -157,15 +169,7 @@
     </div>
   </main>
 
-  <script>
-    // assembled at runtime: the plain address never appears in the page source
-    var mail = document.getElementById("mail");
-    var addr = mail.dataset.u + "@" + mail.dataset.d;
-    mail.href = "mailto:" + addr + "?Subject=million dollar app idea!";
-    mail.textContent = addr;
-  </script>
   <script src="js/name.js?v=2"></script>
-  <script src="js/title.js"></script>
 </body>
 
 </html>

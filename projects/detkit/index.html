@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Detkit | menzo</title>
+  <meta name="description" content="Sigma detections tested against attack telemetry. Reproduce the tests, inspect the coverage, and compile rules to SPL and KQL.">
+  <link rel="canonical" href="https://detkit.canmenzo.com/">
+  <link rel="icon" href="/favicon.ico?v=2">
+  <link rel="stylesheet" href="/css/styles.css?v=25">
+  <link rel="stylesheet" href="/css/project-page.css?v=7">
+  <link rel="preload" href="/fonts/dm-mono-latin-400.woff2" as="font" type="font/woff2" crossorigin>
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Detkit">
+  <meta property="og:description" content="Sigma detections tested against attack telemetry.">
+  <meta property="og:url" content="https://detkit.canmenzo.com/">
+  <meta property="og:image" content="https://detkit.canmenzo.com/assets/projects/detkit-dashboard.png">
+  <meta name="twitter:card" content="summary_large_image">
+</head>
+<body class="dark-mode project-detail">
+  <script src="/js/theme.js?v=2"></script>
+  <a class="skip-link" href="#main-content">skip to content</a>
+  <header class="site-header">
+    <nav class="site-nav" aria-label="main navigation">
+      <div class="nav-links">
+        <a href="/">home</a>
+        <a href="/projects/">projects</a>
+        <a href="/writings/">writings</a>
+      </div>
+      <button id="theme-toggle" type="button" aria-label="toggle theme"></button>
+    </nav>
+  </header>
+  <script src="/js/nav.js?v=4"></script>
+  <main class="project-shell" id="main-content" tabindex="-1">
+    <section class="project-hero">
+      <h1>Detkit</h1>
+      <p>Sigma rules tested against attack telemetry, with precision, recall, and false-positive rates you can reproduce.</p>
+      <div class="project-actions">
+        <a class="button" href="/projects/detkit/dashboard/">Open the dashboard &nearr;</a>
+        <a class="button secondary" href="#run">Run the tests</a>
+        <a class="project-source" href="https://github.com/canmenzo/detkit" aria-label="View Detkit on GitHub"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 .8a11.2 11.2 0 0 0-3.54 21.83c.56.1.77-.24.77-.54v-2.1c-3.13.68-3.79-1.33-3.79-1.33-.51-1.3-1.25-1.65-1.25-1.65-1.02-.7.08-.69.08-.69 1.13.08 1.72 1.16 1.72 1.16 1 1.72 2.63 1.22 3.27.93.1-.73.39-1.22.71-1.5-2.5-.28-5.13-1.25-5.13-5.57 0-1.23.44-2.24 1.16-3.03-.12-.28-.5-1.43.11-2.98 0 0 .94-.3 3.08 1.15a10.7 10.7 0 0 1 5.62 0c2.14-1.45 3.08-1.15 3.08-1.15.61 1.55.23 2.7.11 2.98.72.79 1.16 1.8 1.16 3.03 0 4.33-2.64 5.28-5.15 5.56.4.35.76 1.03.76 2.08v3.1c0 .3.2.65.78.54A11.2 11.2 0 0 0 12 .8Z"/></svg></a>
+      </div>
+    </section>
+    <figure class="project-visual">
+      <img src="/assets/projects/detkit-dashboard.png" width="1440" height="1080" alt="Detkit's generated dashboard showing detection rules, evidence, and measured test results.">
+      <figcaption>The generated project dashboard. <a href="https://github.com/canmenzo/detkit/tree/main/site">View its source.</a></figcaption>
+    </figure>
+    <section class="project-section">
+      <h2>What gets checked</h2>
+      <ul>
+        <li><strong>Detection logic.</strong> A SQL evaluator runs rules against labelled attack events and benign look-alikes.</li>
+        <li><strong>Real telemetry.</strong> Hayabusa checks the Windows rules against pinned public EVTX captures.</li>
+        <li><strong>Quality gates.</strong> Each rule declares its minimum scores. A regression or unexplained lowered bar fails CI.</li>
+        <li><strong>Deployable queries.</strong> Rules compile to source-bound Splunk SPL, Microsoft XDR KQL, and Azure Monitor KQL where supported.</li>
+      </ul>
+    </section>
+    <section class="project-section" id="run">
+      <h2>Run it</h2>
+      <ol class="steps">
+        <li>Install <a href="https://docs.astral.sh/uv/getting-started/installation/">uv</a>, then clone the repository.</li>
+        <li>Install the development dependencies and run the same sequence as CI.</li>
+      </ol>
+      <pre><code>git clone https://github.com/canmenzo/detkit.git
+cd detkit
+uv sync --all-extras
+uv run detkit ci</code></pre>
+      <p>To inspect individual stages:</p>
+      <pre><code>uv run detkit eval
+uv run detkit convert
+uv run detkit dashboard</code></pre>
+      <p><code>detkit ci</code> downloads the pinned Hayabusa release and verifies its recorded SHA-256.</p>
+    </section>
+    <section class="project-section">
+      <h2>Coverage</h2>
+      <figure class="project-visual">
+        <img src="/assets/projects/detkit-coverage.png" alt="The project's MITRE ATT&CK coverage chart. Green marks authored rules; blue marks the separately attributed SigmaHQ corpus." loading="lazy">
+        <figcaption>Green is authored work. Blue is the separately attributed SigmaHQ corpus.</figcaption>
+      </figure>
+    </section>
+    <section class="project-section">
+      <h2>What the tests don't prove</h2>
+      <p>The benign cases are authored, so these scores do not predict alert volume in production. Entra ID rules use measured logic and schema validation, without replay against captured tenant telemetry. The repository documents these evidence limits alongside the results.</p>
+      <p><a href="/projects/detkit/dashboard/about.html">Read the method &nearr;</a> &middot; <a href="https://github.com/canmenzo/detkit/tree/main/docs/adr">Architecture decisions &nearr;</a></p>
+    </section>
+    <footer class="project-footer">
+      <span class="footer-credit">Built by <a href="https://canmenzo.com/">menzo</a>.</span>
+      <span class="footer-note"><a href="https://github.com/canmenzo/detkit/blob/main/NOTICE">Licenses and attribution</a></span>
+      <nav class="social-links" aria-label="Social links">
+        <a href="https://x.com/canmenzo" aria-label="X profile"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M18.9 2H22l-6.8 7.8L23.2 22h-6.3L12 14.6 5.5 22H2.4l8.2-9.4L.8 2h6.5l4.4 6.7L18.9 2Zm-1.1 18h1.7L6.3 3.9H4.5L17.8 20Z"/></svg></a>
+        <a href="https://github.com/canmenzo" aria-label="GitHub profile"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 .8a11.2 11.2 0 0 0-3.54 21.83c.56.1.77-.24.77-.54v-2.1c-3.13.68-3.79-1.33-3.79-1.33-.51-1.3-1.25-1.65-1.25-1.65-1.02-.7.08-.69.08-.69 1.13.08 1.72 1.16 1.72 1.16 1 1.72 2.63 1.22 3.27.93.1-.73.39-1.22.71-1.5-2.5-.28-5.13-1.25-5.13-5.57 0-1.23.44-2.24 1.16-3.03-.12-.28-.5-1.43.11-2.98 0 0 .94-.3 3.08 1.15a10.7 10.7 0 0 1 5.62 0c2.14-1.45 3.08-1.15 3.08-1.15.61 1.55.23 2.7.11 2.98.72.79 1.16 1.8 1.16 3.03 0 4.33-2.64 5.28-5.15 5.56.4.35.76 1.03.76 2.08v3.1c0 .3.2.65.78.54A11.2 11.2 0 0 0 12 .8Z"/></svg></a>
+        <a href="https://www.linkedin.com/in/canmenzo/" aria-label="LinkedIn profile"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="1" y="1" width="22" height="22" rx="2" fill="currentColor"/><circle cx="6" cy="6" r="1.5" fill="var(--bg)"/><path fill="var(--bg)" d="M4.5 9h3v11h-3zm5.5 0h3v1.5c.7-1.2 1.8-1.8 3.2-1.8 3 0 3.8 1.9 3.8 4.8V20h-3v-6c0-1.7-.3-2.7-1.8-2.7-1.6 0-2.2 1.1-2.2 2.7v6h-3Z"/></svg></a>
+        <a href="mailto:hi@canmenzo.com" aria-label="Email hi@canmenzo.com"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" fill-rule="evenodd" d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Zm0 2 9 6 9-6V6l-9 6-9-6v1Z"/></svg></a>
+      </nav>
+    </footer>
+  </main>
+</body>
+</html>
