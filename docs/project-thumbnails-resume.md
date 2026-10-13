@@ -1,4 +1,17 @@
-# Project thumbnails ? resume tomorrow
+# Project thumbnails - completed 2026-10-13
+
+All 21 parent project cards now use final 1536 x 864 WebP covers in
+`assets/projects/thumbnails/`. Nine remaining images were generated with the
+approved built-in generator. Eleven real-source covers preserve the original
+UI/photo content through recorded crops and source overlays. Original assets
+and generated PNG layers remain available.
+
+`docs/project-thumbnail-prompts.json` records the exact prompts, generation
+paths, final assets, insets, and source crop coordinates. Rebuild the final
+WebP covers with `python scripts/build-project-thumbnails.py` (Pillow required).
+Real Estate AI Ops remains nested under Project X.
+
+The notes below record the earlier paused state and are historical.
 
 Workspace: C:\Users\mehme\orca\workspaces\canmenzo.github.io\sealion
 Branch at save: canmenzo/project-showcase
