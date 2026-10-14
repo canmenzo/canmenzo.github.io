@@ -24,8 +24,7 @@
 .project-card a:hover img { border-color: var(--accent); transform: translateY(-2px); }
 .project-card h2, .project-card h3 { font-size: 15px; font-weight: 500; margin: 14px 0 8px; display: flex; justify-content: space-between; gap: 8px; }
 .project-card h2 span, .project-card h3 span { color: var(--muted); font-weight: 400; }
-.project-card p { margin: 0 0 12px; font-size: 12px; color: var(--soft); line-height: 1.75; }
-.project-meta { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 6px 16px; font-size: 10px; color: var(--muted); }
+.project-card p { margin: 0; font-size: 12px; color: var(--soft); line-height: 1.75; }
 .project-empty { color: var(--soft); font-size: 13px; padding: 30px 0; }
 .featured-work { margin: 30px 0; }
 .featured-heading { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin-bottom: 18px; }
