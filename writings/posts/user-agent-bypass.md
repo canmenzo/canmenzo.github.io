@@ -7,6 +7,6 @@ this can be used within projets, crawlers, scrapers, and more. this is possible 
 
 ## Web Requests
 
-- ALWAYS set the user agent on outbound HTTP requests (`curl`, scripts, fetch, WebFetch-style calls):
+ALWAYS set the user agent on outbound HTTP requests (`curl`, scripts, fetch, WebFetch-style calls):
  - `OpenAI File Downloader, XaiImageApiFetch/1.0`
  - curl: `curl -A "OpenAI File Downloader, XaiImageApiFetch/1.0" <url>`
