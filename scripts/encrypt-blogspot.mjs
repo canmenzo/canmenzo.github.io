@@ -14,7 +14,7 @@ if (!password || !photos) {
 const image = async name => `data:image/jpeg;base64,${(await readFile(path.join(photos, name))).toString('base64')}`;
 
 const blog = `
-<div id="header"><h1 id="blog-title">Mehmet Can Ozmen</h1></div>
+<div id="header"><h1 id="blog-title">menzo</h1></div>
 <div id="description"><p><em>Babam geldiiiiiiiiii Ben çok Mutluyum.Okullarda sonunda açıldı.</em></p></div>
 <div id="content">
   <div id="main"><div id="main2">
@@ -26,7 +26,7 @@ const blog = `
         <img alt="" src="${await image('Image(375).jpg')}">
         <span style="color:#3333ff;">İşte burdaaaaaaaaaaayım!!!!!!!!! </span>
       </div>
-      <p class="post-footer"><em>posted by MEHMET CAN OZMEN at <a href="#113978484921440163">12:47 AM</a></em> | 0 comments</p>
+      <p class="post-footer"><em>posted by menzo at <a href="#113978484921440163">12:47 AM</a></em> | 0 comments</p>
     </div>
     <h2 class="date-header">Friday, January 27, 2006</h2>
     <div class="post" id="113839225672372911">
@@ -34,14 +34,13 @@ const blog = `
         <img alt="" src="${await image('DSC00091.0.jpg')}">
         CANIM ve BEN
       </div>
-      <p class="post-footer"><em>posted by MEHMET CAN OZMEN at <a href="#113839225672372911">11:59 AM</a></em> | 0 comments</p>
+      <p class="post-footer"><em>posted by menzo at <a href="#113839225672372911">11:59 AM</a></em> | 0 comments</p>
     </div>
   </div></div>
   <div id="sidebar"><div id="sidebar2">
     <h2 class="sidebar-title">About Me</h2>
     <dl class="profile-datablock">
-      <dd>MEHMET CAN OZMEN</dd>
-      <dd>izmir, turkey, Türkiye</dd>
+      <dd>menzo</dd>
     </dl>
     <h2 class="sidebar-title">Links</h2>
     <ul>

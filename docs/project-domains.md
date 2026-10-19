@@ -68,4 +68,4 @@ Jarvis uses the Iron Man helmet image supplied by the owner, optimized as WebP f
 BLOGSPOT_PASSWORD='...' node scripts/encrypt-blogspot.mjs <folder with Image(374).jpg, Image(375).jpg, DSC00091.0.jpg>
 ```
 
-It is the Pages site of `canmenzo/blogspot`, whose manual `pages.yml` publishes `blogspot/index.html` and `favicon.ico` from this repository, with custom domain `blogspot.menzo.dev` and a DNS-only `CNAME blogspot -> canmenzo.github.io` on menzo.dev. After changing the page, run `gh workflow run pages.yml -R canmenzo/blogspot`. Like the other project sites, `/blogspot/` on the main domain redirects to the subdomain.
+It is the Pages site of `canmenzo/blogspot`, whose manual `pages.yml` publishes `blogspot/index.html` and `favicon.ico` from this repository, with custom domain `blogspot.menzo.dev` and a proxied `CNAME blogspot -> canmenzo.github.io` on menzo.dev. After changing the page, run `gh workflow run pages.yml -R canmenzo/blogspot`. Like the other project sites, `/blogspot/` on the main domain redirects to the subdomain.
