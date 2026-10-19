@@ -59,3 +59,13 @@ The site moved from canmenzo.com on 2026-10-19. A single redirect rule on the ca
 Martek Marble, Moviepickr, Cheff.fit, the numbers solver, and menzo.dev use screenshots of their actual pages. Detkit uses its dashboard and coverage chart; ThreatIntelSearch, Logibar, Handy, and JobScope use screenshots from their public repositories. The remaining tools and private projects use text cards, without generated logos or simulated interfaces.
 
 Jarvis uses the Iron Man helmet image supplied by the owner, optimized as WebP for the project card.
+
+## blogspot.menzo.dev
+
+`blogspot/` is the 2006 Blogger page: a password box that unlocks the old blog. Posts and photos are AES-256-GCM ciphertext (PBKDF2-SHA256, 600k iterations) inside `blogspot/index.html`; the photos are never committed in plaintext. The live page needs nothing else. To change the password, re-run the script against a private copy of the three original photos:
+
+```sh
+BLOGSPOT_PASSWORD='...' node scripts/encrypt-blogspot.mjs <folder with Image(374).jpg, Image(375).jpg, DSC00091.0.jpg>
+```
+
+It is the Pages site of `canmenzo/blogspot`, whose manual `pages.yml` publishes `blogspot/index.html` and `favicon.ico` from this repository, with custom domain `blogspot.menzo.dev` and a proxied `CNAME blogspot -> canmenzo.github.io` on menzo.dev. After changing the page, run `gh workflow run pages.yml -R canmenzo/blogspot`. Like the other project sites, `/blogspot/` on the main domain redirects to the subdomain.
