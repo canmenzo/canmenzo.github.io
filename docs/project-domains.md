@@ -55,3 +55,13 @@ Cloudflare DNS has a `CNAME <name> -> canmenzo.github.io` per subdomain; each re
 Martek Marble, Moviepickr, Cheff.fit, the numbers solver, and Canmenzo.com use screenshots of their actual pages. Detkit uses its dashboard and coverage chart; ThreatIntelSearch, Logibar, Handy, and JobScope use screenshots from their public repositories. The remaining tools and private projects use text cards, without generated logos or simulated interfaces.
 
 Jarvis uses the Iron Man helmet image supplied by the owner, optimized as WebP for the project card.
+
+## blogspot.menzo.dev
+
+`/blogspot/` is the 2006 Blogger page, kept as an unlinked easter egg and left out of the sitemap. The posts and photos are AES-256-GCM ciphertext (PBKDF2-SHA256, 600k iterations) inside `blogspot/index.html`; the photos themselves are never committed. To change the password or rebuild:
+
+```sh
+BLOGSPOT_PASSWORD='...' node scripts/encrypt-blogspot.mjs <folder with Image(374).jpg, Image(375).jpg, DSC00091.0.jpg>
+```
+
+The page is self-contained. Once menzo.dev is on Cloudflare, host it the same way as the project subdomains: a `canmenzo/blogspot` repository whose `pages.yml` checks out this repository and publishes `blogspot/`, its Pages custom domain set to `blogspot.menzo.dev`, and a DNS-only `CNAME blogspot -> canmenzo.github.io`. Until then it is live at `canmenzo.com/blogspot/`.
