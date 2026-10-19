@@ -1,6 +1,6 @@
 # Project domains
 
-The project cards target `detkit.canmenzo.com`, `threatintel.canmenzo.com`, `logibar.canmenzo.com`, and `numbers.canmenzo.com`. On localhost, the gallery uses the matching `/projects/<name>/` pages for review. The numbers solver uses `/numbers/` in local preview.
+The project cards target `detkit.menzo.dev`, `threatintel.menzo.dev`, `logibar.menzo.dev`, and `numbers.menzo.dev`. On localhost, the gallery uses the matching `/projects/<name>/` pages for review. The numbers solver uses `/numbers/` in local preview.
 
 Build all four standalone sites:
 
@@ -10,10 +10,10 @@ node scripts/build-project-sites.mjs
 
 | Domain | Output directory |
 | --- | --- |
-| detkit.canmenzo.com | dist-projects/detkit |
-| threatintel.canmenzo.com | dist-projects/threatintel |
-| logibar.canmenzo.com | dist-projects/logibar |
-| numbers.canmenzo.com | dist-projects/numbers |
+| detkit.menzo.dev | dist-projects/detkit |
+| threatintel.menzo.dev | dist-projects/threatintel |
+| logibar.menzo.dev | dist-projects/logibar |
+| numbers.menzo.dev | dist-projects/numbers |
 
 Each output includes its own HTML, CSS, fonts, images, theme toggle, shared navigation, and sitemap. Navigation links point back to the main portfolio.
 
@@ -37,10 +37,10 @@ Each subdomain is the GitHub Pages site of its own repository, deployed by that 
 
 | Domain | Repository | Workflow trigger |
 | --- | --- | --- |
-| detkit.canmenzo.com | canmenzo/detkit | push to `main`, manual |
-| threatintel.canmenzo.com | canmenzo/ThreatIntelSearch | manual |
-| logibar.canmenzo.com | canmenzo/logibar | manual |
-| numbers.canmenzo.com | canmenzo/numbers | manual |
+| detkit.menzo.dev | canmenzo/detkit | push to `main`, manual |
+| threatintel.menzo.dev | canmenzo/ThreatIntelSearch | manual |
+| logibar.menzo.dev | canmenzo/logibar | manual |
+| numbers.menzo.dev | canmenzo/numbers | manual |
 
 Changes here do not redeploy the subdomains. After editing a project page, shared CSS, fonts, or the build script, run:
 
@@ -48,11 +48,15 @@ Changes here do not redeploy the subdomains. After editing a project page, share
 for r in detkit ThreatIntelSearch logibar numbers; do gh workflow run pages.yml -R canmenzo/$r; done
 ```
 
-Cloudflare DNS has a `CNAME <name> -> canmenzo.github.io` per subdomain; each repository's Pages custom domain selects the site. Detkit, ThreatIntelSearch and Numbers are DNS-only with GitHub's certificate and Enforce HTTPS on. GitHub never issued Logibar's certificate, so its record is proxied and Cloudflare terminates HTTPS, like the apex. Because those repositories are project sites of `canmenzo.github.io`, `canmenzo.com/numbers/` and `canmenzo.com/detkit/` redirect to their subdomains. The apex, `www`, mail and `matrix` records are unchanged.
+Cloudflare DNS has a proxied `CNAME <name> -> canmenzo.github.io` per subdomain; each repository's Pages custom domain selects the site. Every record, apex included, is proxied and Cloudflare terminates HTTPS (SSL mode Full), because `.dev` is HSTS-preloaded and a site whose GitHub certificate is late does not load at all. Because those repositories are project sites of `canmenzo.github.io`, `menzo.dev/numbers/` and `menzo.dev/detkit/` redirect to their subdomains.
+
+## Old domain
+
+The site moved from canmenzo.com on 2026-10-19. A single redirect rule on the canmenzo.com zone sends `canmenzo.com`, `www` and every subdomain to the same host and path on menzo.dev with a 301. canmenzo.com expires 2026-11-15 and is not renewed, so the redirect stops then.
 
 ## Project images
 
-Martek Marble, Moviepickr, Cheff.fit, the numbers solver, and Canmenzo.com use screenshots of their actual pages. Detkit uses its dashboard and coverage chart; ThreatIntelSearch, Logibar, Handy, and JobScope use screenshots from their public repositories. The remaining tools and private projects use text cards, without generated logos or simulated interfaces.
+Martek Marble, Moviepickr, Cheff.fit, the numbers solver, and menzo.dev use screenshots of their actual pages. Detkit uses its dashboard and coverage chart; ThreatIntelSearch, Logibar, Handy, and JobScope use screenshots from their public repositories. The remaining tools and private projects use text cards, without generated logos or simulated interfaces.
 
 Jarvis uses the Iron Man helmet image supplied by the owner, optimized as WebP for the project card.
 
@@ -64,4 +68,4 @@ Jarvis uses the Iron Man helmet image supplied by the owner, optimized as WebP f
 BLOGSPOT_PASSWORD='...' node scripts/encrypt-blogspot.mjs <folder with Image(374).jpg, Image(375).jpg, DSC00091.0.jpg>
 ```
 
-The page is self-contained. Once menzo.dev is on Cloudflare, host it the same way as the project subdomains: a `canmenzo/blogspot` repository whose `pages.yml` checks out this repository and publishes `blogspot/`, its Pages custom domain set to `blogspot.menzo.dev`, and a DNS-only `CNAME blogspot -> canmenzo.github.io`. Until then it is live at `canmenzo.com/blogspot/`.
+The page is self-contained. To give it its own subdomain, host it the same way as the project subdomains: a `canmenzo/blogspot` repository whose `pages.yml` checks out this repository and publishes `blogspot/`, its Pages custom domain set to `blogspot.menzo.dev`, and a proxied `CNAME blogspot -> canmenzo.github.io`. Until then it is live at `menzo.dev/blogspot/`.
