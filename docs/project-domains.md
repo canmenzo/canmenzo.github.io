@@ -62,10 +62,10 @@ Jarvis uses the Iron Man helmet image supplied by the owner, optimized as WebP f
 
 ## blogspot.menzo.dev
 
-`/blogspot/` is the 2006 Blogger page, kept as an unlinked easter egg and left out of the sitemap. The posts and photos are AES-256-GCM ciphertext (PBKDF2-SHA256, 600k iterations) inside `blogspot/index.html`; the photos themselves are never committed. To change the password or rebuild:
+`blogspot/` is the 2006 Blogger page: a password box that unlocks the old blog. Posts and photos are AES-256-GCM ciphertext (PBKDF2-SHA256, 600k iterations) inside `blogspot/index.html`; the photos are never committed in plaintext. The live page needs nothing else. To change the password, re-run the script against a private copy of the three original photos:
 
 ```sh
 BLOGSPOT_PASSWORD='...' node scripts/encrypt-blogspot.mjs <folder with Image(374).jpg, Image(375).jpg, DSC00091.0.jpg>
 ```
 
-The page is self-contained. To give it its own subdomain, host it the same way as the project subdomains: a `canmenzo/blogspot` repository whose `pages.yml` checks out this repository and publishes `blogspot/`, its Pages custom domain set to `blogspot.menzo.dev`, and a proxied `CNAME blogspot -> canmenzo.github.io`. Until then it is live at `menzo.dev/blogspot/`.
+It is the Pages site of `canmenzo/blogspot`, whose manual `pages.yml` publishes `blogspot/index.html` and `favicon.ico` from this repository, with custom domain `blogspot.menzo.dev` and a DNS-only `CNAME blogspot -> canmenzo.github.io` on menzo.dev. After changing the page, run `gh workflow run pages.yml -R canmenzo/blogspot`. Like the other project sites, `/blogspot/` on the main domain redirects to the subdomain.
