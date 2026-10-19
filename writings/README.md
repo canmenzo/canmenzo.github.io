@@ -1,6 +1,6 @@
 # writings
 
-Static blog at https://canmenzo.com/writings/ - no database, no build step.
+Static blog at https://menzo.dev/writings/ - no database, no build step.
 
 - `posts/index.json` - list of notes (metadata only, sorted at render time)
 - `posts/<slug>.md` - the body of each note

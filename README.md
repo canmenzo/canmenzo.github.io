@@ -1,4 +1,4 @@
-# canmenzo.github.io | canmenzo.com
+# canmenzo.github.io | menzo.dev
 
 - HTML supremacy with a touch of css, js, & love.
 - MIT licensed.
