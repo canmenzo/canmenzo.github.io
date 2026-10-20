@@ -22,8 +22,9 @@ for (const name of ['threatintel', 'detkit', 'logibar', 'numbers']) {
   await cp(path.join(root, 'js', 'nav.js'), path.join(target, 'js', 'nav.js'));
   await cp(path.join(root, 'favicon.ico'), path.join(target, 'favicon.ico'));
   await mkdir(path.join(target, 'assets', 'projects'), { recursive: true });
-  const images = [...new Set([...html.matchAll(/src="\/assets\/projects\/([^"]+)"/g)].map(match => match[1]))];
+  const images = [...new Set([...html.matchAll(/\/assets\/projects\/([^"?#]+)/g)].map(match => match[1]))];
   for (const image of images) {
+    await mkdir(path.dirname(path.join(target, 'assets', 'projects', image)), { recursive: true });
     await cp(path.join(root, 'assets', 'projects', image), path.join(target, 'assets', 'projects', image));
   }
   if (name === 'detkit') {
