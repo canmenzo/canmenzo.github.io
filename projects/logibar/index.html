@@ -8,7 +8,7 @@
   <link rel="canonical" href="https://logibar.menzo.dev/">
   <link rel="icon" href="/favicon.ico?v=2">
   <link rel="stylesheet" href="/css/styles.css?v=25">
-  <link rel="stylesheet" href="/css/project-page.css?v=7">
+  <link rel="stylesheet" href="/css/project-page.css?v=9">
   <link rel="preload" href="/fonts/dm-mono-latin-400.woff2" as="font" type="font/woff2" crossorigin>
   <title>Logibar | menzo</title>
   <meta property="og:type" content="website">
@@ -34,29 +34,35 @@
   </header>
   <script src="/js/nav.js?v=4"></script>
   <main class="project-shell" id="main-content" tabindex="-1">
-
+    <a class="project-back" href="/projects/">&larr; All projects</a>
     <section class="project-hero">
+      <p class="project-context">Desktop utility &middot; Windows / Logitech G HUB</p>
       <h1>Logibar</h1>
       <p>Your Logitech battery levels, in the Windows tray.</p>
       <div class="project-actions">
         <a class="button" href="https://github.com/canmenzo/logibar/releases/latest/download/logibar.exe">Download for Windows &darr;</a>
-        <a class="button secondary" href="#install">Install</a>
-        <a class="project-source" href="https://github.com/canmenzo/logibar" aria-label="View Logibar on GitHub"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 .8a11.2 11.2 0 0 0-3.54 21.83c.56.1.77-.24.77-.54v-2.1c-3.13.68-3.79-1.33-3.79-1.33-.51-1.3-1.25-1.65-1.25-1.65-1.02-.7.08-.69.08-.69 1.13.08 1.72 1.16 1.72 1.16 1 1.72 2.63 1.22 3.27.93.1-.73.39-1.22.71-1.5-2.5-.28-5.13-1.25-5.13-5.57 0-1.23.44-2.24 1.16-3.03-.12-.28-.5-1.43.11-2.98 0 0 .94-.3 3.08 1.15a10.7 10.7 0 0 1 5.62 0c2.14-1.45 3.08-1.15 3.08-1.15.61 1.55.23 2.7.11 2.98.72.79 1.16 1.8 1.16 3.03 0 4.33-2.64 5.28-5.15 5.56.4.35.76 1.03.76 2.08v3.1c0 .3.2.65.78.54A11.2 11.2 0 0 0 12 .8Z"/></svg></a>
+        <a class="button secondary" href="#install">Installation steps</a>
+        <a class="project-source" href="https://github.com/canmenzo/logibar" aria-label="View Logibar on GitHub"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 .8a11.2 11.2 0 0 0-3.54 21.83c.56.1.77-.24.77-.54v-2.1c-3.13.68-3.79-1.33-3.79-1.33-.51-1.3-1.25-1.65-1.25-1.65-1.02-.7.08-.69.08-.69 1.13.08 1.72 1.16 1.72 1.16 1 1.72 2.63 1.22 3.27.93.1-.73.39-1.22.71-1.5-2.5-.28-5.13-1.25-5.13-5.57 0-1.23.44-2.24 1.16-3.03-.12-.28-.5-1.43.11-2.98 0 0 .94-.3 3.08 1.15a10.7 10.7 0 0 1 5.62 0c2.14-1.45 3.08-1.15 3.08-1.15.61 1.55.23 2.7.11 2.98.72.79 1.16 1.8 1.16 3.03 0 4.33-2.64 5.28-5.15 5.56.4.35.76 1.03.76 2.08v3.1c0 .3.2.65.78.54A11.2 11.2 0 0 0 12 .8Z"/></svg><span>GitHub source</span></a>
       </div>
     </section>
 
+    <nav class="project-section-nav" aria-label="On this page">
+      <a href="#features">At a glance</a>
+      <a href="#install">Installation</a>
+      <a href="#support">Device support</a>
+    </nav>
     <figure class="project-visual">
-      <img src="/assets/projects/logibar.png" width="1600" height="760" alt="Logibar release preview: mouse, headset and keyboard battery readings, with tray icons and a Start with Windows option.">
-      <figcaption>Release preview from <a href="https://github.com/canmenzo/logibar">the project repository</a>.</figcaption>
+      <a href="/assets/projects/logibar.webp" aria-label="View Logibar release preview at full size"><img src="/assets/projects/logibar.webp" width="1600" height="760" alt="Logibar release preview: mouse, headset and keyboard battery readings, with tray icons and a Start with Windows option." fetchpriority="high"></a>
+      <figcaption><span>Release preview from <a href="https://github.com/canmenzo/logibar">the project repository</a>.</span><a href="/assets/projects/logibar.webp">View full size &nearr;</a></figcaption>
     </figure>
 
-    <section class="project-section">
+    <section class="project-section" id="features">
       <h2>At a glance</h2>
-      <ul>
-        <li>Mouse, headset and keyboard icons with a battery bar.</li>
-        <li>Yellow at 30%; red and a charge alert at 15%.</li>
-        <li>Light and dark taskbar support.</li>
-        <li>Reads G HUB locally. No account or network connection.</li>
+      <ul class="feature-grid">
+        <li><strong>Battery at a glance.</strong> Mouse, headset and keyboard icons with a battery bar.</li>
+        <li><strong>Low battery warnings.</strong> Yellow at 30%; red and a charge alert at 15%.</li>
+        <li><strong>Fits your taskbar.</strong> Light and dark taskbar support.</li>
+        <li><strong>Local readings.</strong> Reads G HUB locally. No account or network connection.</li>
       </ul>
     </section>
 
@@ -70,7 +76,7 @@
       <p>If the icons are hidden, open the tray overflow and drag them onto the taskbar. Right-click an icon and select <strong>Start with Windows</strong> to launch it at sign-in.</p>
     </section>
 
-    <section class="project-section">
+    <section class="project-section" id="support">
       <h2>Device support</h2>
       <p>Works with mouse, headset and keyboard battery readings saved by G HUB. Shows the newest reading for each category; tooltips flag readings older than an hour.</p>
       <p><a href="https://github.com/canmenzo/logibar#-build-from-source">Build from source</a> &middot; <a href="https://github.com/canmenzo/logibar/issues">Report an issue</a></p>

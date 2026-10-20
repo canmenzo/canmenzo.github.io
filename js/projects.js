@@ -1,14 +1,14 @@
 (function () {
-  if (location.hostname === 'localhost' || location.hostname === '127.0.0.1') {
-    document.querySelectorAll('[data-preview-path]').forEach(function (link) {
-      link.href = link.dataset.previewPath;
-    });
-  }
   var search = document.getElementById('project-search');
   var filters = document.querySelectorAll('[data-filter]');
   var cards = document.querySelectorAll('[data-category]');
   var empty = document.getElementById('project-empty');
+  var count = document.getElementById('project-count');
+  var resets = document.querySelectorAll('[data-reset]');
   var category = 'all';
+
+  document.querySelector('.project-tools').hidden = false;
+  resets[0].hidden = false;
 
   function filter() {
     var query = search.value.trim().toLowerCase();
@@ -19,6 +19,10 @@
       if (match) visible++;
     });
     empty.hidden = visible !== 0;
+    count.textContent = visible + ' of ' + cards.length + ' projects';
+    if (category !== 'all') count.textContent += ' · ' + document.querySelector('[data-filter="' + category + '"]').textContent;
+    if (query) count.textContent += ' · “' + search.value.trim() + '”';
+    resets[0].disabled = !query && category === 'all';
   }
 
   search.addEventListener('input', filter);
@@ -29,4 +33,14 @@
       filter();
     });
   });
+  resets.forEach(function (button) {
+    button.addEventListener('click', function () {
+      search.value = '';
+      category = 'all';
+      filters.forEach(function (item) { item.setAttribute('aria-pressed', item.dataset.filter === 'all' ? 'true' : 'false'); });
+      filter();
+      search.focus();
+    });
+  });
+  filter();
 })();
