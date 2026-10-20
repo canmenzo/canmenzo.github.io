@@ -38,6 +38,8 @@
   }
 
   decrypt();
+  el.style.cursor = "pointer";
+  el.addEventListener("click", decrypt);
 
   if (!reduce) {
     setInterval(function () {
