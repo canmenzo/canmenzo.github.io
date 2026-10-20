@@ -32,3 +32,52 @@ body.detkit-dashboard.dark-mode { --card: #202324; --ok: #3fb950; --warn: #d2992
 }
 
 .detkit-dashboard > .project-footer { padding: 24px; }
+
+.detkit-dashboard nav.top > div { flex-wrap: wrap; gap: 16px; }
+.detkit-dashboard nav.top a { display: inline-flex; align-items: center; min-height: 44px; }
+.detkit-dashboard nav.top .project-back { color: var(--accent); margin-right: 16px; }
+.detkit-dashboard a:focus-visible,
+.detkit-dashboard button:focus-visible,
+.detkit-dashboard input:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.detkit-dashboard .stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.detkit-dashboard .stat { min-width: 0; padding: 16px; border-radius: 8px; }
+.detkit-dashboard .stat b { font-variant-numeric: tabular-nums; }
+.detkit-dashboard .stat span { display: block; font-size: 14px; line-height: 20px; margin-top: 8px; }
+.detkit-dashboard h1 { font-size: 30px; line-height: 36px; text-wrap: balance; }
+.detkit-dashboard h2 { font-size: 20px; line-height: 28px; }
+.detkit-dashboard p { text-wrap: pretty; }
+.detkit-dashboard .coverage-figure { margin: 16px 0 32px; }
+.detkit-dashboard .coverage-figure > a { display: block; border-radius: 8px; }
+.detkit-dashboard .cov { display: block; height: auto; margin: 0; border: 0; border-radius: 8px; outline: 1px solid oklch(0 0 0 / 0.1); outline-offset: -1px; }
+.detkit-dashboard.dark-mode .cov { outline-color: oklch(1 0 0 / 0.1); }
+.detkit-dashboard figcaption { margin-top: 12px; font-size: 12px; line-height: 16px; }
+.detkit-dashboard .detection-search { flex-basis: 100%; display: grid; gap: 8px; color: var(--soft); font-size: 14px; }
+.detkit-dashboard .detection-search input { box-sizing: border-box; width: 100%; min-width: 0; font: inherit; padding: 12px 16px; }
+.detkit-dashboard .chip { font: inherit; font-size: 14px; line-height: 20px; min-height: 44px; padding: 8px 12px; border-radius: 6px; }
+.detkit-dashboard .chip.active { color: var(--bg); }
+.detkit-dashboard .chip:hover { border-color: var(--accent); }
+.detkit-dashboard .detection-results { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 16px 0; font-size: 14px; color: var(--soft); }
+.detkit-dashboard .detection-results p { margin: 0; }
+.detkit-dashboard #reset-detections { min-height: 44px; padding: 8px 12px; border: 1px solid var(--line); border-radius: 6px; background: var(--card); color: var(--text); font: inherit; cursor: pointer; }
+.detkit-dashboard #reset-detections:hover { border-color: var(--accent); }
+.detkit-dashboard .tip { max-width: min(380px, calc(100vw - 32px)); background: var(--card); border-color: var(--line); transition: opacity 120ms cubic-bezier(0.2, 0, 0, 1); }
+.detkit-dashboard .tip p { color: var(--text); }
+.detkit-dashboard .tip .calc,
+.detkit-dashboard .tip code { background: var(--bg); }
+.detkit-dashboard .card .row { flex-wrap: wrap; }
+.detkit-dashboard .card h3 { overflow-wrap: anywhere; }
+
+@media (min-width: 1100px) {
+  .detkit-dashboard .stats { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+}
+@media (max-width: 600px) {
+  .detkit-dashboard nav.top > div { gap: 8px 16px; padding: 8px 16px; }
+  .detkit-dashboard nav.top .project-back { flex-basis: 100%; margin-right: 0; }
+  .detkit-dashboard .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .detkit-dashboard .stat { padding: 12px; }
+  .detkit-dashboard .detection-results { font-size: 12px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html:has(.detkit-dashboard) { scroll-behavior: auto; }
+  .detkit-dashboard .tip { transition: none; }
+}

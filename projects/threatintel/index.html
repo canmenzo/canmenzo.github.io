@@ -12,7 +12,7 @@
   <meta property="og:type" content="website">
   <link rel="icon" href="/favicon.ico">
   <link rel="stylesheet" href="/css/styles.css?v=25">
-  <link rel="stylesheet" href="/css/project-page.css?v=8">
+  <link rel="stylesheet" href="/css/project-page.css?v=9">
 </head>
 <body class="dark-mode project-detail">
   <script src="/js/theme.js?v=2"></script>
@@ -29,24 +29,31 @@
   </header>
   <script src="/js/nav.js?v=4"></script>
   <main class="project-shell" id="main-content" tabindex="-1">
-
+    <a class="project-back" href="/projects/">&larr; All projects</a>
     <section class="project-hero">
-      <h1>ThreatIntelSearch</h1>
+      <p class="project-context">Browser extension &middot; Firefox v2 / Chrome v1</p>
+      <h1>Threat<wbr>Intel<wbr>Search</h1>
       <p>Select an IP, domain, or file hash. Right-click to open its threat intelligence sources.</p>
       <div class="project-actions">
-        <a class="button" href="https://addons.mozilla.org/en-US/firefox/addon/threat-intel-search/">Get for Firefox ↗</a>
-        <a class="button secondary" href="https://chromewebstore.google.com/detail/threat-intel-search/lmjmpdlnhndlndeiofcfimainondjbcg">Get for Chrome ↗</a>
-        <a class="project-source" href="https://github.com/canmenzo/ThreatIntelSearch" aria-label="View ThreatIntelSearch on GitHub"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 .8a11.2 11.2 0 0 0-3.54 21.83c.56.1.77-.24.77-.54v-2.1c-3.13.68-3.79-1.33-3.79-1.33-.51-1.3-1.25-1.65-1.25-1.65-1.02-.7.08-.69.08-.69 1.13.08 1.72 1.16 1.72 1.16 1 1.72 2.63 1.22 3.27.93.1-.73.39-1.22.71-1.5-2.5-.28-5.13-1.25-5.13-5.57 0-1.23.44-2.24 1.16-3.03-.12-.28-.5-1.43.11-2.98 0 0 .94-.3 3.08 1.15a10.7 10.7 0 0 1 5.62 0c2.14-1.45 3.08-1.15 3.08-1.15.61 1.55.23 2.7.11 2.98.72.79 1.16 1.8 1.16 3.03 0 4.33-2.64 5.28-5.15 5.56.4.35.76 1.03.76 2.08v3.1c0 .3.2.65.78.54A11.2 11.2 0 0 0 12 .8Z"/></svg></a>
+        <a class="button" href="https://addons.mozilla.org/en-US/firefox/addon/threat-intel-search/">Install Firefox v2 &nearr;</a>
+        <a class="button secondary" href="https://chromewebstore.google.com/detail/threat-intel-search/lmjmpdlnhndlndeiofcfimainondjbcg">Install Chrome v1 &nearr;</a>
+        <a class="project-source" href="https://github.com/canmenzo/ThreatIntelSearch" aria-label="View ThreatIntelSearch on GitHub"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 .8a11.2 11.2 0 0 0-3.54 21.83c.56.1.77-.24.77-.54v-2.1c-3.13.68-3.79-1.33-3.79-1.33-.51-1.3-1.25-1.65-1.25-1.65-1.02-.7.08-.69.08-.69 1.13.08 1.72 1.16 1.72 1.16 1 1.72 2.63 1.22 3.27.93.1-.73.39-1.22.71-1.5-2.5-.28-5.13-1.25-5.13-5.57 0-1.23.44-2.24 1.16-3.03-.12-.28-.5-1.43.11-2.98 0 0 .94-.3 3.08 1.15a10.7 10.7 0 0 1 5.62 0c2.14-1.45 3.08-1.15 3.08-1.15.61 1.55.23 2.7.11 2.98.72.79 1.16 1.8 1.16 3.03 0 4.33-2.64 5.28-5.15 5.56.4.35.76 1.03.76 2.08v3.1c0 .3.2.65.78.54A11.2 11.2 0 0 0 12 .8Z"/></svg><span>GitHub source</span></a>
       </div>
     </section>
 
+    <nav class="project-section-nav" aria-label="On this page">
+      <a href="#use">How to use</a>
+      <a href="#sources">Firefox sources</a>
+      <a href="#scoring">Optional scoring</a>
+      <a href="#privacy">Privacy</a>
+    </nav>
     <figure class="project-visual">
-      <img src="/assets/projects/threatintel-screenshot.png" alt="The Chrome extension's right-click menu offers IP Address, Domain, and Hash lookups for selected text." width="1280" height="800">
-      <figcaption>Chrome v1. Firefox v2 adds a lookup panel and optional scoring.</figcaption>
+      <a href="/assets/projects/threatintel-screenshot.webp" aria-label="View Chrome v1 extension preview at full size"><img src="/assets/projects/threatintel-screenshot.webp" alt="The Chrome extension's right-click menu offers IP Address, Domain, and Hash lookups for selected text." width="1280" height="800" fetchpriority="high"></a>
+      <figcaption><span>Chrome v1 preview. Firefox v2 adds a lookup panel and optional scoring.</span><a href="/assets/projects/threatintel-screenshot.webp">View full size &nearr;</a></figcaption>
     </figure>
 
-    <section class="project-section">
-      <h2>Use it</h2>
+    <section class="project-section" id="use">
+      <h2>How to use it</h2>
       <ol class="steps">
         <li>Install the extension from your browser's store.</li>
         <li>Select an IP address, domain, or MD5, SHA1, or SHA256 hash on a web page.</li>
@@ -56,26 +63,33 @@
       <p>Firefox v2 also cleans up URLs and defanged indicators such as <code>example[.]com</code>. Press <kbd>1</kbd>–<kbd>9</kbd> to open a source, <kbd>C</kbd> to copy, <kbd>D</kbd> to copy defanged, and <kbd>Esc</kbd> to close.</p>
     </section>
 
-    <section class="project-section">
+    <section class="project-section" id="sources">
       <h2>Sources in Firefox v2</h2>
-      <dl>
-        <dt>IP addresses</dt>
-        <dd>VirusTotal, AlienVault OTX, AbuseIPDB, MaxMind, GreyNoise, Shodan InternetDB, urlscan.io</dd>
-        <dt>Domains</dt>
-        <dd>VirusTotal, AlienVault OTX, AbuseIPDB, urlscan.io, SecurityTrails, Whois, crt.sh</dd>
-        <dt>File hashes</dt>
-        <dd>VirusTotal, AlienVault OTX, MalwareBazaar, Hybrid Analysis</dd>
+      <dl class="source-grid">
+        <div>
+          <dt>IP addresses</dt>
+          <dd>VirusTotal, AlienVault OTX, AbuseIPDB, MaxMind, GreyNoise, Shodan InternetDB, urlscan.io</dd>
+        </div>
+        <div>
+          <dt>Domains</dt>
+          <dd>VirusTotal, AlienVault OTX, AbuseIPDB, urlscan.io, SecurityTrails, Whois, crt.sh</dd>
+        </div>
+        <div>
+          <dt>File hashes</dt>
+          <dd>VirusTotal, AlienVault OTX, MalwareBazaar, Hybrid Analysis</dd>
+        </div>
       </dl>
     </section>
 
-    <section class="project-section">
+    <section class="project-section" id="scoring">
       <h2>Optional scoring</h2>
       <p>In Firefox v2, open the panel's settings and add your VirusTotal, AbuseIPDB, or AlienVault OTX API keys. The panel shows a score, confidence, and each vendor's evidence. Without keys, source links still work. The score is a triage aid; check the underlying evidence.</p>
     </section>
 
-    <section class="project-section">
-      <h2><a href="https://github.com/canmenzo/ThreatIntelSearch/blob/main/PRIVACY.md">Privacy</a></h2>
+    <section class="project-section" id="privacy">
+      <h2>Privacy</h2>
       <p>No analytics or author-operated server. Source links send the selected indicator to the site you open. If you configure API keys, lookups go directly from your browser to those vendors. Keys and cached results stay in local extension storage.</p>
+      <p><a href="https://github.com/canmenzo/ThreatIntelSearch/blob/main/PRIVACY.md">Read the privacy policy &nearr;</a></p>
     </section>
 
     <footer class="project-footer">

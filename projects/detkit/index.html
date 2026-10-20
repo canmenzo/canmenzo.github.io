@@ -8,7 +8,7 @@
   <link rel="canonical" href="https://detkit.menzo.dev/">
   <link rel="icon" href="/favicon.ico?v=2">
   <link rel="stylesheet" href="/css/styles.css?v=25">
-  <link rel="stylesheet" href="/css/project-page.css?v=7">
+  <link rel="stylesheet" href="/css/project-page.css?v=9">
   <link rel="preload" href="/fonts/dm-mono-latin-400.woff2" as="font" type="font/woff2" crossorigin>
   <meta property="og:type" content="website">
   <meta property="og:title" content="Detkit">
@@ -32,22 +32,30 @@
   </header>
   <script src="/js/nav.js?v=4"></script>
   <main class="project-shell" id="main-content" tabindex="-1">
+    <a class="project-back" href="/projects/">&larr; All projects</a>
     <section class="project-hero">
+      <p class="project-context">Detection engineering &middot; Sigma / Python / SPL / KQL</p>
       <h1>Detkit</h1>
       <p>Sigma rules tested against attack telemetry, with precision, recall, and false-positive rates you can reproduce.</p>
       <div class="project-actions">
-        <a class="button" href="/projects/detkit/dashboard/">Open the dashboard &nearr;</a>
+        <a class="button" href="/projects/detkit/dashboard/">Explore detection results &rarr;</a>
         <a class="button secondary" href="#run">Run the tests</a>
-        <a class="project-source" href="https://github.com/canmenzo/detkit" aria-label="View Detkit on GitHub"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 .8a11.2 11.2 0 0 0-3.54 21.83c.56.1.77-.24.77-.54v-2.1c-3.13.68-3.79-1.33-3.79-1.33-.51-1.3-1.25-1.65-1.25-1.65-1.02-.7.08-.69.08-.69 1.13.08 1.72 1.16 1.72 1.16 1 1.72 2.63 1.22 3.27.93.1-.73.39-1.22.71-1.5-2.5-.28-5.13-1.25-5.13-5.57 0-1.23.44-2.24 1.16-3.03-.12-.28-.5-1.43.11-2.98 0 0 .94-.3 3.08 1.15a10.7 10.7 0 0 1 5.62 0c2.14-1.45 3.08-1.15 3.08-1.15.61 1.55.23 2.7.11 2.98.72.79 1.16 1.8 1.16 3.03 0 4.33-2.64 5.28-5.15 5.56.4.35.76 1.03.76 2.08v3.1c0 .3.2.65.78.54A11.2 11.2 0 0 0 12 .8Z"/></svg></a>
+        <a class="project-source" href="https://github.com/canmenzo/detkit" aria-label="View Detkit on GitHub"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 .8a11.2 11.2 0 0 0-3.54 21.83c.56.1.77-.24.77-.54v-2.1c-3.13.68-3.79-1.33-3.79-1.33-.51-1.3-1.25-1.65-1.25-1.65-1.02-.7.08-.69.08-.69 1.13.08 1.72 1.16 1.72 1.16 1 1.72 2.63 1.22 3.27.93.1-.73.39-1.22.71-1.5-2.5-.28-5.13-1.25-5.13-5.57 0-1.23.44-2.24 1.16-3.03-.12-.28-.5-1.43.11-2.98 0 0 .94-.3 3.08 1.15a10.7 10.7 0 0 1 5.62 0c2.14-1.45 3.08-1.15 3.08-1.15.61 1.55.23 2.7.11 2.98.72.79 1.16 1.8 1.16 3.03 0 4.33-2.64 5.28-5.15 5.56.4.35.76 1.03.76 2.08v3.1c0 .3.2.65.78.54A11.2 11.2 0 0 0 12 .8Z"/></svg><span>GitHub source</span></a>
       </div>
     </section>
+    <nav class="project-section-nav" aria-label="On this page">
+      <a href="#checks">What gets checked</a>
+      <a href="#run">Run the tests</a>
+      <a href="#coverage">Coverage</a>
+      <a href="#limits">Evidence limits</a>
+    </nav>
     <figure class="project-visual">
-      <img src="/assets/projects/detkit-dashboard.png" width="1440" height="1080" alt="Detkit's generated dashboard showing detection rules, evidence, and measured test results.">
-      <figcaption>The generated project dashboard. <a href="https://github.com/canmenzo/detkit/tree/main/site">View its source.</a></figcaption>
+      <a href="/assets/projects/detkit-dashboard.webp" aria-label="View Detkit dashboard preview at full size"><img src="/assets/projects/detkit-dashboard.webp" width="1440" height="1080" alt="Detkit's generated dashboard showing detection rules, evidence, and measured test results." fetchpriority="high"></a>
+      <figcaption><span>Generated dashboard preview. <a href="https://github.com/canmenzo/detkit/tree/main/site">Dashboard source</a></span><a href="/assets/projects/detkit-dashboard.webp">View full size &nearr;</a></figcaption>
     </figure>
-    <section class="project-section">
+    <section class="project-section" id="checks">
       <h2>What gets checked</h2>
-      <ul>
+      <ul class="feature-grid">
         <li><strong>Detection logic.</strong> A SQL evaluator runs rules against labelled attack events and benign look-alikes.</li>
         <li><strong>Real telemetry.</strong> Hayabusa checks the Windows rules against pinned public EVTX captures.</li>
         <li><strong>Quality gates.</strong> Each rule declares its minimum scores. A regression or unexplained lowered bar fails CI.</li>
@@ -55,7 +63,7 @@
       </ul>
     </section>
     <section class="project-section" id="run">
-      <h2>Run it</h2>
+      <h2>Run the tests</h2>
       <ol class="steps">
         <li>Install <a href="https://docs.astral.sh/uv/getting-started/installation/">uv</a>, then clone the repository.</li>
         <li>Install the development dependencies and run the same sequence as CI.</li>
@@ -70,14 +78,14 @@ uv run detkit convert
 uv run detkit dashboard</code></pre>
       <p><code>detkit ci</code> downloads the pinned Hayabusa release and verifies its recorded SHA-256.</p>
     </section>
-    <section class="project-section">
+    <section class="project-section" id="coverage">
       <h2>Coverage</h2>
       <figure class="project-visual">
-        <img src="/assets/projects/detkit-coverage.png" alt="The project's MITRE ATT&CK coverage chart. Green marks authored rules; blue marks the separately attributed SigmaHQ corpus." loading="lazy">
-        <figcaption>Green is authored work. Blue is the separately attributed SigmaHQ corpus.</figcaption>
+        <a href="/assets/projects/detkit-coverage.webp" aria-label="View MITRE ATT&amp;CK coverage chart at full size"><img src="/assets/projects/detkit-coverage.webp" width="1698" height="755" alt="The project's MITRE ATT&amp;CK coverage chart. Green marks authored rules; blue marks the separately attributed SigmaHQ corpus." loading="lazy" decoding="async"></a>
+        <figcaption><span>Green: authored rules. Blue: the separately attributed SigmaHQ corpus, tested for conversion only.</span><a href="/assets/projects/detkit-coverage.webp">View full size &nearr;</a></figcaption>
       </figure>
     </section>
-    <section class="project-section">
+    <section class="project-section" id="limits">
       <h2>What the tests don't prove</h2>
       <p>The benign cases are authored, so these scores do not predict alert volume in production. Entra ID rules use measured logic and schema validation, without replay against captured tenant telemetry. The repository documents these evidence limits alongside the results.</p>
       <p><a href="/projects/detkit/dashboard/about.html">Read the method &nearr;</a> &middot; <a href="https://github.com/canmenzo/detkit/tree/main/docs/adr">Architecture decisions &nearr;</a></p>
