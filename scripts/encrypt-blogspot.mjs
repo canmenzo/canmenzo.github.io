@@ -1,5 +1,5 @@
 // Usage: BLOGSPOT_PASSWORD=... node scripts/encrypt-blogspot.mjs <folder with the three original photos>
-// The photos never enter the repo; only the ciphertext in blogspot/index.html does.
+// The photos and the post text (scripts/blogspot.local.html, gitignored) never enter the repo; only the ciphertext in blogspot/index.html does.
 import { readFile, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
@@ -13,7 +13,8 @@ if (!password || !photos) {
 
 const image = async name => `data:image/jpeg;base64,${(await readFile(path.join(photos, name))).toString('base64')}`;
 
-const blog = `<!-- post text removed from history -->`;
+const template = await readFile(new URL('blogspot.local.html', import.meta.url), 'utf8');
+const blog = (await Promise.all(template.split(/\{\{(.+?)\}\}/).map((part, i) => (i % 2 ? image(part) : part)))).join('');
 
 const salt = crypto.getRandomValues(new Uint8Array(16));
 const iv = crypto.getRandomValues(new Uint8Array(12));
