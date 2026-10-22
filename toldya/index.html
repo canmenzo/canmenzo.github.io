@@ -89,116 +89,100 @@
   </main>
 
 
-  <script src="https://www.youtube.com/iframe_api"></script>
   <script>
+    // No third-party script runs on this origin: the writings editor keeps a GitHub token
+    // in localStorage here. The player is a plain cross-origin embed driven by postMessage.
     // Muted autoplay is allowed everywhere (no click, no thumbnail).
     // First user gesture (mouse/scroll/key/touch) unmutes -> full rickroll.
-    var player;
     var gestures = ["mousemove", "click", "keydown", "scroll", "touchstart"];
+    var ready = false;
+    var player = document.createElement("iframe");
+    player.id = "player";
+    player.width = 560;
+    player.height = 315;
+    player.title = "told ya";
+    player.frameBorder = "0";
+    player.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+    player.referrerPolicy = "strict-origin-when-cross-origin";
+    player.src = "https://www.youtube.com/embed/AACOcpA8i-U?" + new URLSearchParams({
+        autoplay: 1, mute: 1, controls: 0, modestbranding: 1, playsinline: 1, rel: 0, fs: 0,
+        disablekb: 1, loop: 1, playlist: "AACOcpA8i-U", enablejsapi: 1, origin: location.origin
+    });
+    document.getElementById("player").replaceWith(player);
 
-    function onYouTubeIframeAPIReady() {
-        player = new YT.Player("player", {
-            width: 560,
-            height: 315,
-            videoId: "AACOcpA8i-U",
-            playerVars: {
-                autoplay: 1,
-                mute: 1,
-                controls: 0,
-                modestbranding: 1,
-                playsinline: 1,
-                rel: 0,
-                fs: 0,
-                disablekb: 1,
-                loop: 1,
-                playlist: "AACOcpA8i-U"
-            },
-            events: {
-                onReady: function (e) { e.target.playVideo(); }
-            }
-        });
+    function send(message) {
+        player.contentWindow.postMessage(JSON.stringify(message), "https://www.youtube.com");
     }
 
+    function command(func, args) { send({ event: "command", func: func, args: args || [] }); }
+
+    // The player answers once it is ready and has heard from us.
+    var hello = setInterval(function () { send({ event: "listening" }); }, 250);
+    window.addEventListener("message", function (e) {
+        if (ready || e.source !== player.contentWindow) return;
+        ready = true;
+        clearInterval(hello);
+        command("playVideo");
+    });
+
     function unmute() {
-        if (!player || !player.unMute) return; // player not ready yet; keep listeners
-        player.unMute();
-        player.setVolume(100);
-        player.playVideo();
+        if (!ready) return; // player not ready yet; keep listeners
+        command("unMute");
+        command("setVolume", [100]);
+        command("playVideo");
         gestures.forEach(function (ev) { document.removeEventListener(ev, unmute); });
     }
 
     gestures.forEach(function (ev) { document.addEventListener(ev, unmute); });
   </script>
 
-  <!-- Firebase SDK -->
   <script type="module">
-    // Import Firebase modules
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
-    import { getFirestore, doc, getDoc, setDoc, updateDoc } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
-    import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
-
-    // Firebase config. The apiKey is public by design, it identifies the project,
+    // Firebase over plain REST, no SDK. The apiKey is public by design, it identifies the project,
     // it does not authorise anything. Firestore rules are the only thing guarding this.
-    // The rules require auth, but the page calls signInAnonymously, so being
+    // The rules require auth, but the page signs up anonymously, so being
     // authenticated is free for anyone and the count can be set to whatever they like.
     // Fine for a rickroll counter. Do not put anything else in this Firebase project.
-    const firebaseConfig = {
-        apiKey: "AIzaSyBwRCRWxQ1KhOheUffYEhLw15_qbfLm7ns",
-        authDomain: "rickrollcounter-cae1b.firebaseapp.com",
-        projectId: "rickrollcounter-cae1b",
-        storageBucket: "rickrollcounter-cae1b.firebasestorage.app",
-        messagingSenderId: "236132264688",
-        appId: "1:236132264688:web:00e922496222d296cd3035"
-    };
+    const apiKey = "AIzaSyBwRCRWxQ1KhOheUffYEhLw15_qbfLm7ns";
+    const counterUrl = "https://firestore.googleapis.com/v1/projects/rickrollcounter-cae1b/databases/(default)/documents/visitCount/counter";
+    const counter = document.getElementById("counter");
 
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-    const auth = getAuth(app);
+    let headers;
+    try {
+        const res = await fetch(`https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${apiKey}`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ returnSecureToken: true })
+        });
+        if (!res.ok) throw new Error(`sign-in failed: ${res.status}`);
+        headers = { "Authorization": `Bearer ${(await res.json()).idToken}`, "Content-Type": "application/json" };
+    } catch (error) {
+        console.error("Error signing in:", error);
+        counter.textContent = "error signing in. please try again later.";
+    }
 
-    const counterRef = doc(db, "visitCount", "counter");
-
-    console.log("Firebase initialized. Attempting to fetch counter...");
-
-    // Wait for DOM to fully load
-    document.addEventListener("DOMContentLoaded", function() {
-        // Sign in anonymously
-        signInAnonymously(auth)
-            .then(() => {
-                console.log("User signed in anonymously");
-
-                // Fetch and update the visit counter from Firestore
-                getDoc(counterRef).then(docSnap => {
-                    console.log("Firestore document fetched.");
-
-                    if (docSnap.exists()) {
-                        const currentCount = Number(docSnap.data().count) || 0;
-                        const newCount = currentCount + 1;
-
-                        // Update Firestore with the new count
-                        updateDoc(counterRef, { count: newCount });
-
-                        // Display the counter on the page
-                        document.getElementById("counter").textContent = `this page has been visited ${Number(newCount)} times.`;
-                    } else {
-                        console.log("Document does not exist, creating it...");
-
-                        // If the counter document doesn't exist, initialize it
-                        setDoc(counterRef, { count: 1 });
-
-                        // Display the counter on the page
-                        document.getElementById("counter").textContent = "this page has been visited 1 time.";
-                    }
-                }).catch((error) => {
-                    console.error("Error fetching counter:", error);
-                    document.getElementById("counter").textContent = "could not load counter. please try again later.";
+    if (headers) {
+        try {
+            const res = await fetch(counterUrl, { headers });
+            if (res.status === 404) {
+                // If the counter document doesn't exist, initialize it
+                fetch(counterUrl, { method: "PATCH", headers, body: JSON.stringify({ fields: { count: { integerValue: "1" } } }) });
+                counter.textContent = "this page has been visited 1 time.";
+            } else {
+                if (!res.ok) throw new Error(`read failed: ${res.status}`);
+                const field = (await res.json()).fields?.count ?? {};
+                const newCount = (Number(field.integerValue ?? field.doubleValue) || 0) + 1;
+                fetch(`${counterUrl}?updateMask.fieldPaths=count&currentDocument.exists=true`, {
+                    method: "PATCH",
+                    headers,
+                    body: JSON.stringify({ fields: { count: { integerValue: String(newCount) } } })
                 });
-            })
-            .catch((error) => {
-                console.error("Error signing in:", error);
-                document.getElementById("counter").textContent = "error signing in. please try again later.";
-            });
-    });
+                counter.textContent = `this page has been visited ${newCount} times.`;
+            }
+        } catch (error) {
+            console.error("Error fetching counter:", error);
+            counter.textContent = "could not load counter. please try again later.";
+        }
+    }
   </script>
 </body>
 
