@@ -1,75 +1,96 @@
-today i shipped a release of pargus, my desktop app. right after, github flagged a high-severity dependabot alert: `braces` <= 3.0.3, `CVE-2026-93687` (`GHSA-vfj7-8cjw-p6xm`), stack exhaustion through deeply nested patterns, `CWE-674`. patched version: none.
+today i shipped a release of my desktop app, pargus. a few minutes later dependabot flagged a high-severity alert on an npm package called braces: CVE-2026-93687 (GHSA-vfj7-8cjw-p6xm), "stack exhaustion through deeply nested patterns". patched version: none.
 
-i asked my agent "is there no patch yet? has it been 4 days?" it had been about five weeks. the advisory was published on september 18. `braces` has not had a release since 3.0.3 in may 2024.
+braces is a small library that expands patterns like `{a,b,c}` into lists. you have probably never installed it on purpose, but it sits under micromatch, which sits under fast-glob, which sits under a huge chunk of the javascript ecosystem.
+
+i asked my agent when a patch was coming, assuming the advisory was a few days old. it was published september 18, five weeks earlier. braces hasn't had a release since 3.0.3 in may 2024.
 
 ### the fix that took minutes
-first question: why do i even have `braces`. it only came in through next's eslint plugin, which pulls `fast-glob`, which pulls `micromatch`, which pulls `braces`. dev-only. the plugin uses fast-glob for exactly one call: `globSync(pattern, { onlyDirectories: true })`.
 
-one pnpm override swapped `fast-glob` for `tinyglobby` there. `braces` left the tree. lint output was identical before and after.
+braces wasn't mine. it came in through next.js's lint setup:
 
-that should have been the end of it. but i wondered if i could write the actual patch, with a few agents in parallel. before starting, my agent looked at what was already upstream.
+`eslint-config-next` → `@next/eslint-plugin-next` → `fast-glob` → `micromatch` → `braces`
 
-### the wall
-issue #70 on micromatch/braces was opened on september 17. most of it is "any updates?", "+1" and "++++++". then on october 5 the maintainer, jonschlinkert, replied:
+the plugin only uses fast-glob for one folder lookup. tinyglobby does the same job without braces, so one pnpm override swapped it in. braces and micromatch left the lockfile, lint output didn't change, and github closed the alert.
 
-> Was this created by AI? This is complete nonsense.
+that should have been the end of it.
 
-his argument: "To hit a nesting depth of 5,000 would require at least 10,001 characters. Setting `maxLength` to a value less than that is all that's needed, and is already supported." and more broadly, "you should not let users define regular expressions", for the same reason you don't let users pass raw sql over http. he also asked people to "stop playing whack-a-mole with the unsolved generalized star height problem", and closed with "The CVE is functionally equivalent to saying `while (true)` is a javascript vulnerability. It's not."
+### the issue
 
-then i looked at the pull requests. #72 to #89. twelve fix prs in about two weeks, most of them reading like ai output, nearly identical: "bound nesting depth", "add maxDepth". seven closed, five still open, none merged.
+i wondered if i could write the real fix and send it upstream. before starting, i read the issue on micromatch/braces, #70: "Security Advisory: Uncontrolled Recursion Depth in Tree Walkers Leads to Stack-Overflow DoS", opened september 17.
 
-mine would have been number 13. my agent was ready to write it. i would have been one more person handing a patch nobody asked for to a maintainer who had already called it nonsense. that is the open-source cost of ai: writing a fix is free now, and reading twelve of them is not.
+most of the thread is people asking "Any updates?", "+1", "++++++".
 
-so i changed the question. not "how do i patch this" but "who is right". verify, don't patch.
+then on october 5, jon schlinkert (jonschlinkert), who maintains braces and micromatch, replied:
 
-### measuring it
-i had a single fable 5.1 subagent, on medium effort, build a measurement repo: pin `braces` 3.0.3, `micromatch` 4.0.8 and `fast-glob` 3.3.1, then drive every entry point with growing nesting in three shapes:
+> "Was this created by AI? This is complete nonsense."
 
-- comma: `{a,{a,{a,...}}}`, about 4 characters per level. this is the maintainer's math.
-- brace: `{{{...a...}}}`, 2 characters per level.
-- range: `{1..2,{1..2,...}}`, about 7 per level.
+his reasons, in his words:
 
-two facts matter. the default `maxLength` is 10000 (lowered from 65536 in upstream pr #40, may 2024), and `maxLength` can only lower the cap, never raise it. also, `parse` is iterative and never overflows. the recursion lives in `expand` and `compile`.
+> "To hit a nesting depth of 5,000 would require at least 10,001 characters. Setting `maxLength` to a value less than that is all that's needed, and is already supported."
 
-it wrote the scripts, ran them on my mac mini and wrote up the results in about fifteen minutes. one agent, medium effort. frontier models are that good now.
+> "For the same reason that you should not allow users to pass raw sql over http requests, you should not let users define regular expressions. If you are not letting users define regular expressions, then this CVE describes how you would attack yourself."
 
-### the agent measured the wrong thing
-the first report said the maintainer was mostly right. at the cap, the brace shape sat "at the knife edge": it crashed at depth 4700 but not at 4900 or 4999. "a coin toss". the same report claimed a 256 kb stack was about a worker thread's default. that part was just wrong. node's docs say 4 mb.
+> "The `maxDepth` option might be a useful addition, but it will not solve this problem."
 
-i reviewed it and had it re-run differently: one fresh node process per call. crash 5 out of 5 at 8001 characters. every time.
+he explained that glob patterns are regular expressions, and no glob library can predict how much work the regex engine will do on a nasty enough pattern. then:
 
-the coin toss was the jit. the agent measured everything inside one long-running process. after warm-up, v8 optimizes the code, each recursion frame gets smaller, and it goes deeper before running out of stack. a real server is not warmed up on nested braces first. it meets the malicious request cold.
+> "Please stop playing whack-a-mole with the unsolved generalized star height problem."
 
-this is the same thing i wrote about [last time](/writings/#/vibecoded). ai checks the shape of a thing, not the amount. here it did run the benchmark. it just ran it under conditions that don't match the case that matters. the number was real. the setup was wrong.
+> "the researchers will pivot to some other contrived nonsense pattern no one would ever actually use, and if you're allowing users to pass globs, you have bigger issues."
 
-### the numbers
-node v26.8.1, mac mini arm64, default stack, default options, fresh process:
+> "The CVE is functionally equivalent to saying `while (true)` is a javascript vulnerability. It's not."
 
-- `braces()` crashes from about 7000 characters. it crashed at 7001 in 2 of 3 runs, every run from 7201, never at 6801.
-- `braces.expand()` crashes from 7965.
-- both are well under the 10000 default cap.
-- comma and range shapes stay safe. the cap stops them at depth 2500 and 1429 first. the maintainer's math is correct for the shape he assumed.
-- `micromatch` never stack-overflows. it has its own 65536 guard, and v8 throws "regex too large" first.
-- a real `fast-glob` glob call errors out early and harmlessly.
+### the prs
 
-the overflow is a catchable `RangeError`. no data exposure, no code execution. it is a denial of service, and only if untrusted input reaches a glob api. a safe `maxLength` on that machine is about 6800, and 4096 is verified safe. everything is in [the repo](https://github.com/canmenzo/cve-2026-93687-braces).
+then i opened the pull requests. #72 through #89, twelve fixes in about two weeks. a few titles:
+
+- #89 "fix: prevent stack-exhaustion DoS from deeply nested brace patterns (CVE-2026-93687)"
+- #87 "fix: prevent stack exhaustion from deeply nested brace patterns"
+- #86 "fix: add maxDepth to stop deeply nested patterns overflowing the stack (CVE-2026-93687)"
+- #79 "fix: stop deeply nested patterns from overflowing the stack"
+
+most of them reading like ai output, nearly all the same idea, the exact maxDepth he had just said wouldn't solve it. none merged.
+
+my agent was ready to write number thirteen. so i didn't send a patch. i checked who was right.
+
+### the test
+
+i ran this with claude. one fable 5.1 subagent on medium effort, not a swarm, not max effort, built [a small repo](https://github.com/canmenzo/cve-2026-93687-braces) pinning braces 3.0.3, micromatch 4.0.8 and fast-glob 3.3.1, then fed them deeper and deeper nesting until something broke. it wrote the scripts, ran them on my mac mini over ssh, wrote tests and a readme with the results, in about fifteen minutes. one agent, medium effort, a small security research project end to end. frontier models are that good now.
+
+the maintainer's math is about the pattern shape. `{a,{a,{a,...}}}` costs about 4 characters per level, so depth 5,000 really does need over 10,000 characters, and braces rejects anything over 10,000 by default. but `{{{...a...}}}` costs 2 characters per level. same depth, half the length.
+
+its first report agreed with the maintainer: the crash only happened sometimes, right at the edge of the limit. my main session on opus 5.5 didn't buy it on review, reran a few tests itself in fresh node processes, and the crash showed up every time. so the subagent redid the whole run that way.
+
+the first run had measured in a process that was already warmed up. node optimizes code it runs often, which lets the recursion go deeper before running out of stack. a server meets a malicious request cold.
+
+### the result
+
+in a fresh process, with default settings, a plain string of about 7,000 characters crashes braces, well under its own 10,000 limit. the `{a,{a,...}}` shape the maintainer had in mind stays safe. micromatch and a normal fast-glob search don't crash at all.
+
+the crash is a catchable error. no data leaks, no code runs. it's a denial of service, and only if you pass untrusted input to a glob library. setting maxLength to 4096 fixes every case i tested.
 
 ### who was right
+
 both, partly.
 
-the reporter is right that the recursion really is unbounded and reachable at the default.
+the reporter is right that the recursion is unbounded and reachable with default settings.
 
-the maintainer is right about the root cause: don't hand untrusted globs to a glob library. he is right about the lever too: a lower `maxLength`. he is wrong that the default already covers it, because his 10,001 math assumes the comma shape, and the brace shape gets there in half the characters per level.
+jon is right about the root cause and the fix: don't hand users' globs to a glob library, and lower maxLength if you have to. his 10,001 number just assumes one pattern shape.
 
-and none of the twelve prs was needed to fix pargus. deleting the dependency was.
+and none of the twelve prs was needed to fix pargus. removing the dependency was.
 
-### lessons learned
-the cheapest fix is often removing a dependency you barely use. one directory lookup did not need a whole glob stack.
+### what i'm taking from it
 
-check the conditions of a measurement, not just the number. warm vs cold turned "a coin toss" into "every time".
+removing a dependency you barely use is often the whole fix.
 
-read the thread before you write the fix. if a dozen prs are already sitting there, yours is not the missing piece. a measurement might be.
+when a number looks off, check how it was measured. warm vs cold turned "sometimes" into "every time".
 
-i used ai for all of this too. the point is not to stop. it is to review what it hands you.
+read the thread before you write the patch. a thirteenth fix doesn't help anyone. a measurement might.
 
-write down what you decided. mine: `braces` is out of pargus, i am not opening pr number 13, and the numbers are in a repo instead of a "+1".
+i used ai for all of it. my part was checking what it handed me.
+
+---
+
+the test repo is public, with every script and number: [github.com/canmenzo/cve-2026-93687-braces](https://github.com/canmenzo/cve-2026-93687-braces). if it's useful to you, a star helps.
+
+i also posted this on x. follow [@canmenzo](https://x.com/canmenzo) for the next one, and the rest of what i build is on [projects](/projects/).
