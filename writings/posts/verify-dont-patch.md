@@ -16,9 +16,9 @@ issue #70 on micromatch/braces was opened on september 17. most of it is "any up
 
 his argument: "To hit a nesting depth of 5,000 would require at least 10,001 characters. Setting `maxLength` to a value less than that is all that's needed, and is already supported." and more broadly, "you should not let users define regular expressions", for the same reason you don't let users pass raw sql over http. he also asked people to "stop playing whack-a-mole with the unsolved generalized star height problem", and closed with "The CVE is functionally equivalent to saying `while (true)` is a javascript vulnerability. It's not."
 
-then i looked at the pull requests. #72 to #89. more than 13 fix prs in about two weeks, mostly ai-written, nearly identical: "bound nesting depth", "add maxDepth". many closed, about six still open, none merged.
+then i looked at the pull requests. #72 to #89. twelve fix prs in about two weeks, most of them reading like ai output, nearly identical: "bound nesting depth", "add maxDepth". seven closed, five still open, none merged.
 
-mine would have been number 14. my agent was ready to write it. i would have been one more person handing a patch nobody asked for to a maintainer who had already called it nonsense. that is the open-source cost of ai: writing a fix is free now, and reading thirteen of them is not.
+mine would have been number 13. my agent was ready to write it. i would have been one more person handing a patch nobody asked for to a maintainer who had already called it nonsense. that is the open-source cost of ai: writing a fix is free now, and reading twelve of them is not.
 
 so i changed the question. not "how do i patch this" but "who is right". verify, don't patch.
 
@@ -59,7 +59,7 @@ the reporter is right that the recursion really is unbounded and reachable at th
 
 the maintainer is right about the root cause: don't hand untrusted globs to a glob library. he is right about the lever too: a lower `maxLength`. he is wrong that the default already covers it, because his 10,001 math assumes the comma shape, and the brace shape gets there in half the characters per level.
 
-and nobody's 13 prs were needed to fix pargus. deleting the dependency was.
+and none of the twelve prs was needed to fix pargus. deleting the dependency was.
 
 ### lessons learned
 the cheapest fix is often removing a dependency you barely use. one directory lookup did not need a whole glob stack.
@@ -70,4 +70,4 @@ read the thread before you write the fix. if a dozen prs are already sitting the
 
 i used ai for all of this too. the point is not to stop. it is to review what it hands you.
 
-write down what you decided. mine: `braces` is out of pargus, i am not opening pr number 14, and the numbers are in a repo instead of a "+1".
+write down what you decided. mine: `braces` is out of pargus, i am not opening pr number 13, and the numbers are in a repo instead of a "+1".

@@ -4,7 +4,7 @@
     "title": "verify, don't patch",
     "date": "2026-10-22",
     "updated": "2026-10-22",
-    "summary": "a high-severity cve in braces with no patch, a wall of +1s and 13 ai-written prs. i removed the dependency in minutes, then measured who was actually right.",
+    "summary": "a high-severity cve in braces with no patch, a wall of +1s and twelve near-identical fix prs. i removed the dependency in minutes, then measured who was actually right.",
     "tags": [
       "security",
       "ai",
