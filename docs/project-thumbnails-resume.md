@@ -1,3 +1,11 @@
+# Thumbnail refresh — 2026-10-23
+
+Applied 25 covers: eight Pargus-style product covers and 17 monochrome editorial illustrations. The approved Pargus cover remains unchanged. All 26 gallery cards use 1536 × 864 assets; nine product sharing exports use 1200 × 630 PNG. Cheff.fit uses “Meals, macros, and a plan.” Detkit uses the revised security-scanner scene.
+
+Exact prompts, sources, styles, social assets and measured display sizes are recorded in `project-thumbnail-prompts.json`. Rebuild with `python scripts/build-project-thumbnails.py` on the Mac mini. Product link previews are updated in their owning sites.
+
+The previous generation notes below are historical.
+
 # Project thumbnails - completed 2026-10-13
 
 Sixteen parent project cards use final 1536 x 864 WebP covers in

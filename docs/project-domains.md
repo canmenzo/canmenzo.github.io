@@ -56,9 +56,11 @@ The site moved from canmenzo.com on 2026-10-19. A single redirect rule on the ca
 
 ## Project images
 
-Martek Marble, Moviepickr, Cheff.fit, the numbers solver, and menzo.dev use screenshots of their actual pages. Detkit uses its dashboard and coverage chart; ThreatIntelSearch, Logibar, Handy, and JobScope use screenshots from their public repositories. The remaining tools and private projects use text cards, without generated logos or simulated interfaces.
+The gallery uses eight dark product covers based on real project imagery, the approved Pargus reference, and 17 monochrome editorial illustrations. Gallery assets are 1536 × 864 WebP in `assets/projects/thumbnails/`. Product sharing images are 1200 × 630 PNG in `assets/projects/social/`.
 
-Jarvis uses the Iron Man helmet image supplied by the owner, optimized as WebP for the project card.
+`docs/project-thumbnail-prompts.json` records every cover, exact prompt, source reference, final asset and social export. Rebuild the gallery WebP files with `python scripts/build-project-thumbnails.py` on the Mac mini.
+
+ThreatIntelSearch and Logibar use their product sharing images on their standalone pages. Publish those subdomains with their existing manual Pages workflows after changes here.
 
 ## blogspot.menzo.dev
 

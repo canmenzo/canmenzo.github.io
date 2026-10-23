@@ -1,19 +1,66 @@
 {
-  "version": 2,
+  "version": 3,
   "status": "complete",
-  "requested_image_model": "GPT Image 2.5",
+  "updated": "2026-10-23",
   "aspect_ratio": "16:9",
   "target_dimensions": {
     "width": 1536,
     "height": 864
   },
-  "theme": {
-    "background": "#191a1b",
-    "accent": "#6fcf6f",
-    "foreground": "#f1f1f1",
-    "muted": "#a7aaa3"
+  "social_dimensions": {
+    "width": 1200,
+    "height": 630
   },
-  "direction": "Editorial dark covers. Image generation supplies typography/art/background; real UI and the Jarvis owner photo are overlaid deterministically from exact source pixels, never redrawn by the image model. Projects without source images get unique project-specific artwork. Real Estate AI Ops stays subordinate to Project X.",
+  "generation_tool": "built-in image_gen",
+  "styles": {
+    "product": "Dark product-launch covers based on actual project imagery and the approved Pargus cover.",
+    "monochrome": "Project-specific black-and-white pen-and-ink editorial illustrations.",
+    "reference": "Approved Pargus cover retained unchanged."
+  },
+  "display_measurements": [
+    {
+      "viewport": 1440,
+      "width": 480,
+      "height": 270,
+      "columns": "480px 480px"
+    },
+    {
+      "viewport": 1024,
+      "width": 472,
+      "height": 265.5,
+      "columns": "472px 472px"
+    },
+    {
+      "viewport": 768,
+      "width": 344,
+      "height": 193.5,
+      "columns": "344px 344px"
+    },
+    {
+      "viewport": 601,
+      "width": 264.5,
+      "height": 148.78125,
+      "columns": "264.5px 264.5px"
+    },
+    {
+      "viewport": 600,
+      "width": 568,
+      "height": 319.5,
+      "columns": "568px"
+    },
+    {
+      "viewport": 390,
+      "width": 358,
+      "height": 201.375,
+      "columns": "358px"
+    },
+    {
+      "viewport": 320,
+      "width": 288,
+      "height": 162,
+      "columns": "288px"
+    }
+  ],
   "projects": [
     {
       "slug": "pargus",
@@ -32,622 +79,428 @@
       "final_asset": "assets/projects/thumbnails/pargus.webp",
       "saved_generation": "assets/projects/thumbnails/pargus.png",
       "composition_status": "not-required",
-      "gallery_status": "connected"
+      "gallery_status": "connected",
+      "style": "reference",
+      "webp_quality": 88,
+      "social_asset": "assets/projects/social/pargus.png"
     },
     {
       "slug": "detkit",
       "title": "Detkit",
-      "source_images": [
-        "assets/projects/detkit-dashboard.png",
-        "assets/projects/detkit-coverage.png"
-      ],
+      "style": "monochrome",
       "mode": "generate",
-      "headline": "Measure detection.",
-      "subtitle": "Sigma rules against real attack telemetry.",
-      "output_path": "assets/projects/thumbnails/detkit.png",
-      "prompt": "Create one finished, polished 16:9 portfolio project thumbnail, 1536 × 864 pixels. Match a restrained editorial technology cover, like a carefully typeset independent software landing page, rather than an AI wallpaper. Background is nearly flat charcoal #191a1b; accent is soft green #6fcf6f; primary type is off-white #f1f1f1; secondary type is warm gray #a7aaa3. No blue accent in newly designed elements. Use a small monospaced project-name kicker and a large refined editorial headline, with generous but purposeful spacing. Headline must read clearly when this image is displayed at 430px wide. Main headline approximately 62–76px at output resolution; supporting copy approximately 25–30px, never microtext. Keep all outer typography and essential visual information inside a 64px safe margin. Limit visible copy to the supplied exact project name, headline, and subtitle, plus explicitly allowed diagram labels. Do not add a logo, date, domain, author credit, popularity count, statistics, badges, CTA, faux browser chrome, glowing borders, terminal window, robot, or repeated generic AI icon. Make project-specific artwork occupy a useful 40–65% of the canvas. Color and typography should unite the series, but compositions must vary thoughtfully rather than repeating identical diagrams. Straight-on graphic design, no tilted browser cards, no excessive shadow, no floating 3D SaaS dashboard. Crisp edges and legible real letterforms. Deliver a single thumbnail, no grid, no collage of separate covers, no decorative outer border or empty strips.\n\nExact project-name kicker: Detkit\nExact headline: Measure detection.\nExact subtitle: Sigma rules against real attack telemetry.\n\nThis image is the GENERATED BACKGROUND/TYPOGRAPHY LAYER of a final cover. An original project UI screenshot will be added afterwards. Place all copy on the LEFT within x=4% to 36% of the canvas, breaking the headline into deliberate short lines with clear hierarchy. Reserve a completely empty flat charcoal #191a1b rectangle at x=40%, y=8%, width=56%, height=84%. Do not render anything in this reserved area: no text, placeholder labels, borders, decorative marks, controls, logos, person, face, or screenshot. Do not generate the application interface itself. Real source pixels will fill that exact inset deterministically. Surrounding design follows charcoal/green; subtle green lines outside the inset can connect the title and intended real-source art, but avoid a generic icon. No instructions or identifying labels for the inset should appear. Keep all type, artwork, and essential information outside the inset. The blank area is purposeful intermediate composition and must be left clean for later overlay.",
-      "source_kind": "actual-ui",
-      "composition": {
-        "method": "deterministic-source-overlay",
-        "inset_normalized": {
-          "x": 0.4,
-          "y": 0.08,
-          "width": 0.56,
-          "height": 0.84
-        },
-        "fit": "contain-in-coherent-crop",
-        "framing": "Use a top text band and a large dashboard view below. Keep the actual Detection Coverage title, metric row, and the ATT&CK coverage heatmap as a coherent dashboard excerpt. The actual heatmap is an essential distinguishing detail, not an abstract replacement. Do not elevate incidental tiny numbers into marketing statistics.",
-        "source_fidelity": "Overlay original pixels unchanged; do not redraw source. Crop only coherent complete UI regions, preserve all relevant controls/data. Actual source colors remain factual.",
-        "generated_layer": "Editorial typography and subtle connective artwork outside reserved inset.",
-        "source_crop_pixels": [
-          180,
-          80,
-          1260,
-          960
-        ]
-      },
+      "prompt": "Use case: illustration-story.\nCreate one finished editorial illustration for Detkit, 16:9 landscape, intended final 1536 × 864 pixels.\nConcept: Measured detection that distinguishes threats from harmless activity.\nScene: A cutaway mechanical security scanner stands on a laboratory test bench. A moving inspection belt carries an ordinary closed book, a pocket watch, and one unmistakable sharp dagger. The harmless objects pass through while the dagger is caught at the center in a stark white inspection beam; an exposed mechanical warning bell above the scanner rings. Show the internal detector mechanism, precise inspection aperture and one small pair of engineering calipers on the bench. The visual story is immediately recognizable security screening tested against harmless objects and a real threat. Dramatic three-quarter close view, large clear scanner silhouette, intricate engraved steel and machinery, deep black background. No potatoes, pebbles, sieve, grains, food, labels or numbers.\nArt direction: entirely black-and-white pen-and-ink artwork combining the detailed engraving and crosshatching of a vintage etching with the dramatic framing of a graphic-novel panel. Dense ink blacks, clean paper whites, fine etched lines. Every shadow and texture is made with deliberate hatching, stippling or solid black. Deep contrast and strong silhouette; atmospheric depth comes from varying line density, never soft digital gradients. Rich tactile hand-inked craftsmanship, cinematic scale, intelligent visual storytelling. One unmistakable focal scene with distinct foreground, middle ground and background. Purposeful quieter negative space toward edges; concentrate intricate detail around meaningful subject. Make the image compelling at 480px wide and instantly legible at 358px. Essential subject and action remain within central 60% of frame with breathing room above and below for cropping. Full-bleed complete landscape composition.\nPure monochrome only. No color or sepia, no smooth grayscale gradients, photorealism, digital glow, glossy 3D, vector clipart, dashboard, user interface, collage of different panels, caption, title, text, letters, numerals, logos, watermark, frame or border. Do not print the project name or the concept. This is an original physical visual metaphor, not a diagram. One finished opaque image.",
       "generation_status": "saved",
-      "saved_generation": "assets/projects/thumbnails/detkit-background.png",
+      "saved_generation": "assets/projects/thumbnails/detkit.png",
       "final_asset": "assets/projects/thumbnails/detkit.webp",
-      "composition_status": "complete",
-      "gallery_status": "connected"
+      "webp_quality": 92,
+      "gallery_status": "connected",
+      "alt": "Ink illustration of a security scanner detecting a dagger among harmless objects.",
+      "concept": "Measured detection that distinguishes threats from harmless activity.",
+      "scene": "A cutaway mechanical security scanner stands on a laboratory test bench. A moving inspection belt carries an ordinary closed book, a pocket watch, and one unmistakable sharp dagger. The harmless objects pass through while the dagger is caught at the center in a stark white inspection beam; an exposed mechanical warning bell above the scanner rings. Show the internal detector mechanism, precise inspection aperture and one small pair of engineering calipers on the bench. The visual story is immediately recognizable security screening tested against harmless objects and a real threat. Dramatic three-quarter close view, large clear scanner silhouette, intricate engraved steel and machinery, deep black background. No potatoes, pebbles, sieve, grains, food, labels or numbers."
     },
     {
       "slug": "threatintel",
       "title": "ThreatIntelSearch",
-      "source_images": [
-        "assets/projects/threatintel-screenshot.png"
-      ],
-      "mode": "generate",
+      "style": "product",
+      "mode": "edit",
+      "prompt": "Use case: ads-marketing\nAsset: one premium project portfolio thumbnail, 16:9 landscape, intended final 1536 × 864.\nImage 1 is the EDIT TARGET: the project's authentic current product image. Image 2 is a STYLE REFERENCE ONLY: approved Pargus cover. Borrow its polished near-black launch composition, large working product view, crisp sans typography, controlled brand-colored atmosphere and rich tonal depth. Do not copy its logo, lime color or its words.\nProject: ThreatIntelSearch.\nBrand accent: #27bdf4. Background near-black #0a0a0a. Soft-white medium-weight sans-serif headline; clean warm-gray supporting text.\nExact project name at upper left: \"ThreatIntelSearch\".\nExact headline on two deliberate lines: \"Select. Right-click.\nInvestigate.\".\nExact supporting line: \"IP, domain, and hash lookups.\"\nKeep outer logo/name and copy readable at 480px display width. Approximate 64–80px headline at output size, generous 64px safe margins; left typography column about 36%, actual product view about 62%. Product window can be nearly front-on with a very slight perspective tilt; subtle rounded corners, delicate border, deep restrained shadow. One broad pool of brand-colored light behind the product, fading to black. Keep the actual product visible and bright, no dark veil.\nProject-specific source fidelity: The actual product is a browser context-menu extension. Preserve the selected google.com text, the context menu, the Threat Intel Search row and its IP/Domain/Hash submenu as a coherent large screenshot crop. Extract this real menu from the left of source image 1 and place it as the dominant product content on the RIGHT. Remove the source image's old marketing block; replace it with the exact new copy on the left. Do not turn this into a SOC dashboard or invent new security screens.\nThis is a real software or website showcase. Preserve actual product content, colors and recognizable functionality. Create the surrounding composition and typography; do not replace source content with imagined UI. Do not fabricate logos or claims. No old editorial serif template outside actual source UI, schematic diagrams, node networks, generic AI symbols, brains, robots, laptop hardware, extra badges, watermarks or extra copy. Complete finished opaque cover, one image only.",
+      "generation_status": "saved",
+      "saved_generation": "assets/projects/thumbnails/threatintel.png",
+      "final_asset": "assets/projects/thumbnails/threatintel.webp",
+      "webp_quality": 92,
+      "gallery_status": "connected",
+      "alt": "ThreatIntelSearch browser context menu with IP, domain, and hash lookups.",
       "headline": "Select. Right-click. Investigate.",
       "subtitle": "IP, domain, and hash lookups.",
-      "output_path": "assets/projects/thumbnails/threatintel.png",
-      "prompt": "Create one finished, polished 16:9 portfolio project thumbnail, 1536 × 864 pixels. Match a restrained editorial technology cover, like a carefully typeset independent software landing page, rather than an AI wallpaper. Background is nearly flat charcoal #191a1b; accent is soft green #6fcf6f; primary type is off-white #f1f1f1; secondary type is warm gray #a7aaa3. No blue accent in newly designed elements. Use a small monospaced project-name kicker and a large refined editorial headline, with generous but purposeful spacing. Headline must read clearly when this image is displayed at 430px wide. Main headline approximately 62–76px at output resolution; supporting copy approximately 25–30px, never microtext. Keep all outer typography and essential visual information inside a 64px safe margin. Limit visible copy to the supplied exact project name, headline, and subtitle, plus explicitly allowed diagram labels. Do not add a logo, date, domain, author credit, popularity count, statistics, badges, CTA, faux browser chrome, glowing borders, terminal window, robot, or repeated generic AI icon. Make project-specific artwork occupy a useful 40–65% of the canvas. Color and typography should unite the series, but compositions must vary thoughtfully rather than repeating identical diagrams. Straight-on graphic design, no tilted browser cards, no excessive shadow, no floating 3D SaaS dashboard. Crisp edges and legible real letterforms. Deliver a single thumbnail, no grid, no collage of separate covers, no decorative outer border or empty strips.\n\nExact project-name kicker: ThreatIntelSearch\nExact headline: Select. Right-click. Investigate.\nExact subtitle: IP, domain, and hash lookups.\n\nThis image is the GENERATED BACKGROUND/TYPOGRAPHY LAYER of a final cover. An original project UI screenshot will be added afterwards. Place all copy on the LEFT within x=4% to 51% of the canvas, breaking the headline into deliberate short lines with clear hierarchy. Reserve a completely empty flat charcoal #191a1b rectangle at x=55%, y=8%, width=40%, height=85%. Do not render anything in this reserved area: no text, placeholder labels, borders, decorative marks, controls, logos, person, face, or screenshot. Do not generate the application interface itself. Real source pixels will fill that exact inset deterministically. Surrounding design follows charcoal/green; subtle green lines outside the inset can connect the title and intended real-source art, but avoid a generic icon. No instructions or identifying labels for the inset should appear. Keep all type, artwork, and essential information outside the inset. The blank area is purposeful intermediate composition and must be left clean for later overlay.",
-      "source_kind": "actual-ui",
-      "composition": {
-        "method": "deterministic-source-overlay",
-        "inset_normalized": {
-          "x": 0.55,
-          "y": 0.075,
-          "width": 0.4,
-          "height": 0.85
-        },
-        "fit": "contain-in-coherent-crop",
-        "framing": "Show the complete actual context menu plus entire Threat Intel Search submenu. Omit source's right blue promo text rather than duplicate titles. Do not clip submenu.",
-        "source_fidelity": "Overlay original pixels unchanged; do not redraw source. Crop only coherent complete UI regions, preserve all relevant controls/data. Actual source colors remain factual.",
-        "generated_layer": "Editorial typography and subtle connective artwork outside reserved inset.",
-        "source_crop_pixels": [
-          70,
-          48,
-          602,
-          752
-        ]
-      },
+      "source_images": [
+        "assets/projects/threatintel-screenshot.webp",
+        "assets/projects/thumbnails/pargus.png"
+      ],
+      "social_asset": "assets/projects/social/threatintel.png"
+    },
+    {
+      "slug": "cve-braces",
+      "title": "CVE-2026-93687",
+      "style": "monochrome",
+      "mode": "generate",
+      "prompt": "Use case: illustration-story.\nCreate one finished editorial illustration for CVE-2026-93687, 16:9 landscape, intended final 1536 × 864 pixels.\nConcept: Verify a disputed software vulnerability by measuring its actual breaking point.\nScene: A vast dark canyon seen from a slight high angle. Its walls are carved into giant curly-brace shapes that nest inside each other, smaller and smaller, spiraling down into a bottomless black void like an endless stack falling away. On a rocky ledge slightly right of center, one lone figure in a hooded jacket stands calmly with a surveyor's measuring instrument on a tripod, looking into the spiral. On the left, an orderly line of identical small robots each carries the same wooden plank toward the gap; several broken planks lie on the rocks. Clouds break to illuminate the surveyor. Render the braces as enormous carved canyon architecture, not typography. Keep the figure and the spiral opening legible.\nArt direction: entirely black-and-white pen-and-ink artwork combining the detailed engraving and crosshatching of a vintage etching with the dramatic framing of a graphic-novel panel. Dense ink blacks, clean paper whites, fine etched lines. Every shadow and texture is made with deliberate hatching, stippling or solid black. Deep contrast and strong silhouette; atmospheric depth comes from varying line density, never soft digital gradients. Rich tactile hand-inked craftsmanship, cinematic scale, intelligent visual storytelling. One unmistakable focal scene with distinct foreground, middle ground and background. Purposeful quieter negative space toward edges; concentrate intricate detail around meaningful subject. Make the image compelling at 480px wide and instantly legible at 358px. Essential subject and action remain within central 60% of frame with breathing room above and below for cropping. Full-bleed complete landscape composition.\nPure monochrome only. No color or sepia, no smooth grayscale gradients, photorealism, digital glow, glossy 3D, vector clipart, dashboard, user interface, collage of different panels, caption, title, text, letters, numerals, logos, watermark, frame or border. Do not print the project name or the concept. This is an original physical visual metaphor, not a diagram. One finished opaque image.",
       "generation_status": "saved",
-      "saved_generation": "assets/projects/thumbnails/threatintel-background.png",
-      "final_asset": "assets/projects/thumbnails/threatintel.webp",
-      "composition_status": "complete",
-      "gallery_status": "connected-source-preview",
-      "gallery_asset": "assets/projects/threatintel-screenshot.png"
+      "saved_generation": "assets/projects/thumbnails/cve-braces.png",
+      "final_asset": "assets/projects/thumbnails/cve-braces.webp",
+      "webp_quality": 92,
+      "gallery_status": "connected",
+      "alt": "Ink illustration of a surveyor measuring a canyon of nested braces while robots carry identical planks.",
+      "concept": "Verify a disputed software vulnerability by measuring its actual breaking point.",
+      "scene": "A vast dark canyon seen from a slight high angle. Its walls are carved into giant curly-brace shapes that nest inside each other, smaller and smaller, spiraling down into a bottomless black void like an endless stack falling away. On a rocky ledge slightly right of center, one lone figure in a hooded jacket stands calmly with a surveyor's measuring instrument on a tripod, looking into the spiral. On the left, an orderly line of identical small robots each carries the same wooden plank toward the gap; several broken planks lie on the rocks. Clouds break to illuminate the surveyor. Render the braces as enormous carved canyon architecture, not typography. Keep the figure and the spiral opening legible."
     },
     {
       "slug": "logibar",
       "title": "Logibar",
-      "source_images": [
-        "assets/projects/logibar.png"
-      ],
-      "mode": "generate",
-      "headline": "Every battery. One tray.",
-      "subtitle": "Mouse, headset, and keyboard battery levels.",
-      "output_path": "assets/projects/thumbnails/logibar.png",
-      "prompt": "Create one finished, polished 16:9 portfolio project thumbnail, 1536 × 864 pixels. Match a restrained editorial technology cover, like a carefully typeset independent software landing page, rather than an AI wallpaper. Background is nearly flat charcoal #191a1b; accent is soft green #6fcf6f; primary type is off-white #f1f1f1; secondary type is warm gray #a7aaa3. No blue accent in newly designed elements. Use a small monospaced project-name kicker and a large refined editorial headline, with generous but purposeful spacing. Headline must read clearly when this image is displayed at 430px wide. Main headline approximately 62–76px at output resolution; supporting copy approximately 25–30px, never microtext. Keep all outer typography and essential visual information inside a 64px safe margin. Limit visible copy to the supplied exact project name, headline, and subtitle, plus explicitly allowed diagram labels. Do not add a logo, date, domain, author credit, popularity count, statistics, badges, CTA, faux browser chrome, glowing borders, terminal window, robot, or repeated generic AI icon. Make project-specific artwork occupy a useful 40–65% of the canvas. Color and typography should unite the series, but compositions must vary thoughtfully rather than repeating identical diagrams. Straight-on graphic design, no tilted browser cards, no excessive shadow, no floating 3D SaaS dashboard. Crisp edges and legible real letterforms. Deliver a single thumbnail, no grid, no collage of separate covers, no decorative outer border or empty strips.\n\nExact project-name kicker: Logibar\nExact headline: Every battery. One tray.\nExact subtitle: Mouse, headset, and keyboard battery levels.\n\nThis image is the GENERATED BACKGROUND/TYPOGRAPHY LAYER of a final cover. An original project UI screenshot will be added afterwards. Place all copy on the LEFT within x=4% to 40% of the canvas, breaking the headline into deliberate short lines with clear hierarchy. Reserve a completely empty flat charcoal #191a1b rectangle at x=44%, y=25%, width=51%, height=60%. Do not render anything in this reserved area: no text, placeholder labels, borders, decorative marks, controls, logos, person, face, or screenshot. Do not generate the application interface itself. Real source pixels will fill that exact inset deterministically. Surrounding design follows charcoal/green; subtle green lines outside the inset can connect the title and intended real-source art, but avoid a generic icon. No instructions or identifying labels for the inset should appear. Keep all type, artwork, and essential information outside the inset. The blank area is purposeful intermediate composition and must be left clean for later overlay.",
-      "source_kind": "actual-ui",
-      "composition": {
-        "method": "deterministic-source-overlay",
-        "inset_normalized": {
-          "x": 0.44,
-          "y": 0.25,
-          "width": 0.51,
-          "height": 0.6
-        },
-        "fit": "contain-in-coherent-crop",
-        "framing": "Use the existing Windows battery popup and tray as the dominant artwork, enlarged but fully visible. Preserve actual Logitech device names and the battery percentages shown in the source; these are UI content, not newly invented statistics. A text band above or left provides the exact supplied headline. Keep the actual product mark recognizable, but no additional generated logo. Include the real tray device icons without cutting off the right side of the popup.",
-        "source_fidelity": "Overlay original pixels unchanged; do not redraw source. Crop only coherent complete UI regions, preserve all relevant controls/data. Actual source colors remain factual.",
-        "generated_layer": "Editorial typography and subtle connective artwork outside reserved inset.",
-        "source_crop_pixels": [
-          790,
-          130,
-          1560,
-          760
-        ]
-      },
+      "style": "product",
+      "mode": "edit",
+      "prompt": "Use case: ads-marketing\nAsset: one premium project portfolio thumbnail, 16:9 landscape, intended final 1536 × 864.\nImage 1 is the EDIT TARGET: the project's authentic current product image. Image 2 is a STYLE REFERENCE ONLY: approved Pargus cover. Borrow its polished near-black launch composition, large working product view, crisp sans typography, controlled brand-colored atmosphere and rich tonal depth. Do not copy its logo, lime color or its words.\nProject: Logibar.\nBrand accent: #13bce9. Background near-black #0a0a0a. Soft-white medium-weight sans-serif headline; clean warm-gray supporting text.\nExact project name at upper left: \"Logibar\".\nExact headline on two deliberate lines: \"Every battery.\nOne tray.\".\nExact supporting line: \"Logitech battery levels in your Windows tray.\"\nKeep outer logo/name and copy readable at 480px display width. Approximate 64–80px headline at output size, generous 64px safe margins; left typography column about 36%, actual product view about 62%. Product window can be nearly front-on with a very slight perspective tilt; subtle rounded corners, delicate border, deep restrained shadow. One broad pool of brand-colored light behind the product, fading to black. Keep the actual product visible and bright, no dark veil.\nProject-specific source fidelity: Preserve the mouse/battery logo and the actual Windows popup listing PRO X 2 Superstrike Wireless Mouse 90%, PRO X2 Gaming Wireless Headset 53%, and G915 TKL 24%, with Refresh, Start with Windows and Quit. The real battery popup is the dominant product content on the RIGHT; retain a small coherent strip of its matching tray beneath it. Remove incidental old clock/date and old promotional copy. Do not invent a dashboard or redraw values.\nThis is a real software or website showcase. Preserve actual product content, colors and recognizable functionality. Create the surrounding composition and typography; do not replace source content with imagined UI. Do not fabricate logos or claims. No old editorial serif template outside actual source UI, schematic diagrams, node networks, generic AI symbols, brains, robots, laptop hardware, extra badges, watermarks or extra copy. Complete finished opaque cover, one image only.",
       "generation_status": "saved",
-      "saved_generation": "assets/projects/thumbnails/logibar-background.png",
+      "saved_generation": "assets/projects/thumbnails/logibar.png",
       "final_asset": "assets/projects/thumbnails/logibar.webp",
-      "composition_status": "complete",
-      "gallery_status": "connected-source-preview",
-      "gallery_asset": "assets/projects/logibar.png"
+      "webp_quality": 92,
+      "gallery_status": "connected",
+      "alt": "Logibar device battery readings and matching Windows tray icons.",
+      "headline": "Every battery. One tray.",
+      "subtitle": "Logitech battery levels in your Windows tray.",
+      "source_images": [
+        "assets/projects/logibar.webp",
+        "assets/projects/thumbnails/pargus.png"
+      ],
+      "social_asset": "assets/projects/social/logibar.png"
+    },
+    {
+      "slug": "babil",
+      "title": "Babil",
+      "style": "product",
+      "mode": "edit",
+      "prompt": "Use case: ads-marketing\nAsset: one premium project portfolio thumbnail, 16:9 landscape, intended final 1536 × 864.\nImage 1 is the EDIT TARGET: the project's authentic current product image. Image 2 is a STYLE REFERENCE ONLY: approved Pargus cover. Borrow its polished near-black launch composition, large working product view, crisp sans typography, controlled brand-colored atmosphere and rich tonal depth. Do not copy its logo, lime color or its words.\nProject: Babil.\nBrand accent: #f0b24a. Background near-black #0a0a0a. Soft-white medium-weight sans-serif headline; clean warm-gray supporting text.\nExact project name at upper left: \"Babil\".\nExact headline on two deliberate lines: \"Live captions.\nYour language.\".\nExact supporting line: \"Local Whisper captions and translation for browser video.\"\nKeep outer logo/name and copy readable at 480px display width. Approximate 64–80px headline at output size, generous 64px safe margins; left typography column about 36%, actual product view about 62%. Product window can be nearly front-on with a very slight perspective tilt; subtle rounded corners, delicate border, deep restrained shadow. One broad pool of brand-colored light behind the product, fading to black. Keep the actual product visible and bright, no dark veil.\nProject-specific source fidelity: This is a browser extension for captions and translated captions. Use the real supplied browser-video frame as the product content on the right. Preserve the actual paired Turkish/English captions and video playback controls, with text clarity. The original video is a simple blue-to-warm sky background; keep its natural video colors inside the product window. Put the Babil name at upper left. No invented extension control panel, transcript dashboard or new controls. The dark surrounding launch artwork may use subtle amber light.\nThis is a real software or website showcase. Preserve actual product content, colors and recognizable functionality. Create the surrounding composition and typography; do not replace source content with imagined UI. Do not fabricate logos or claims. No old editorial serif template outside actual source UI, schematic diagrams, node networks, generic AI symbols, brains, robots, laptop hardware, extra badges, watermarks or extra copy. Complete finished opaque cover, one image only.",
+      "generation_status": "saved",
+      "saved_generation": "assets/projects/thumbnails/babil.png",
+      "final_asset": "assets/projects/thumbnails/babil.webp",
+      "webp_quality": 92,
+      "gallery_status": "connected",
+      "alt": "Babil browser video with original and translated live captions.",
+      "headline": "Live captions. Your language.",
+      "subtitle": "Local Whisper captions and translation for browser video.",
+      "source_images": [
+        "assets/projects/babil-screenshot.webp",
+        "assets/projects/thumbnails/pargus.png"
+      ],
+      "social_asset": "assets/projects/social/babil.png"
+    },
+    {
+      "slug": "hammurabi",
+      "title": "Hammurabi",
+      "style": "product",
+      "mode": "edit",
+      "prompt": "Use case: ads-marketing\nAsset: one premium project portfolio thumbnail, 16:9 landscape, intended final 1536 × 864.\nImage 1 is the EDIT TARGET: the project's authentic current product image. Image 2 is a STYLE REFERENCE ONLY: approved Pargus cover. Borrow its polished near-black launch composition, large working product view, crisp sans typography, controlled brand-colored atmosphere and rich tonal depth. Do not copy its logo, lime color or its words. Image 3 is supporting official project branding.\nProject: Hammurabi.\nBrand accent: #5eead4. Background near-black #0a0a0a. Soft-white medium-weight sans-serif headline; clean warm-gray supporting text.\nExact project name at upper left: \"Hammurabi\".\nExact headline on two deliberate lines: \"Live captions.\nFor any audio.\".\nExact supporting line: \"Local transcription and translation on Windows, Mac, and Linux.\"\nKeep outer logo/name and copy readable at 480px display width. Approximate 64–80px headline at output size, generous 64px safe margins; left typography column about 36%, actual product view about 62%. Product window can be nearly front-on with a very slight perspective tilt; subtle rounded corners, delicate border, deep restrained shadow. One broad pool of brand-colored light behind the product, fading to black. Keep the actual product visible and bright, no dark veil.\nProject-specific source fidelity: Use the actual supplied sunset/mountain video with its real bottom caption overlay as the large product view. Preserve both caption lines, the sunset and mountain artwork and the caption bar exactly. Supporting image 3 is official Hammurabi identity: retain its teal rounded-square caption icon and its brand spelling. It is a local tray app, so do not invent a massive dashboard or browser extension interface. Surrounding product-launch composition uses restrained teal light.\nThis is a real software or website showcase. Preserve actual product content, colors and recognizable functionality. Create the surrounding composition and typography; do not replace source content with imagined UI. Do not fabricate logos or claims. No old editorial serif template outside actual source UI, schematic diagrams, node networks, generic AI symbols, brains, robots, laptop hardware, extra badges, watermarks or extra copy. Complete finished opaque cover, one image only.",
+      "generation_status": "saved",
+      "saved_generation": "assets/projects/thumbnails/hammurabi.png",
+      "final_asset": "assets/projects/thumbnails/hammurabi.webp",
+      "webp_quality": 92,
+      "gallery_status": "connected",
+      "alt": "Hammurabi live caption overlay with original speech and its translation.",
+      "headline": "Live captions. For any audio.",
+      "subtitle": "Local transcription and translation on Windows, Mac, and Linux.",
+      "source_images": [
+        "assets/projects/hammurabi-screenshot.webp",
+        "assets/projects/thumbnails/pargus.png",
+        "assets/projects/references/hammurabi-branding.png"
+      ],
+      "social_asset": "assets/projects/social/hammurabi.png"
+    },
+    {
+      "slug": "explain",
+      "title": "Explain",
+      "style": "product",
+      "mode": "edit",
+      "prompt": "Use case: ads-marketing\nAsset: one premium project portfolio thumbnail, 16:9 landscape, intended final 1536 × 864.\nImage 1 is the EDIT TARGET: the project's authentic current product image. Image 2 is a STYLE REFERENCE ONLY: approved Pargus cover. Borrow its polished near-black launch composition, large working product view, crisp sans typography, controlled brand-colored atmosphere and rich tonal depth. Do not copy its logo, lime color or its words. Image 3 is supporting official project branding.\nProject: Explain.\nBrand accent: #4876d4. Background near-black #0a0a0a. Soft-white medium-weight sans-serif headline; clean warm-gray supporting text.\nExact project name at upper left: \"Explain\".\nExact headline on two deliberate lines: \"Understand it.\nRight there.\".\nExact supporting line: \"Select text. Get a plain explanation beside it.\"\nKeep outer logo/name and copy readable at 480px display width. Approximate 64–80px headline at output size, generous 64px safe margins; left typography column about 36%, actual product view about 62%. Product window can be nearly front-on with a very slight perspective tilt; subtle rounded corners, delicate border, deep restrained shadow. One broad pool of brand-colored light behind the product, fading to black. Keep the actual product visible and bright, no dark veil.\nProject-specific source fidelity: The meaningful product view is the real browser article with the highlighted word syzygy and the Explain popover next to it. Preserve this exact relationship and the real readable explanation content. Crop the supplied real UI coherently to make that highlighted word and explanation card large and legible in the right two-thirds. Keep the real UI light against the dark product-launch background. Supporting image 3 supplies the official blue rounded-square e icon and spelling. Remove duplicated original marketing headings; no invented chat UI.\nThis is a real software or website showcase. Preserve actual product content, colors and recognizable functionality. Create the surrounding composition and typography; do not replace source content with imagined UI. Do not fabricate logos or claims. No old editorial serif template outside actual source UI, schematic diagrams, node networks, generic AI symbols, brains, robots, laptop hardware, extra badges, watermarks or extra copy. Complete finished opaque cover, one image only.",
+      "generation_status": "saved",
+      "saved_generation": "assets/projects/thumbnails/explain.png",
+      "final_asset": "assets/projects/thumbnails/explain.webp",
+      "webp_quality": 92,
+      "gallery_status": "connected",
+      "alt": "Explain showing a plain explanation beside a selected word in an article.",
+      "headline": "Understand it. Right there.",
+      "subtitle": "Select text. Get a plain explanation beside it.",
+      "source_images": [
+        "assets/projects/explain-screenshot.webp",
+        "assets/projects/thumbnails/pargus.png",
+        "assets/projects/references/explain-branding.png"
+      ],
+      "social_asset": "assets/projects/social/explain.png"
     },
     {
       "slug": "moviepickr",
       "title": "Moviepickr",
-      "source_images": [
-        "assets/projects/moviepickr.webp"
-      ],
-      "mode": "generate",
+      "style": "product",
+      "mode": "edit",
+      "prompt": "Use case: ads-marketing\nAsset: one premium project portfolio thumbnail, 16:9 landscape, intended final 1536 × 864.\nImage 1 is the EDIT TARGET: the project's authentic current product image. Image 2 is a STYLE REFERENCE ONLY: approved Pargus cover. Borrow its polished near-black launch composition, large working product view, crisp sans typography, controlled brand-colored atmosphere and rich tonal depth. Do not copy its logo, lime color or its words.\nProject: Moviepickr.\nBrand accent: #f03780. Background near-black #0a0a0a. Soft-white medium-weight sans-serif headline; clean warm-gray supporting text.\nExact project name at upper left: \"Moviepickr\".\nExact headline on two deliberate lines: \"Find your\nshared yes.\".\nExact supporting line: \"Swipe together. Pick a movie.\"\nKeep outer logo/name and copy readable at 480px display width. Approximate 64–80px headline at output size, generous 64px safe margins; left typography column about 36%, actual product view about 62%. Product window can be nearly front-on with a very slight perspective tilt; subtle rounded corners, delicate border, deep restrained shadow. One broad pool of brand-colored light behind the product, fading to black. Keep the actual product visible and bright, no dark veil.\nProject-specific source fidelity: Retain the actual moviepickr wordmark including its pink/violet pickr accent, movie-poster fan, Start a movie night action, CODE field and Join button. The supplied existing real homepage is the dominant product view on the right; crop coherently and improve its presentation without inventing new app screens, extra posters or swiping controls. Preserve the homepage pixels/real controls and keep source art bright enough to recognize. Surrounding lighting may use restrained pink with a faint violet echo drawn from actual branding.\nThis is a real software or website showcase. Preserve actual product content, colors and recognizable functionality. Create the surrounding composition and typography; do not replace source content with imagined UI. Do not fabricate logos or claims. No old editorial serif template outside actual source UI, schematic diagrams, node networks, generic AI symbols, brains, robots, laptop hardware, extra badges, watermarks or extra copy. Complete finished opaque cover, one image only.",
+      "generation_status": "saved",
+      "saved_generation": "assets/projects/thumbnails/moviepickr.png",
+      "final_asset": "assets/projects/thumbnails/moviepickr.webp",
+      "webp_quality": 92,
+      "gallery_status": "connected",
+      "alt": "Moviepickr homepage with movie posters, movie night action, and a room code field.",
       "headline": "Find your shared yes.",
       "subtitle": "Swipe together. Pick a movie.",
-      "output_path": "assets/projects/thumbnails/moviepickr.png",
-      "prompt": "Create one finished, polished 16:9 portfolio project thumbnail, 1536 × 864 pixels. Match a restrained editorial technology cover, like a carefully typeset independent software landing page, rather than an AI wallpaper. Background is nearly flat charcoal #191a1b; accent is soft green #6fcf6f; primary type is off-white #f1f1f1; secondary type is warm gray #a7aaa3. No blue accent in newly designed elements. Use a small monospaced project-name kicker and a large refined editorial headline, with generous but purposeful spacing. Headline must read clearly when this image is displayed at 430px wide. Main headline approximately 62–76px at output resolution; supporting copy approximately 25–30px, never microtext. Keep all outer typography and essential visual information inside a 64px safe margin. Limit visible copy to the supplied exact project name, headline, and subtitle, plus explicitly allowed diagram labels. Do not add a logo, date, domain, author credit, popularity count, statistics, badges, CTA, faux browser chrome, glowing borders, terminal window, robot, or repeated generic AI icon. Make project-specific artwork occupy a useful 40–65% of the canvas. Color and typography should unite the series, but compositions must vary thoughtfully rather than repeating identical diagrams. Straight-on graphic design, no tilted browser cards, no excessive shadow, no floating 3D SaaS dashboard. Crisp edges and legible real letterforms. Deliver a single thumbnail, no grid, no collage of separate covers, no decorative outer border or empty strips.\n\nExact project-name kicker: Moviepickr\nExact headline: Find your shared yes.\nExact subtitle: Swipe together. Pick a movie.\n\nThis image is the GENERATED BACKGROUND/TYPOGRAPHY LAYER of a final cover. An original project UI screenshot will be added afterwards. Place all copy on the LEFT within x=4% to 42% of the canvas, breaking the headline into deliberate short lines with clear hierarchy. Reserve a completely empty flat charcoal #191a1b rectangle at x=46%, y=10%, width=49%, height=80%. Do not render anything in this reserved area: no text, placeholder labels, borders, decorative marks, controls, logos, person, face, or screenshot. Do not generate the application interface itself. Real source pixels will fill that exact inset deterministically. Surrounding design follows charcoal/green; subtle green lines outside the inset can connect the title and intended real-source art, but avoid a generic icon. No instructions or identifying labels for the inset should appear. Keep all type, artwork, and essential information outside the inset. The blank area is purposeful intermediate composition and must be left clean for later overlay.",
-      "source_kind": "actual-ui",
-      "composition": {
-        "method": "deterministic-source-overlay",
-        "inset_normalized": {
-          "x": 0.49,
-          "y": 0.1,
-          "width": 0.46,
-          "height": 0.8
-        },
-        "fit": "contain-in-coherent-crop",
-        "framing": "Use the actual Moviepickr homepage hero with its existing title, cinematic card stack, movie-night action, and join-code interaction. Make this hero region substantial, with the new supplied title/copy occupying a short adjacent text column. Preserve the original imagery and original app UI accents rather than fabricating films, swipes, results, or phone screenshots. Avoid repeating the source headline as extra decorative copy.",
-        "source_fidelity": "Overlay original pixels unchanged; do not redraw source. Crop only coherent complete UI regions, preserve all relevant controls/data. Actual source colors remain factual.",
-        "generated_layer": "Editorial typography and subtle connective artwork outside reserved inset.",
-        "source_crop_pixels": [
-          25,
-          85,
-          1140,
-          750
-        ]
-      },
-      "generation_status": "saved",
-      "saved_generation": "assets/projects/thumbnails/moviepickr-background.png",
-      "final_asset": "assets/projects/thumbnails/moviepickr.webp",
-      "composition_status": "complete",
-      "gallery_status": "connected-source-preview",
-      "gallery_asset": "assets/projects/moviepickr-homepage-v2.webp",
-      "gallery_capture": {
-        "url": "https://moviepickr.site/",
-        "date": "2026-10-13",
-        "viewport": {
-          "width": 1440,
-          "height": 810
-        },
-        "readiness": "network idle, fonts ready, source images and CSS backgrounds loaded"
-      }
+      "source_images": [
+        "assets/projects/moviepickr-homepage-v2.webp",
+        "assets/projects/thumbnails/pargus.png"
+      ],
+      "social_asset": "assets/projects/social/moviepickr.png"
     },
     {
       "slug": "jobscope",
       "title": "JobScope",
-      "source_images": [
-        "assets/projects/jobscope.webp"
-      ],
+      "style": "monochrome",
       "mode": "generate",
-      "headline": "A clearer job search.",
-      "subtitle": "USA tech roles, matched to your preferences.",
-      "output_path": "assets/projects/thumbnails/jobscope.png",
-      "prompt": "Create one finished, polished 16:9 portfolio project thumbnail, 1536 × 864 pixels. Match a restrained editorial technology cover, like a carefully typeset independent software landing page, rather than an AI wallpaper. Background is nearly flat charcoal #191a1b; accent is soft green #6fcf6f; primary type is off-white #f1f1f1; secondary type is warm gray #a7aaa3. No blue accent in newly designed elements. Use a small monospaced project-name kicker and a large refined editorial headline, with generous but purposeful spacing. Headline must read clearly when this image is displayed at 430px wide. Main headline approximately 62–76px at output resolution; supporting copy approximately 25–30px, never microtext. Keep all outer typography and essential visual information inside a 64px safe margin. Limit visible copy to the supplied exact project name, headline, and subtitle, plus explicitly allowed diagram labels. Do not add a logo, date, domain, author credit, popularity count, statistics, badges, CTA, faux browser chrome, glowing borders, terminal window, robot, or repeated generic AI icon. Make project-specific artwork occupy a useful 40–65% of the canvas. Color and typography should unite the series, but compositions must vary thoughtfully rather than repeating identical diagrams. Straight-on graphic design, no tilted browser cards, no excessive shadow, no floating 3D SaaS dashboard. Crisp edges and legible real letterforms. Deliver a single thumbnail, no grid, no collage of separate covers, no decorative outer border or empty strips.\n\nExact project-name kicker: JobScope\nExact headline: A clearer job search.\nExact subtitle: USA tech roles, matched to your preferences.\n\nThis image is the GENERATED BACKGROUND/TYPOGRAPHY LAYER of a final cover. An original project UI screenshot will be added afterwards. Place all copy on the LEFT within x=4% to 38% of the canvas, breaking the headline into deliberate short lines with clear hierarchy. Reserve a completely empty flat charcoal #191a1b rectangle at x=42%, y=16%, width=54%, height=69%. Do not render anything in this reserved area: no text, placeholder labels, borders, decorative marks, controls, logos, person, face, or screenshot. Do not generate the application interface itself. Real source pixels will fill that exact inset deterministically. Surrounding design follows charcoal/green; subtle green lines outside the inset can connect the title and intended real-source art, but avoid a generic icon. No instructions or identifying labels for the inset should appear. Keep all type, artwork, and essential information outside the inset. The blank area is purposeful intermediate composition and must be left clean for later overlay.",
-      "source_kind": "actual-ui",
-      "composition": {
-        "method": "deterministic-source-overlay",
-        "inset_normalized": {
-          "x": 0.44,
-          "y": 0.16,
-          "width": 0.52,
-          "height": 0.69
-        },
-        "fit": "contain-in-coherent-crop",
-        "framing": "Use a useful real excerpt of the jobs board: its title/filter row and several visible job rows with role, company, location, and score columns. Retain a recognizable slice of the actual adjacent application board if it fits, without shrinking the main rows. The source may contain purple accents; preserve those inside the screenshot while keeping surrounding cover elements green and charcoal. No new companies, fabricated job listings, or invented scores.",
-        "source_fidelity": "Overlay original pixels unchanged; do not redraw source. Crop only coherent complete UI regions, preserve all relevant controls/data. Actual source colors remain factual.",
-        "generated_layer": "Editorial typography and subtle connective artwork outside reserved inset.",
-        "source_crop_pixels": [
-          0,
-          0,
-          1280,
-          448
-        ]
-      },
+      "prompt": "Use case: illustration-story.\nCreate one finished editorial illustration for JobScope, 16:9 landscape, intended final 1536 × 864 pixels.\nConcept: Find relevant USA tech openings among many possibilities, scored to a person's preferences.\nScene: An enormous optical lens hangs over concentric rows of empty office chairs. One perfectly matched chair comes into brilliant precise focus beneath it; surrounding chairs dissolve into coarse black hatching. Elevated architectural perspective, one strong circular lens, vast implied field of opportunities. The chosen chair is an inviting human-scale destination inside the overwhelming landscape.\nArt direction: entirely black-and-white pen-and-ink artwork combining the detailed engraving and crosshatching of a vintage etching with the dramatic framing of a graphic-novel panel. Dense ink blacks, clean paper whites, fine etched lines. Every shadow and texture is made with deliberate hatching, stippling or solid black. Deep contrast and strong silhouette; atmospheric depth comes from varying line density, never soft digital gradients. Rich tactile hand-inked craftsmanship, cinematic scale, intelligent visual storytelling. One unmistakable focal scene with distinct foreground, middle ground and background. Purposeful quieter negative space toward edges; concentrate intricate detail around meaningful subject. Make the image compelling at 480px wide and instantly legible at 358px. Essential subject and action remain within central 60% of frame with breathing room above and below for cropping. Full-bleed complete landscape composition.\nPure monochrome only. No color or sepia, no smooth grayscale gradients, photorealism, digital glow, glossy 3D, vector clipart, dashboard, user interface, collage of different panels, caption, title, text, letters, numerals, logos, watermark, frame or border. Do not print the project name or the concept. This is an original physical visual metaphor, not a diagram. One finished opaque image.",
       "generation_status": "saved",
-      "saved_generation": "assets/projects/thumbnails/jobscope-background.png",
+      "saved_generation": "assets/projects/thumbnails/jobscope.png",
       "final_asset": "assets/projects/thumbnails/jobscope.webp",
-      "composition_status": "complete",
-      "gallery_status": "connected"
+      "webp_quality": 92,
+      "gallery_status": "connected",
+      "alt": "Ink illustration of a lens finding one matching office chair among many opportunities.",
+      "concept": "Find relevant USA tech openings among many possibilities, scored to a person's preferences.",
+      "scene": "An enormous optical lens hangs over concentric rows of empty office chairs. One perfectly matched chair comes into brilliant precise focus beneath it; surrounding chairs dissolve into coarse black hatching. Elevated architectural perspective, one strong circular lens, vast implied field of opportunities. The chosen chair is an inviting human-scale destination inside the overwhelming landscape."
     },
     {
       "slug": "cheff",
       "title": "Cheff.fit",
-      "source_images": [
-        "assets/projects/cheff.webp"
-      ],
-      "mode": "generate",
-      "headline": "From plate to macros.",
-      "subtitle": "Meal photos, planning, and pantry tracking.",
-      "output_path": "assets/projects/thumbnails/cheff.png",
-      "prompt": "Create one finished, polished 16:9 portfolio project thumbnail, 1536 × 864 pixels. Match a restrained editorial technology cover, like a carefully typeset independent software landing page, rather than an AI wallpaper. Background is nearly flat charcoal #191a1b; accent is soft green #6fcf6f; primary type is off-white #f1f1f1; secondary type is warm gray #a7aaa3. No blue accent in newly designed elements. Use a small monospaced project-name kicker and a large refined editorial headline, with generous but purposeful spacing. Headline must read clearly when this image is displayed at 430px wide. Main headline approximately 62–76px at output resolution; supporting copy approximately 25–30px, never microtext. Keep all outer typography and essential visual information inside a 64px safe margin. Limit visible copy to the supplied exact project name, headline, and subtitle, plus explicitly allowed diagram labels. Do not add a logo, date, domain, author credit, popularity count, statistics, badges, CTA, faux browser chrome, glowing borders, terminal window, robot, or repeated generic AI icon. Make project-specific artwork occupy a useful 40–65% of the canvas. Color and typography should unite the series, but compositions must vary thoughtfully rather than repeating identical diagrams. Straight-on graphic design, no tilted browser cards, no excessive shadow, no floating 3D SaaS dashboard. Crisp edges and legible real letterforms. Deliver a single thumbnail, no grid, no collage of separate covers, no decorative outer border or empty strips.\n\nExact project-name kicker: Cheff.fit\nExact headline: From plate to macros.\nExact subtitle: Meal photos, planning, and pantry tracking.\n\nThis image is the GENERATED BACKGROUND/TYPOGRAPHY LAYER of a final cover. An original project UI screenshot will be added afterwards. Place all copy on the LEFT within x=4% to 51% of the canvas, breaking the headline into deliberate short lines with clear hierarchy. Reserve a completely empty flat charcoal #191a1b rectangle at x=55%, y=13%, width=36%, height=78%. Do not render anything in this reserved area: no text, placeholder labels, borders, decorative marks, controls, logos, person, face, or screenshot. Do not generate the application interface itself. Real source pixels will fill that exact inset deterministically. Surrounding design follows charcoal/green; subtle green lines outside the inset can connect the title and intended real-source art, but avoid a generic icon. No instructions or identifying labels for the inset should appear. Keep all type, artwork, and essential information outside the inset. The blank area is purposeful intermediate composition and must be left clean for later overlay.",
-      "source_kind": "actual-ui",
-      "composition": {
-        "method": "deterministic-source-overlay",
-        "inset_normalized": {
-          "x": 0.55,
-          "y": 0.13,
-          "width": 0.36,
-          "height": 0.78
-        },
-        "fit": "contain-in-coherent-crop",
-        "framing": "Show the actual source phone-shaped macro breakdown UI as the main artwork, with its existing food and nutrition content intact. Pair it with the supplied headline rather than showing the whole long webpage too small. A small authentic logo/header excerpt may remain within the source UI. Use actual source controls and avoid adding an invented meal photograph, invented analysis result, or invented tracking dashboard.",
-        "source_fidelity": "Overlay original pixels unchanged; do not redraw source. Crop only coherent complete UI regions, preserve all relevant controls/data. Actual source colors remain factual.",
-        "generated_layer": "Editorial typography and subtle connective artwork outside reserved inset.",
-        "source_crop_pixels": [
-          714,
-          144,
-          1025,
-          576
-        ]
-      },
+      "style": "product",
+      "mode": "edit",
+      "prompt": "Use case: ads-marketing\nAsset: one premium project portfolio thumbnail, 16:9 landscape, intended final 1536 × 864.\nImage 1 is the EDIT TARGET: the project's authentic current product image. Image 2 is a STYLE REFERENCE ONLY: approved Pargus cover. Borrow its polished near-black launch composition, large working product view, crisp sans typography, controlled brand-colored atmosphere and rich tonal depth. Do not copy its logo, lime color or its words.\nProject: Cheff.fit.\nBrand accent: #00ed8b. Background near-black #0a0a0a. Soft-white medium-weight sans-serif headline; clean warm-gray supporting text.\nExact project name at upper left: \"Cheff.fit\".\nExact headline on two deliberate lines: \"Meals, macros,\nand a plan.\".\nExact supporting line: \"Meal photos, macros, planning, and pantry tracking.\"\nKeep outer logo/name and copy readable at 480px display width. Approximate 64–80px headline at output size, generous 64px safe margins; left typography column about 36%, actual product view about 62%. Product window can be nearly front-on with a very slight perspective tilt; subtle rounded corners, delicate border, deep restrained shadow. One broad pool of brand-colored light behind the product, fading to black. Keep the actual product visible and bright, no dark veil.\nProject-specific source fidelity: Use the actual Cheff.fit identity and green logo from the supplied source. Product content is the real dark nutritional breakdown panel with Chicken burrito bowl, total 593 kcal, protein/carbs/fat breakdown and its genuine layout. Make this existing panel and a coherent portion of the real homepage the large right-side hero. Preserve actual example values and proportions; do not invent food photography, app screens or nutrition statistics. Avoid repeating the old homepage headline twice.\nThis is a real software or website showcase. Preserve actual product content, colors and recognizable functionality. Create the surrounding composition and typography; do not replace source content with imagined UI. Do not fabricate logos or claims. No old editorial serif template outside actual source UI, schematic diagrams, node networks, generic AI symbols, brains, robots, laptop hardware, extra badges, watermarks or extra copy. Complete finished opaque cover, one image only.",
       "generation_status": "saved",
+      "saved_generation": "assets/projects/thumbnails/cheff.png",
       "final_asset": "assets/projects/thumbnails/cheff.webp",
-      "saved_generation": "assets/projects/thumbnails/cheff-background.png",
-      "composition_status": "complete",
-      "gallery_status": "connected-source-preview",
-      "gallery_asset": "assets/projects/cheff.webp"
+      "webp_quality": 92,
+      "gallery_status": "connected",
+      "alt": "Cheff.fit meal tracking and macro breakdown, with the headline Meals, macros, and a plan.",
+      "headline": "Meals, macros, and a plan.",
+      "subtitle": "Meal photos, macros, planning, and pantry tracking.",
+      "source_images": [
+        "assets/projects/cheff.webp",
+        "assets/projects/thumbnails/pargus.png"
+      ],
+      "revision_prompt": "Edit ONLY the large promotional headline on the LEFT of this Cheff.fit cover. Replace the current left headline \"Snap your plate. Know what you ate.\" with exactly:\n\"Meals, macros,\"\n\"and a plan.\"\nUse two balanced lines in the same premium bold sans-serif style. First line soft white, second line Cheff green. Keep its footprint and alignment contained in the existing left column. All spelling exact.\nPreserve everything else: the Cheff.fit logo and wordmark, green/black atmosphere, the smaller supporting line \"Meal photos, macros, planning, and pantry tracking.\", and the entire real website screenshot on the RIGHT. In particular keep all text INSIDE the website screenshot, including \"Snap your plate. Know what you ate.\", completely unchanged. Do not redraw, modify or move the website, controls, values, macro panel, frame or lighting. Same finished 16:9 canvas. No extra text.",
+      "social_asset": "assets/projects/social/cheff.png"
     },
     {
       "slug": "handy",
       "title": "Handy",
-      "source_images": [
-        "assets/projects/handy-recording.png"
-      ],
+      "style": "monochrome",
       "mode": "generate",
-      "headline": "Dictation, kept local.",
-      "subtitle": "A speech-to-text fork. Turkish support in progress.",
-      "output_path": "assets/projects/thumbnails/handy.png",
-      "prompt": "Create one finished, polished 16:9 portfolio project thumbnail, 1536 × 864 pixels. Match a restrained editorial technology cover, like a carefully typeset independent software landing page, rather than an AI wallpaper. Background is nearly flat charcoal #191a1b; accent is soft green #6fcf6f; primary type is off-white #f1f1f1; secondary type is warm gray #a7aaa3. No blue accent in newly designed elements. Use a small monospaced project-name kicker and a large refined editorial headline, with generous but purposeful spacing. Headline must read clearly when this image is displayed at 430px wide. Main headline approximately 62–76px at output resolution; supporting copy approximately 25–30px, never microtext. Keep all outer typography and essential visual information inside a 64px safe margin. Limit visible copy to the supplied exact project name, headline, and subtitle, plus explicitly allowed diagram labels. Do not add a logo, date, domain, author credit, popularity count, statistics, badges, CTA, faux browser chrome, glowing borders, terminal window, robot, or repeated generic AI icon. Make project-specific artwork occupy a useful 40–65% of the canvas. Color and typography should unite the series, but compositions must vary thoughtfully rather than repeating identical diagrams. Straight-on graphic design, no tilted browser cards, no excessive shadow, no floating 3D SaaS dashboard. Crisp edges and legible real letterforms. Deliver a single thumbnail, no grid, no collage of separate covers, no decorative outer border or empty strips.\n\nExact project-name kicker: Handy\nExact headline: Dictation, kept local.\nExact subtitle: A speech-to-text fork. Turkish support in progress.\n\nThis image is the GENERATED BACKGROUND/TYPOGRAPHY LAYER of a final cover. An original project UI screenshot will be added afterwards. Place all copy on the LEFT within x=4% to 49% of the canvas, breaking the headline into deliberate short lines with clear hierarchy. Reserve a completely empty flat charcoal #191a1b rectangle at x=53%, y=35%, width=41%, height=32%. Do not render anything in this reserved area: no text, placeholder labels, borders, decorative marks, controls, logos, person, face, or screenshot. Do not generate the application interface itself. Real source pixels will fill that exact inset deterministically. Surrounding design follows charcoal/green; subtle green lines outside the inset can connect the title and intended real-source art, but avoid a generic icon. No instructions or identifying labels for the inset should appear. Keep all type, artwork, and essential information outside the inset. The blank area is purposeful intermediate composition and must be left clean for later overlay.",
-      "source_kind": "actual-ui",
-      "composition": {
-        "method": "deterministic-source-overlay",
-        "inset_normalized": {
-          "x": 0.53,
-          "y": 0.35,
-          "width": 0.41,
-          "height": 0.32
-        },
-        "fit": "contain-in-coherent-crop",
-        "framing": "Overlay real black recording pill and white waveform only, extracted from blue backdrop. Preserve authentic pixels; compact scale suits 780x270 source.",
-        "source_fidelity": "Overlay original pixels unchanged; do not redraw source. Crop only coherent complete UI regions, preserve all relevant controls/data. Actual source colors remain factual.",
-        "generated_layer": "Editorial typography and subtle connective artwork outside reserved inset.",
-        "source_crop_pixels": [
-          255,
-          162,
-          524,
-          240
-        ]
-      },
+      "prompt": "Use case: illustration-story.\nCreate one finished editorial illustration for Handy, 16:9 landscape, intended final 1536 × 864 pixels.\nConcept: Speech becomes text locally, staying on your own computer.\nScene: Inside a clear glass bell jar, a compact microphone is mechanically joined to a typewriter platen. Delicate sound ripples enter the microphone and become a clean blank paper ribbon, entirely contained beneath the glass. Intimate instrument portrait, white paper background, exceptionally intricate crosshatched machinery and glass reflections. Let the glass enclosure make local privacy feel physical. The paper has absolutely no writing.\nArt direction: entirely black-and-white pen-and-ink artwork combining the detailed engraving and crosshatching of a vintage etching with the dramatic framing of a graphic-novel panel. Dense ink blacks, clean paper whites, fine etched lines. Every shadow and texture is made with deliberate hatching, stippling or solid black. Deep contrast and strong silhouette; atmospheric depth comes from varying line density, never soft digital gradients. Rich tactile hand-inked craftsmanship, cinematic scale, intelligent visual storytelling. One unmistakable focal scene with distinct foreground, middle ground and background. Purposeful quieter negative space toward edges; concentrate intricate detail around meaningful subject. Make the image compelling at 480px wide and instantly legible at 358px. Essential subject and action remain within central 60% of frame with breathing room above and below for cropping. Full-bleed complete landscape composition.\nPure monochrome only. No color or sepia, no smooth grayscale gradients, photorealism, digital glow, glossy 3D, vector clipart, dashboard, user interface, collage of different panels, caption, title, text, letters, numerals, logos, watermark, frame or border. Do not print the project name or the concept. This is an original physical visual metaphor, not a diagram. One finished opaque image.",
       "generation_status": "saved",
+      "saved_generation": "assets/projects/thumbnails/handy.png",
       "final_asset": "assets/projects/thumbnails/handy.webp",
-      "saved_generation": "assets/projects/thumbnails/handy-background.png",
-      "composition_status": "complete",
-      "gallery_status": "connected"
+      "webp_quality": 92,
+      "gallery_status": "connected",
+      "alt": "Ink illustration of a microphone and paper transcription mechanism contained under a glass dome.",
+      "concept": "Speech becomes text locally, staying on your own computer.",
+      "scene": "Inside a clear glass bell jar, a compact microphone is mechanically joined to a typewriter platen. Delicate sound ripples enter the microphone and become a clean blank paper ribbon, entirely contained beneath the glass. Intimate instrument portrait, white paper background, exceptionally intricate crosshatched machinery and glass reflections. Let the glass enclosure make local privacy feel physical. The paper has absolutely no writing."
     },
     {
       "slug": "martek",
       "title": "Martek Marble",
-      "source_images": [
-        "assets/projects/martek.webp"
-      ],
-      "mode": "generate",
-      "headline": "Natural stone, online.",
-      "subtitle": "The Martek Marble company website.",
-      "output_path": "assets/projects/thumbnails/martek.png",
-      "prompt": "Create one finished, polished 16:9 portfolio project thumbnail, 1536 × 864 pixels. Match a restrained editorial technology cover, like a carefully typeset independent software landing page, rather than an AI wallpaper. Background is nearly flat charcoal #191a1b; accent is soft green #6fcf6f; primary type is off-white #f1f1f1; secondary type is warm gray #a7aaa3. No blue accent in newly designed elements. Use a small monospaced project-name kicker and a large refined editorial headline, with generous but purposeful spacing. Headline must read clearly when this image is displayed at 430px wide. Main headline approximately 62–76px at output resolution; supporting copy approximately 25–30px, never microtext. Keep all outer typography and essential visual information inside a 64px safe margin. Limit visible copy to the supplied exact project name, headline, and subtitle, plus explicitly allowed diagram labels. Do not add a logo, date, domain, author credit, popularity count, statistics, badges, CTA, faux browser chrome, glowing borders, terminal window, robot, or repeated generic AI icon. Make project-specific artwork occupy a useful 40–65% of the canvas. Color and typography should unite the series, but compositions must vary thoughtfully rather than repeating identical diagrams. Straight-on graphic design, no tilted browser cards, no excessive shadow, no floating 3D SaaS dashboard. Crisp edges and legible real letterforms. Deliver a single thumbnail, no grid, no collage of separate covers, no decorative outer border or empty strips.\n\nExact project-name kicker: Martek Marble\nExact headline: Natural stone, online.\nExact subtitle: The Martek Marble company website.\n\nThis image is the GENERATED BACKGROUND/TYPOGRAPHY LAYER of a final cover. An original project UI screenshot will be added afterwards. Place all copy on the LEFT within x=4% to 38% of the canvas, breaking the headline into deliberate short lines with clear hierarchy. Reserve a completely empty flat charcoal #191a1b rectangle at x=42%, y=9%, width=54%, height=82%. Do not render anything in this reserved area: no text, placeholder labels, borders, decorative marks, controls, logos, person, face, or screenshot. Do not generate the application interface itself. Real source pixels will fill that exact inset deterministically. Surrounding design follows charcoal/green; subtle green lines outside the inset can connect the title and intended real-source art, but avoid a generic icon. No instructions or identifying labels for the inset should appear. Keep all type, artwork, and essential information outside the inset. The blank area is purposeful intermediate composition and must be left clean for later overlay.",
-      "source_kind": "actual-ui",
-      "composition": {
-        "method": "deterministic-source-overlay",
-        "inset_normalized": {
-          "x": 0.42,
-          "y": 0.09,
-          "width": 0.54,
-          "height": 0.82
-        },
-        "fit": "contain-in-coherent-crop",
-        "framing": "Show a recognizable intact excerpt of the actual fully loaded website hero, including its quarry photography, company mark, and natural-stone headline. Use a compact charcoal/green cover title band above or to the left. The existing site's red accents and natural photograph remain factual; do not recolor the site or replace the quarry with invented marble. The hero screenshot should dominate the artwork and remain visually loaded, with no dark empty placeholder or fake product grid.",
-        "source_fidelity": "Overlay original pixels unchanged; do not redraw source. Crop only coherent complete UI regions, preserve all relevant controls/data. Actual source colors remain factual.",
-        "generated_layer": "Editorial typography and subtle connective artwork outside reserved inset.",
-        "source_crop_pixels": [
-          0,
-          0,
-          1162,
-          839
-        ]
-      },
+      "style": "product",
+      "mode": "edit",
+      "prompt": "Use case: ads-marketing\nAsset: one premium project portfolio thumbnail, 16:9 landscape, intended final 1536 × 864.\nImage 1 is the EDIT TARGET: the project's authentic current product image. Image 2 is a STYLE REFERENCE ONLY: approved Pargus cover. Borrow its polished near-black launch composition, large working product view, crisp sans typography, controlled brand-colored atmosphere and rich tonal depth. Do not copy its logo, lime color or its words.\nProject: Martek Marble.\nBrand accent: #b93232. Background near-black #0a0a0a. Soft-white medium-weight sans-serif headline; clean warm-gray supporting text.\nExact project name at upper left: \"Martek Marble\".\nExact headline on two deliberate lines: \"Turkish stone.\nA global presence.\".\nExact supporting line: \"The Martek Marble company website.\"\nKeep outer logo/name and copy readable at 480px display width. Approximate 64–80px headline at output size, generous 64px safe margins; left typography column about 36%, actual product view about 62%. Product window can be nearly front-on with a very slight perspective tilt; subtle rounded corners, delicate border, deep restrained shadow. One broad pool of brand-colored light behind the product, fading to black. Keep the actual product visible and bright, no dark veil.\nProject-specific source fidelity: Preserve the real MarTek red-and-white oval logo, actual Turkish quarry photography and genuine homepage layout from source image 1. This project is the company website, so present the real webpage as the substantial right-side product surface with the quarry clearly visible. Source serif typography INSIDE the webpage remains authentic; new surrounding launch headline must be clean sans-serif. Use restrained dark ruby lighting and mineral-black surroundings; no invented slabs, warehouses, shipping statistics, buildings or new photography.\nThis is a real software or website showcase. Preserve actual product content, colors and recognizable functionality. Create the surrounding composition and typography; do not replace source content with imagined UI. Do not fabricate logos or claims. No old editorial serif template outside actual source UI, schematic diagrams, node networks, generic AI symbols, brains, robots, laptop hardware, extra badges, watermarks or extra copy. Complete finished opaque cover, one image only.",
       "generation_status": "saved",
+      "saved_generation": "assets/projects/thumbnails/martek.png",
       "final_asset": "assets/projects/thumbnails/martek.webp",
-      "saved_generation": "assets/projects/thumbnails/martek-background.png",
-      "composition_status": "complete",
-      "gallery_status": "connected-source-preview",
-      "gallery_asset": "assets/projects/martek-homepage-v2.webp",
-      "gallery_capture": {
-        "url": "https://martekmarble.com/",
-        "date": "2026-10-13",
-        "viewport": {
-          "width": 1440,
-          "height": 810
-        },
-        "readiness": "network idle, fonts ready, source images and CSS backgrounds loaded"
-      }
+      "webp_quality": 92,
+      "gallery_status": "connected",
+      "alt": "Martek Marble website showing its Turkish quarry and natural stone offering.",
+      "headline": "Turkish stone. A global presence.",
+      "subtitle": "The Martek Marble company website.",
+      "source_images": [
+        "assets/projects/martek-homepage-v2.webp",
+        "assets/projects/thumbnails/pargus.png"
+      ],
+      "social_asset": "assets/projects/social/martek.png"
     },
     {
       "slug": "numbers",
       "title": "Numbers Solver",
-      "source_images": [
-        "assets/projects/numbers-ui-v2.png"
-      ],
+      "style": "monochrome",
       "mode": "generate",
-      "headline": "Six numbers. One target.",
-      "subtitle": "Arithmetic, exact answers, or the closest result.",
-      "output_path": "assets/projects/thumbnails/numbers.png",
-      "prompt": "Create one finished, polished 16:9 portfolio project thumbnail, 1536 × 864 pixels. Match a restrained editorial technology cover, like a carefully typeset independent software landing page, rather than an AI wallpaper. Background is nearly flat charcoal #191a1b; accent is soft green #6fcf6f; primary type is off-white #f1f1f1; secondary type is warm gray #a7aaa3. No blue accent in newly designed elements. Use a small monospaced project-name kicker and a large refined editorial headline, with generous but purposeful spacing. Headline must read clearly when this image is displayed at 430px wide. Main headline approximately 62–76px at output resolution; supporting copy approximately 25–30px, never microtext. Keep all outer typography and essential visual information inside a 64px safe margin. Limit visible copy to the supplied exact project name, headline, and subtitle, plus explicitly allowed diagram labels. Do not add a logo, date, domain, author credit, popularity count, statistics, badges, CTA, faux browser chrome, glowing borders, terminal window, robot, or repeated generic AI icon. Make project-specific artwork occupy a useful 40–65% of the canvas. Color and typography should unite the series, but compositions must vary thoughtfully rather than repeating identical diagrams. Straight-on graphic design, no tilted browser cards, no excessive shadow, no floating 3D SaaS dashboard. Crisp edges and legible real letterforms. Deliver a single thumbnail, no grid, no collage of separate covers, no decorative outer border or empty strips.\n\nExact project-name kicker: Numbers Solver\nExact headline: Six numbers. One target.\nExact subtitle: Arithmetic, exact answers, or the closest result.\n\nThis image is the GENERATED BACKGROUND/TYPOGRAPHY LAYER of a final cover. An original project UI screenshot will be added afterwards. Place all copy on the LEFT within x=4% to 43% of the canvas, breaking the headline into deliberate short lines with clear hierarchy. Reserve a completely empty flat charcoal #191a1b rectangle at x=47%, y=17%, width=48%, height=69%. Do not render anything in this reserved area: no text, placeholder labels, borders, decorative marks, controls, logos, person, face, or screenshot. Do not generate the application interface itself. Real source pixels will fill that exact inset deterministically. Surrounding design follows charcoal/green; subtle green lines outside the inset can connect the title and intended real-source art, but avoid a generic icon. No instructions or identifying labels for the inset should appear. Keep all type, artwork, and essential information outside the inset. The blank area is purposeful intermediate composition and must be left clean for later overlay.",
-      "source_kind": "actual-ui",
-      "composition": {
-        "method": "deterministic-source-overlay",
-        "inset_normalized": {
-          "x": 0.47,
-          "y": 0.17,
-          "width": 0.48,
-          "height": 0.69
-        },
-        "fit": "contain-in-coherent-crop",
-        "framing": "Use the refreshed dark-mode actual solver screenshot. Favor the six number inputs, target input, actual solve button, and actual result if present, retaining their real values and controls. Make the real form the main artwork; omit the large introductory prose region if it would make the interaction tiny. Do not fabricate a solution, modify arithmetic values, or substitute a symbolic numbers diagram for the actual working UI. Keep the title in English.",
-        "source_fidelity": "Overlay original pixels unchanged; do not redraw source. Crop only coherent complete UI regions, preserve all relevant controls/data. Actual source colors remain factual.",
-        "generated_layer": "Editorial typography and subtle connective artwork outside reserved inset.",
-        "source_crop_pixels": [
-          298,
-          442,
-          854,
-          752
-        ]
-      },
+      "prompt": "Use case: illustration-story.\nCreate one finished editorial illustration for Numbers Solver, 16:9 landscape, intended final 1536 × 864 pixels.\nConcept: Combine six supplied numbers with arithmetic to reach one target.\nScene: Six distinct sculpted weights balance an ingenious arrangement of three connected lever arms, converging on one tiny circular target beneath a suspended plumb bob. A precise improbable physical equilibrium. White background, strong black cast shadows, overhead three-quarter view. Exactly six main weights with distinct sizes, no numbers or mathematical marks. Crisp arrangement that reads as a clever puzzle at small scale.\nArt direction: entirely black-and-white pen-and-ink artwork combining the detailed engraving and crosshatching of a vintage etching with the dramatic framing of a graphic-novel panel. Dense ink blacks, clean paper whites, fine etched lines. Every shadow and texture is made with deliberate hatching, stippling or solid black. Deep contrast and strong silhouette; atmospheric depth comes from varying line density, never soft digital gradients. Rich tactile hand-inked craftsmanship, cinematic scale, intelligent visual storytelling. One unmistakable focal scene with distinct foreground, middle ground and background. Purposeful quieter negative space toward edges; concentrate intricate detail around meaningful subject. Make the image compelling at 480px wide and instantly legible at 358px. Essential subject and action remain within central 60% of frame with breathing room above and below for cropping. Full-bleed complete landscape composition.\nPure monochrome only. No color or sepia, no smooth grayscale gradients, photorealism, digital glow, glossy 3D, vector clipart, dashboard, user interface, collage of different panels, caption, title, text, letters, numerals, logos, watermark, frame or border. Do not print the project name or the concept. This is an original physical visual metaphor, not a diagram. One finished opaque image.",
       "generation_status": "saved",
+      "saved_generation": "assets/projects/thumbnails/numbers.png",
       "final_asset": "assets/projects/thumbnails/numbers.webp",
-      "saved_generation": "assets/projects/thumbnails/numbers-background.png",
-      "composition_status": "complete",
-      "gallery_status": "connected"
+      "webp_quality": 92,
+      "gallery_status": "connected",
+      "alt": "Ink illustration of six weights balanced around a single target.",
+      "concept": "Combine six supplied numbers with arithmetic to reach one target.",
+      "scene": "Six distinct sculpted weights balance an ingenious arrangement of three connected lever arms, converging on one tiny circular target beneath a suspended plumb bob. A precise improbable physical equilibrium. White background, strong black cast shadows, overhead three-quarter view. Exactly six main weights with distinct sizes, no numbers or mathematical marks. Crisp arrangement that reads as a clever puzzle at small scale."
     },
     {
       "slug": "portfolio",
-      "title": "canmenzo.com",
-      "source_images": [
-        "assets/projects/portfolio-ui-v2.png"
-      ],
+      "title": "menzo.dev",
+      "style": "monochrome",
       "mode": "generate",
-      "headline": "A place for the work.",
-      "subtitle": "Security research, tools, and writing.",
-      "output_path": "assets/projects/thumbnails/portfolio.png",
-      "prompt": "Create one finished, polished 16:9 portfolio project thumbnail, 1536 × 864 pixels. Match a restrained editorial technology cover, like a carefully typeset independent software landing page, rather than an AI wallpaper. Background is nearly flat charcoal #191a1b; accent is soft green #6fcf6f; primary type is off-white #f1f1f1; secondary type is warm gray #a7aaa3. No blue accent in newly designed elements. Use a small monospaced project-name kicker and a large refined editorial headline, with generous but purposeful spacing. Headline must read clearly when this image is displayed at 430px wide. Main headline approximately 62–76px at output resolution; supporting copy approximately 25–30px, never microtext. Keep all outer typography and essential visual information inside a 64px safe margin. Limit visible copy to the supplied exact project name, headline, and subtitle, plus explicitly allowed diagram labels. Do not add a logo, date, domain, author credit, popularity count, statistics, badges, CTA, faux browser chrome, glowing borders, terminal window, robot, or repeated generic AI icon. Make project-specific artwork occupy a useful 40–65% of the canvas. Color and typography should unite the series, but compositions must vary thoughtfully rather than repeating identical diagrams. Straight-on graphic design, no tilted browser cards, no excessive shadow, no floating 3D SaaS dashboard. Crisp edges and legible real letterforms. Deliver a single thumbnail, no grid, no collage of separate covers, no decorative outer border or empty strips.\n\nExact project-name kicker: canmenzo.com\nExact headline: A place for the work.\nExact subtitle: Security research, tools, and writing.\n\nThis image is the GENERATED BACKGROUND/TYPOGRAPHY LAYER of a final cover. An original project UI screenshot will be added afterwards. Place all copy on the LEFT within x=4% to 41% of the canvas, breaking the headline into deliberate short lines with clear hierarchy. Reserve a completely empty flat charcoal #191a1b rectangle at x=45%, y=10%, width=51%, height=80%. Do not render anything in this reserved area: no text, placeholder labels, borders, decorative marks, controls, logos, person, face, or screenshot. Do not generate the application interface itself. Real source pixels will fill that exact inset deterministically. Surrounding design follows charcoal/green; subtle green lines outside the inset can connect the title and intended real-source art, but avoid a generic icon. No instructions or identifying labels for the inset should appear. Keep all type, artwork, and essential information outside the inset. The blank area is purposeful intermediate composition and must be left clean for later overlay.",
-      "source_kind": "actual-ui",
-      "composition": {
-        "method": "deterministic-source-overlay",
-        "inset_normalized": {
-          "x": 0.45,
-          "y": 0.1,
-          "width": 0.51,
-          "height": 0.8
-        },
-        "fit": "contain-in-coherent-crop",
-        "framing": "Use the refreshed actual dark homepage screenshot, keeping its centered navigation, green menzo title, and recognizable about/menu content. Recompose a meaningful view large enough to retain the site's monospaced visual identity. Pair it with a restrained editorial cover title band rather than showing a whole tiny page. Keep the project-name kicker exactly lowercase canmenzo.com. Do not recreate or alter the navigation, invent new homepage copy, or add fake portfolio UI.",
-        "source_fidelity": "Overlay original pixels unchanged; do not redraw source. Crop only coherent complete UI regions, preserve all relevant controls/data. Actual source colors remain factual.",
-        "generated_layer": "Editorial typography and subtle connective artwork outside reserved inset.",
-        "source_crop_pixels": [
-          180,
-          0,
-          972,
-          784
-        ]
-      },
+      "prompt": "Use case: illustration-story.\nCreate one finished editorial illustration for menzo.dev, 16:9 landscape, intended final 1536 × 864 pixels.\nConcept: A personal collection of security research, software projects and writing.\nScene: An open handcrafted cabinet of curiosities holds six carefully spaced project artifacts: a film reel, miniature house, disk platter, lock, microphone and geometric puzzle. The cabinet stands alone in a dark gallery under one architectural spotlight. Rich timber crosshatching, substantial central silhouette, quiet craftsmanship. Objects have no printed labels. Make the cabinet feel curated and personal, not an inventory warehouse.\nArt direction: entirely black-and-white pen-and-ink artwork combining the detailed engraving and crosshatching of a vintage etching with the dramatic framing of a graphic-novel panel. Dense ink blacks, clean paper whites, fine etched lines. Every shadow and texture is made with deliberate hatching, stippling or solid black. Deep contrast and strong silhouette; atmospheric depth comes from varying line density, never soft digital gradients. Rich tactile hand-inked craftsmanship, cinematic scale, intelligent visual storytelling. One unmistakable focal scene with distinct foreground, middle ground and background. Purposeful quieter negative space toward edges; concentrate intricate detail around meaningful subject. Make the image compelling at 480px wide and instantly legible at 358px. Essential subject and action remain within central 60% of frame with breathing room above and below for cropping. Full-bleed complete landscape composition.\nPure monochrome only. No color or sepia, no smooth grayscale gradients, photorealism, digital glow, glossy 3D, vector clipart, dashboard, user interface, collage of different panels, caption, title, text, letters, numerals, logos, watermark, frame or border. Do not print the project name or the concept. This is an original physical visual metaphor, not a diagram. One finished opaque image.",
       "generation_status": "saved",
+      "saved_generation": "assets/projects/thumbnails/portfolio.png",
       "final_asset": "assets/projects/thumbnails/portfolio.webp",
-      "saved_generation": "assets/projects/thumbnails/portfolio-background.png",
-      "composition_status": "complete",
-      "gallery_status": "connected"
+      "webp_quality": 92,
+      "gallery_status": "connected",
+      "alt": "Ink illustration of a cabinet displaying software, security, and creative project artifacts.",
+      "concept": "A personal collection of security research, software projects and writing.",
+      "scene": "An open handcrafted cabinet of curiosities holds six carefully spaced project artifacts: a film reel, miniature house, disk platter, lock, microphone and geometric puzzle. The cabinet stands alone in a dark gallery under one architectural spotlight. Rich timber crosshatching, substantial central silhouette, quiet craftsmanship. Objects have no printed labels. Make the cabinet feel curated and personal, not an inventory warehouse."
     },
     {
       "slug": "jarvis",
       "title": "Jarvis",
-      "source_images": [
-        "assets/projects/jarvis.webp"
-      ],
+      "style": "monochrome",
       "mode": "generate",
-      "headline": "A voice for your home.",
-      "subtitle": "Wake-on-LAN, voice control, and Siri.",
-      "output_path": "assets/projects/thumbnails/jarvis.png",
-      "prompt": "Create one finished, polished 16:9 portfolio project thumbnail, 1536 × 864 pixels. Match a restrained editorial technology cover, like a carefully typeset independent software landing page, rather than an AI wallpaper. Background is nearly flat charcoal #191a1b; accent is soft green #6fcf6f; primary type is off-white #f1f1f1; secondary type is warm gray #a7aaa3. No blue accent in newly designed elements. Use a small monospaced project-name kicker and a large refined editorial headline, with generous but purposeful spacing. Headline must read clearly when this image is displayed at 430px wide. Main headline approximately 62–76px at output resolution; supporting copy approximately 25–30px, never microtext. Keep all outer typography and essential visual information inside a 64px safe margin. Limit visible copy to the supplied exact project name, headline, and subtitle, plus explicitly allowed diagram labels. Do not add a logo, date, domain, author credit, popularity count, statistics, badges, CTA, faux browser chrome, glowing borders, terminal window, robot, or repeated generic AI icon. Make project-specific artwork occupy a useful 40–65% of the canvas. Color and typography should unite the series, but compositions must vary thoughtfully rather than repeating identical diagrams. Straight-on graphic design, no tilted browser cards, no excessive shadow, no floating 3D SaaS dashboard. Crisp edges and legible real letterforms. Deliver a single thumbnail, no grid, no collage of separate covers, no decorative outer border or empty strips.\n\nExact project-name kicker: Jarvis\nExact headline: A voice for your home.\nExact subtitle: Wake-on-LAN, voice control, and Siri.\n\nThis image is the GENERATED BACKGROUND/TYPOGRAPHY LAYER of a final cover. An original owner photograph will be added afterwards. Place all copy on the LEFT within x=4% to 38% of the canvas, breaking the headline into deliberate short lines with clear hierarchy. Reserve a completely empty flat charcoal #191a1b rectangle at x=42%, y=8%, width=54%, height=85%. Do not render anything in this reserved area: no text, placeholder labels, borders, decorative marks, controls, logos, person, face, or screenshot. Do not generate the owner photo or Iron Man HUD itself. Real source pixels will fill that exact inset deterministically. Surrounding design follows charcoal/green; subtle green lines outside the inset can connect the title and intended real-source art, but avoid a generic icon. No instructions or identifying labels for the inset should appear. Keep all type, artwork, and essential information outside the inset. The blank area is purposeful intermediate composition and must be left clean for later overlay.",
-      "source_kind": "owner-photo",
-      "composition": {
-        "method": "deterministic-source-overlay",
-        "inset_normalized": {
-          "x": 0.42,
-          "y": 0.075,
-          "width": 0.54,
-          "height": 0.85
-        },
-        "fit": "contain-in-coherent-crop",
-        "framing": "Retain the owner-supplied Iron Man helmet-view photograph as the recognizable artwork. Preserve the face and actual cinematic HUD, including their existing colors; the photograph must not be redrawn as another person, recolored green, or replaced by a generated robot. Place the exact headline/copy in a compact charcoal area or naturally dark part of the photograph. Do not cover the eyes or face with typography. This is owner-approved thematic artwork for home automation, not a screenshot of an implemented app UI.",
-        "source_fidelity": "Overlay original pixels unchanged; do not redraw source. Crop only coherent complete UI regions, preserve all relevant controls/data. Actual source colors remain factual.",
-        "generated_layer": "Editorial typography and subtle connective artwork outside reserved inset.",
-        "source_crop_pixels": [
-          0,
-          0,
-          2367,
-          1411
-        ]
-      },
+      "prompt": "Use case: illustration-story.\nCreate one finished editorial illustration for Jarvis, 16:9 landscape, intended final 1536 × 864 pixels.\nConcept: Wake computers, control devices and automate a home using voice.\nScene: A sharply cut-away house at night reveals a lamp switching on, window shutters opening and a desktop computer waking. A single visible thread of sound from a small microphone travels through the house like an elegant mechanical linkage. Wide domestic cross-section; illuminated rooms carved from dense black. One coherent house with believable rooms and restrained machinery, no superhero, armored suit or movie character.\nArt direction: entirely black-and-white pen-and-ink artwork combining the detailed engraving and crosshatching of a vintage etching with the dramatic framing of a graphic-novel panel. Dense ink blacks, clean paper whites, fine etched lines. Every shadow and texture is made with deliberate hatching, stippling or solid black. Deep contrast and strong silhouette; atmospheric depth comes from varying line density, never soft digital gradients. Rich tactile hand-inked craftsmanship, cinematic scale, intelligent visual storytelling. One unmistakable focal scene with distinct foreground, middle ground and background. Purposeful quieter negative space toward edges; concentrate intricate detail around meaningful subject. Make the image compelling at 480px wide and instantly legible at 358px. Essential subject and action remain within central 60% of frame with breathing room above and below for cropping. Full-bleed complete landscape composition.\nPure monochrome only. No color or sepia, no smooth grayscale gradients, photorealism, digital glow, glossy 3D, vector clipart, dashboard, user interface, collage of different panels, caption, title, text, letters, numerals, logos, watermark, frame or border. Do not print the project name or the concept. This is an original physical visual metaphor, not a diagram. One finished opaque image.",
       "generation_status": "saved",
+      "saved_generation": "assets/projects/thumbnails/jarvis.png",
       "final_asset": "assets/projects/thumbnails/jarvis.webp",
-      "saved_generation": "assets/projects/thumbnails/jarvis-background.png",
-      "composition_status": "complete",
-      "gallery_status": "connected"
+      "webp_quality": 92,
+      "gallery_status": "connected",
+      "alt": "Ink illustration of an automated home with connected lights, shutters, and a computer.",
+      "concept": "Wake computers, control devices and automate a home using voice.",
+      "scene": "A sharply cut-away house at night reveals a lamp switching on, window shutters opening and a desktop computer waking. A single visible thread of sound from a small microphone travels through the house like an elegant mechanical linkage. Wide domestic cross-section; illuminated rooms carved from dense black. One coherent house with believable rooms and restrained machinery, no superhero, armored suit or movie character."
     },
     {
       "slug": "watchlistrr",
       "title": "Watchlistrr",
-      "source_images": [],
+      "style": "monochrome",
       "mode": "generate",
-      "headline": "Watchlist to watch night.",
-      "subtitle": "Letterboxd lists, matched and synced to Seerr.",
-      "output_path": "assets/projects/thumbnails/watchlistrr.png",
-      "prompt": "Create one finished, polished 16:9 portfolio project thumbnail, 1536 × 864 pixels. Match a restrained editorial technology cover, like a carefully typeset independent software landing page, rather than an AI wallpaper. Background is nearly flat charcoal #191a1b; accent is soft green #6fcf6f; primary type is off-white #f1f1f1; secondary type is warm gray #a7aaa3. No blue accent in newly designed elements. Use a small monospaced project-name kicker and a large refined editorial headline, with generous but purposeful spacing. Headline must read clearly when this image is displayed at 430px wide. Main headline approximately 62–76px at output resolution; supporting copy approximately 25–30px, never microtext. Keep all outer typography and essential visual information inside a 64px safe margin. Limit visible copy to the supplied exact project name, headline, and subtitle, plus explicitly allowed diagram labels. Do not add a logo, date, domain, author credit, popularity count, statistics, badges, CTA, faux browser chrome, glowing borders, terminal window, robot, or repeated generic AI icon. Make project-specific artwork occupy a useful 40–65% of the canvas. Color and typography should unite the series, but compositions must vary thoughtfully rather than repeating identical diagrams. Straight-on graphic design, no tilted browser cards, no excessive shadow, no floating 3D SaaS dashboard. Crisp edges and legible real letterforms. Deliver a single thumbnail, no grid, no collage of separate covers, no decorative outer border or empty strips.\n\nExact project-name kicker: Watchlistrr\nExact headline: Watchlist to watch night.\nExact subtitle: Letterboxd lists, matched and synced to Seerr.\n\nCreate a precise editorial synchronization diagram using a few rectangular film-strip tiles, not poster art. One vertical watchlist on the left flows through a small circular matching node into a tidy queue on the right. Use thin warm-gray connector lines and a single green selected path. Allowed diagram labels: Letterboxd, TMDB, Seerr. These are conceptual integration labels, not screenshots. One tile may have a minimal empty play triangle; no invented movie titles, ratings, posters, fake controls, or brand logos. Emphasize the movement of a list into a queue, rather than AI symbolism.",
+      "prompt": "Use case: illustration-story.\nCreate one finished editorial illustration for Watchlistrr, 16:9 landscape, intended final 1536 × 864 pixels.\nConcept: Sync a Letterboxd watchlist into Seerr, matching films and scheduling updates.\nScene: A sculptural cinema projector draws a long folded blank paper watchlist through its mechanism; the paper becomes a continuous filmstrip wound onto a second synchronized reel. A thin beam reaches a small empty cinema screen beyond. Cinematic side view, two prominent reels, scratched white light through black smoke. Transform paper to film through one clear mechanism. Paper and film remain unlettered.\nArt direction: entirely black-and-white pen-and-ink artwork combining the detailed engraving and crosshatching of a vintage etching with the dramatic framing of a graphic-novel panel. Dense ink blacks, clean paper whites, fine etched lines. Every shadow and texture is made with deliberate hatching, stippling or solid black. Deep contrast and strong silhouette; atmospheric depth comes from varying line density, never soft digital gradients. Rich tactile hand-inked craftsmanship, cinematic scale, intelligent visual storytelling. One unmistakable focal scene with distinct foreground, middle ground and background. Purposeful quieter negative space toward edges; concentrate intricate detail around meaningful subject. Make the image compelling at 480px wide and instantly legible at 358px. Essential subject and action remain within central 60% of frame with breathing room above and below for cropping. Full-bleed complete landscape composition.\nPure monochrome only. No color or sepia, no smooth grayscale gradients, photorealism, digital glow, glossy 3D, vector clipart, dashboard, user interface, collage of different panels, caption, title, text, letters, numerals, logos, watermark, frame or border. Do not print the project name or the concept. This is an original physical visual metaphor, not a diagram. One finished opaque image.",
       "generation_status": "saved",
-      "saved_generation": "assets/projects/thumbnails/watchlistrr-test.png",
+      "saved_generation": "assets/projects/thumbnails/watchlistrr.png",
       "final_asset": "assets/projects/thumbnails/watchlistrr.webp",
-      "composition_status": "not-required",
-      "gallery_status": "connected"
+      "webp_quality": 92,
+      "gallery_status": "connected",
+      "alt": "Ink illustration of a paper watchlist becoming film through synchronized projector reels.",
+      "concept": "Sync a Letterboxd watchlist into Seerr, matching films and scheduling updates.",
+      "scene": "A sculptural cinema projector draws a long folded blank paper watchlist through its mechanism; the paper becomes a continuous filmstrip wound onto a second synchronized reel. A thin beam reaches a small empty cinema screen beyond. Cinematic side view, two prominent reels, scratched white light through black smoke. Transform paper to film through one clear mechanism. Paper and film remain unlettered."
     },
     {
       "slug": "wsl-disk-bridge",
       "title": "WSL Disk Bridge",
-      "source_images": [],
+      "style": "monochrome",
       "mode": "generate",
-      "headline": "Bridge Windows and Linux.",
-      "subtitle": "WSL2 disk access for dual-boot setups.",
-      "output_path": "assets/projects/thumbnails/wsl-disk-bridge.png",
-      "prompt": "Create one finished, polished 16:9 portfolio project thumbnail, 1536 × 864 pixels. Match a restrained editorial technology cover, like a carefully typeset independent software landing page, rather than an AI wallpaper. Background is nearly flat charcoal #191a1b; accent is soft green #6fcf6f; primary type is off-white #f1f1f1; secondary type is warm gray #a7aaa3. No blue accent in newly designed elements. Use a small monospaced project-name kicker and a large refined editorial headline, with generous but purposeful spacing. Headline must read clearly when this image is displayed at 430px wide. Main headline approximately 62–76px at output resolution; supporting copy approximately 25–30px, never microtext. Keep all outer typography and essential visual information inside a 64px safe margin. Limit visible copy to the supplied exact project name, headline, and subtitle, plus explicitly allowed diagram labels. Do not add a logo, date, domain, author credit, popularity count, statistics, badges, CTA, faux browser chrome, glowing borders, terminal window, robot, or repeated generic AI icon. Make project-specific artwork occupy a useful 40–65% of the canvas. Color and typography should unite the series, but compositions must vary thoughtfully rather than repeating identical diagrams. Straight-on graphic design, no tilted browser cards, no excessive shadow, no floating 3D SaaS dashboard. Crisp edges and legible real letterforms. Deliver a single thumbnail, no grid, no collage of separate covers, no decorative outer border or empty strips.\n\nExact project-name kicker: WSL Disk Bridge\nExact headline: Bridge Windows and Linux.\nExact subtitle: WSL2 disk access for dual-boot setups.\n\nCreate a restrained cross-sectional storage illustration: a single physical disk-like rectangle separated into two precisely aligned logical regions, Windows and Linux, joined by one green bridge trace through the center. Use geometric partition bands and fine technical hatch marks, not terminals or operating-system logos. Allowed diagram labels: Windows, Linux, WSL2. The two systems visibly share access to the same underlying disk abstraction. Avoid implying a polished UI or enumerating unsupported filesystem features.",
+      "prompt": "Use case: illustration-story.\nCreate one finished editorial illustration for WSL Disk Bridge, 16:9 landscape, intended final 1536 × 864 pixels.\nConcept: Give Windows and Linux access to disks across a dual-boot setup.\nScene: Extreme three-quarter close-up of an opened hard disk. One half of its platter is engraved as a precise rectilinear city, the other as a dense branching landscape. A single polished read arm passes smoothly across their seam. Monumental hardware proportions, black void, detailed white metallic crosshatching. A clear physical connection between the two different terrains, no operating-system logos.\nArt direction: entirely black-and-white pen-and-ink artwork combining the detailed engraving and crosshatching of a vintage etching with the dramatic framing of a graphic-novel panel. Dense ink blacks, clean paper whites, fine etched lines. Every shadow and texture is made with deliberate hatching, stippling or solid black. Deep contrast and strong silhouette; atmospheric depth comes from varying line density, never soft digital gradients. Rich tactile hand-inked craftsmanship, cinematic scale, intelligent visual storytelling. One unmistakable focal scene with distinct foreground, middle ground and background. Purposeful quieter negative space toward edges; concentrate intricate detail around meaningful subject. Make the image compelling at 480px wide and instantly legible at 358px. Essential subject and action remain within central 60% of frame with breathing room above and below for cropping. Full-bleed complete landscape composition.\nPure monochrome only. No color or sepia, no smooth grayscale gradients, photorealism, digital glow, glossy 3D, vector clipart, dashboard, user interface, collage of different panels, caption, title, text, letters, numerals, logos, watermark, frame or border. Do not print the project name or the concept. This is an original physical visual metaphor, not a diagram. One finished opaque image.",
       "generation_status": "saved",
       "saved_generation": "assets/projects/thumbnails/wsl-disk-bridge.png",
       "final_asset": "assets/projects/thumbnails/wsl-disk-bridge.webp",
-      "composition_status": "not-required",
-      "gallery_status": "connected"
+      "webp_quality": 92,
+      "gallery_status": "connected",
+      "alt": "Ink illustration of a hard disk connecting a city and a branching landscape.",
+      "concept": "Give Windows and Linux access to disks across a dual-boot setup.",
+      "scene": "Extreme three-quarter close-up of an opened hard disk. One half of its platter is engraved as a precise rectilinear city, the other as a dense branching landscape. A single polished read arm passes smoothly across their seam. Monumental hardware proportions, black void, detailed white metallic crosshatching. A clear physical connection between the two different terrains, no operating-system logos."
     },
     {
       "slug": "pythoncs",
       "title": "PythonCS",
-      "source_images": [],
+      "style": "monochrome",
       "mode": "generate",
-      "headline": "Security practice.",
-      "subtitle": "Python exercises, beginner to intermediate.",
-      "output_path": "assets/projects/thumbnails/pythoncs.png",
-      "prompt": "Create one finished, polished 16:9 portfolio project thumbnail, 1536 × 864 pixels. Match a restrained editorial technology cover, like a carefully typeset independent software landing page, rather than an AI wallpaper. Background is nearly flat charcoal #191a1b; accent is soft green #6fcf6f; primary type is off-white #f1f1f1; secondary type is warm gray #a7aaa3. No blue accent in newly designed elements. Use a small monospaced project-name kicker and a large refined editorial headline, with generous but purposeful spacing. Headline must read clearly when this image is displayed at 430px wide. Main headline approximately 62–76px at output resolution; supporting copy approximately 25–30px, never microtext. Keep all outer typography and essential visual information inside a 64px safe margin. Limit visible copy to the supplied exact project name, headline, and subtitle, plus explicitly allowed diagram labels. Do not add a logo, date, domain, author credit, popularity count, statistics, badges, CTA, faux browser chrome, glowing borders, terminal window, robot, or repeated generic AI icon. Make project-specific artwork occupy a useful 40–65% of the canvas. Color and typography should unite the series, but compositions must vary thoughtfully rather than repeating identical diagrams. Straight-on graphic design, no tilted browser cards, no excessive shadow, no floating 3D SaaS dashboard. Crisp edges and legible real letterforms. Deliver a single thumbnail, no grid, no collage of separate covers, no decorative outer border or empty strips.\n\nExact project-name kicker: PythonCS\nExact headline: Less repetition in the SOC.\nExact subtitle: Python tools for everyday analyst workflows.\n\nCreate an editorial information-reduction illustration: several thin sheets of abstract event records enter a small green transformation point and emerge as one orderly, clean set of lines. Use a restrained stepped arrangement with fine gray rules and green highlights, suitable for a SOC workflow concept. Allowed tiny but readable diagram labels: events, tools, workflow. No actual IP addresses, fake alerts, attack attribution, invented detection metrics, hooded hackers, binary rain, or simulated terminal code. The artwork should feel like efficient information organization.",
+      "prompt": "Use case: illustration-story.\nCreate one finished editorial illustration for PythonCS, 16:9 landscape, intended final 1536 × 864 pixels.\nConcept: Progress from beginner to intermediate through Python security practice exercises.\nScene: On a quiet study bench, three increasingly complex wooden geometric puzzles stand on rising stone steps. The first simple puzzle is fully assembled, the central one is being carefully rotated by one hand, and the final intricate interlocking puzzle waits on the highest step. Show precise wood joinery, distinct mechanisms and patient craft. A dramatic overhead study lamp illuminates the central hand and puzzle against dark shelves. The image represents practice and progression from beginner to advanced problem solving. No locks, lockpicks, weapons, digital screens, code, labels or writing.\nArt direction: entirely black-and-white pen-and-ink artwork combining the detailed engraving and crosshatching of a vintage etching with the dramatic framing of a graphic-novel panel. Dense ink blacks, clean paper whites, fine etched lines. Every shadow and texture is made with deliberate hatching, stippling or solid black. Deep contrast and strong silhouette; atmospheric depth comes from varying line density, never soft digital gradients. Rich tactile hand-inked craftsmanship, cinematic scale, intelligent visual storytelling. One unmistakable focal scene with distinct foreground, middle ground and background. Purposeful quieter negative space toward edges; concentrate intricate detail around meaningful subject. Make the image compelling at 480px wide and instantly legible at 358px. Essential subject and action remain within central 60% of frame with breathing room above and below for cropping. Full-bleed complete landscape composition.\nPure monochrome only. No color or sepia, no smooth grayscale gradients, photorealism, digital glow, glossy 3D, vector clipart, dashboard, user interface, collage of different panels, caption, title, text, letters, numerals, logos, watermark, frame or border. Do not print the project name or the concept. This is an original physical visual metaphor, not a diagram. One finished opaque image.",
       "generation_status": "saved",
       "saved_generation": "assets/projects/thumbnails/pythoncs.png",
       "final_asset": "assets/projects/thumbnails/pythoncs.webp",
-      "composition_status": "not-required",
-      "gallery_status": "connected"
+      "webp_quality": 92,
+      "gallery_status": "connected",
+      "alt": "Ink illustration of increasingly complex geometric puzzles used for hands-on practice.",
+      "concept": "Progress from beginner to intermediate through Python security practice exercises.",
+      "scene": "On a quiet study bench, three increasingly complex wooden geometric puzzles stand on rising stone steps. The first simple puzzle is fully assembled, the central one is being carefully rotated by one hand, and the final intricate interlocking puzzle waits on the highest step. Show precise wood joinery, distinct mechanisms and patient craft. A dramatic overhead study lamp illuminates the central hand and puzzle against dark shelves. The image represents practice and progression from beginner to advanced problem solving. No locks, lockpicks, weapons, digital screens, code, labels or writing."
     },
     {
       "slug": "kanal",
       "title": "Kanal",
-      "source_images": [],
+      "style": "monochrome",
       "mode": "generate",
-      "headline": "Your lineup. Any screen.",
-      "subtitle": "Android TV streaming, remotely managed.",
-      "output_path": "assets/projects/thumbnails/kanal.png",
-      "prompt": "Create one finished, polished 16:9 portfolio project thumbnail, 1536 × 864 pixels. Match a restrained editorial technology cover, like a carefully typeset independent software landing page, rather than an AI wallpaper. Background is nearly flat charcoal #191a1b; accent is soft green #6fcf6f; primary type is off-white #f1f1f1; secondary type is warm gray #a7aaa3. No blue accent in newly designed elements. Use a small monospaced project-name kicker and a large refined editorial headline, with generous but purposeful spacing. Headline must read clearly when this image is displayed at 430px wide. Main headline approximately 62–76px at output resolution; supporting copy approximately 25–30px, never microtext. Keep all outer typography and essential visual information inside a 64px safe margin. Limit visible copy to the supplied exact project name, headline, and subtitle, plus explicitly allowed diagram labels. Do not add a logo, date, domain, author credit, popularity count, statistics, badges, CTA, faux browser chrome, glowing borders, terminal window, robot, or repeated generic AI icon. Make project-specific artwork occupy a useful 40–65% of the canvas. Color and typography should unite the series, but compositions must vary thoughtfully rather than repeating identical diagrams. Straight-on graphic design, no tilted browser cards, no excessive shadow, no floating 3D SaaS dashboard. Crisp edges and legible real letterforms. Deliver a single thumbnail, no grid, no collage of separate covers, no decorative outer border or empty strips.\n\nExact project-name kicker: Kanal\nExact headline: Your lineup. Any screen.\nExact subtitle: Android TV streaming, remotely managed.\n\nIllustrate a large simple television silhouette with three horizontal lineup ribbons sliding toward the screen from one side. The screen holds abstract grayscale broadcast bands with one green selected band; this is conceptual artwork, not a fake app screenshot. Allow a single small remote-control-like geometric bar if it strengthens the remote-management idea. No channel logos, film frames, invented program titles, Android robot, device mockup perspective, or meaningless UI blocks. Use an asymmetrical composition with generous headline room.",
+      "prompt": "Use case: illustration-story.\nCreate one finished editorial illustration for Kanal, 16:9 landscape, intended final 1536 × 864 pixels.\nConcept: Bring a remotely managed lineup of streaming channels to Android TV.\nScene: A single modern television stands on a dark plinth. Several broad film ribbons descend from different directions and converge behind it, each bearing a different tiny engraved landscape. Its screen shows one clear landscape; an unmarked remote rests in the foreground. Dramatic frontal composition, flowing ribbons against open white space. Keep the main television and converging ribbons inside safe composition, no invented brand logo.\nArt direction: entirely black-and-white pen-and-ink artwork combining the detailed engraving and crosshatching of a vintage etching with the dramatic framing of a graphic-novel panel. Dense ink blacks, clean paper whites, fine etched lines. Every shadow and texture is made with deliberate hatching, stippling or solid black. Deep contrast and strong silhouette; atmospheric depth comes from varying line density, never soft digital gradients. Rich tactile hand-inked craftsmanship, cinematic scale, intelligent visual storytelling. One unmistakable focal scene with distinct foreground, middle ground and background. Purposeful quieter negative space toward edges; concentrate intricate detail around meaningful subject. Make the image compelling at 480px wide and instantly legible at 358px. Essential subject and action remain within central 60% of frame with breathing room above and below for cropping. Full-bleed complete landscape composition.\nPure monochrome only. No color or sepia, no smooth grayscale gradients, photorealism, digital glow, glossy 3D, vector clipart, dashboard, user interface, collage of different panels, caption, title, text, letters, numerals, logos, watermark, frame or border. Do not print the project name or the concept. This is an original physical visual metaphor, not a diagram. One finished opaque image.",
       "generation_status": "saved",
       "saved_generation": "assets/projects/thumbnails/kanal.png",
       "final_asset": "assets/projects/thumbnails/kanal.webp",
-      "composition_status": "not-required",
-      "gallery_status": "connected"
+      "webp_quality": 92,
+      "gallery_status": "connected",
+      "alt": "Ink illustration of many film streams converging on a television.",
+      "concept": "Bring a remotely managed lineup of streaming channels to Android TV.",
+      "scene": "A single modern television stands on a dark plinth. Several broad film ribbons descend from different directions and converge behind it, each bearing a different tiny engraved landscape. Its screen shows one clear landscape; an unmarked remote rests in the foreground. Dramatic frontal composition, flowing ribbons against open white space. Keep the main television and converging ribbons inside safe composition, no invented brand logo."
     },
     {
       "slug": "project-x",
       "title": "Project X",
-      "source_images": [],
+      "style": "monochrome",
       "mode": "generate",
-      "headline": "Automation for local business.",
-      "subtitle": "Custom assistants, connected to everyday work.",
-      "output_path": "assets/projects/thumbnails/project-x.png",
-      "prompt": "Create one finished, polished 16:9 portfolio project thumbnail, 1536 × 864 pixels. Match a restrained editorial technology cover, like a carefully typeset independent software landing page, rather than an AI wallpaper. Background is nearly flat charcoal #191a1b; accent is soft green #6fcf6f; primary type is off-white #f1f1f1; secondary type is warm gray #a7aaa3. No blue accent in newly designed elements. Use a small monospaced project-name kicker and a large refined editorial headline, with generous but purposeful spacing. Headline must read clearly when this image is displayed at 430px wide. Main headline approximately 62–76px at output resolution; supporting copy approximately 25–30px, never microtext. Keep all outer typography and essential visual information inside a 64px safe margin. Limit visible copy to the supplied exact project name, headline, and subtitle, plus explicitly allowed diagram labels. Do not add a logo, date, domain, author credit, popularity count, statistics, badges, CTA, faux browser chrome, glowing borders, terminal window, robot, or repeated generic AI icon. Make project-specific artwork occupy a useful 40–65% of the canvas. Color and typography should unite the series, but compositions must vary thoughtfully rather than repeating identical diagrams. Straight-on graphic design, no tilted browser cards, no excessive shadow, no floating 3D SaaS dashboard. Crisp edges and legible real letterforms. Deliver a single thumbnail, no grid, no collage of separate covers, no decorative outer border or empty strips.\n\nExact project-name kicker: Project X\nExact headline: Automation for local business.\nExact subtitle: Custom assistants, connected to everyday work.\n\nCreate a minimal branching operations diagram that starts from a single local-business block and routes into three thoughtfully spaced task nodes, then returns a simple completed flow. Highlight one route in green. The visual is conceptual, not a fake product interface. Allowed diagram labels: assistants, operations, Real Estate AI Ops. Include Real Estate AI Ops as a clearly subordinate branch so it reads as a subproject, never a separate project or unrelated headline. No invented CRM screen, customer numbers, performance percentages, company names, or generic AI brain.",
+      "prompt": "Use case: illustration-story.\nCreate one finished editorial illustration for Project X, 16:9 landscape, intended final 1536 × 864 pixels.\nConcept: Custom assistants and automation for local businesses, including real-estate operations.\nScene: A modest neighborhood corner shop sits above an exposed underground clockwork system. Hidden gears quietly sort envelopes, turn an unlettered calendar mechanism and open the shop's shutters while the owner calmly tends the counter. Tall architectural cutaway, generous surrounding darkness, one memorable contrast between ordinary business and invisible automation. Windows and shop sign are blank; no brand name or writing.\nArt direction: entirely black-and-white pen-and-ink artwork combining the detailed engraving and crosshatching of a vintage etching with the dramatic framing of a graphic-novel panel. Dense ink blacks, clean paper whites, fine etched lines. Every shadow and texture is made with deliberate hatching, stippling or solid black. Deep contrast and strong silhouette; atmospheric depth comes from varying line density, never soft digital gradients. Rich tactile hand-inked craftsmanship, cinematic scale, intelligent visual storytelling. One unmistakable focal scene with distinct foreground, middle ground and background. Purposeful quieter negative space toward edges; concentrate intricate detail around meaningful subject. Make the image compelling at 480px wide and instantly legible at 358px. Essential subject and action remain within central 60% of frame with breathing room above and below for cropping. Full-bleed complete landscape composition.\nPure monochrome only. No color or sepia, no smooth grayscale gradients, photorealism, digital glow, glossy 3D, vector clipart, dashboard, user interface, collage of different panels, caption, title, text, letters, numerals, logos, watermark, frame or border. Do not print the project name or the concept. This is an original physical visual metaphor, not a diagram. One finished opaque image.",
       "generation_status": "saved",
       "saved_generation": "assets/projects/thumbnails/project-x.png",
       "final_asset": "assets/projects/thumbnails/project-x.webp",
-      "composition_status": "not-required",
-      "gallery_status": "connected"
+      "webp_quality": 92,
+      "gallery_status": "connected",
+      "alt": "Ink illustration of a local shop supported by hidden automation machinery.",
+      "concept": "Custom assistants and automation for local businesses, including real-estate operations.",
+      "scene": "A modest neighborhood corner shop sits above an exposed underground clockwork system. Hidden gears quietly sort envelopes, turn an unlettered calendar mechanism and open the shop's shutters while the owner calmly tends the counter. Tall architectural cutaway, generous surrounding darkness, one memorable contrast between ordinary business and invisible automation. Windows and shop sign are blank; no brand name or writing."
     },
     {
       "slug": "nasserver",
       "title": "NAS Server",
-      "source_images": [],
+      "style": "monochrome",
       "mode": "generate",
-      "headline": "Your files. Your server.",
-      "subtitle": "Self-hosted storage, backups, and remote access.",
-      "output_path": "assets/projects/thumbnails/nasserver.png",
-      "prompt": "Create one finished, polished 16:9 portfolio project thumbnail, 1536 × 864 pixels. Match a restrained editorial technology cover, like a carefully typeset independent software landing page, rather than an AI wallpaper. Background is nearly flat charcoal #191a1b; accent is soft green #6fcf6f; primary type is off-white #f1f1f1; secondary type is warm gray #a7aaa3. No blue accent in newly designed elements. Use a small monospaced project-name kicker and a large refined editorial headline, with generous but purposeful spacing. Headline must read clearly when this image is displayed at 430px wide. Main headline approximately 62–76px at output resolution; supporting copy approximately 25–30px, never microtext. Keep all outer typography and essential visual information inside a 64px safe margin. Limit visible copy to the supplied exact project name, headline, and subtitle, plus explicitly allowed diagram labels. Do not add a logo, date, domain, author credit, popularity count, statistics, badges, CTA, faux browser chrome, glowing borders, terminal window, robot, or repeated generic AI icon. Make project-specific artwork occupy a useful 40–65% of the canvas. Color and typography should unite the series, but compositions must vary thoughtfully rather than repeating identical diagrams. Straight-on graphic design, no tilted browser cards, no excessive shadow, no floating 3D SaaS dashboard. Crisp edges and legible real letterforms. Deliver a single thumbnail, no grid, no collage of separate covers, no decorative outer border or empty strips.\n\nExact project-name kicker: NAS Server\nExact headline: Your files. Your server.\nExact subtitle: Self-hosted storage, backups, and remote access.\n\nCreate a tactile but very restrained frontal storage-shelf illustration: four dark horizontal storage bays, subtle warm-gray outlines, small green status marks, with a fine-line duplicate volume offset behind to imply backup. Avoid flashy futuristic hardware, excessive 3D perspective, or a branded commercial NAS. A single thin arc connecting a remote node to the storage object may convey access. Allowed diagram labels: storage, backup, access. Do not invent disk capacity, uptime, hardware specifications, or a web dashboard.",
+      "prompt": "Use case: illustration-story.\nCreate one finished editorial illustration for NAS Server, 16:9 landscape, intended final 1536 × 864 pixels.\nConcept: Self-hosted storage with automated backups and remote access.\nScene: An opened unbranded steel home safe contains an orderly stack of hard-drive platters. Beneath it, a second identical stack is visible in a protected lower chamber, connected by one continuous cable; another cable escapes through a distant tiny window. Symmetrical vault cross-section, heavy protective structure, precise mirrored storage. Focus on the physical safe and two mirrored sets, no labels, numbers or digital dashboard.\nArt direction: entirely black-and-white pen-and-ink artwork combining the detailed engraving and crosshatching of a vintage etching with the dramatic framing of a graphic-novel panel. Dense ink blacks, clean paper whites, fine etched lines. Every shadow and texture is made with deliberate hatching, stippling or solid black. Deep contrast and strong silhouette; atmospheric depth comes from varying line density, never soft digital gradients. Rich tactile hand-inked craftsmanship, cinematic scale, intelligent visual storytelling. One unmistakable focal scene with distinct foreground, middle ground and background. Purposeful quieter negative space toward edges; concentrate intricate detail around meaningful subject. Make the image compelling at 480px wide and instantly legible at 358px. Essential subject and action remain within central 60% of frame with breathing room above and below for cropping. Full-bleed complete landscape composition.\nPure monochrome only. No color or sepia, no smooth grayscale gradients, photorealism, digital glow, glossy 3D, vector clipart, dashboard, user interface, collage of different panels, caption, title, text, letters, numerals, logos, watermark, frame or border. Do not print the project name or the concept. This is an original physical visual metaphor, not a diagram. One finished opaque image.",
       "generation_status": "saved",
       "saved_generation": "assets/projects/thumbnails/nasserver.png",
       "final_asset": "assets/projects/thumbnails/nasserver.webp",
-      "composition_status": "not-required",
-      "gallery_status": "connected"
+      "webp_quality": 92,
+      "gallery_status": "connected",
+      "alt": "Ink illustration of mirrored hard-drive stacks protected inside a steel safe.",
+      "concept": "Self-hosted storage with automated backups and remote access.",
+      "scene": "An opened unbranded steel home safe contains an orderly stack of hard-drive platters. Beneath it, a second identical stack is visible in a protected lower chamber, connected by one continuous cable; another cable escapes through a distant tiny window. Symmetrical vault cross-section, heavy protective structure, precise mirrored storage. Focus on the physical safe and two mirrored sets, no labels, numbers or digital dashboard."
     },
     {
       "slug": "buckshot",
       "title": "Buckshot Roulette MP",
-      "source_images": [],
+      "style": "monochrome",
       "mode": "generate",
-      "headline": "One table. Shared tension.",
-      "subtitle": "Multiplayer sessions in real time.",
-      "output_path": "assets/projects/thumbnails/buckshot.png",
-      "prompt": "Create one finished, polished 16:9 portfolio project thumbnail, 1536 × 864 pixels. Match a restrained editorial technology cover, like a carefully typeset independent software landing page, rather than an AI wallpaper. Background is nearly flat charcoal #191a1b; accent is soft green #6fcf6f; primary type is off-white #f1f1f1; secondary type is warm gray #a7aaa3. No blue accent in newly designed elements. Use a small monospaced project-name kicker and a large refined editorial headline, with generous but purposeful spacing. Headline must read clearly when this image is displayed at 430px wide. Main headline approximately 62–76px at output resolution; supporting copy approximately 25–30px, never microtext. Keep all outer typography and essential visual information inside a 64px safe margin. Limit visible copy to the supplied exact project name, headline, and subtitle, plus explicitly allowed diagram labels. Do not add a logo, date, domain, author credit, popularity count, statistics, badges, CTA, faux browser chrome, glowing borders, terminal window, robot, or repeated generic AI icon. Make project-specific artwork occupy a useful 40–65% of the canvas. Color and typography should unite the series, but compositions must vary thoughtfully rather than repeating identical diagrams. Straight-on graphic design, no tilted browser cards, no excessive shadow, no floating 3D SaaS dashboard. Crisp edges and legible real letterforms. Deliver a single thumbnail, no grid, no collage of separate covers, no decorative outer border or empty strips.\n\nExact project-name kicker: Buckshot Roulette MP\nExact headline: One table. Shared tension.\nExact subtitle: Multiplayer sessions in real time.\n\nCreate a cinematic editorial overhead still-life of a dark tabletop: two opposing player-position markers, a small arrangement of neutral brass-gray shell-like cylinders, and one central green session line joining the two positions. Keep it abstract, quiet, and high contrast rather than sensational; avoid photorealistic weapons or gore. A few deliberate shapes should carry tension. No invented game screenshot, branded game logo, fabricated player names, odds, ammo counts, or gameplay claims beyond multiplayer real-time sessions. Put the headline in a broad uncluttered part of the cover.",
+      "prompt": "Use case: illustration-story.\nCreate one finished editorial illustration for Buckshot Roulette MP, 16:9 landscape, intended final 1536 × 864 pixels.\nConcept: A multiplayer tabletop game with real-time sessions and shared tension.\nScene: An overhead view of a scarred square gaming table beneath a harsh pendant lamp. Four empty chairs face inward. A short shotgun rests flat across the tabletop beside a few intact shells. Dense surrounding darkness, exceptionally tactile wood engraving, absolute stillness and shared tension. No people, gore or weapon aimed outward, no printed playing cards or readable markings.\nArt direction: entirely black-and-white pen-and-ink artwork combining the detailed engraving and crosshatching of a vintage etching with the dramatic framing of a graphic-novel panel. Dense ink blacks, clean paper whites, fine etched lines. Every shadow and texture is made with deliberate hatching, stippling or solid black. Deep contrast and strong silhouette; atmospheric depth comes from varying line density, never soft digital gradients. Rich tactile hand-inked craftsmanship, cinematic scale, intelligent visual storytelling. One unmistakable focal scene with distinct foreground, middle ground and background. Purposeful quieter negative space toward edges; concentrate intricate detail around meaningful subject. Make the image compelling at 480px wide and instantly legible at 358px. Essential subject and action remain within central 60% of frame with breathing room above and below for cropping. Full-bleed complete landscape composition.\nPure monochrome only. No color or sepia, no smooth grayscale gradients, photorealism, digital glow, glossy 3D, vector clipart, dashboard, user interface, collage of different panels, caption, title, text, letters, numerals, logos, watermark, frame or border. Do not print the project name or the concept. This is an original physical visual metaphor, not a diagram. One finished opaque image.",
       "generation_status": "saved",
       "saved_generation": "assets/projects/thumbnails/buckshot.png",
       "final_asset": "assets/projects/thumbnails/buckshot.webp",
-      "composition_status": "not-required",
-      "gallery_status": "connected"
+      "webp_quality": 92,
+      "gallery_status": "connected",
+      "alt": "Ink illustration of a shared gaming table with four chairs, a shotgun, and shells.",
+      "concept": "A multiplayer tabletop game with real-time sessions and shared tension.",
+      "scene": "An overhead view of a scarred square gaming table beneath a harsh pendant lamp. Four empty chairs face inward. A short shotgun rests flat across the tabletop beside a few intact shells. Dense surrounding darkness, exceptionally tactile wood engraving, absolute stillness and shared tension. No people, gore or weapon aimed outward, no printed playing cards or readable markings."
     },
     {
       "slug": "secretsanta",
       "title": "Secret Santa",
-      "source_images": [],
+      "style": "monochrome",
       "mode": "generate",
-      "headline": "A draw with no repeats.",
-      "subtitle": "Random assignments, delivered by email.",
-      "output_path": "assets/projects/thumbnails/secretsanta.png",
-      "prompt": "Create one finished, polished 16:9 portfolio project thumbnail, 1536 × 864 pixels. Match a restrained editorial technology cover, like a carefully typeset independent software landing page, rather than an AI wallpaper. Background is nearly flat charcoal #191a1b; accent is soft green #6fcf6f; primary type is off-white #f1f1f1; secondary type is warm gray #a7aaa3. No blue accent in newly designed elements. Use a small monospaced project-name kicker and a large refined editorial headline, with generous but purposeful spacing. Headline must read clearly when this image is displayed at 430px wide. Main headline approximately 62–76px at output resolution; supporting copy approximately 25–30px, never microtext. Keep all outer typography and essential visual information inside a 64px safe margin. Limit visible copy to the supplied exact project name, headline, and subtitle, plus explicitly allowed diagram labels. Do not add a logo, date, domain, author credit, popularity count, statistics, badges, CTA, faux browser chrome, glowing borders, terminal window, robot, or repeated generic AI icon. Make project-specific artwork occupy a useful 40–65% of the canvas. Color and typography should unite the series, but compositions must vary thoughtfully rather than repeating identical diagrams. Straight-on graphic design, no tilted browser cards, no excessive shadow, no floating 3D SaaS dashboard. Crisp edges and legible real letterforms. Deliver a single thumbnail, no grid, no collage of separate covers, no decorative outer border or empty strips.\n\nExact project-name kicker: Secret Santa\nExact headline: A draw with no repeats.\nExact subtitle: Random assignments, delivered by email.\n\nCreate a warm but minimal assignment illustration: six off-white folded envelope shapes arranged on a circle, linked by a single green continuous path that connects distinct envelopes. One envelope may be slightly open with a simple blank card; no readable recipient names. Keep the palette charcoal, off-white, green; no festive red or cartoon Santa. This should evoke a private randomized gift exchange with polished geometric artwork, not a mail-app screenshot. No invented participant list, email service logo, personal addresses, or exact numerical claim in the cover copy.",
+      "prompt": "Use case: illustration-story.\nCreate one finished editorial illustration for Secret Santa, 16:9 landscape, intended final 1536 × 864 pixels.\nConcept: Randomly assign Secret Santa recipients and email each person's result.\nScene: Top-down view of a dark cloth draw bag surrounded by six differently wrapped gifts. One mittened hand lifts a small blank folded slip; long gift ribbons weave between the packages in a playful surprising exchange pattern. Mostly white paper, finely hatched cloth, strong dark bag at the center, restrained festive atmosphere. Gift tags and draw slip are completely blank. Avoid cartoon Santa or decorative typography.\nArt direction: entirely black-and-white pen-and-ink artwork combining the detailed engraving and crosshatching of a vintage etching with the dramatic framing of a graphic-novel panel. Dense ink blacks, clean paper whites, fine etched lines. Every shadow and texture is made with deliberate hatching, stippling or solid black. Deep contrast and strong silhouette; atmospheric depth comes from varying line density, never soft digital gradients. Rich tactile hand-inked craftsmanship, cinematic scale, intelligent visual storytelling. One unmistakable focal scene with distinct foreground, middle ground and background. Purposeful quieter negative space toward edges; concentrate intricate detail around meaningful subject. Make the image compelling at 480px wide and instantly legible at 358px. Essential subject and action remain within central 60% of frame with breathing room above and below for cropping. Full-bleed complete landscape composition.\nPure monochrome only. No color or sepia, no smooth grayscale gradients, photorealism, digital glow, glossy 3D, vector clipart, dashboard, user interface, collage of different panels, caption, title, text, letters, numerals, logos, watermark, frame or border. Do not print the project name or the concept. This is an original physical visual metaphor, not a diagram. One finished opaque image.",
       "generation_status": "saved",
-      "final_asset": "assets/projects/thumbnails/secretsanta.webp",
       "saved_generation": "assets/projects/thumbnails/secretsanta.png",
-      "composition_status": "not-required",
-      "gallery_status": "connected"
+      "final_asset": "assets/projects/thumbnails/secretsanta.webp",
+      "webp_quality": 92,
+      "gallery_status": "connected",
+      "alt": "Ink illustration of a gift exchange drawing surrounded by wrapped presents.",
+      "concept": "Randomly assign Secret Santa recipients and email each person's result.",
+      "scene": "Top-down view of a dark cloth draw bag surrounded by six differently wrapped gifts. One mittened hand lifts a small blank folded slip; long gift ribbons weave between the packages in a playful surprising exchange pattern. Mostly white paper, finely hatched cloth, strong dark bag at the center, restrained festive atmosphere. Gift tags and draw slip are completely blank. Avoid cartoon Santa or decorative typography."
     },
     {
       "slug": "pythonbruteforce",
       "title": "Python Brute Force",
-      "source_images": [],
+      "style": "monochrome",
       "mode": "generate",
-      "headline": "Practice the search space.",
-      "subtitle": "Penetration-testing and CTF experiments.",
-      "output_path": "assets/projects/thumbnails/pythonbruteforce.png",
-      "prompt": "Create one finished, polished 16:9 portfolio project thumbnail, 1536 × 864 pixels. Match a restrained editorial technology cover, like a carefully typeset independent software landing page, rather than an AI wallpaper. Background is nearly flat charcoal #191a1b; accent is soft green #6fcf6f; primary type is off-white #f1f1f1; secondary type is warm gray #a7aaa3. No blue accent in newly designed elements. Use a small monospaced project-name kicker and a large refined editorial headline, with generous but purposeful spacing. Headline must read clearly when this image is displayed at 430px wide. Main headline approximately 62–76px at output resolution; supporting copy approximately 25–30px, never microtext. Keep all outer typography and essential visual information inside a 64px safe margin. Limit visible copy to the supplied exact project name, headline, and subtitle, plus explicitly allowed diagram labels. Do not add a logo, date, domain, author credit, popularity count, statistics, badges, CTA, faux browser chrome, glowing borders, terminal window, robot, or repeated generic AI icon. Make project-specific artwork occupy a useful 40–65% of the canvas. Color and typography should unite the series, but compositions must vary thoughtfully rather than repeating identical diagrams. Straight-on graphic design, no tilted browser cards, no excessive shadow, no floating 3D SaaS dashboard. Crisp edges and legible real letterforms. Deliver a single thumbnail, no grid, no collage of separate covers, no decorative outer border or empty strips.\n\nExact project-name kicker: Python Brute Force\nExact headline: Practice the search space.\nExact subtitle: Penetration-testing and CTF experiments.\n\nCreate a precise discrete search-tree illustration that fans from one small starting node through a sparse grid of warm-gray candidate nodes. A single green route traces through the branching choices to one highlighted leaf; the rest stays subdued. Use careful spacing, a cropped but intentional geometric tree, and modest mathematical character. Allowed diagram labels: candidate, search, match. No passwords, exploit code, target addresses, terminal windows, anonymous-mask imagery, or claims of cracked systems. Present a learning experiment rather than an attack service.",
+      "prompt": "Use case: illustration-story.\nCreate one finished editorial illustration for Python Brute Force, 16:9 landscape, intended final 1536 × 864 pixels.\nConcept: Explore the search space in penetration-testing practice and CTF tools.\nScene: An immense radial wheel holds hundreds of distinct metal keys, each approaching one small cutaway training lock at the center. A single correctly shaped key aligns with the exposed mechanism. Macro mechanical spectacle, dense black outer key forest opening into a bright precise center. Exhaustive search made physical; bold central lock, no numbers, code, written symbols, criminal figure or computer screen.\nArt direction: entirely black-and-white pen-and-ink artwork combining the detailed engraving and crosshatching of a vintage etching with the dramatic framing of a graphic-novel panel. Dense ink blacks, clean paper whites, fine etched lines. Every shadow and texture is made with deliberate hatching, stippling or solid black. Deep contrast and strong silhouette; atmospheric depth comes from varying line density, never soft digital gradients. Rich tactile hand-inked craftsmanship, cinematic scale, intelligent visual storytelling. One unmistakable focal scene with distinct foreground, middle ground and background. Purposeful quieter negative space toward edges; concentrate intricate detail around meaningful subject. Make the image compelling at 480px wide and instantly legible at 358px. Essential subject and action remain within central 60% of frame with breathing room above and below for cropping. Full-bleed complete landscape composition.\nPure monochrome only. No color or sepia, no smooth grayscale gradients, photorealism, digital glow, glossy 3D, vector clipart, dashboard, user interface, collage of different panels, caption, title, text, letters, numerals, logos, watermark, frame or border. Do not print the project name or the concept. This is an original physical visual metaphor, not a diagram. One finished opaque image.",
       "generation_status": "saved",
-      "final_asset": "assets/projects/thumbnails/pythonbruteforce.webp",
       "saved_generation": "assets/projects/thumbnails/pythonbruteforce.png",
-      "composition_status": "not-required",
-      "gallery_status": "connected"
+      "final_asset": "assets/projects/thumbnails/pythonbruteforce.webp",
+      "webp_quality": 92,
+      "gallery_status": "connected",
+      "alt": "Ink illustration of many possible keys surrounding one matching lock mechanism.",
+      "concept": "Explore the search space in penetration-testing practice and CTF tools.",
+      "scene": "An immense radial wheel holds hundreds of distinct metal keys, each approaching one small cutaway training lock at the center. A single correctly shaped key aligns with the exposed mechanism. Macro mechanical spectacle, dense black outer key forest opening into a bright precise center. Exhaustive search made physical; bold central lock, no numbers, code, written symbols, criminal figure or computer screen."
     },
     {
       "slug": "turkish-voice",
       "title": "Turkish Voice",
-      "source_images": [],
+      "style": "monochrome",
       "mode": "generate",
-      "headline": "Speak Turkish. Work locally.",
-      "subtitle": "Whisper transcription for Claude Code. Archived.",
-      "output_path": "assets/projects/thumbnails/turkish-voice.png",
-      "prompt": "Create one finished, polished 16:9 portfolio project thumbnail, 1536 × 864 pixels. Match a restrained editorial technology cover, like a carefully typeset independent software landing page, rather than an AI wallpaper. Background is nearly flat charcoal #191a1b; accent is soft green #6fcf6f; primary type is off-white #f1f1f1; secondary type is warm gray #a7aaa3. No blue accent in newly designed elements. Use a small monospaced project-name kicker and a large refined editorial headline, with generous but purposeful spacing. Headline must read clearly when this image is displayed at 430px wide. Main headline approximately 62–76px at output resolution; supporting copy approximately 25–30px, never microtext. Keep all outer typography and essential visual information inside a 64px safe margin. Limit visible copy to the supplied exact project name, headline, and subtitle, plus explicitly allowed diagram labels. Do not add a logo, date, domain, author credit, popularity count, statistics, badges, CTA, faux browser chrome, glowing borders, terminal window, robot, or repeated generic AI icon. Make project-specific artwork occupy a useful 40–65% of the canvas. Color and typography should unite the series, but compositions must vary thoughtfully rather than repeating identical diagrams. Straight-on graphic design, no tilted browser cards, no excessive shadow, no floating 3D SaaS dashboard. Crisp edges and legible real letterforms. Deliver a single thumbnail, no grid, no collage of separate covers, no decorative outer border or empty strips.\n\nExact project-name kicker: Turkish Voice\nExact headline: Speak Turkish. Work locally.\nExact subtitle: Whisper transcription for Claude Code. Archived.\n\nCreate a restrained language-to-text illustration: a fine irregular speech waveform on the left resolves into three short typographic transcript lines on the right, with a subtle green transition mark. A tiny archived annotation can be supplied only as part of the exact subtitle, not a new badge. Allowed transcript specimen, if used: merhaba. Keep this conceptual and avoid imitating a real app UI or adding fabricated model output. This is an archived predecessor to Handy; do not imply active development, a new interface, or a completed successor integration.",
+      "prompt": "Use case: illustration-story.\nCreate one finished editorial illustration for Turkish Voice, 16:9 landscape, intended final 1536 × 864 pixels.\nConcept: An archived local Whisper transcription tool for Turkish dictation.\nScene: Close-cropped side view of a person's mouth quietly whispering toward a small desktop recording instrument. The breath becomes a fine engraved ribbon that resolves into clean blank paper winding onto a local spool. A small tulip-shaped tea glass anchors the desk. Sweeping horizontal composition, intimate human scale, black background and delicate white breath. Keep the recording instrument and breath as the focal point. No writing on the ribbon or logos.\nArt direction: entirely black-and-white pen-and-ink artwork combining the detailed engraving and crosshatching of a vintage etching with the dramatic framing of a graphic-novel panel. Dense ink blacks, clean paper whites, fine etched lines. Every shadow and texture is made with deliberate hatching, stippling or solid black. Deep contrast and strong silhouette; atmospheric depth comes from varying line density, never soft digital gradients. Rich tactile hand-inked craftsmanship, cinematic scale, intelligent visual storytelling. One unmistakable focal scene with distinct foreground, middle ground and background. Purposeful quieter negative space toward edges; concentrate intricate detail around meaningful subject. Make the image compelling at 480px wide and instantly legible at 358px. Essential subject and action remain within central 60% of frame with breathing room above and below for cropping. Full-bleed complete landscape composition.\nPure monochrome only. No color or sepia, no smooth grayscale gradients, photorealism, digital glow, glossy 3D, vector clipart, dashboard, user interface, collage of different panels, caption, title, text, letters, numerals, logos, watermark, frame or border. Do not print the project name or the concept. This is an original physical visual metaphor, not a diagram. One finished opaque image.",
       "generation_status": "saved",
-      "final_asset": "assets/projects/thumbnails/turkish-voice.webp",
       "saved_generation": "assets/projects/thumbnails/turkish-voice.png",
-      "composition_status": "not-required",
-      "gallery_status": "connected"
+      "final_asset": "assets/projects/thumbnails/turkish-voice.webp",
+      "webp_quality": 92,
+      "gallery_status": "connected",
+      "alt": "Ink illustration of a whisper becoming a paper transcript beside a Turkish tea glass.",
+      "concept": "An archived local Whisper transcription tool for Turkish dictation.",
+      "scene": "Close-cropped side view of a person's mouth quietly whispering toward a small desktop recording instrument. The breath becomes a fine engraved ribbon that resolves into clean blank paper winding onto a local spool. A small tulip-shaped tea glass anchors the desk. Sweeping horizontal composition, intimate human scale, black background and delicate white breath. Keep the recording instrument and breath as the focal point. No writing on the ribbon or logos."
     }
-  ],
-  "ui_fidelity": "Source images for UI/photo entries are compositing inputs, not requests to regenerate text or controls. Source colors remain inside real screenshots; new cover design uses charcoal/green. Blank inset is intermediate and must be filled before publishing.",
-  "approved_image_model": "Built-in GPT Image 2 (included plan allowance; no API key)",
-  "approved_style_reference": "assets/projects/thumbnails/watchlistrr-test.png",
-  "resume": {
-    "completed_generations": [
-      "pargus",
-      "detkit",
-      "threatintel",
-      "logibar",
-      "moviepickr",
-      "jobscope",
-      "cheff",
-      "handy",
-      "martek",
-      "numbers",
-      "portfolio",
-      "jarvis",
-      "watchlistrr",
-      "wsl-disk-bridge",
-      "pythoncs",
-      "kanal",
-      "project-x",
-      "nasserver",
-      "buckshot",
-      "secretsanta",
-      "pythonbruteforce",
-      "turkish-voice"
-    ],
-    "remaining_generations": [],
-    "ui_composition_pending": [],
-    "gallery_updated": true
-  },
-  "generation_tool": "built-in image_gen",
-  "actual_image_model": "GPT Image 2 (approved built-in route)"
+  ]
 }
