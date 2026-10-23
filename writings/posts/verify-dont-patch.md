@@ -93,4 +93,4 @@ i used ai for all of it. my part was checking what it handed me.
 
 the test repo is public, with every script and number: [github.com/canmenzo/cve-2026-93687-braces](https://github.com/canmenzo/cve-2026-93687-braces). if it's useful to you, a star helps.
 
-i also posted this on x. follow [@canmenzo](https://x.com/canmenzo) for the next one, and the rest of what i build is on [projects](/projects/).
+i also posted this [on x](https://x.com/canmenzo/status/2113448577716347200). follow [@canmenzo](https://x.com/canmenzo) for the next one, and the rest of what i build is on [projects](/projects/).
