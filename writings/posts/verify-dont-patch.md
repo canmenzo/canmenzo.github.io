@@ -23,13 +23,15 @@ mine would have been number 13. my agent was ready to write it. i would have bee
 so i changed the question. not "how do i patch this" but "who is right". verify, don't patch.
 
 ### measuring it
-i had an agent (fable 5.1) build a measurement repo. pin `braces` 3.0.3, `micromatch` 4.0.8 and `fast-glob` 3.3.1, then drive every entry point with growing nesting in three shapes:
+i had a single fable 5.1 subagent, on medium effort, build a measurement repo: pin `braces` 3.0.3, `micromatch` 4.0.8 and `fast-glob` 3.3.1, then drive every entry point with growing nesting in three shapes:
 
 - comma: `{a,{a,{a,...}}}`, about 4 characters per level. this is the maintainer's math.
 - brace: `{{{...a...}}}`, 2 characters per level.
 - range: `{1..2,{1..2,...}}`, about 7 per level.
 
 two facts matter. the default `maxLength` is 10000 (lowered from 65536 in upstream pr #40, may 2024), and `maxLength` can only lower the cap, never raise it. also, `parse` is iterative and never overflows. the recursion lives in `expand` and `compile`.
+
+it wrote the scripts, ran them on my mac mini and wrote up the results in about fifteen minutes. one agent, medium effort. frontier models are that good now.
 
 ### the agent measured the wrong thing
 the first report said the maintainer was mostly right. at the cap, the brace shape sat "at the knife edge": it crashed at depth 4700 but not at 4900 or 4999. "a coin toss". the same report claimed a 256 kb stack was about a worker thread's default. that part was just wrong. node's docs say 4 mb.
@@ -38,7 +40,7 @@ i reviewed it and had it re-run differently: one fresh node process per call. cr
 
 the coin toss was the jit. the agent measured everything inside one long-running process. after warm-up, v8 optimizes the code, each recursion frame gets smaller, and it goes deeper before running out of stack. a real server is not warmed up on nested braces first. it meets the malicious request cold.
 
-this is the same thing i wrote about last time. ai checks the shape of a thing, not the amount. here it did run the benchmark. it just ran it under conditions that don't match the case that matters. the number was real. the setup was wrong.
+this is the same thing i wrote about [last time](/writings/#/vibecoded). ai checks the shape of a thing, not the amount. here it did run the benchmark. it just ran it under conditions that don't match the case that matters. the number was real. the setup was wrong.
 
 ### the numbers
 node v26.8.1, mac mini arm64, default stack, default options, fresh process:
