@@ -55,6 +55,7 @@
 .projects-page .project-card > a .project-destination { margin-top: auto; padding-top: 24px; }
 .projects-page .project-card.is-private .project-destination { color: var(--muted); }
 .projects-page .project-card.has-links { display: flex; flex-direction: column; }
+.projects-page .project-card[hidden] { display: none; }
 .projects-page .project-card.has-links > a { height: auto; }
 .projects-page .project-card .project-links { margin-top: auto; padding-top: 24px; display: flex; flex-wrap: wrap; gap: 8px 24px; }
 .projects-page .project-card .project-links a { color: inherit; text-decoration: none; }

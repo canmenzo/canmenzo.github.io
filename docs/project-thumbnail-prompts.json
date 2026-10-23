@@ -16,6 +16,20 @@
   "direction": "Editorial dark covers. Image generation supplies typography/art/background; real UI and the Jarvis owner photo are overlaid deterministically from exact source pixels, never redrawn by the image model. Projects without source images get unique project-specific artwork. Real Estate AI Ops stays subordinate to Project X.",
   "projects": [
     {
+      "slug": "pargus",
+      "title": "Pargus",
+      "mode": "generate",
+      "headline": "Tasks in. Work out.",
+      "subtitle": "One board for your AI agents.",
+      "output_path": "assets/projects/thumbnails/pargus.png",
+      "prompt": "Use case: ads-marketing\nAsset type: finished portfolio project thumbnail, 16:9 landscape, 1536 × 864.\n\nCreate a refined editorial cover for Pargus, a desktop workspace that turns a shared task board into work performed by AI agents. Match the established menzo.dev portfolio: warm charcoal, restrained green, small monospaced project name, oversized white editorial serif headline, muted serif subtitle, and a precise bespoke conceptual illustration.\n\nFull-bleed warm charcoal background #191a1b, nearly flat with extremely subtle paper grain. Off-white #f2f1ed text, muted warm gray supporting text, restrained sage green #6fcf6f accents. The finish should feel precise, calm and authored.\n\nLeft half: generous 80px outer margins. At approximately x85, y200, small monospaced project name \"Pargus\" in muted gray, with a short thin green underline. Below it, a beautiful oversized white editorial serif headline on exactly two lines:\n\"Tasks in.\"\n\"Work out.\"\nUse approximately 110px type, elegant proportions, tight comfortable leading, and a green final period after \"out\". Keep every word perfectly readable and spelled exactly. Below, a smaller muted serif subtitle on two lines:\n\"One board for\"\n\"your AI agents.\"\n\nRight half: one beautifully composed conceptual illustration occupying x850–1450 and y235–625. Illustrate a clear progression from intent to completed work: two small graphite note tiles with simple horizontal strokes feed along fine curved gray routes into three small connected circular worker nodes; the routes converge into one compact, orderly task board with three vertical lanes. Its few generous graphite task tiles have minimal gray line marks and distinct outlined square checkboxes. The final lane contains two completed tiles with crisp green checks. One continuous green path visibly carries a task through the composition into completion. Shapes should be flat, dimensional only through subtle borders and very restrained tonal layering. Delicate gray construction, deliberate green emphasis, clean aligned geometry, plenty of breathing room. Fine restrained diagram language, not a dashboard screenshot.\n\nThis is a bespoke conceptual diagram, with no small labels or invented app interface. Make its silhouette and checks understandable when the cover is displayed at 480px wide. Keep artwork entirely clear of the headline. Balance text and illustration across the whole canvas. Keep all essential content inside 64px safe margins. Only exact visible text: \"Pargus\", \"Tasks in.\", \"Work out.\", \"One board for\", \"your AI agents.\"\n\nNo robots, brains, human figures, circuit-board textures, purple gradients, neon blooms, glossy 3D objects, laptop mockups, app chrome, pseudo-terminal code, decorative badges, extra text or watermarks. Deliver a complete finished straight-on image with an opaque background.",
+      "generation_status": "saved",
+      "final_asset": "assets/projects/thumbnails/pargus.webp",
+      "saved_generation": "assets/projects/thumbnails/pargus.png",
+      "composition_status": "not-required",
+      "gallery_status": "connected"
+    },
+    {
       "slug": "detkit",
       "title": "Detkit",
       "source_images": [
@@ -602,6 +616,7 @@
   "approved_style_reference": "assets/projects/thumbnails/watchlistrr-test.png",
   "resume": {
     "completed_generations": [
+      "pargus",
       "detkit",
       "threatintel",
       "logibar",
