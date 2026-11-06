@@ -50,6 +50,8 @@ for r in detkit ThreatIntelSearch logibar numbers; do gh workflow run pages.yml 
 
 Cloudflare DNS has a proxied `CNAME <name> -> canmenzo.github.io` per subdomain; each repository's Pages custom domain selects the site. Every record, apex included, is proxied and Cloudflare terminates HTTPS (SSL mode Full), because `.dev` is HSTS-preloaded and a site whose GitHub certificate is late does not load at all. Because those repositories are project sites of `canmenzo.github.io`, `menzo.dev/numbers/` and `menzo.dev/detkit/` redirect to their subdomains.
 
+Edge TLS on the menzo.dev zone (set 2026-11-06): minimum TLS 1.2 with TLS 1.3 on, Always Use HTTPS, and HSTS (one year, includeSubDomains, preload, nosniff). Keep SSL mode on Full, not Full (strict): GitHub Pages cannot issue certificates for proxied hostnames, so its origin certificate does not match menzo.dev and strict mode would take every site down. Do not raise the minimum to TLS 1.3; older Android devices and many corporate proxies only speak 1.2. Custom cipher suites need Advanced Certificate Manager, so the zone uses Cloudflare's default list.
+
 ## Old domain
 
 The site moved from canmenzo.com on 2026-10-19. A single redirect rule on the canmenzo.com zone sends `canmenzo.com`, `www` and every subdomain to the same host and path on menzo.dev with a 301. canmenzo.com expires 2026-11-15 and is not renewed, so the redirect stops then.
