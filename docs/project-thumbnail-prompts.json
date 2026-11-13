@@ -64,6 +64,7 @@
   "projects": [
     {
       "slug": "pargus",
+      "logo_updated": "2026-11-13: the old P tile was replaced with the new eye mark (two lids, green pupil) in the gallery PNG; the social PNG is the updated og-preview.png from the Pargus repo.",
       "title": "Pargus",
       "mode": "edit",
       "headline": "A meta-harness for agentic task management.",
